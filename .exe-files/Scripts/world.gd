@@ -2,6 +2,7 @@ extends Node2D
 
 var paper_stack: Array = []
 var paper_scene := preload("res://Scenes/paper.tscn")
+var dragged_paper: Node2D = null
 
 func _ready() -> void:
 	for i in range(2):
