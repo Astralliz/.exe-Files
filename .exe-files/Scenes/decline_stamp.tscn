@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://tho7wbodfq4n"]
+
+[ext_resource type="Texture2D" uid="uid://bbejplmms83a8" path="res://Assets/Sprites/decline_stamp.png" id="1_q33p7"]
+
+[node name="Decline Stamp" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4, -8)
+scale = Vector2(0.0200501, 0.0240602)
+texture = ExtResource("1_q33p7")

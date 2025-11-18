@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://b12amraamuuk7"]
+[gd_scene load_steps=6 format=3 uid="uid://b12amraamuuk7"]
 
 [ext_resource type="Script" uid="uid://mnf1xom4f5o5" path="res://Scripts/paper.gd" id="1_xpy1e"]
 [ext_resource type="Texture2D" uid="uid://bj7xytr144m1g" path="res://Assets/Sprites/large-paper.png" id="2_c7gsp"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_322pb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xpy1e"]
 size = Vector2(224, 320)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yox0v"]
+font = ExtResource("3_322pb")
+font_color = Color(0, 0, 0, 1)
 
 [node name="paper" type="Node2D"]
 script = ExtResource("1_xpy1e")
@@ -17,3 +22,28 @@ texture = ExtResource("2_c7gsp")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visible = false
 shape = SubResource("RectangleShape2D_xpy1e")
+
+[node name="Name Label" type="Label" parent="."]
+offset_left = -96.0
+offset_top = -152.0
+offset_right = 64.0
+offset_bottom = -129.0
+text = "FILE NAME: Image1.JPG"
+label_settings = SubResource("LabelSettings_yox0v")
+
+[node name="Size Label" type="Label" parent="."]
+offset_left = -96.0
+offset_top = -120.0
+offset_right = 88.0
+offset_bottom = -97.0
+text = "FILE Size: 400 MB"
+label_settings = SubResource("LabelSettings_yox0v")
+
+[node name="Stamp Area" type="Label" parent="."]
+offset_left = -88.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 112.0
+text = "Stamp Area:"
+label_settings = SubResource("LabelSettings_yox0v")
+horizontal_alignment = 1

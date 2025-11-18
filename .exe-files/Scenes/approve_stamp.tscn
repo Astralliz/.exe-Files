@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh8kad85i4e01"]
+
+[ext_resource type="Texture2D" uid="uid://d35fkg1f0kui6" path="res://Assets/Sprites/approve_stamp.png" id="1_lgm7s"]
+
+[node name="ApproveStamp" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.1625, 0.2)
+texture = ExtResource("1_lgm7s")
