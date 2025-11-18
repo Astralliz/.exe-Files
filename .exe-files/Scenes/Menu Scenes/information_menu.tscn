@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://c64oc7fc0ahdf"]
+
+[ext_resource type="Script" uid="uid://bdgv22ofubgcp" path="res://Scenes/Menu Scenes/information_menu.gd" id="1_vapen"]
+[ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="2_ssqnt"]
+[ext_resource type="Texture2D" uid="uid://bpdo8bf18gauj" path="res://Assets/images/rectangle.png" id="3_kult1"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="4_uhe4a"]
+[ext_resource type="Texture2D" uid="uid://b28uwmv3pk23t" path="res://Assets/Button/utton.png" id="5_iqnu0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uyqde"]
+texture = ExtResource("2_ssqnt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2esyf"]
+texture = ExtResource("3_kult1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jsiqt"]
+texture = ExtResource("5_iqnu0")
+
+[node name="InformationMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vapen")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_uyqde")
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_2esyf")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.14
+anchor_top = 0.183
+anchor_right = 0.14
+anchor_bottom = 0.183
+offset_left = -55.28
+offset_top = -23.584
+offset_right = 107.72
+offset_bottom = 31.416
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 45
+text = "Cybersecurity Threat Information"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 982.0
+offset_top = 101.0
+offset_right = 1057.0
+offset_bottom = 155.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_jsiqt")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://c1jtcjre1suu6"]
+
+[ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="1_6htda"]
+[ext_resource type="Script" uid="uid://bm8qhly8f3a4n" path="res://Scenes/Menu Scenes/settings_menu.gd" id="1_r2e5e"]
+[ext_resource type="Texture2D" uid="uid://bpdo8bf18gauj" path="res://Assets/images/rectangle.png" id="2_r2e5e"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_wqxdw"]
+[ext_resource type="Texture2D" uid="uid://b28uwmv3pk23t" path="res://Assets/Button/utton.png" id="4_tlxtj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i5icr"]
+texture = ExtResource("1_6htda")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xmvc4"]
+texture = ExtResource("2_r2e5e")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jmvne"]
+bg_color = Color(0.952941, 0.384314, 1, 0.270588)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cg6wl"]
+texture = ExtResource("4_tlxtj")
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r2e5e")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_i5icr")
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_xmvc4")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.167
+anchor_top = 0.203
+anchor_right = 0.167
+anchor_bottom = 0.203
+offset_left = -81.384
+offset_top = -26.544
+offset_right = 121.616
+offset_bottom = 36.456
+theme_override_fonts/font = ExtResource("3_wqxdw")
+theme_override_font_sizes/font_size = 45
+text = "Settings"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 980.0
+offset_top = 114.0
+offset_right = 1047.0
+offset_bottom = 163.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_jmvne")
+theme_override_styles/normal = SubResource("StyleBoxTexture_cg6wl")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

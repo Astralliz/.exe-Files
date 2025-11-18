@@ -1,0 +1,92 @@
+[gd_scene load_steps=10 format=3 uid="uid://cdyouk3kkeoq2"]
+
+[ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="1_4gvu1"]
+[ext_resource type="Script" uid="uid://0e1507rj6ewq" path="res://Scenes/Menu Scenes/Story Scene/story_1.gd" id="1_c50l7"]
+[ext_resource type="Texture2D" uid="uid://bpdo8bf18gauj" path="res://Assets/images/rectangle.png" id="2_c50l7"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_pq51y"]
+[ext_resource type="Texture2D" uid="uid://b28uwmv3pk23t" path="res://Assets/Button/utton.png" id="4_yismj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m6yj2"]
+texture = ExtResource("1_4gvu1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cfbdy"]
+texture = ExtResource("2_c50l7")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4gvu1"]
+bg_color = Color(0.952941, 0.384314, 1, 0.270588)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u71fn"]
+texture = ExtResource("4_yismj")
+
+[node name="Story1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c50l7")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_m6yj2")
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_cfbdy")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.196
+anchor_top = 0.21
+anchor_right = 0.196
+anchor_bottom = 0.21
+offset_left = -110.792
+offset_top = -33.08
+offset_right = 110.208
+offset_bottom = 32.92
+theme_override_fonts/font = ExtResource("3_pq51y")
+theme_override_font_sizes/font_size = 45
+text = "Story 1"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.201
+anchor_top = 0.285
+anchor_right = 0.201
+anchor_bottom = 0.285
+offset_left = -93.552
+offset_top = -19.68
+offset_right = 92.448
+offset_bottom = 24.32
+theme_override_fonts/font = ExtResource("3_pq51y")
+theme_override_font_sizes/font_size = 25
+text = "Choose Day"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.891
+anchor_top = 0.231
+anchor_right = 0.891
+anchor_bottom = 0.231
+offset_left = -31.432
+offset_top = -25.688
+offset_right = 30.568
+offset_bottom = 25.312
+theme_override_styles/hover = SubResource("StyleBoxFlat_4gvu1")
+theme_override_styles/normal = SubResource("StyleBoxTexture_u71fn")
+
+[connection signal="pressed" from="Button" to="." method="_on_back_pressed"]
