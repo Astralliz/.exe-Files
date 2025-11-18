@@ -31,3 +31,4 @@ func spawn_stamp() -> void:
 	stamp.name = "Stamp"
 	add_child(stamp)
 	stamp.global_position = get_global_mouse_position()
+#kupal ka ba
