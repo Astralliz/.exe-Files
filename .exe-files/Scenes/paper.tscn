@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b12amraamuuk7"]
 
 [ext_resource type="Script" uid="uid://mnf1xom4f5o5" path="res://Scripts/paper.gd" id="1_xpy1e"]
-[ext_resource type="Texture2D" uid="uid://bj7xytr144m1g" path="res://Assets/large-paper.png" id="2_c7gsp"]
+[ext_resource type="Texture2D" uid="uid://bj7xytr144m1g" path="res://Assets/Sprites/large-paper.png" id="2_c7gsp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xpy1e"]
 size = Vector2(224, 320)
