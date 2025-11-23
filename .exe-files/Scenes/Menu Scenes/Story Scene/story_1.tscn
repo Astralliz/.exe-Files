@@ -114,4 +114,20 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="Label3" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.201
+anchor_top = 0.285
+anchor_right = 0.201
+anchor_bottom = 0.285
+offset_left = -46.552
+offset_top = 144.32
+offset_right = 139.448
+offset_bottom = 232.32
+theme_override_fonts/font = ExtResource("4_okpo2")
+theme_override_font_sizes/font_size = 70
+text = "Day 1"
+
 [connection signal="pressed" from="Back_Button" to="." method="_on_back_1_pressed"]
+[connection signal="pressed" from="HBoxContainer/Day_1_Button" to="." method="_on_day_1_start_pressed"]
