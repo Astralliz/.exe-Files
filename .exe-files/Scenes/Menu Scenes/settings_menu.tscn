@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://c1jtcjre1suu6"]
 
 [ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="1_6htda"]
-[ext_resource type="Script" uid="uid://bm8qhly8f3a4n" path="res://Scenes/Menu Scenes/settings_menu.gd" id="1_r2e5e"]
+[ext_resource type="Script" uid="uid://c4ui54he3pil7" path="res://Scripts/UI/menu_controller.gd" id="1_r2e5e"]
 [ext_resource type="Texture2D" uid="uid://bpdo8bf18gauj" path="res://Assets/images/rectangle.png" id="2_r2e5e"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_wqxdw"]
 [ext_resource type="Texture2D" uid="uid://b28uwmv3pk23t" path="res://Assets/Button/utton.png" id="4_tlxtj"]
@@ -69,4 +69,4 @@ offset_bottom = 163.0
 theme_override_styles/hover = SubResource("StyleBoxFlat_jmvne")
 theme_override_styles/normal = SubResource("StyleBoxTexture_cg6wl")
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_settings_back_pressed"]

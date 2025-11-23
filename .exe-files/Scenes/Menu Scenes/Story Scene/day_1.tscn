@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0t2kseigf68d"]
+
+[ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="1_iso2n"]
+[ext_resource type="Script" uid="uid://kdou4kaoj5ro" path="res://Scripts/Game Play/character_move.gd" id="2_wxv2y"]
+[ext_resource type="Texture2D" uid="uid://ca8j1hu3oj24e" path="res://Assets/Sprites/corrupted_file.png" id="3_n1ivv"]
+[ext_resource type="Texture2D" uid="uid://bjtqkmwq8fiib" path="res://Assets/images/controll_room_bg.png" id="4_l1t6j"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2xmuy"]
+texture = ExtResource("1_iso2n")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_27r5i"]
+texture = ExtResource("4_l1t6j")
+
+[node name="Day1" type="Node2D"]
+
+[node name="main_background" type="Panel" parent="."]
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 1151.0
+offset_bottom = 644.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_2xmuy")
+
+[node name="Character" type="Node2D" parent="."]
+script = ExtResource("2_wxv2y")
+
+[node name="Sprite2D" type="Sprite2D" parent="Character"]
+position = Vector2(-28, 320)
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("3_n1ivv")
+
+[node name="controll_room" type="Panel" parent="."]
+offset_right = 1150.0
+offset_bottom = 643.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_27r5i")

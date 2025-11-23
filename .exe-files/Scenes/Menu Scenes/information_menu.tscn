@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://c64oc7fc0ahdf"]
 
-[ext_resource type="Script" uid="uid://bdgv22ofubgcp" path="res://Scenes/Menu Scenes/information_menu.gd" id="1_vapen"]
+[ext_resource type="Script" uid="uid://c4ui54he3pil7" path="res://Scripts/UI/menu_controller.gd" id="1_vapen"]
 [ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="2_ssqnt"]
 [ext_resource type="Texture2D" uid="uid://bpdo8bf18gauj" path="res://Assets/images/rectangle.png" id="3_kult1"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="4_uhe4a"]
@@ -65,4 +65,4 @@ offset_right = 1057.0
 offset_bottom = 155.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_jsiqt")
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_information_back_pressed"]
