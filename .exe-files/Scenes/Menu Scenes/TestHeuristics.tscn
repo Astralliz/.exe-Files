@@ -1,6 +1,95 @@
-[gd_scene load_steps=2 format=3 uid="uid://4c4u7gr1xp8r"]
+[gd_scene load_steps=9 format=3 uid="uid://4c4u7gr1xp8r"]
 
 [ext_resource type="Script" uid="uid://b851dtk14gco1" path="res://Scripts/test.gd" id="1_ffver"]
+[ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="2_42p1h"]
+[ext_resource type="Texture2D" uid="uid://bjtqkmwq8fiib" path="res://Assets/images/controll_room_bg.png" id="3_mhmvl"]
+[ext_resource type="Texture2D" uid="uid://bj7xytr144m1g" path="res://Assets/Sprites/large-paper.png" id="4_ha5ym"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="5_vhu6f"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kfe5x"]
+texture = ExtResource("2_42p1h")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_db84o"]
+texture = ExtResource("3_mhmvl")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6t71q"]
+texture = ExtResource("4_ha5ym")
 
 [node name="TestHeuristics" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1153.0
+offset_bottom = 652.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_kfe5x")
+
+[node name="Panel2" type="Panel" parent="."]
+offset_right = 1154.0
+offset_bottom = 655.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_db84o")
+
+[node name="Panel3" type="Panel" parent="."]
+offset_left = 156.0
+offset_top = 147.0
+offset_right = 460.0
+offset_bottom = 569.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_6t71q")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel3"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -4.0
+offset_right = 307.0
+offset_bottom = 419.0
 script = ExtResource("1_ffver")
+
+[node name="Label" type="Label" parent="Panel3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vhu6f")
+theme_override_font_sizes/font_size = 36
+text = "Check List"
+
+[node name="TypeMismatch" type="CheckBox" parent="Panel3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vhu6f")
+text = "TypeMismatch"
+
+[node name="InvalidSignature" type="CheckBox" parent="Panel3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vhu6f")
+text = "InvalidSignature"
+
+[node name="SourceEmail" type="CheckBox" parent="Panel3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vhu6f")
+text = "SourceEmail"
+
+[node name="SizeLarge" type="CheckBox" parent="Panel3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_vhu6f")
+text = "SizeLarge"
+
+[node name="ApproveButton" type="Button" parent="Panel3/VBoxContainer"]
+layout_mode = 2
+text = "Approve"
+
+[node name="RejectButton" type="Button" parent="Panel3/VBoxContainer"]
+layout_mode = 2
+text = "Reject"
+
+[node name="EvaluateButton" type="Button" parent="Panel3/VBoxContainer"]
+layout_mode = 2
+text = "Evaluate"
+
+[node name="ResultLabel" type="Label" parent="Panel3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "ResultLabel"
+
+[connection signal="pressed" from="Panel3/VBoxContainer/ApproveButton" to="Panel3/VBoxContainer" method="_on_approve_pressed"]
+[connection signal="pressed" from="Panel3/VBoxContainer/RejectButton" to="Panel3/VBoxContainer" method="_on_reject_pressed"]
+[connection signal="pressed" from="Panel3/VBoxContainer/EvaluateButton" to="Panel3/VBoxContainer" method="_on_evaluate_pressed"]
