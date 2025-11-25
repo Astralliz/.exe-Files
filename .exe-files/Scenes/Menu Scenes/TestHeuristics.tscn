@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://4c4u7gr1xp8r"]
+
+[ext_resource type="Script" uid="uid://b851dtk14gco1" path="res://Scripts/test.gd" id="1_ffver"]
+
+[node name="TestHeuristics" type="Node2D"]
+script = ExtResource("1_ffver")
