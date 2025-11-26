@@ -11,11 +11,20 @@ extends VBoxContainer
 
 @onready var result_label : Label = $ResultLabel
 
+# -------------------------------
+# NEW — get paper node (Panel5)
+# -------------------------------
+@onready var _paper := get_parent().get_parent().get_node("Panel5")
+
 var engine := HeuristicEngine.new()
 var rules := RuleBase.new()
 var file := FileMetadata.new()
 
 func _ready():
+
+	# Animate paper falling down
+	_spawn_paper_animation()
+
 	# Dummy file
 	file.filename = "setup_payload123.exe"
 	file.extension = "pdf"
@@ -33,59 +42,22 @@ func _ready():
 	btn_approve.connect("pressed", Callable(self, "_on_approve_pressed"))
 	btn_reject.connect("pressed", Callable(self, "_on_reject_pressed"))
 
-	# Optionally auto-fill checkboxes from file metadata so player can start from a known state:
-	# cb_type_mismatch.pressed = (file.extension != file.claimed_type)
-	# cb_invalid_signature.pressed = (not file.signature_valid)
-	# cb_src_email.pressed = (file.source == "email")
-	# cb_size_large.pressed = (file.size_mb > 50)
 
+# ------------------------------------------------
+# PAPER ANIMATION FUNCTION
+# ------------------------------------------------
+func _spawn_paper_animation() -> void:
+	if not is_instance_valid(_paper):
+		print("ERROR: Panel5 not found.")
+		return
 
-func _on_evaluate_pressed() -> void:
-	var score : float = engine.evaluate(file, rules)
-	var auto_danger : bool = score >= 2.5
+	# Start above printer
+	var start_pos : Vector2 = _paper.position + Vector2(0, 0)
+	var end_pos : Vector2 = _paper.position + Vector2(0, 150)
 
-	var player_suspicious : bool = (
-		cb_type_mismatch.pressed or
-		cb_invalid_signature.pressed or
-		cb_src_email.pressed or
-		cb_size_large.pressed
-	)
+	_paper.position = start_pos
 
-	# Warning UI
-	if player_suspicious:
-		result_label.text = "⚠️ You detected something suspicious!"
-	else:
-		result_label.text = "No suspicious flags detected by player."
-
-	# Show engine score for debugging
-	result_label.text += "\n[Engine score: %s]".format(str(score))
-
-	# If you want to immediately show suggested action:
-	if auto_danger:
-		result_label.text += "\nEngine suggests: REJECT"
-	else:
-		result_label.text += "\nEngine suggests: APPROVE"
-
-
-func _on_approve_pressed() -> void:
-	_handle_player_decision(true)
-
-
-func _on_reject_pressed() -> void:
-	_handle_player_decision(false)
-
-
-func _handle_player_decision(player_approves: bool) -> void:
-	var score : float = engine.evaluate(file, rules)
-	var auto_danger : bool = score >= 2.5
-
-	if player_approves:
-		if auto_danger:
-			result_label.text = "❌ GAME OVER — You approved a dangerous file!"
-		else:
-			result_label.text = "✅ Correct — File was safe and you approved it."
-	else:
-		if auto_danger:
-			result_label.text = "✅ Correct — You rejected a dangerous file."
-		else:
-			result_label.text = "❌ GAME OVER — You rejected a safe file!"
+	var tween := create_tween()
+	tween.tween_property(_paper, "position", end_pos, 0.8)\
+		.set_trans(Tween.TRANS_SINE)\
+		.set_ease(Tween.EASE_OUT)
