@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://mpbxai4ade75"]
+
+[ext_resource type="Script" uid="uid://kdou4kaoj5ro" path="res://Scripts/Character/filetizen.gd" id="1_w3var"]
+[ext_resource type="Texture2D" uid="uid://ca8j1hu3oj24e" path="res://Assets/Sprites/corrupted_file.png" id="2_u3aof"]
+
+[node name="Filetizen" type="Node2D"]
+script = ExtResource("1_w3var")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 328)
+scale = Vector2(0.554348, 0.568182)
+texture = ExtResource("2_u3aof")

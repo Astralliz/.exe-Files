@@ -7,7 +7,7 @@
 script = ExtResource("1_3664i")
 
 [node name="paper" parent="." instance=ExtResource("2_cfpt1")]
-position = Vector2(592, 288)
+position = Vector2(712, 376)
 
 [node name="ApproveBtn" type="Button" parent="."]
 offset_left = 928.0
