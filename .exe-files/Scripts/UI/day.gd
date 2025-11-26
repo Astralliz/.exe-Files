@@ -3,6 +3,8 @@ extends Node2D
 @onready var filetizen = $Filetizen
 @onready var spawner_component: SpawnerComponent = $SpawnerComponent
 @onready var actors: Node2D = $Actors
+@onready var approve_btn: Button = $ApproveBtn
+@onready var decline_btn: Button = $DeclineBtn
 
 const HeuristicEngine = preload("res://Scripts/Algorithm/heuristic_engine.gd")
 const RuleBase = preload("res://Scripts/Algorithm/Rules/rule_base.gd")
@@ -13,6 +15,7 @@ var rule_base := RuleBase.new()
 var moved_out := false
 
 func _ready():
+	enable_buttons(false)
 	spawn_new_filetizen()
 	move_filetizen_to_center()
 
@@ -50,24 +53,40 @@ func _process(delta):
 		moved_out = true
 		# Evaluate
 		var score = engine.evaluate(filetizen.metadata, rule_base)
-		print("--------------------------------")
+		filetizen.metadata.risk_score = score
+
 		print("Evaluating Filetizen:")
 		print("Filename: ", filetizen.metadata.filename)
 		print("Score: ", score)
-		# Optional decision:
-		if score > 2.0:
-			print("FLAGGED: Suspicious")
-			await get_tree().create_timer(1.0).timeout
-			move_declined_filetizen()
-			await get_tree().create_timer(5.0).timeout
-			moved_out = false
-			spawn_new_filetizen()
-			move_filetizen_to_center()
-		else:
-			print("SAFE")
-			await get_tree().create_timer(1.0).timeout
-			move_approved_filetizen()
-			await get_tree().create_timer(5.0).timeout
-			moved_out = false
-			spawn_new_filetizen()
-			move_filetizen_to_center()
+		enable_buttons(true)
+
+func enable_buttons(state: bool):
+	approve_btn.disabled = not state
+	decline_btn.disabled = not state
+
+func _on_approve_btn_pressed() -> void:
+	handle_player_decision(true)
+
+func _on_decline_btn_pressed() -> void:
+	handle_player_decision(false)
+
+func handle_player_decision(player_approved: bool):
+	enable_buttons(false)
+
+	var score = filetizen.metadata.risk_score
+	var approved = score <= 2.0
+
+	if player_approved == approved:
+		print("✔ Correct decision!")
+	else:
+		print("✘ Incorrect decision!")
+
+	if player_approved:
+		move_approved_filetizen()
+	else:
+		move_declined_filetizen()
+
+	await get_tree().create_timer(4.0).timeout
+	moved_out = false
+	spawn_new_filetizen()
+	move_filetizen_to_center()

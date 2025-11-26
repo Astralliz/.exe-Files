@@ -11,3 +11,4 @@ extends Resource
 @export var signature_valid: bool = true
 @export var requires_admin: bool = false
 @export var claimed_type: String = ""
+@export var risk_score: float = 0.0
