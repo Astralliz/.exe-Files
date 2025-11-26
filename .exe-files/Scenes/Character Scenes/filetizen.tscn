@@ -15,3 +15,5 @@ texture = ExtResource("2_u3aof")
 script = ExtResource("3_u3aof")
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://d0av55ja450n2"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

@@ -70,7 +70,6 @@ func evaluate(file: FileMetadata, rule_base: RuleBase) -> float:
 
 	return score
 
-
 func _is_random_filename(name: String) -> bool:
 	# If filename has many numbers or mixed-case random letters
 	var pattern = r"[A-Za-z0-9]{8,}"
