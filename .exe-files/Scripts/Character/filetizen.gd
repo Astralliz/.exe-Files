@@ -2,6 +2,7 @@ extends Node2D
 
 var metadata: FileMetadata
 var generator: MetadataGenerator
+@onready var move_component: MoveComponent = $MoveComponent
 
 func _ready():
 	generator = MetadataGenerator.new()
@@ -13,10 +14,3 @@ func _ready():
 	print("Size: ", metadata.size_mb)
 	print("Source: ", metadata.source)
 	print("Publisher: ", metadata.publisher)
-
-	# Your existing movement animation
-	var tween = create_tween()
-	var end_pos = Vector2(600,350)
-	tween.tween_property(self, "position", end_pos, 1.5)\
-		.set_trans(Tween.TRANS_SINE)\
-		.set_ease(Tween.EASE_OUT)

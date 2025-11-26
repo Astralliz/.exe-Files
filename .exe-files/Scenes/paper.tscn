@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b12amraamuuk7"]
+[gd_scene load_steps=6 format=3 uid="uid://cbmwjc7chlds6"]
 
 [ext_resource type="Script" uid="uid://mnf1xom4f5o5" path="res://Scripts/paper.gd" id="1_xpy1e"]
 [ext_resource type="Texture2D" uid="uid://bj7xytr144m1g" path="res://Assets/Sprites/large-paper.png" id="2_c7gsp"]

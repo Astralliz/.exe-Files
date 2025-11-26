@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0t2kseigf68d"]
+[gd_scene load_steps=7 format=3 uid="uid://c0t2kseigf68d"]
 
+[ext_resource type="Script" uid="uid://cl8kjlwaigwmr" path="res://Scripts/UI/day.gd" id="1_eqd4x"]
 [ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="1_iso2n"]
 [ext_resource type="PackedScene" uid="uid://mpbxai4ade75" path="res://Scenes/Character Scenes/filetizen.tscn" id="2_s3lvi"]
 [ext_resource type="Texture2D" uid="uid://bjtqkmwq8fiib" path="res://Assets/images/controll_room_bg.png" id="4_l1t6j"]
@@ -11,6 +12,7 @@ texture = ExtResource("1_iso2n")
 texture = ExtResource("4_l1t6j")
 
 [node name="Day1" type="Node2D"]
+script = ExtResource("1_eqd4x")
 
 [node name="main_background" type="Panel" parent="."]
 offset_left = 3.0
@@ -20,7 +22,7 @@ offset_bottom = 644.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_2xmuy")
 
 [node name="Filetizen" parent="." instance=ExtResource("2_s3lvi")]
-position = Vector2(-8, 368)
+position = Vector2(-8, 320)
 
 [node name="controll_room" type="Panel" parent="."]
 offset_right = 1150.0
