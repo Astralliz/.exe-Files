@@ -37,6 +37,7 @@ offset_bottom = 400.0
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+theme_override_constants/separation = 0
 
 [node name="Label_Filename" type="Label" parent="File_Document/VBoxContainer"]
 layout_mode = 2
@@ -65,3 +66,56 @@ offset_top = 87.0
 offset_right = 1152.0
 offset_bottom = 418.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_ha5ym")
+
+[node name="Check_List" type="TextureRect" parent="."]
+offset_left = 142.0
+offset_top = 199.0
+offset_right = 352.0
+offset_bottom = 498.0
+
+[node name="container" type="VBoxContainer" parent="Check_List"]
+layout_mode = 0
+offset_right = 311.0
+offset_bottom = 653.0
+theme_override_constants/separation = 20
+
+[node name="FileName" type="CheckBox" parent="Check_List/container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "FileName"
+
+[node name="Extension" type="CheckBox" parent="Check_List/container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "Extension"
+
+[node name="FileSize" type="CheckBox" parent="Check_List/container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "FileSize"
+
+[node name="Publisher" type="CheckBox" parent="Check_List/container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "Publisher"
+
+[node name="Source" type="CheckBox" parent="Check_List/container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "Source"
+
+[node name="EvaluateButton" type="Button" parent="Check_List/container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Evaluate"
+
+[node name="ResultLabel" type="Label" parent="Check_List/container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+
+[connection signal="pressed" from="Check_List/container/FileName" to="." method="cb_file_name"]

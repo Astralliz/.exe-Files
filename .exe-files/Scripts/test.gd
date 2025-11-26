@@ -1,23 +1,12 @@
 extends Node2D
 
-# -------------------------------------------------
-# UI NODES
-# -------------------------------------------------
-@onready var cb_type_mismatch  : CheckBox = $panel/VBoxContainer/TypeMismatch
-@onready var cb_invalid_signature : CheckBox = $panel/VBoxContainer/InvalidSignature
-@onready var cb_src_email : CheckBox = $panel/VBoxContainer/SourceEmail
-@onready var cb_size_large : CheckBox = $panel/VBoxContainer/SizeLarge
 
-@onready var btn_evaluate : Button = $panel/VBoxContainer/EvaluateButton
-@onready var btn_approve : Button = $panel/VBoxContainer/ApproveButton
-@onready var btn_reject : Button = $panel/VBoxContainer/RejectButton
-
-@onready var result_label : Label = $panel/VBoxContainer/ResultLabel
 
 # -------------------------------------------------
-# PAPER NODE (TextureRect)
+# PAPER NODES (TextureRect)
 # -------------------------------------------------
 @onready var _paper : TextureRect = $File_Document
+@onready var _list : TextureRect = $Check_List
 
 # Metadata labels inside VBoxContainer
 @onready var vbox : VBoxContainer = _paper.get_node("VBoxContainer")
@@ -26,6 +15,20 @@ extends Node2D
 @onready var lbl_size : Label = vbox.get_node("Label_Size")
 @onready var lbl_publisher : Label = vbox.get_node("Label_Publisher")
 @onready var lbl_source : Label = vbox.get_node("Label_Source")
+
+# -------------------------------------------------
+# UI NODES
+# -------------------------------------------------
+@onready var container : VBoxContainer = _list.get_node("container")
+@onready var cb_file_name  : CheckBox = $Check_List/VBoxContainer/FileName
+@onready var cb_invalid_signature : CheckBox = $Check_List/VBoxContainer/Extension
+@onready var cb_src_email : CheckBox = $Check_List/VBoxContainer/FileSize
+@onready var cb_size_large : CheckBox = $Check_List/VBoxContainer/Publisher
+@onready var cb_size_large2 : CheckBox = $Check_List/VBoxContainer/Source
+
+@onready var btn_evaluate : Button = $Check_List/VBoxContainer/EvaluateButton
+
+@onready var result_label : Label = $Check_List/VBoxContainer/ResultLabel
 
 # Load textures
 var _paper_original_texture := preload("res://Assets/Sprites/large-paper.png")
@@ -63,6 +66,20 @@ const FONT_SIZE_STATE_2 := 16   # paper_down (state 2)
 var generator := MetadataGenerator.new()
 var metadata : FileMetadata
 
+# -------------------------
+# LIST NODE VARIABLES
+# -------------------------
+var _list_state := 0  # 0 = closed, 1 = open
+
+var _list_closed_texture := preload("res://Assets/Sprites/paper_down_ask.png")
+var _list_open_texture := preload("res://Assets/Sprites/large-paper.png")
+
+const LIST_CLOSED_SCALE := Vector2(0.4, 0.4)
+const LIST_OPEN_SCALE := Vector2(0.35, 0.5)
+
+var _list_closed_pos := Vector2(100, 300)
+var _list_open_pos := Vector2(100, 120)
+
 func _ready():
 	if _paper == null:
 		push_error("File_Document TextureRect not found!")
@@ -76,14 +93,24 @@ func _ready():
 	_state = 0
 	_paper.texture = _paper_original_texture
 	_paper.scale = PRINTED_SCALE
-	_paper.position = _paper_fall_end_pos
+	_paper.position = _paper_fall_start_pos 
 	_paper.z_index = 0
 
 	update_font_size_for_state(_state)
+	
+	_resize_checkboxes(Vector2(132, 132))  # makes the checkbox square bigger
 
 	_spawn_paper_animation()
 	_paper.gui_input.connect(_on_paper_clicked)
 
+	# Initialize _list
+	if _list:
+		_list.texture = _list_closed_texture
+		_list.scale = LIST_CLOSED_SCALE
+		_list.position = _list_closed_pos
+		_list.z_index = 5
+		container.visible = false
+		_list.gui_input.connect(_on_list_clicked)
 
 # -------------------------------------------------
 # FONT SIZE LOGIC (FIXED PER STATE)
@@ -108,7 +135,6 @@ func update_font_size_for_state(state: int) -> void:
 			lbl.add_theme_font_size_override("font_size", size_to_use)
 			lbl.queue_redraw()
 
-
 # -------------------------------------------------
 # PAPER ANIMATION
 # -------------------------------------------------
@@ -118,18 +144,17 @@ func _spawn_paper_animation() -> void:
 		return
 
 	var tween := create_tween()
-	tween.tween_property(_paper, "position", _paper_fall_end_pos, 0.3)\
+	tween.tween_property(_paper, "position", _paper_fall_end_pos, 1.0)\
 		.set_trans(Tween.TRANS_SINE)\
-		.set_ease(Tween.EASE_OUT)
+		.set_ease(Tween.EASE_OUT)\
+		.set_delay(0.2)
 
 func _on_paper_clicked(event):
 	if event is InputEventMouseButton and event.pressed:
 		_handle_paper_behavior()
 
-
 func _handle_paper_behavior():
 	match _state:
-
 		0: # desk → zoom
 			_paper.texture = _paper_original_texture
 			_paper.scale = ZOOM_SCALE
@@ -160,8 +185,39 @@ func _handle_paper_behavior():
 			_state = 1
 			update_font_size_for_state(_state)
 
+# -------------------------------------------------
+# LIST ANIMATION AND CLICK HANDLER
+# -------------------------------------------------
+func _on_list_clicked(event):
+	if event is InputEventMouseButton and event.pressed:
+		_handle_list_behavior()
 
-# -------------------------------------------------z
+func _handle_list_behavior():
+	if not _list:
+		return
+
+	if _list_state == 0:
+		_list.texture = _list_open_texture
+		_list.position = _list_open_pos
+		_list.scale = LIST_OPEN_SCALE
+		container.visible = true
+		_list_state = 1
+	else:
+		_list.texture = _list_closed_texture
+		_list.position = _list_closed_pos
+		_list.scale = LIST_CLOSED_SCALE
+		container.visible = false
+		_list_state = 0
+# Example: change the size of checkboxes
+func _resize_checkboxes(size: Vector2) -> void:
+	var checkboxes = [cb_file_name, cb_invalid_signature, cb_src_email, cb_size_large, cb_size_large2]
+	for cb in checkboxes:
+		if cb:
+			# Minimum size of the checkbox square
+			cb.add_theme_constant_override("check_min_size", int(size.x))
+			# Optional: scale the icon
+			cb.add_theme_constant_override("icon_scale", size.x / 16.0) # 16 = default size
+# -------------------------------------------------
 # UPDATE LABEL TEXT
 # -------------------------------------------------
 func _update_paper_labels(data: FileMetadata) -> void:
