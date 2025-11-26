@@ -19,9 +19,18 @@ extends Node2D
 # -------------------------------------------------
 @onready var _paper : TextureRect = $File_Document
 
+# Metadata labels inside VBoxContainer
+@onready var vbox : VBoxContainer = _paper.get_node("VBoxContainer")
+@onready var lbl_filename : Label = vbox.get_node("Label_Filename")
+@onready var lbl_extension : Label = vbox.get_node("Label_Extension")
+@onready var lbl_size : Label = vbox.get_node("Label_Size")
+@onready var lbl_publisher : Label = vbox.get_node("Label_Publisher")
+@onready var lbl_source : Label = vbox.get_node("Label_Source")
+
 # Load textures
 var _paper_original_texture := preload("res://Assets/Sprites/large-paper.png")
 var _paper_open_texture := preload("res://Assets/Sprites/paper_down.png")
+var _paper_original_texture_2 := preload("res://Assets/Sprites/large-paper.png")
 
 # STATES:
 # 0 = desk / fallen
@@ -38,28 +47,72 @@ var _paper_center_pos : Vector2 = Vector2(400, 80)
 var _paper_center_pos_2 : Vector2 = Vector2(700, 120)
 var _paper_down_pos : Vector2 = Vector2(650, 310)
 
-const PRINTED_SCALE = Vector2(0.7, 0.7)      # initial fallen size
-const ZOOM_SCALE = Vector2(1.5, 1.5)  
-const ZOOM_SCALE_2 = Vector2(0.35, 0.5)     # zoomed size
-const PAPER_DOWN_SCALE = Vector2(0.4, 0.4) # paper_down size
+const PRINTED_SCALE = Vector2(0.7, 0.7)
+const ZOOM_SCALE = Vector2(1.5, 1.5)
+const ZOOM_SCALE_2 = Vector2(0.35, 0.5)
+const PAPER_DOWN_SCALE = Vector2(0.4, 0.4)
+
+# -------------------------
+# FIXED FONT SIZES FOR STATES
+# -------------------------
+const FONT_SIZE_STATE_0 := 18   # on desk (state 0)
+const FONT_SIZE_STATE_1 := 60    # zoomed (state 1)
+const FONT_SIZE_STATE_2 := 16   # paper_down (state 2)
+
+# Metadata generator
+var generator := MetadataGenerator.new()
+var metadata : FileMetadata
 
 func _ready():
 	if _paper == null:
 		push_error("File_Document TextureRect not found!")
 		return
 
-	# Initial state: desk/fallen (after falling animation)
+	# Generate new metadata
+	metadata = generator.generate_metadata()
+	_update_paper_labels(metadata)
+
+	# Initial state (desk)
 	_state = 0
 	_paper.texture = _paper_original_texture
 	_paper.scale = PRINTED_SCALE
-	_paper.position = _paper_fall_end_pos   # paper already on desk after fall
-	_paper.z_index = 0  # behind printer (panel4)
+	_paper.position = _paper_fall_end_pos
+	_paper.z_index = 0
+
+	update_font_size_for_state(_state)
 
 	_spawn_paper_animation()
 	_paper.gui_input.connect(_on_paper_clicked)
 
+
+# -------------------------------------------------
+# FONT SIZE LOGIC (FIXED PER STATE)
+# -------------------------------------------------
+func update_font_size_for_state(state: int) -> void:
+	var labels = [lbl_filename, lbl_extension, lbl_size, lbl_publisher, lbl_source]
+
+	var size_to_use: int
+
+	match state:
+		0:
+			size_to_use = FONT_SIZE_STATE_0
+		1:
+			size_to_use = FONT_SIZE_STATE_1
+		2:
+			size_to_use = FONT_SIZE_STATE_2
+		_:
+			size_to_use = FONT_SIZE_STATE_0
+
+	for lbl in labels:
+		if lbl:
+			lbl.add_theme_font_size_override("font_size", size_to_use)
+			lbl.queue_redraw()
+
+
+# -------------------------------------------------
+# PAPER ANIMATION
+# -------------------------------------------------
 func _spawn_paper_animation() -> void:
-	# Animate the falling from printer only
 	if not is_instance_valid(_paper):
 		print("ERROR: File_Document not found.")
 		return
@@ -73,28 +126,47 @@ func _on_paper_clicked(event):
 	if event is InputEventMouseButton and event.pressed:
 		_handle_paper_behavior()
 
+
 func _handle_paper_behavior():
-	# -------------------------
-	# State machine (no animation)
-	# -------------------------
 	match _state:
+
 		0: # desk → zoom
 			_paper.texture = _paper_original_texture
 			_paper.scale = ZOOM_SCALE
 			_paper.position = _paper_center_pos
-			_paper.z_index = 10   # in front of printer
+			_paper.z_index = 10
+
+			vbox.visible = true
 			_state = 1
+			update_font_size_for_state(2)
 
 		1: # zoom → paper_down
 			_paper.texture = _paper_open_texture
 			_paper.scale = PAPER_DOWN_SCALE
 			_paper.position = _paper_down_pos
-			_paper.z_index = 10   # stay in front
-			_state = 2
+			_paper.z_index = 10
 
-		2: # paper_down → zoom
+			vbox.visible = false
+			_state = 2
+			update_font_size_for_state(_state)
+
+		2: # paper_down → alternate zoom
 			_paper.texture = _paper_original_texture
 			_paper.scale = ZOOM_SCALE_2
 			_paper.position = _paper_center_pos_2
-			_paper.z_index = 10   # stay in front
+			_paper.z_index = 10
+
+			vbox.visible = true
 			_state = 1
+			update_font_size_for_state(_state)
+
+
+# -------------------------------------------------z
+# UPDATE LABEL TEXT
+# -------------------------------------------------
+func _update_paper_labels(data: FileMetadata) -> void:
+	lbl_filename.text = "Filename: %s" % data.filename
+	lbl_extension.text = "Extension: %s" % data.extension
+	lbl_size.text = "Size: %.2f MB" % data.size_mb
+	lbl_publisher.text = "Publisher: %s" % data.publisher
+	lbl_source.text = "Source: %s" % data.source
