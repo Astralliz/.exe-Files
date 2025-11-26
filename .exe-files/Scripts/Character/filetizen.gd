@@ -1,7 +1,7 @@
 extends Node2D
 
-var metadata: FileMetadata
-var generator: MetadataGenerator
+@onready var metadata: FileMetadata
+@onready var generator: MetadataGenerator
 @onready var move_component: MoveComponent = $MoveComponent
 @onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 

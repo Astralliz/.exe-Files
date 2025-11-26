@@ -4,6 +4,12 @@ extends Node2D
 @onready var spawner_component: SpawnerComponent = $SpawnerComponent
 @onready var actors: Node2D = $Actors
 
+const HeuristicEngine = preload("res://Scripts/Algorithm/heuristic_engine.gd")
+const RuleBase = preload("res://Scripts/Algorithm/Rules/rule_base.gd")
+
+var engine := HeuristicEngine.new()
+var rule_base := RuleBase.new()
+
 var moved_out := false
 
 func _ready():
@@ -38,9 +44,30 @@ func move_declined_filetizen():
 
 func _process(delta):
 	var target = get_viewport().get_visible_rect().size / 2.0
-	# Check if sprite reaches the middle.
+
 	if not moved_out and filetizen.position.distance_to(target) < 5.0:
 		filetizen.move_component.stop()
 		moved_out = true
-		await get_tree().create_timer(1.0).timeout
-		move_declined_filetizen()
+		# Evaluate
+		var score = engine.evaluate(filetizen.metadata, rule_base)
+		print("--------------------------------")
+		print("Evaluating Filetizen:")
+		print("Filename: ", filetizen.metadata.filename)
+		print("Score: ", score)
+		# Optional decision:
+		if score > 2.0:
+			print("FLAGGED: Suspicious")
+			await get_tree().create_timer(1.0).timeout
+			move_declined_filetizen()
+			await get_tree().create_timer(5.0).timeout
+			moved_out = false
+			spawn_new_filetizen()
+			move_filetizen_to_center()
+		else:
+			print("SAFE")
+			await get_tree().create_timer(1.0).timeout
+			move_approved_filetizen()
+			await get_tree().create_timer(5.0).timeout
+			moved_out = false
+			spawn_new_filetizen()
+			move_filetizen_to_center()
