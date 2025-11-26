@@ -48,11 +48,12 @@ func _ready():
 		push_error("File_Document TextureRect not found!")
 		return
 
-	# Initial state: on desk, behind printer (panel4)
+	# Initial state: desk/fallen (after falling animation)
+	_state = 0
 	_paper.texture = _paper_original_texture
 	_paper.scale = PRINTED_SCALE
-	_paper.position = _paper_fall_start_pos
-	_paper.z_index = 0  # behind panel4
+	_paper.position = _paper_fall_end_pos   # paper already on desk after fall
+	_paper.z_index = 0  # behind printer (panel4)
 
 	_spawn_paper_animation()
 	_paper.gui_input.connect(_on_paper_clicked)
@@ -64,7 +65,7 @@ func _spawn_paper_animation() -> void:
 		return
 
 	var tween := create_tween()
-	tween.tween_property(_paper, "position", _paper_fall_end_pos, 0.8)\
+	tween.tween_property(_paper, "position", _paper_fall_end_pos, 0.3)\
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_OUT)
 
