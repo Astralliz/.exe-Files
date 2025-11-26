@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0t2kseigf68d"]
+[gd_scene load_steps=9 format=3 uid="uid://c0t2kseigf68d"]
 
 [ext_resource type="Script" uid="uid://cl8kjlwaigwmr" path="res://Scripts/UI/day.gd" id="1_c6jxy"]
 [ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="2_2x7vk"]
 [ext_resource type="Texture2D" uid="uid://bjtqkmwq8fiib" path="res://Assets/images/controll_room_bg.png" id="3_wlewr"]
 [ext_resource type="Script" uid="uid://5jr1nl78gvmg" path="res://Components/spawner_component.gd" id="4_6brgw"]
 [ext_resource type="PackedScene" uid="uid://mpbxai4ade75" path="res://Scenes/Character Scenes/filetizen.tscn" id="5_y1tcq"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="6_2x7vk"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2xmuy"]
 texture = ExtResource("2_2x7vk")
@@ -32,3 +33,26 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_27r5i")
 [node name="SpawnerComponent" type="Node2D" parent="."]
 script = ExtResource("4_6brgw")
 scene = ExtResource("5_y1tcq")
+
+[node name="ApproveBtn" type="Button" parent="."]
+offset_left = 24.0
+offset_top = 224.0
+offset_right = 232.0
+offset_bottom = 280.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("6_2x7vk")
+theme_override_font_sizes/font_size = 30
+text = "APPROVE"
+
+[node name="DeclineBtn" type="Button" parent="."]
+offset_left = 24.0
+offset_top = 312.0
+offset_right = 232.0
+offset_bottom = 368.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_2x7vk")
+theme_override_font_sizes/font_size = 30
+text = "DECLINE"
+
+[connection signal="pressed" from="ApproveBtn" to="." method="_on_approve_btn_pressed"]
+[connection signal="pressed" from="DeclineBtn" to="." method="_on_decline_btn_pressed"]
