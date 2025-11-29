@@ -1,9 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://4c4u7gr1xp8r"]
+[gd_scene load_steps=17 format=3 uid="uid://4c4u7gr1xp8r"]
 
 [ext_resource type="Script" uid="uid://b851dtk14gco1" path="res://Scripts/test.gd" id="1_ffver"]
 [ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="2_42p1h"]
 [ext_resource type="Texture2D" uid="uid://bjtqkmwq8fiib" path="res://Assets/images/controll_room_bg.png" id="3_mhmvl"]
+[ext_resource type="Script" path="res://Components/spawner_component.gd" id="4_vhu6f"]
+[ext_resource type="PackedScene" uid="uid://mpbxai4ade75" path="res://Scenes/Character Scenes/filetizen.tscn" id="5_kfe5x"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="6_db84o"]
 [ext_resource type="Texture2D" uid="uid://c30hxuwk71wne" path="res://Assets/images/printer.png" id="6_mhmvl"]
+[ext_resource type="Texture2D" uid="uid://dyaht84w33t60" path="res://Assets/Sprites/alarm.png" id="8_6t71q"]
+[ext_resource type="PackedScene" uid="uid://egnv2vu3ys4u" path="res://Scenes/Qustions/SlidingPanel.tscn" id="9_23mlr"]
+[ext_resource type="AudioStream" uid="uid://c8jqse7s80fg8" path="res://Assets/Audio/Picking Item/SFX_Pickup.wav" id="9_kfe5x"]
+[ext_resource type="AudioStream" uid="uid://dwxhnf48nyc30" path="res://Assets/Audio/Picking Item/SFX_Button.wav" id="10_db84o"]
+[ext_resource type="AudioStream" uid="uid://bsyvqtiv7snui" path="res://Assets/Audio/Picking Item/printing paper.mp3" id="11_6t71q"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kfe5x"]
 texture = ExtResource("2_42p1h")
@@ -11,21 +19,50 @@ texture = ExtResource("2_42p1h")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_db84o"]
 texture = ExtResource("3_mhmvl")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ha5ym"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_23mlr"]
 texture = ExtResource("6_mhmvl")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_26li6"]
+texture = ExtResource("8_6t71q")
 
 [node name="TestHeuristics" type="Node2D"]
 script = ExtResource("1_ffver")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Main Background" type="Panel" parent="."]
 offset_right = 1153.0
 offset_bottom = 652.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_kfe5x")
 
-[node name="Panel2" type="Panel" parent="."]
+[node name="Actors" type="Node2D" parent="."]
+
+[node name="Controll Room" type="Panel" parent="."]
 offset_right = 1154.0
 offset_bottom = 655.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_db84o")
+
+[node name="SpawnerComponent" type="Node2D" parent="."]
+script = ExtResource("4_vhu6f")
+scene = ExtResource("5_kfe5x")
+
+[node name="ApproveBtn" type="Button" parent="."]
+offset_left = 24.0
+offset_top = 224.0
+offset_right = 232.0
+offset_bottom = 280.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("6_db84o")
+theme_override_font_sizes/font_size = 30
+text = "APPROVE"
+
+[node name="DeclineBtn" type="Button" parent="."]
+offset_left = 24.0
+offset_top = 312.0
+offset_right = 232.0
+offset_bottom = 368.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_db84o")
+theme_override_font_sizes/font_size = 30
+text = "DECLINE"
 
 [node name="File_Document" type="TextureRect" parent="."]
 offset_left = 947.0
@@ -65,52 +102,58 @@ offset_left = 903.0
 offset_top = 87.0
 offset_right = 1152.0
 offset_bottom = 418.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_ha5ym")
+theme_override_styles/panel = SubResource("StyleBoxTexture_23mlr")
 
 [node name="Check_List" type="TextureRect" parent="."]
-offset_left = 142.0
-offset_top = 199.0
-offset_right = 352.0
-offset_bottom = 498.0
+offset_left = 186.0
+offset_top = 528.0
+offset_right = 718.0
+offset_bottom = 1219.0
 
 [node name="container" type="VBoxContainer" parent="Check_List"]
 layout_mode = 0
-offset_right = 311.0
-offset_bottom = 653.0
+offset_right = 495.0
+offset_bottom = 749.0
 theme_override_constants/separation = 20
 
 [node name="FileName" type="CheckBox" parent="Check_List/container"]
 layout_mode = 2
+size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 60
 text = "FileName"
 
 [node name="Extension" type="CheckBox" parent="Check_List/container"]
 layout_mode = 2
+size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 60
 text = "Extension"
 
 [node name="FileSize" type="CheckBox" parent="Check_List/container"]
 layout_mode = 2
+size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 60
 text = "FileSize"
 
 [node name="Publisher" type="CheckBox" parent="Check_List/container"]
 layout_mode = 2
+size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 60
 text = "Publisher"
 
 [node name="Source" type="CheckBox" parent="Check_List/container"]
 layout_mode = 2
+size_flags_vertical = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 60
 text = "Source"
 
 [node name="EvaluateButton" type="Button" parent="Check_List/container"]
 layout_mode = 2
+size_flags_vertical = 4
 theme_override_font_sizes/font_size = 60
 text = "Evaluate"
 
@@ -118,4 +161,28 @@ text = "Evaluate"
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 
-[connection signal="pressed" from="Check_List/container/FileName" to="." method="cb_file_name"]
+[node name="SlidingPanel" parent="." instance=ExtResource("9_23mlr")]
+offset_left = 4.0
+offset_top = 203.0
+offset_right = 4.0
+offset_bottom = 203.0
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 1005.0
+offset_top = 34.0
+offset_right = 1068.0
+offset_bottom = 91.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_26li6")
+
+[node name="Audio_Pickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_kfe5x")
+
+[node name="Button_Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_db84o")
+
+[node name="Printing_Paper" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_6t71q")
+volume_db = 0.165
+
+[connection signal="pressed" from="ApproveBtn" to="." method="_on_approve_btn_pressed"]
+[connection signal="pressed" from="DeclineBtn" to="." method="_on_decline_btn_pressed"]
