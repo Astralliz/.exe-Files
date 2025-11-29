@@ -12,6 +12,7 @@ var stretch_amount := 0.05          # vertical stretch
 var squash_amount := 0.05          # horizontal squash
 var speed_multiplier := 5.0        # how fast the squash/stretch oscillates
 var time_acc := 0.0                  # internal timer for sine wave
+var bouncing := false
 
 # -----------------------
 # Movement functions
@@ -29,6 +30,30 @@ func appear_bounce():
 	actor.scale = Vector2(1.3, 0.6)
 	var tween = get_tree().create_tween()
 	tween.tween_property(actor, "scale", base_scale, 0.3).set_trans(Tween.TRANS_ELASTIC)
+	
+
+# -----------------------
+# Answering Bounce
+# -----------------------
+func bounce_for(duration: float) -> void:
+	if bouncing:
+		return  # avoid overlapping bounces
+
+	bouncing = true
+	var end_time := Time.get_ticks_msec() / 1000.0 + duration
+
+	while Time.get_ticks_msec() / 1000.0 < end_time:
+		var t := Time.get_ticks_msec() / 1000.0 * speed_multiplier
+
+		var scale_x = base_scale.x + squash_amount * sin(t * 2.0)
+		var scale_y = base_scale.y + stretch_amount * -sin(t * 2.0)
+
+		actor.scale = Vector2(scale_x, scale_y)
+		await get_tree().process_frame  # smooth frame sync
+
+	# reset to normal
+	actor.scale = base_scale
+	bouncing = false
 
 # -----------------------
 # Process

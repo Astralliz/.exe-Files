@@ -27,16 +27,28 @@ extends Node2D
 @onready var result_label : Label = $Check_List/container/ResultLabel
 
 # -------------------------------------------------
-# Questions Scene
+# Sliding Panel (Questions Scene
 # -------------------------------------------------
-@onready var sliding_panel = $SlidingPanel
+@onready var sliding_panel : Control = $SlidingPanel
+var current_answers : Dictionary = {}
 
+# Question buttons inside SlidingPanel
+@onready var question_buttons : Dictionary = {
+	"filename": sliding_panel.get_node("Panel/VBoxContainer/Question1"),
+	"extension": sliding_panel.get_node("Panel/VBoxContainer/Question2"),
+	"size": sliding_panel.get_node("Panel/VBoxContainer/Question3"),
+	"source": sliding_panel.get_node("Panel/VBoxContainer/Question4"),
+	"publisher": sliding_panel.get_node("Panel/VBoxContainer/Question5")
+}
+
+@onready var answer_label : Label = $Answer_Label
 # -------------------------------------------------
 # Audio
 # -------------------------------------------------
 @onready var pickup_sound = $Audio_Pickup
 @onready var button_sound = $Button_Click
 @onready var paper_printing = $Printing_Paper
+@onready var filetizen_talking = $Talking
 
 # Load textures
 var _paper_original_texture := preload("res://Assets/Sprites/large-paper.png")
@@ -72,6 +84,7 @@ const FONT_SIZE_STATE_2 := 16   # paper_down (state 2)
 # Metadata generator
 var generator := MetadataGenerator.new()
 var metadata : FileMetadata
+var Answergenerator := AnswerGenerator.new()
 
 # -------------------------
 # LIST NODE VARIABLES
@@ -108,10 +121,23 @@ func _ready():
 	enable_buttons(false)
 	spawn_new_filetizen()
 	move_filetizen_to_center()
-
+	
 	_initialize_paper()
 	_resize_checkboxes(Vector2(132, 132))  # makes the checkbox square bigger
-
+	
+	# Get the buttons from the child SlidingPanel scene
+	question_buttons = {
+		"filename": sliding_panel.get_node("Panel/VBoxContainer/Question1"),
+		"extension": sliding_panel.get_node("Panel/VBoxContainer/Question2"),
+		"size": sliding_panel.get_node("Panel/VBoxContainer/Question3"),
+		"source": sliding_panel.get_node("Panel/VBoxContainer/Question4"),
+		"publisher": sliding_panel.get_node("Panel/VBoxContainer/Question5")
+	}
+	
+	# Connect each button to the main scene handler
+	for key in question_buttons.keys():
+		question_buttons[key].pressed.connect(_on_question_button_pressed.bind(key))
+		
 	# Initialize _list
 	if _list:
 		_list.texture = _list_closed_texture
@@ -135,14 +161,14 @@ func _initialize_paper():
 	_paper.scale = PRINTED_SCALE
 	_paper.position = _paper_fall_start_pos
 	_paper.z_index = 0
-
+	
 	# Generate new metadata from the current Filetizen
 	metadata = filetizen.metadata
 	_update_paper_labels(metadata)
-
 	_state = 0
+	
 	update_font_size_for_state(_state)
-
+		
 	_spawn_paper_animation()
 	paper_printing.play()
 	_paper.gui_input.connect(_on_paper_clicked)
@@ -180,12 +206,59 @@ func _process(delta):
 	if not moved_out and filetizen.position.distance_to(target) < 5.0:
 		filetizen.move_component.stop()
 		moved_out = true
+		
+		# 1. Evaluate risk
 		var score = engine.evaluate(filetizen.metadata, rule_base)
 		filetizen.metadata.risk_score = score
 		print("Evaluating Filetizen:")
 		print("Filename: ", filetizen.metadata.filename)
 		print("Score: ", score)
+		# 2. Generate answers/questions HERE
+		var answer_gen = AnswerGenerator.new()
+		current_answers = answer_gen.generate_answers(filetizen.metadata, score)
+		
+		# 3. Pass to your SlidingPanel UI
+		#update_question_panel(answers)
+		print("Answers: ", current_answers)
 		enable_buttons(true)
+
+# -------------------------
+# QUESTION BUTTON PRESSED
+# -------------------------
+func type_text(label: Label, full_text: String, cps: float = 30.0) -> float:
+	# ensure inputs are typed
+	var text: String = str(full_text)
+	label.text = ""
+	var duration: float = float(text.length()) / cps
+
+	for i in text.length():
+		label.text = text.substr(0, i + 1)
+		await get_tree().create_timer(1.0 / cps).timeout
+
+	return duration
+
+# QUESTION BUTTON PRESSED
+func _on_question_button_pressed(key: String) -> void:
+	if key in current_answers:
+		var text: String = str(current_answers[key])
+		var cps: float = 25.0
+
+		# compute duration first
+		var typing_duration: float = float(text.length()) / cps
+
+		# bounce runs alongside typing
+		filetizen.move_component.bounce_for(typing_duration)
+		
+		filetizen_talking.play()
+
+		# type animation
+		await type_text(answer_label, text, cps)
+
+		# hold full text for 0.5s
+		await get_tree().create_timer(1).timeout
+
+		# clear the label
+		answer_label.text = ""
 
 func enable_buttons(state: bool):
 	approve_btn.disabled = not state

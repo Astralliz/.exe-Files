@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://4c4u7gr1xp8r"]
+[gd_scene load_steps=18 format=3 uid="uid://4c4u7gr1xp8r"]
 
 [ext_resource type="Script" uid="uid://b851dtk14gco1" path="res://Scripts/test.gd" id="1_ffver"]
 [ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="2_42p1h"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://c8jqse7s80fg8" path="res://Assets/Audio/Picking Item/SFX_Pickup.wav" id="9_kfe5x"]
 [ext_resource type="AudioStream" uid="uid://dwxhnf48nyc30" path="res://Assets/Audio/Picking Item/SFX_Button.wav" id="10_db84o"]
 [ext_resource type="AudioStream" uid="uid://bsyvqtiv7snui" path="res://Assets/Audio/Picking Item/printing paper.mp3" id="11_6t71q"]
+[ext_resource type="AudioStream" uid="uid://ccawkigrsp8y" path="res://Assets/Audio/Talking/SFX_Fine_Voice_03.wav" id="13_26li6"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kfe5x"]
 texture = ExtResource("2_42p1h")
@@ -174,6 +175,16 @@ offset_right = 1068.0
 offset_bottom = 91.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_26li6")
 
+[node name="Answer_Label" type="Label" parent="."]
+offset_left = 324.0
+offset_top = 331.0
+offset_right = 855.0
+offset_bottom = 397.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "
+"
+horizontal_alignment = 1
+
 [node name="Audio_Pickup" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_kfe5x")
 
@@ -183,6 +194,9 @@ stream = ExtResource("10_db84o")
 [node name="Printing_Paper" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_6t71q")
 volume_db = 0.165
+
+[node name="Talking" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_26li6")
 
 [connection signal="pressed" from="ApproveBtn" to="." method="_on_approve_btn_pressed"]
 [connection signal="pressed" from="DeclineBtn" to="." method="_on_decline_btn_pressed"]
