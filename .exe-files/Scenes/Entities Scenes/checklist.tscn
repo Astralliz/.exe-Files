@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://cew4m80j5s8fi"]
+
+[ext_resource type="Script" uid="uid://ddml4lmqweulq" path="res://Scripts/Entities/checklist.gd" id="1_h3d4w"]
+[ext_resource type="Texture2D" uid="uid://bj7xytr144m1g" path="res://Assets/Sprites/large-paper.png" id="2_pwa2m"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_higcg"]
+[ext_resource type="LabelSettings" uid="uid://j2u4pmijyrwc" path="res://Assets/Fonts/KMS_label_settings.tres" id="4_5hqj2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dbujj"]
+size = Vector2(224, 320)
+
+[node name="Checklist" type="Node2D"]
+script = ExtResource("1_h3d4w")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_dbujj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_pwa2m")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = -104.0
+offset_top = -144.0
+offset_right = 104.0
+offset_bottom = 96.0
+
+[node name="FileName" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_higcg")
+text = "  Filename correct?"
+
+[node name="Extension" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_higcg")
+text = "  Extension Correct?"
+
+[node name="Size" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_higcg")
+text = "  File Size Correct?"
+
+[node name="Publisher" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_higcg")
+text = "  Publisher Correct?"
+
+[node name="Source" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_higcg")
+text = "  Source Correct?"
+
+[node name="Spacing" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Evaluate" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_higcg")
+text = "Evaluate"
+
+[node name="Spacing2" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Result" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Result:"
+label_settings = ExtResource("4_5hqj2")

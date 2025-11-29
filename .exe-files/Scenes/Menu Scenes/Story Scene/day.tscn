@@ -1,22 +1,21 @@
-[gd_scene load_steps=13 format=3 uid="uid://b52y0fj86sfe7"]
+[gd_scene load_steps=14 format=3 uid="uid://c0t2kseigf68d"]
 
 [ext_resource type="Script" uid="uid://cl8kjlwaigwmr" path="res://Scripts/UI/day.gd" id="1_c6jxy"]
 [ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="2_2x7vk"]
 [ext_resource type="Texture2D" uid="uid://bjtqkmwq8fiib" path="res://Assets/images/controll_room_bg.png" id="3_wlewr"]
-[ext_resource type="Script" path="res://Components/spawner_component.gd" id="4_6brgw"]
+[ext_resource type="Script" uid="uid://5jr1nl78gvmg" path="res://Components/spawner_component.gd" id="4_6brgw"]
 [ext_resource type="PackedScene" uid="uid://mpbxai4ade75" path="res://Scenes/Character Scenes/filetizen.tscn" id="5_y1tcq"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="6_2x7vk"]
 [ext_resource type="Texture2D" uid="uid://c30hxuwk71wne" path="res://Assets/images/printer.png" id="7_wlewr"]
+[ext_resource type="PackedScene" uid="uid://7lh2ohceok4o" path="res://Scenes/Entities Scenes/file_document.tscn" id="7_y1tcq"]
 [ext_resource type="Texture2D" uid="uid://dyaht84w33t60" path="res://Assets/Sprites/alarm.png" id="8_6brgw"]
+[ext_resource type="PackedScene" uid="uid://cew4m80j5s8fi" path="res://Scenes/Entities Scenes/checklist.tscn" id="9_7xjw4"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2xmuy"]
 texture = ExtResource("2_2x7vk")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_27r5i"]
 texture = ExtResource("3_wlewr")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wlewr"]
-texture = ExtResource("7_wlewr")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y1tcq"]
 texture = ExtResource("8_6brgw")
@@ -34,13 +33,23 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_2xmuy")
 [node name="Actors" type="Node2D" parent="."]
 
 [node name="control_room" type="Panel" parent="."]
-offset_right = 1150.0
+offset_right = 1152.0
 offset_bottom = 643.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_27r5i")
 
-[node name="SpawnerComponent" type="Node2D" parent="."]
-script = ExtResource("4_6brgw")
-scene = ExtResource("5_y1tcq")
+[node name="Document" type="Node2D" parent="."]
+
+[node name="Printer" type="Sprite2D" parent="."]
+position = Vector2(1028, 248)
+scale = Vector2(0.631043, 0.617647)
+texture = ExtResource("7_wlewr")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 1005.0
+offset_top = 34.0
+offset_right = 1068.0
+offset_bottom = 91.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_y1tcq")
 
 [node name="ApproveBtn" type="Button" parent="."]
 offset_left = 24.0
@@ -62,103 +71,18 @@ theme_override_fonts/font = ExtResource("6_2x7vk")
 theme_override_font_sizes/font_size = 30
 text = "DECLINE"
 
-[node name="File_Document" type="TextureRect" parent="."]
-offset_left = 947.0
-offset_top = 174.0
-offset_right = 1113.0
-offset_bottom = 400.0
+[node name="FiletizenSpawner" type="Node2D" parent="."]
+script = ExtResource("4_6brgw")
+scene = ExtResource("5_y1tcq")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="File_Document"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/separation = 0
+[node name="DocumentSpawner" type="Node2D" parent="."]
+position = Vector2(903, 87)
+script = ExtResource("4_6brgw")
+scene = ExtResource("7_y1tcq")
+metadata/_custom_type_script = "uid://5jr1nl78gvmg"
 
-[node name="Label_Filename" type="Label" parent="File_Document/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-
-[node name="Label_Extension" type="Label" parent="File_Document/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-
-[node name="Label_Size" type="Label" parent="File_Document/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-
-[node name="Label_Publisher" type="Label" parent="File_Document/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-
-[node name="Label_Source" type="Label" parent="File_Document/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-
-[node name="Panel4" type="Panel" parent="."]
-offset_left = 903.0
-offset_top = 87.0
-offset_right = 1152.0
-offset_bottom = 418.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_wlewr")
-
-[node name="Check_List" type="TextureRect" parent="."]
-offset_left = 193.0
-offset_top = 528.0
-offset_right = 403.0
-offset_bottom = 827.0
-
-[node name="container" type="VBoxContainer" parent="Check_List"]
-layout_mode = 0
-offset_right = 311.0
-offset_bottom = 653.0
-theme_override_constants/separation = 20
-
-[node name="FileName" type="CheckBox" parent="Check_List/container"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 60
-text = "FileName"
-
-[node name="Extension" type="CheckBox" parent="Check_List/container"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 60
-text = "Extension"
-
-[node name="FileSize" type="CheckBox" parent="Check_List/container"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 60
-text = "FileSize"
-
-[node name="Publisher" type="CheckBox" parent="Check_List/container"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 60
-text = "Publisher"
-
-[node name="Source" type="CheckBox" parent="Check_List/container"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 60
-text = "Source"
-
-[node name="EvaluateButton" type="Button" parent="Check_List/container"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 60
-text = "Evaluate"
-
-[node name="ResultLabel" type="Label" parent="Check_List/container"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 60
-
-[node name="Panel" type="Panel" parent="."]
-offset_left = 1005.0
-offset_top = 34.0
-offset_right = 1068.0
-offset_bottom = 91.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_y1tcq")
+[node name="Checklist" parent="." instance=ExtResource("9_7xjw4")]
+position = Vector2(296, 424)
 
 [connection signal="pressed" from="ApproveBtn" to="." method="_on_approve_btn_pressed"]
 [connection signal="pressed" from="DeclineBtn" to="." method="_on_decline_btn_pressed"]

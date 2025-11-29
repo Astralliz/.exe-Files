@@ -29,10 +29,6 @@ func _input(event: InputEvent) -> void:
 		spawn_stamp()
 
 func spawn_stamp() -> void:
-	if has_node("Stamp"):
-		return
-	
 	var stamp := preload("res://Scenes/approve_stamp.tscn").instantiate()
-	stamp.name = "Stamp"
 	add_child(stamp)
 	stamp.global_position = get_global_mouse_position()
