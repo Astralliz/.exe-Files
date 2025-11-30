@@ -7,9 +7,7 @@ extends Node2D
 @onready var documents: Node2D = $Document
 @onready var approve_btn: Button = $ApproveBtn
 @onready var decline_btn: Button = $DeclineBtn
-
 @onready var answer_label : Label = $Answer_Label
-
 @onready var level_finished: Control = $Level1Finished
 # -------------------------------------------------
 # Audio
@@ -60,7 +58,7 @@ func _ready():
 	move_filetizen_to_center()
 	await get_tree().create_timer(1.0).timeout
 	
-		# Get the buttons from the child SlidingPanel scene
+	# Get the buttons from the child SlidingPanel scene
 	question_buttons = {
 		"filename": sliding_panel.get_node("Panel/VBoxContainer/Question1"),
 		"extension": sliding_panel.get_node("Panel/VBoxContainer/Question2"),
@@ -73,12 +71,9 @@ func _ready():
 	for key in question_buttons.keys():
 		question_buttons[key].pressed.connect(_on_question_button_pressed.bind(key))
 	
-	
 	spawn_new_file_document()
 
-# -------------------------
 # SPAWN / MOVE FILETIZEN
-# -------------------------
 func spawn_new_filetizen():
 	var screen_size = get_viewport().get_visible_rect().size
 	var spawn_pos = Vector2(-100, screen_size.y / 2)
@@ -99,6 +94,7 @@ func spawn_new_file_document():
 	paper_printing.play()
 	current_document = new_doc
 
+# MOVE FILETIZEN AFTER DECISION
 func move_approved_filetizen():
 	var screen_w = get_viewport().get_visible_rect().size.x
 	var direction = Vector2(screen_w + 200, filetizen.position.y) - filetizen.position

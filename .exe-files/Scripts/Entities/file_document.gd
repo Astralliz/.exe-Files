@@ -8,9 +8,9 @@ extends Node2D
 @onready var size: Label = $VBoxContainer/Size
 @onready var publisher: Label = $VBoxContainer/Publisher
 @onready var source: Label = $VBoxContainer/Source
-@onready var area_2d: Area2D = $Area2D
 @onready var stamp_anchor: Node2D = $StampAnchor
-
+@onready var document_area_2d: Area2D = $DocumentArea2D
+@onready var interact_area_2d: Area2D = $InteractArea2D
 @onready var pickup_sound = $Audio_Pickup
 
 var tex_original := preload("res://Assets/Sprites/large-paper.png")
@@ -20,6 +20,8 @@ var decline_stamp_scene := preload("res://Scenes/Entities Scenes/decline_stamp.t
 
 var _state := 0
 var metadata: FileMetadata
+var is_dragging := false
+var drag_offset = Vector2.ZERO
 
 const PRINTED_SCALE = Vector2(0.7, 0.7)
 const ZOOM_SCALE = Vector2(1.2, 1.2)
@@ -47,19 +49,55 @@ func initialize_paper():
 	_spawn_fall_animation()
 
 func _ready():
-	print("titetete")
-	area_2d.input_event.connect(_input_event)
+	document_area_2d.input_event.connect(_on_document_area_input)
+	interact_area_2d.input_event.connect(_on_interact_area_input)
 	
 	vbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	for child in vbox.get_children():
 		if child is Control:
 			child.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
-func _input_event(viewport: Object, event: InputEvent, shape_idx: int) -> void:
+func _on_interact_area_input(viewport: Object, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed:
-			pickup_sound.play()
-			_handle_state_switch()
+			if _state == 1:
+				pickup_sound.play()
+				_handle_state_switch()
+
+func _on_document_area_input(viewport: Object, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		if event.pressed:
+			if _state == 1:
+				is_dragging = true
+				drag_offset = global_position - get_global_mouse_position()
+				return
+			if _state == 2 or _state == 0:
+				pickup_sound.play()
+				_handle_state_switch()
+
+func _input(event: InputEvent) -> void:
+	if _state != 1:
+		return  # dragging only works when open
+	# STOP DRAGGING
+	if Input.is_action_just_released("click"):
+		is_dragging = false
+	# DRAGGING
+	if is_dragging and Input.is_action_pressed("click"):
+		var new_pos = get_global_mouse_position() + drag_offset
+		global_position = _clamp_to_screen(new_pos)
+
+func _clamp_to_screen(pos: Vector2) -> Vector2:
+	var screen := get_viewport().get_visible_rect()
+	# The paper’s size comes from scale × texture size
+	var tex_size = paper.texture.get_size() * scale
+	# Make sure it doesn't exit screen bounds
+	var half_w = tex_size.x * 0.5
+	var half_h = tex_size.y * 0.5
+	
+	pos.x = clamp(pos.x, screen.position.x + half_w, screen.end.x - half_w)
+	pos.y = clamp(pos.y, screen.position.y + half_h, screen.end.y - half_h)
+	
+	return pos
 
 func _handle_state_switch():
 	match _state:

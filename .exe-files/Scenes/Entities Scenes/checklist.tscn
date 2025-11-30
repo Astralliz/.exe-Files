@@ -1,23 +1,37 @@
-[gd_scene load_steps=6 format=3 uid="uid://cew4m80j5s8fi"]
+[gd_scene load_steps=8 format=3 uid="uid://cew4m80j5s8fi"]
 
 [ext_resource type="Script" uid="uid://ddml4lmqweulq" path="res://Scripts/Entities/checklist.gd" id="1_h3d4w"]
 [ext_resource type="Texture2D" uid="uid://bj7xytr144m1g" path="res://Assets/Sprites/large-paper.png" id="2_pwa2m"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_higcg"]
+[ext_resource type="LabelSettings" uid="uid://j2u4pmijyrwc" path="res://Assets/Fonts/KMS_label_settings.tres" id="4_pwa2m"]
 [ext_resource type="AudioStream" uid="uid://c8jqse7s80fg8" path="res://Assets/Audio/Picking Item/SFX_Pickup.wav" id="5_pwa2m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbujj"]
-size = Vector2(224, 320)
+size = Vector2(224, 280)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pwa2m"]
+size = Vector2(2.64127, 2.52475)
 
 [node name="Checklist" type="Node2D"]
 script = ExtResource("1_h3d4w")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.01061, 1)
+texture = ExtResource("2_pwa2m")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="DocumentArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DocumentArea2D"]
+position = Vector2(0, -20)
 shape = SubResource("RectangleShape2D_dbujj")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_pwa2m")
+[node name="InteractArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea2D"]
+position = Vector2(-7.62939e-06, 140)
+scale = Vector2(84.8078, 15.8431)
+shape = SubResource("RectangleShape2D_pwa2m")
+debug_color = Color(0.698574, 0.278981, 0.998569, 0.42)
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 offset_left = -108.0
@@ -32,19 +46,19 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_higcg")
-text = "  Filename correct?"
+text = " Filename correct?"
 
 [node name="Extension" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_higcg")
-text = "  Extension Correct?"
+text = " Extension Correct?"
 
 [node name="Dangerous_Extension" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_higcg")
-text = "Dangerous Extension?"
+text = " Dangerous Extension?"
 
 [node name="Size" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -56,16 +70,16 @@ text = " File Size < 50 MB?"
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_higcg")
-text = "  Publisher Correct?"
+text = " Publisher Correct?"
 
 [node name="Source" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_higcg")
-text = "  Source Correct?"
+text = " Source Correct?"
 
 [node name="Spacing" type="Control" parent="ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 10)
+custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
 [node name="Evaluate" type="Button" parent="ScrollContainer/VBoxContainer"]
@@ -74,13 +88,14 @@ theme_override_fonts/font = ExtResource("3_higcg")
 text = "Evaluate"
 
 [node name="Spacing2" type="Control" parent="ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 10)
+custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
 [node name="Result" type="Label" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Result:"
+label_settings = ExtResource("4_pwa2m")
 max_lines_visible = 4
 
 [node name="Suggestions" type="Label" parent="ScrollContainer/VBoxContainer"]
