@@ -1,15 +1,20 @@
-[gd_scene load_steps=14 format=3 uid="uid://c0t2kseigf68d"]
+[gd_scene load_steps=19 format=3 uid="uid://b52y0fj86sfe7"]
 
 [ext_resource type="Script" uid="uid://cl8kjlwaigwmr" path="res://Scripts/UI/day.gd" id="1_c6jxy"]
 [ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="2_2x7vk"]
 [ext_resource type="Texture2D" uid="uid://bjtqkmwq8fiib" path="res://Assets/images/controll_room_bg.png" id="3_wlewr"]
-[ext_resource type="Script" uid="uid://5jr1nl78gvmg" path="res://Components/spawner_component.gd" id="4_6brgw"]
+[ext_resource type="Script" path="res://Components/spawner_component.gd" id="4_6brgw"]
 [ext_resource type="PackedScene" uid="uid://mpbxai4ade75" path="res://Scenes/Character Scenes/filetizen.tscn" id="5_y1tcq"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="6_2x7vk"]
 [ext_resource type="Texture2D" uid="uid://c30hxuwk71wne" path="res://Assets/images/printer.png" id="7_wlewr"]
 [ext_resource type="PackedScene" uid="uid://7lh2ohceok4o" path="res://Scenes/Entities Scenes/file_document.tscn" id="7_y1tcq"]
 [ext_resource type="Texture2D" uid="uid://dyaht84w33t60" path="res://Assets/Sprites/alarm.png" id="8_6brgw"]
 [ext_resource type="PackedScene" uid="uid://cew4m80j5s8fi" path="res://Scenes/Entities Scenes/checklist.tscn" id="9_7xjw4"]
+[ext_resource type="PackedScene" uid="uid://egnv2vu3ys4u" path="res://Scenes/Qustions/SlidingPanel.tscn" id="11_r1cjk"]
+[ext_resource type="AudioStream" uid="uid://ccawkigrsp8y" path="res://Assets/Audio/Talking/SFX_Fine_Voice_03.wav" id="12_rt716"]
+[ext_resource type="AudioStream" uid="uid://c8jqse7s80fg8" path="res://Assets/Audio/Picking Item/SFX_Pickup.wav" id="13_vk2dw"]
+[ext_resource type="AudioStream" uid="uid://dwxhnf48nyc30" path="res://Assets/Audio/Picking Item/SFX_Button.wav" id="14_is13e"]
+[ext_resource type="AudioStream" uid="uid://bsyvqtiv7snui" path="res://Assets/Audio/Picking Item/printing paper.mp3" id="15_c4oy2"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2xmuy"]
 texture = ExtResource("2_2x7vk")
@@ -79,10 +84,31 @@ scene = ExtResource("5_y1tcq")
 position = Vector2(903, 87)
 script = ExtResource("4_6brgw")
 scene = ExtResource("7_y1tcq")
-metadata/_custom_type_script = "uid://5jr1nl78gvmg"
 
 [node name="Checklist" parent="." instance=ExtResource("9_7xjw4")]
 position = Vector2(296, 424)
+
+[node name="SlidingPanel" parent="." instance=ExtResource("11_r1cjk")]
+
+[node name="Answer_Label" type="Label" parent="."]
+offset_left = 421.0
+offset_top = 330.0
+offset_right = 770.0
+offset_bottom = 385.0
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 1
+
+[node name="Talking" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_rt716")
+
+[node name="Audio_Pickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_vk2dw")
+
+[node name="Button_Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_is13e")
+
+[node name="Printing_Paper" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_c4oy2")
 
 [connection signal="pressed" from="ApproveBtn" to="." method="_on_approve_btn_pressed"]
 [connection signal="pressed" from="DeclineBtn" to="." method="_on_decline_btn_pressed"]

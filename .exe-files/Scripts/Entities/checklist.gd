@@ -12,6 +12,8 @@ extends Node2D
 @onready var evaluate: Button = $VBoxContainer/Evaluate
 @onready var result: Label = $VBoxContainer/Result
 
+@onready var pickup_sound = $Audio_Pickup
+
 var tex_closed := preload("res://Assets/Sprites/paper_down_ask.png")
 var tex_open := preload("res://Assets/Sprites/large-paper.png")
 
@@ -38,6 +40,7 @@ func _init_appearance():
 
 func _input_event(viewport, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed:
+		pickup_sound.play()
 		_toggle_state()
 
 func _toggle_state():

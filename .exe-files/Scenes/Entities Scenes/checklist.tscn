@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cew4m80j5s8fi"]
+[gd_scene load_steps=7 format=3 uid="uid://cew4m80j5s8fi"]
 
 [ext_resource type="Script" uid="uid://ddml4lmqweulq" path="res://Scripts/Entities/checklist.gd" id="1_h3d4w"]
 [ext_resource type="Texture2D" uid="uid://bj7xytr144m1g" path="res://Assets/Sprites/large-paper.png" id="2_pwa2m"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_higcg"]
 [ext_resource type="LabelSettings" uid="uid://j2u4pmijyrwc" path="res://Assets/Fonts/KMS_label_settings.tres" id="4_5hqj2"]
+[ext_resource type="AudioStream" uid="uid://c8jqse7s80fg8" path="res://Assets/Audio/Picking Item/SFX_Pickup.wav" id="5_pwa2m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbujj"]
 size = Vector2(224, 320)
@@ -72,3 +73,7 @@ layout_mode = 2
 layout_mode = 2
 text = "Result:"
 label_settings = ExtResource("4_5hqj2")
+
+[node name="Audio_Pickup" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-104, -144)
+stream = ExtResource("5_pwa2m")

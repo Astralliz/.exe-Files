@@ -8,6 +8,30 @@ extends Node2D
 @onready var approve_btn: Button = $ApproveBtn
 @onready var decline_btn: Button = $DeclineBtn
 
+@onready var answer_label : Label = $Answer_Label
+# -------------------------------------------------
+# Audio
+# -------------------------------------------------
+@onready var pickup_sound = $Audio_Pickup
+@onready var button_sound = $Button_Click
+@onready var paper_printing = $Printing_Paper
+@onready var filetizen_talking = $Talking
+
+# -------------------------------------------------
+# Sliding Panel (Questions Scene
+# -------------------------------------------------
+@onready var sliding_panel : Control = $SlidingPanel
+var current_answers : Dictionary = {}
+
+# Question buttons inside SlidingPanel
+@onready var question_buttons : Dictionary = {
+	"filename": sliding_panel.get_node("Panel/VBoxContainer/Question1"),
+	"extension": sliding_panel.get_node("Panel/VBoxContainer/Question2"),
+	"size": sliding_panel.get_node("Panel/VBoxContainer/Question3"),
+	"source": sliding_panel.get_node("Panel/VBoxContainer/Question4"),
+	"publisher": sliding_panel.get_node("Panel/VBoxContainer/Question5")
+}
+
 const HeuristicEngine = preload("res://Scripts/Algorithm/heuristic_engine.gd")
 const RuleBase = preload("res://Scripts/Algorithm/Rules/rule_base.gd")
 
@@ -26,6 +50,21 @@ func _ready():
 	spawn_new_filetizen()
 	move_filetizen_to_center()
 	await get_tree().create_timer(1.0).timeout
+	
+		# Get the buttons from the child SlidingPanel scene
+	question_buttons = {
+		"filename": sliding_panel.get_node("Panel/VBoxContainer/Question1"),
+		"extension": sliding_panel.get_node("Panel/VBoxContainer/Question2"),
+		"size": sliding_panel.get_node("Panel/VBoxContainer/Question3"),
+		"source": sliding_panel.get_node("Panel/VBoxContainer/Question4"),
+		"publisher": sliding_panel.get_node("Panel/VBoxContainer/Question5")
+	}
+	
+	# Connect each button to the main scene handler
+	for key in question_buttons.keys():
+		question_buttons[key].pressed.connect(_on_question_button_pressed.bind(key))
+	
+	
 	spawn_new_file_document()
 
 # -------------------------
@@ -48,6 +87,7 @@ func spawn_new_file_document():
 	var new_doc: FileDocument = document_spawner.spawn(spawn_pos, documents) as FileDocument
 	new_doc.set_metadata(filetizen.metadata)
 	new_doc.initialize_paper()
+	paper_printing.play()
 	current_document = new_doc
 
 func move_approved_filetizen():
@@ -71,7 +111,51 @@ func _process(delta):
 		print("Evaluating Filetizen:")
 		print("Filename: ", filetizen.metadata.filename)
 		print("Score: ", score)
+		
+		var answer_gen = AnswerGenerator.new()
+		current_answers = answer_gen.generate_answers(filetizen.metadata, score)
+		
+		print("Answers: ", current_answers)
 		enable_buttons(true)
+
+# -------------------------
+# QUESTION BUTTON PRESSED
+# -------------------------
+func type_text(label: Label, full_text: String, cps: float = 30.0) -> float:
+	# ensure inputs are typed
+	var text: String = str(full_text)
+	label.text = ""
+	var duration: float = float(text.length()) / cps
+
+	for i in text.length():
+		label.text = text.substr(0, i + 1)
+		await get_tree().create_timer(1.0 / cps).timeout
+
+	return duration
+
+# QUESTION BUTTON PRESSED
+func _on_question_button_pressed(key: String) -> void:
+	print("Clicked")
+	if key in current_answers:
+		var text: String = str(current_answers[key])
+		var cps: float = 25.0
+
+		# compute duration first
+		var typing_duration: float = float(text.length()) / cps
+
+		# bounce runs alongside typing
+		filetizen.move_component.bounce_for(typing_duration)
+		
+		filetizen_talking.play()
+
+		# type animation
+		await type_text(answer_label, text, cps)
+
+		# hold full text for 0.5s
+		await get_tree().create_timer(1).timeout
+
+		# clear the label
+		answer_label.text = ""
 
 func enable_buttons(state: bool):
 	approve_btn.disabled = not state
@@ -80,11 +164,13 @@ func enable_buttons(state: bool):
 func _on_approve_btn_pressed() -> void:
 	if current_document:
 		current_document.spawn_approve_stamp()
+	button_sound.play()
 	handle_player_decision(true)
 
 func _on_decline_btn_pressed() -> void:
 	if current_document:
 		current_document.spawn_decline_stamp()
+	button_sound.play()
 	handle_player_decision(false)
 
 func handle_player_decision(player_approved: bool):

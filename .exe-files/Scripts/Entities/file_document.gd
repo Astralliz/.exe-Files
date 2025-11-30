@@ -11,6 +11,8 @@ extends Node2D
 @onready var area_2d: Area2D = $Area2D
 @onready var stamp_anchor: Node2D = $StampAnchor
 
+@onready var pickup_sound = $Audio_Pickup
+
 var tex_original := preload("res://Assets/Sprites/large-paper.png")
 var tex_open := preload("res://Assets/Sprites/paper_down.png")
 var approve_stamp_scene := preload("res://Scenes/Entities Scenes/approve_stamp.tscn")
@@ -57,6 +59,7 @@ func _input_event(viewport: Object, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed:
 			print("clicked")
+			pickup_sound.play()
 			_handle_state_switch()
 
 func _handle_state_switch():
