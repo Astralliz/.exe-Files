@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cew4m80j5s8fi"]
+[gd_scene load_steps=6 format=3 uid="uid://cew4m80j5s8fi"]
 
 [ext_resource type="Script" uid="uid://ddml4lmqweulq" path="res://Scripts/Entities/checklist.gd" id="1_h3d4w"]
 [ext_resource type="Texture2D" uid="uid://bj7xytr144m1g" path="res://Assets/Sprites/large-paper.png" id="2_pwa2m"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_higcg"]
-[ext_resource type="LabelSettings" uid="uid://j2u4pmijyrwc" path="res://Assets/Fonts/KMS_label_settings.tres" id="4_5hqj2"]
 [ext_resource type="AudioStream" uid="uid://c8jqse7s80fg8" path="res://Assets/Audio/Picking Item/SFX_Pickup.wav" id="5_pwa2m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbujj"]
@@ -20,59 +19,79 @@ shape = SubResource("RectangleShape2D_dbujj")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_pwa2m")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_left = -104.0
-offset_top = -144.0
-offset_right = 104.0
-offset_bottom = 96.0
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+offset_left = -108.0
+offset_top = -151.0
+offset_right = 110.0
+offset_bottom = 128.0
 
-[node name="FileName" type="CheckBox" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="FileName" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_higcg")
 text = "  Filename correct?"
 
-[node name="Extension" type="CheckBox" parent="VBoxContainer"]
+[node name="Extension" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_higcg")
 text = "  Extension Correct?"
 
-[node name="Size" type="CheckBox" parent="VBoxContainer"]
+[node name="Dangerous_Extension" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_higcg")
+text = "Dangerous Extension?"
+
+[node name="Size" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_higcg")
 text = "  File Size Correct?"
 
-[node name="Publisher" type="CheckBox" parent="VBoxContainer"]
+[node name="Publisher" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_higcg")
 text = "  Publisher Correct?"
 
-[node name="Source" type="CheckBox" parent="VBoxContainer"]
+[node name="Source" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_higcg")
 text = "  Source Correct?"
 
-[node name="Spacing" type="Control" parent="VBoxContainer"]
+[node name="Spacing" type="Control" parent="ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="Evaluate" type="Button" parent="VBoxContainer"]
+[node name="Evaluate" type="Button" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_higcg")
 text = "Evaluate"
 
-[node name="Spacing2" type="Control" parent="VBoxContainer"]
+[node name="Spacing2" type="Control" parent="ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="Result" type="Label" parent="VBoxContainer"]
+[node name="Result" type="Label" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Result:"
-label_settings = ExtResource("4_5hqj2")
+max_lines_visible = 4
+visible_characters = 206
+visible_ratio = 29.4286
+
+[node name="Suggestions" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.00628662, 0.402344, 0.00628662, 1)
+
+[node name="Suggestions2" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.984375, 0.164864, 0.0307617, 1)
 
 [node name="Audio_Pickup" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-104, -144)
