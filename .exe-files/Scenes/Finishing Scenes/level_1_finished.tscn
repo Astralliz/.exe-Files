@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddtsynehhxi41"]
+
+[ext_resource type="Script" uid="uid://csgcrujo5cbmk" path="res://Scripts/UI/Pop Up/Level1Finished.gd" id="1_d0x3u"]
+[ext_resource type="Texture2D" uid="uid://dud14egjhs4im" path="res://Assets/images/finished window.png" id="1_dald2"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="2_8dgci"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8dgci"]
+texture = ExtResource("1_dald2")
+
+[node name="Level1Finished" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d0x3u")
+
+[node name="BlurBackground" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 653.0
+color = Color(0, 0, 0, 0.509804)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 211.0
+offset_top = 104.0
+offset_right = 943.0
+offset_bottom = 520.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_8dgci")
+
+[node name="Continue" type="Button" parent="."]
+layout_mode = 0
+offset_left = 483.0
+offset_top = 401.0
+offset_right = 665.0
+offset_bottom = 463.0
+theme_override_fonts/font = ExtResource("2_8dgci")
+theme_override_font_sizes/font_size = 30
+text = "Continue"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 266.0
+offset_top = 193.0
+offset_right = 897.0
+offset_bottom = 377.0
+theme_override_fonts/font = ExtResource("2_8dgci")
+theme_override_font_sizes/font_size = 30
+text = "Congrats  For Completing Your First Day
+
+You're now ready for more harder days
+ to come"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]

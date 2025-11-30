@@ -9,6 +9,8 @@ extends Node2D
 @onready var decline_btn: Button = $DeclineBtn
 
 @onready var answer_label : Label = $Answer_Label
+
+@onready var level_finished: Control = $Level1Finished
 # -------------------------------------------------
 # Audio
 # -------------------------------------------------
@@ -46,6 +48,8 @@ var filetizen_count := 0
 const MAX_FILETIZENS := 7
 
 func _ready():
+	level_finished.hide()
+	
 	$main_background.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	$control_room.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	$Panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -222,3 +226,5 @@ func handle_player_decision(player_approved: bool):
 		spawn_new_file_document()
 	else:
 		print("✅ All Filetizens completed.")
+		level_finished.z_index = 20
+		level_finished.show()

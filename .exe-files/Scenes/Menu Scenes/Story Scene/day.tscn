@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b52y0fj86sfe7"]
+[gd_scene load_steps=20 format=3 uid="uid://b52y0fj86sfe7"]
 
 [ext_resource type="Script" uid="uid://cl8kjlwaigwmr" path="res://Scripts/UI/day.gd" id="1_c6jxy"]
 [ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="2_2x7vk"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://c8jqse7s80fg8" path="res://Assets/Audio/Picking Item/SFX_Pickup.wav" id="13_vk2dw"]
 [ext_resource type="AudioStream" uid="uid://dwxhnf48nyc30" path="res://Assets/Audio/Picking Item/SFX_Button.wav" id="14_is13e"]
 [ext_resource type="AudioStream" uid="uid://bsyvqtiv7snui" path="res://Assets/Audio/Picking Item/printing paper.mp3" id="15_c4oy2"]
+[ext_resource type="PackedScene" uid="uid://ddtsynehhxi41" path="res://Scenes/Finishing Scenes/level_1_finished.tscn" id="16_vk2dw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2xmuy"]
 texture = ExtResource("2_2x7vk")
@@ -97,6 +98,8 @@ offset_right = 770.0
 offset_bottom = 385.0
 theme_override_font_sizes/font_size = 26
 horizontal_alignment = 1
+
+[node name="Level1Finished" parent="." instance=ExtResource("16_vk2dw")]
 
 [node name="Talking" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_rt716")
