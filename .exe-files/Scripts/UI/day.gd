@@ -37,9 +37,13 @@ const RuleBase = preload("res://Scripts/Algorithm/Rules/rule_base.gd")
 
 var engine := HeuristicEngine.new()
 var rule_base := RuleBase.new()
+var rules_for_level1 = rule_base.get_rules(1)
 
 var moved_out := false
 var current_document: FileDocument
+#Counter loop
+var filetizen_count := 0
+const MAX_FILETIZENS := 7
 
 func _ready():
 	$main_background.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -48,6 +52,7 @@ func _ready():
 	
 	enable_buttons(false)
 	spawn_new_filetizen()
+	filetizen_count += 1
 	move_filetizen_to_center()
 	await get_tree().create_timer(1.0).timeout
 	
@@ -102,21 +107,33 @@ func move_declined_filetizen():
 
 func _process(delta):
 	var target = get_viewport().get_visible_rect().size / 2.0
+	
+	if filetizen and is_instance_valid(filetizen):
+		if not moved_out and filetizen.position.distance_to(target) < 5.0:
+			filetizen.move_component.stop()
+			moved_out = true
+			
+			var score = engine.evaluate(filetizen.metadata, rules_for_level1, current_answers)
+			print("Score: ", score)
+			
+			# 1️⃣ Generate answers first (for risky files, it will create lies)
+			var answer_gen = AnswerGenerator.new()
+			current_answers = answer_gen.generate_answers(filetizen.metadata, score) # temp 0 for now
 
-	if not moved_out and filetizen.position.distance_to(target) < 5.0:
-		filetizen.move_component.stop()
-		moved_out = true
-		var score = engine.evaluate(filetizen.metadata, rule_base)
-		filetizen.metadata.risk_score = score
-		print("Evaluating Filetizen:")
-		print("Filename: ", filetizen.metadata.filename)
-		print("Score: ", score)
-		
-		var answer_gen = AnswerGenerator.new()
-		current_answers = answer_gen.generate_answers(filetizen.metadata, score)
-		
-		print("Answers: ", current_answers)
-		enable_buttons(true)
+
+			# 2️⃣ Evaluate score including answer
+			score += engine.evaluate_type_mismatch(filetizen.metadata, current_answers, rules_for_level1)
+			filetizen.metadata.risk_score = score
+
+			# 3️⃣ Debug info
+			print("Evaluating Filetizen:")
+			print("Filename: ", filetizen.metadata.filename)
+			print("Updated Score: ", score)
+			print("Answers: ", current_answers)
+
+			# 4️⃣ Enable buttons
+			enable_buttons(true)
+			
 
 # -------------------------
 # QUESTION BUTTON PRESSED
@@ -135,7 +152,6 @@ func type_text(label: Label, full_text: String, cps: float = 30.0) -> float:
 
 # QUESTION BUTTON PRESSED
 func _on_question_button_pressed(key: String) -> void:
-	print("Clicked")
 	if key in current_answers:
 		var text: String = str(current_answers[key])
 		var cps: float = 25.0
@@ -176,7 +192,7 @@ func _on_decline_btn_pressed() -> void:
 func handle_player_decision(player_approved: bool):
 	enable_buttons(false)
 	var score = filetizen.metadata.risk_score
-	var approved = score <= 2.0
+	var approved = score <= 1.0
 
 	if player_approved == approved:
 		print("✔ Correct decision!")
@@ -196,7 +212,13 @@ func handle_player_decision(player_approved: bool):
 	
 	await get_tree().create_timer(3.0).timeout
 	moved_out = false
-	spawn_new_filetizen()
-	move_filetizen_to_center()
-	await get_tree().create_timer(1.0).timeout
-	spawn_new_file_document()
+	
+	# Only spawn new Filetizen if under the max count
+	if filetizen_count < MAX_FILETIZENS:
+		spawn_new_filetizen()
+		filetizen_count += 1
+		move_filetizen_to_center()
+		await get_tree().create_timer(1.0).timeout
+		spawn_new_file_document()
+	else:
+		print("✅ All Filetizens completed.")

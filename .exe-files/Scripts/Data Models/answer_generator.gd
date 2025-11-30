@@ -8,7 +8,7 @@ var fake_names := [
 ]
 
 var fake_extensions := [
-	".sys", ".dll", ".tmp", ".dat"
+	".sys", ".dll", ".tmp", ".dat", ".pdf", ".docs"
 ]
 
 var fake_sources := [
@@ -19,7 +19,9 @@ var fake_publishers := [
 	"Not Listed", "???", "ShadowSoft", "Unsigned Vendor"
 ]
 
-func generate_answers(metadata, risk_score: float) ->Dictionary:
+var risky_extensions := [".exe", ".bat", ".js", ".vbs"]
+
+func generate_answers(metadata, risk_score: float) -> Dictionary:
 	var answers = {
 		"filename": metadata.filename,
 		"extension": metadata.extension,
@@ -27,29 +29,54 @@ func generate_answers(metadata, risk_score: float) ->Dictionary:
 		"source": metadata.source,
 		"publisher": metadata.publisher
 	}
-		# Low-risk → File answers honestly
-	if risk_score < 2.0:
+
+	# Low-risk → honest answers
+	if risk_score < 1.0:
 		return answers
-	
-	# Medium/high risk → Insert lies (at least 2)
+
+	# Determine max_wrong fields
+	var max_wrong = 2
+	if metadata.extension in risky_extensions:
+		max_wrong = 3  # Force extension change if risky
+
+	# Risky → insert lies
 	var keys = ["filename", "extension", "source", "publisher"]
 	keys.shuffle()
-	
 	var wrong_count = 0
-	
+
 	for key in keys:
-		if wrong_count >= 2:
+		if wrong_count >= max_wrong:
 			break
 
+		var changed = false
 		match key:
 			"filename":
-				answers[key] = fake_names.pick_random()
+				var fake_val = fake_names.pick_random()
+				while fake_val == metadata.filename:
+					fake_val = fake_names.pick_random()
+				answers[key] = fake_val
+				changed = true
 			"extension":
-				answers[key] = fake_extensions.pick_random()
+				var fake_ext = fake_extensions.pick_random()
+				# ensure it's different from metadata.extension
+				while fake_ext == metadata.extension:
+					fake_ext = fake_extensions.pick_random()
+				answers[key] = fake_ext
+				changed = true
 			"source":
-				answers[key] = fake_sources.pick_random()
+				var fake_val = fake_sources.pick_random()
+				while fake_val == metadata.source:
+					fake_val = fake_sources.pick_random()
+				answers[key] = fake_val
+				changed = true
 			"publisher":
-				answers[key] = fake_publishers.pick_random()
-		wrong_count += 1
-	
+				var fake_val = fake_publishers.pick_random()
+				while fake_val == metadata.publisher:
+					fake_val = fake_publishers.pick_random()
+				answers[key] = fake_val
+				changed = true
+
+		if changed:
+			wrong_count += 1
+
 	return answers

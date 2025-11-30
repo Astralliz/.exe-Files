@@ -7,67 +7,63 @@ const RuleBaseScript = preload("res://Scripts/Algorithm/Rules/rule_base.gd")
 const FileMetadata = FileMetadataScript
 const RuleBase = RuleBaseScript
 
-func evaluate(file: FileMetadata, rule_base: RuleBase) -> float:
+func evaluate(file: FileMetadata, rules: Array, answer: Dictionary = {}) -> float:
 	var score = 0.0
 
-	for rule in rule_base.rules:
+	for rule in rules:
 		match rule.condition:
 			"size_large":
 				if file.size_mb > 50:
 					score += rule.score
-
 			"ext_exe":
-				if file.extension == "exe":
+				if file.extension == ".exe":
 					score += rule.score
-
 			"ext_script":
-				if file.extension in ["bat", "cmd"]:
+				if file.extension in [".bat"]:
 					score += rule.score
-
 			"ext_dropper":
-				if file.extension in ["js", "vbs"]:
+				if file.extension in [".js", ".vbs"]:
 					score += rule.score
-
 			"name_installer":
 				if "setup" in file.filename.to_lower() or "installer" in file.filename.to_lower():
 					score += rule.score
-
 			"unknown_publisher":
 				if file.publisher == "unknown":
 					score += rule.score
-
 			"recent_modified":
 				if file.modified_hours_ago <= 24:
 					score += rule.score
-
 			"src_email":
 				if file.source == "email":
 					score += rule.score
-
 			"src_unknown":
 				if file.source == "unknown":
 					score += rule.score
-
 			"is_hidden":
 				if file.hidden:
 					score += rule.score
-
 			"random_filename":
 				if _is_random_filename(file.filename):
 					score += rule.score
-
 			"invalid_signature":
 				if !file.signature_valid:
 					score += rule.score
-
 			"needs_admin":
 				if file.requires_admin:
 					score += rule.score
-
 			"type_mismatch":
-				if file.claimed_type != file.extension:
+				# Only apply if answer is passed in
+				if answer.has("extension") and answer["extension"] != file.extension:
 					score += rule.score
 
+	return score
+
+func evaluate_type_mismatch(file: FileMetadata, answer: Dictionary, rules: Array) -> float:
+	var score = 0.0
+	for rule in rules:
+		if rule.condition == "type_mismatch":
+			if answer.has("extension") and answer["extension"] != file.extension:
+				score += rule.score
 	return score
 
 func _is_random_filename(name: String) -> bool:

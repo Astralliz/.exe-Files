@@ -76,22 +76,22 @@ func _compute_score() -> float:
 	# If player does not check → BAD → add risk score
 
 	if !file_name.button_pressed:
-		score += 1       # filename mismatch risk
+		score += 0.2       # filename mismatch risk
 	
-	if !dangerous_extension.button_pressed: 
-		score += 1.5
+	if dangerous_extension.button_pressed: 
+		score += 1
 	
 	if !extension.button_pressed:
-		score += 1       # file extension mismatch
+		score += .2       # file extension mismatch
 
-	if !size.button_pressed:
-		score += 0.5     # size risk
+	if size.button_pressed:
+		score += 0.8     # size risk
 
 	if !publisher.button_pressed:
-		score += 1       # unknown publisher
+		score += 0.7       # unknown publisher
 
 	if !source.button_pressed:
-		score += 1       # suspicious source
+		score += 0.5       # suspicious source
 
 	return score
 
