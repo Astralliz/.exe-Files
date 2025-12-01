@@ -224,6 +224,4 @@ func handle_player_decision(player_approved: bool):
 		level_finished.z_index = 20
 		level_finished.show()
 		Player_Data.set_level(2)
-		Player_Data.add_evaluates(6)
-		Player_Data.add_questions(5)
 		print("Player Level:", Player_Data.data["level"])
