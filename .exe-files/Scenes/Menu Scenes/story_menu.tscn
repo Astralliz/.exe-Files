@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bpqlx7i7hvdtj"]
+[gd_scene load_steps=14 format=3 uid="uid://bpqlx7i7hvdtj"]
 
 [ext_resource type="Script" uid="uid://dmpa5futryf4n" path="res://Scripts/UI/story_controller.gd" id="1_3f07l"]
 [ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="1_qkcn5"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_p2sox"]
 [ext_resource type="Texture2D" uid="uid://b28uwmv3pk23t" path="res://Assets/Button/utton.png" id="4_iojkw"]
 [ext_resource type="Texture2D" uid="uid://cddjt6414swve" path="res://Assets/Button/uim_padlock.png" id="6_3f07l"]
+[ext_resource type="PackedScene" uid="uid://dw6xdap2uo0gv" path="res://Scenes/welcome.tscn" id="7_i64nf"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3f07l"]
 texture = ExtResource("1_qkcn5")
@@ -181,6 +182,9 @@ text = "Finished Story
 1 to unlock"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Welcome" parent="." instance=ExtResource("7_i64nf")]
+layout_mode = 1
 
 [connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_story_1_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_back_pressed"]

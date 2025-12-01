@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://vb5m1phlf2b4"]
+[gd_scene load_steps=12 format=3 uid="uid://vb5m1phlf2b4"]
 
 [ext_resource type="Script" uid="uid://c4ui54he3pil7" path="res://Scripts/UI/menu_controller.gd" id="1_2tgnr"]
 [ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="1_3bhik"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="2_1bry2"]
+[ext_resource type="PackedScene" uid="uid://dm2amcmrmsbjy" path="res://Scenes/Username.tscn" id="4_wj7ay"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2tgnr"]
 texture = ExtResource("1_3bhik")
@@ -18,6 +19,7 @@ colors = PackedColorArray(0.945098, 0.247059, 1, 1, 0.682353, 0.564706, 0.694118
 gradient = SubResource("Gradient_v3qtl")
 fill_from = Vector2(0, 0.0376344)
 fill_to = Vector2(0.994624, 1)
+metadata/_snap_enabled = true
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1bry2"]
 texture = SubResource("GradientTexture2D_3bhik")
@@ -79,14 +81,14 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_v3qtl")
 theme_override_styles/normal = SubResource("StyleBoxTexture_1bry2")
 text = "Start"
 
-[node name="Button3" type="Button" parent="HBoxContainer"]
+[node name="AchievementBtn" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_1bry2")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/hover = SubResource("StyleBoxFlat_1bry2")
 theme_override_styles/normal = SubResource("StyleBoxTexture_1bry2")
-text = "Settings"
+text = "Achievements"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -99,6 +101,22 @@ theme_override_fonts/font = ExtResource("2_1bry2")
 theme_override_font_sizes/font_size = 90
 text = ".EXE FILES"
 
+[node name="Username" parent="." instance=ExtResource("4_wj7ay")]
+layout_mode = 1
+
+[node name="Button3" type="Button" parent="."]
+offset_left = 995.0
+offset_top = 28.0
+offset_right = 1128.0
+offset_bottom = 71.0
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_1bry2")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxFlat_1bry2")
+theme_override_styles/normal = SubResource("StyleBoxTexture_1bry2")
+text = "Settings"
+
 [connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_info_pressed"]
 [connection signal="pressed" from="HBoxContainer/Button2" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="HBoxContainer/Button3" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="HBoxContainer/AchievementBtn" to="." method="_on_achievement_btn_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_settings_pressed"]
