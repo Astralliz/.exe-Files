@@ -15,6 +15,10 @@ run/main_scene="uid://vb5m1phlf2b4"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Player_Data="*res://Scripts/Player Data/PlayerData.gd"
+
 [input]
 
 click={
