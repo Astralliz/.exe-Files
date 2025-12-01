@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://cdyouk3kkeoq2"]
 
-[ext_resource type="Script" uid="uid://q558epmkqhtb" path="res://Scripts/UI/story1_controller.gd" id="1_pq51y"]
+[ext_resource type="Script" uid="uid://dmpa5futryf4n" path="res://Scripts/UI/story_controller.gd" id="1_c50l7"]
 [ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="2_a8o4c"]
 [ext_resource type="Texture2D" uid="uid://bpdo8bf18gauj" path="res://Assets/images/rectangle.png" id="3_xieug"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="4_okpo2"]
@@ -32,7 +32,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_pq51y")
+script = ExtResource("1_c50l7")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

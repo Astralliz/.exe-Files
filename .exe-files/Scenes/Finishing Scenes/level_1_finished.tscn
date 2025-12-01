@@ -54,4 +54,25 @@ You're now ready for more harder days
  to come"
 horizontal_alignment = 1
 
+[node name="Accept" type="Button" parent="."]
+offset_left = 483.0
+offset_top = 397.0
+offset_right = 665.0
+offset_bottom = 459.0
+theme_override_fonts/font = ExtResource("2_8dgci")
+theme_override_font_sizes/font_size = 30
+text = "Accept"
+
+[node name="Achievement" type="Button" parent="."]
+layout_mode = 0
+offset_left = 483.0
+offset_top = 397.0
+offset_right = 665.0
+offset_bottom = 461.0
+theme_override_fonts/font = ExtResource("2_8dgci")
+theme_override_font_sizes/font_size = 30
+text = "Continue"
+
 [connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Accept" to="." method="_on_accept_pressed"]
+[connection signal="pressed" from="Achievement" to="." method="_on_achievement_pressed"]

@@ -221,6 +221,9 @@ func handle_player_decision(player_approved: bool):
 		await get_tree().create_timer(1.0).timeout
 		spawn_new_file_document()
 	else:
-		print("✅ All Filetizens completed.")
 		level_finished.z_index = 20
 		level_finished.show()
+		Player_Data.set_level(2)
+		Player_Data.add_evaluates(6)
+		Player_Data.add_questions(5)
+		print("Player Level:", Player_Data.data["level"])

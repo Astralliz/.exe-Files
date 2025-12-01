@@ -1,0 +1,179 @@
+[gd_scene load_steps=17 format=3 uid="uid://cm4bu8kgxg5gg"]
+
+[ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="1_pn3f3"]
+[ext_resource type="Script" uid="uid://c4ui54he3pil7" path="res://Scripts/UI/menu_controller.gd" id="1_wsird"]
+[ext_resource type="Texture2D" uid="uid://bpdo8bf18gauj" path="res://Assets/images/rectangle.png" id="2_wsird"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_gjhoa"]
+[ext_resource type="Texture2D" uid="uid://b28uwmv3pk23t" path="res://Assets/Button/utton.png" id="4_ifktr"]
+[ext_resource type="Script" uid="uid://drfy8s22ejjfd" path="res://Scripts/Player Data/Achievements.gd" id="6_gjhoa"]
+[ext_resource type="Texture2D" uid="uid://dud14egjhs4im" path="res://Assets/images/finished window.png" id="7_ifktr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_msj3w"]
+texture = ExtResource("1_pn3f3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_crw2t"]
+texture = ExtResource("2_wsird")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fa3lm"]
+bg_color = Color(0.952941, 0.384314, 1, 0.270588)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5mc3w"]
+texture = ExtResource("4_ifktr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fa3lm"]
+texture = ExtResource("7_ifktr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ifktr"]
+texture = ExtResource("7_ifktr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y53px"]
+texture = ExtResource("7_ifktr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n573o"]
+texture = ExtResource("7_ifktr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lc3fj"]
+texture = ExtResource("7_ifktr")
+
+[node name="AchievementsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_wsird")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_msj3w")
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_crw2t")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.167
+anchor_top = 0.203
+anchor_right = 0.167
+anchor_bottom = 0.203
+offset_left = -81.384
+offset_top = -26.544
+offset_right = 121.616
+offset_bottom = 36.456
+theme_override_fonts/font = ExtResource("3_gjhoa")
+theme_override_font_sizes/font_size = 45
+text = "Achievements"
+
+[node name="BackBtn" type="Button" parent="."]
+offset_left = 980.0
+offset_top = 114.0
+offset_right = 1047.0
+offset_bottom = 163.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_fa3lm")
+theme_override_styles/normal = SubResource("StyleBoxTexture_5mc3w")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -379.12
+offset_top = -121.0
+offset_right = 379.12
+offset_bottom = 121.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical_scroll_mode = 0
+script = ExtResource("6_gjhoa")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+clip_children = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="ScrollContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_fa3lm")
+
+[node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/Panel"]
+layout_mode = 0
+offset_left = 2.12
+offset_top = 89.0
+offset_right = 145.12
+offset_bottom = 170.0
+text = "not unlock"
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="ScrollContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_ifktr")
+
+[node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/Panel2"]
+layout_mode = 0
+offset_left = 4.12
+offset_top = 93.0
+offset_right = 143.12
+offset_bottom = 174.0
+text = "not unlcok"
+horizontal_alignment = 1
+
+[node name="Panel3" type="Panel" parent="ScrollContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_y53px")
+
+[node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/Panel3"]
+offset_left = 0.119995
+offset_top = 95.0
+offset_right = 153.12
+offset_bottom = 176.0
+text = "not unlock"
+horizontal_alignment = 1
+
+[node name="Panel4" type="Panel" parent="ScrollContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_n573o")
+
+[node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/Panel4"]
+offset_left = 2.12
+offset_top = 96.0
+offset_right = 137.12
+offset_bottom = 172.0
+text = "not unlock"
+horizontal_alignment = 1
+
+[node name="Panel5" type="Panel" parent="ScrollContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_lc3fj")
+
+[node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/Panel5"]
+offset_left = 4.12
+offset_top = 94.0
+offset_right = 145.12
+offset_bottom = 175.0
+text = "not unlock"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="BackBtn" to="." method="_on_back_btn_pressed"]
