@@ -83,7 +83,8 @@ func generate_metadata() -> FileMetadata:
 	data.claimed_type = determine_claimed_type(data.extension)
 
 	# Evaluate risk score after assignment
-	data.risk_score = engine.evaluate(data, rules_for_level)
+	var evaluate = engine.evaluate(data, rules_for_level)
+	data.risk_score = evaluate.score
 
 	# Save for tracking
 	spawned_files.append(data)

@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://de5ho3ehe1qqw"]
+
+[ext_resource type="Script" uid="uid://bg2gbsm5xym55" path="res://Scripts/UI/dialogue_box.gd" id="1_tpmx7"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="4_obhul"]
+
+[node name="Dialogue Box" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_tpmx7")
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 16.0
+offset_right = 616.0
+offset_bottom = 112.0
+expand_mode = 1
+
+[node name="frame" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 672.0
+offset_bottom = 128.0
+expand_mode = 3
+
+[node name="HeadContainer" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="HeadContainer"]
+
+[node name="TextBox" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 16.0
+offset_right = 960.0
+offset_bottom = 88.0
+theme_override_fonts/normal_font = ExtResource("4_obhul")
+theme_override_font_sizes/normal_font_size = 20
+
+[node name="CloseButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0

@@ -9,6 +9,8 @@ extends Node2D
 @onready var decline_btn: Button = $DeclineBtn
 @onready var answer_label : Label = $Answer_Label
 @onready var level_finished: Control = $Level1Finished
+@onready var dialogue_box: DialogueBox = $"Dialogue Box"
+
 # -------------------------------------------------
 # Audio
 # -------------------------------------------------
@@ -35,6 +37,7 @@ var current_answers : Dictionary = {}
 const HeuristicEngine = preload("res://Scripts/Algorithm/heuristic_engine.gd")
 const RuleBase = preload("res://Scripts/Algorithm/Rules/rule_base.gd")
 
+var dialogue_database := DialogueDatabase.new()
 var engine := HeuristicEngine.new()
 var rule_base := RuleBase.new()
 var rules_for_level1 = rule_base.get_rules(1)
@@ -113,27 +116,27 @@ func _process(delta):
 			filetizen.move_component.stop()
 			moved_out = true
 			
-			var score = engine.evaluate(filetizen.metadata, rules_for_level1, current_answers)
-			print("Score: ", score)
+			var evaluate = engine.evaluate(filetizen.metadata, rules_for_level1, current_answers)
+			print("Score: ", evaluate.score)
 			
 			# 1️⃣ Generate answers first (for risky files, it will create lies)
 			var answer_gen = AnswerGenerator.new()
-			current_answers = answer_gen.generate_answers(filetizen.metadata, score) # temp 0 for now
-
+			current_answers = answer_gen.generate_answers(filetizen.metadata, evaluate.score) # temp 0 for now
 
 			# 2️⃣ Evaluate score including answer
-			score += engine.evaluate_type_mismatch(filetizen.metadata, current_answers, rules_for_level1)
-			filetizen.metadata.risk_score = score
+			evaluate.score += engine.evaluate_type_mismatch(filetizen.metadata, current_answers, rules_for_level1)
+			filetizen.metadata.risk_score = evaluate.score
+			filetizen.metadata.issues = evaluate.issues
 
 			# 3️⃣ Debug info
 			print("Evaluating Filetizen:")
 			print("Filename: ", filetizen.metadata.filename)
-			print("Updated Score: ", score)
+			print("Updated Score: ", evaluate.score)
 			print("Answers: ", current_answers)
+			print("Issues: ", evaluate.issues)
 
 			# 4️⃣ Enable buttons
 			enable_buttons(true)
-			
 
 # -------------------------
 # QUESTION BUTTON PRESSED
@@ -193,11 +196,21 @@ func handle_player_decision(player_approved: bool):
 	enable_buttons(false)
 	var score = filetizen.metadata.risk_score
 	var approved = score <= 1.0
+	var is_correct = player_approved == approved
 
-	if player_approved == approved:
+	var message: String
+	if is_correct:
+		message = dialogue_database.get_random_correct()
 		print("✔ Correct decision!")
+	elif not player_approved and approved:
+		message = dialogue_database.get_random_false_negative()
+		print("✘ False Negative!")
 	else:
+		message = dialogue_database.get_random_wrong()
+		message += "\n" + dialogue_database.build_wrong_details(filetizen.metadata.issues)
 		print("✘ Incorrect decision!")
+
+	dialogue_box.show_dialogue(message)
 
 	if player_approved:
 		await get_tree().create_timer(1.0).timeout
@@ -215,6 +228,7 @@ func handle_player_decision(player_approved: bool):
 	
 	# Only spawn new Filetizen if under the max count
 	if filetizen_count < MAX_FILETIZENS:
+		dialogue_box.hide_dialogue()
 		spawn_new_filetizen()
 		filetizen_count += 1
 		move_filetizen_to_center()
