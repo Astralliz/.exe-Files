@@ -121,6 +121,7 @@ func _process(delta):
 			
 			var evaluate = engine.evaluate(filetizen.metadata, rules_for_level1, current_answers)
 			print("Score: ", evaluate.score)
+			print("Issues: ", evaluate.issues)
 			
 			# 1️⃣ Generate answers first (for risky files, it will create lies)
 			var answer_gen = AnswerGenerator.new()
@@ -136,7 +137,6 @@ func _process(delta):
 			print("Filename: ", filetizen.metadata.filename)
 			print("Updated Score: ", evaluate.score)
 			print("Answers: ", current_answers)
-			print("Issues: ", evaluate.issues)
 
 			# 4️⃣ Enable buttons
 			enable_buttons(true)

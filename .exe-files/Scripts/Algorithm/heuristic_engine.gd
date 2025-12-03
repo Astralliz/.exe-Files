@@ -1,9 +1,9 @@
 class_name HeuristicEngine
 extends Node
-# preload classes (adjust paths to match your project)
+
 const FileMetadataScript = preload("res://Scripts/Data Models/file_metadata.gd")
 const RuleBaseScript = preload("res://Scripts/Algorithm/Rules/rule_base.gd")
-# If you want type hints, you can alias the names:
+
 const FileMetadata = FileMetadataScript
 const RuleBase = RuleBaseScript
 
@@ -66,8 +66,9 @@ func evaluate(file: FileMetadata, rules: Array, answer: Dictionary = {}) -> Dict
 				if file.requires_admin:
 					score += rule.score
 					triggered = true
+					
+			# Only apply if answer is passed in
 			"type_mismatch":
-				# Only apply if answer is passed in
 				if answer.has("extension") and answer["extension"] != file.extension:
 					score += rule.score
 					triggered = true

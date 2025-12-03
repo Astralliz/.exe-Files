@@ -11,5 +11,6 @@ extends Resource
 @export var signature_valid: bool = true      # Malicious code patterns
 @export var requires_admin: bool = false      # Requires admin permission
 @export var claimed_type: String = ""         # Claimed file type by Filetizen
+# Post-inspection attributes
 @export var risk_score: float = 0.0           # Final Threat Level Score
 @export var issues: Array = []                # All contributing indicators
