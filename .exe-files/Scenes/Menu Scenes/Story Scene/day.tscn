@@ -83,15 +83,19 @@ text = "DECLINE"
 script = ExtResource("4_6brgw")
 scene = ExtResource("5_y1tcq")
 
+[node name="ResourceDisplay" parent="." instance=ExtResource("18_c4oy2")]
+
 [node name="DocumentSpawner" type="Node2D" parent="."]
 position = Vector2(903, 87)
 script = ExtResource("4_6brgw")
 scene = ExtResource("7_y1tcq")
 
 [node name="Checklist" parent="." instance=ExtResource("9_7xjw4")]
+visible = false
 position = Vector2(296, 424)
 
 [node name="SlidingPanel" parent="." instance=ExtResource("11_r1cjk")]
+visible = false
 
 [node name="Answer_Label" type="Label" parent="."]
 offset_left = 421.0
@@ -101,13 +105,12 @@ offset_bottom = 385.0
 theme_override_font_sizes/font_size = 26
 horizontal_alignment = 1
 
-[node name="ResourceDisplay" parent="." instance=ExtResource("18_c4oy2")]
-
 [node name="Dialogue Box" parent="." instance=ExtResource("17_is13e")]
 offset_left = 24.0
 offset_right = 24.0
 
 [node name="Level1Finished" parent="." instance=ExtResource("16_vk2dw")]
+visible = false
 
 [node name="Talking" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_rt716")
