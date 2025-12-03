@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b52y0fj86sfe7"]
+[gd_scene load_steps=22 format=3 uid="uid://b52y0fj86sfe7"]
 
 [ext_resource type="Script" uid="uid://cl8kjlwaigwmr" path="res://Scripts/UI/day.gd" id="1_c6jxy"]
 [ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="2_2x7vk"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://bsyvqtiv7snui" path="res://Assets/Audio/Picking Item/printing paper.mp3" id="15_c4oy2"]
 [ext_resource type="PackedScene" uid="uid://ddtsynehhxi41" path="res://Scenes/Finishing Scenes/level_1_finished.tscn" id="16_vk2dw"]
 [ext_resource type="PackedScene" uid="uid://de5ho3ehe1qqw" path="res://Scenes/UI/dialogue_box.tscn" id="17_is13e"]
+[ext_resource type="PackedScene" uid="uid://2fhuw27q7ay0" path="res://Scenes/UI/resource_display.tscn" id="18_c4oy2"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2xmuy"]
 texture = ExtResource("2_2x7vk")
@@ -100,6 +101,12 @@ offset_bottom = 385.0
 theme_override_font_sizes/font_size = 26
 horizontal_alignment = 1
 
+[node name="ResourceDisplay" parent="." instance=ExtResource("18_c4oy2")]
+
+[node name="Dialogue Box" parent="." instance=ExtResource("17_is13e")]
+offset_left = 24.0
+offset_right = 24.0
+
 [node name="Level1Finished" parent="." instance=ExtResource("16_vk2dw")]
 
 [node name="Talking" type="AudioStreamPlayer2D" parent="."]
@@ -113,10 +120,6 @@ stream = ExtResource("14_is13e")
 
 [node name="Printing_Paper" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_c4oy2")
-
-[node name="Dialogue Box" parent="." instance=ExtResource("17_is13e")]
-offset_left = 24.0
-offset_right = 24.0
 
 [connection signal="pressed" from="ApproveBtn" to="." method="_on_approve_btn_pressed"]
 [connection signal="pressed" from="DeclineBtn" to="." method="_on_decline_btn_pressed"]

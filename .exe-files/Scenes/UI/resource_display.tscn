@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://2fhuw27q7ay0"]
+
+[ext_resource type="Script" uid="uid://byo1c25qn0lhp" path="res://Scripts/Player Data/resources.gd" id="1_eeqe2"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="2_eeqe2"]
+
+[node name="ResourceDisplay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eeqe2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 219.0
+offset_top = 420.0
+offset_right = 914.0
+offset_bottom = 480.0
+
+[node name="Question" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/Question"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_eeqe2")
+theme_override_font_sizes/font_size = 26
+text = "Questions:"
+
+[node name="Amount" type="Label" parent="HBoxContainer/Question"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_eeqe2")
+theme_override_font_sizes/font_size = 26
+text = "0"
+
+[node name="Evaluate" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/Evaluate"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_eeqe2")
+theme_override_font_sizes/font_size = 26
+text = "Evaluates:"
+
+[node name="Amount" type="Label" parent="HBoxContainer/Evaluate"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_eeqe2")
+theme_override_font_sizes/font_size = 26
+text = "0"
+
+[node name="BugBounty" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/BugBounty"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_eeqe2")
+theme_override_font_sizes/font_size = 26
+text = "Bug bounty:"
+
+[node name="Amount" type="Label" parent="HBoxContainer/BugBounty"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_eeqe2")
+theme_override_font_sizes/font_size = 26
+text = "0"

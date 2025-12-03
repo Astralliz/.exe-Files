@@ -34,6 +34,8 @@ var current_answers : Dictionary = {}
 	"publisher": sliding_panel.get_node("Panel/VBoxContainer/Question5")
 }
 
+@onready var resource_display = $ResourceDisplay
+
 const HeuristicEngine = preload("res://Scripts/Algorithm/heuristic_engine.gd")
 const RuleBase = preload("res://Scripts/Algorithm/Rules/rule_base.gd")
 
@@ -50,6 +52,7 @@ const MAX_FILETIZENS := 7
 
 func _ready():
 	level_finished.hide()
+	resource_display.set_level(1)
 	
 	$main_background.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	$control_room.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -201,6 +204,12 @@ func handle_player_decision(player_approved: bool):
 	var message: String
 	if is_correct:
 		message = dialogue_database.get_random_correct()
+		if player_approved and approved:
+			# Correct approval
+			Player_Data.add_bug_bounty(1)
+		elif not player_approved and not approved:
+			# Correct decline
+			Player_Data.add_bug_bounty(2)
 		print("✔ Correct decision!")
 	elif not player_approved and approved:
 		message = dialogue_database.get_random_false_negative()

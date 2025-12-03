@@ -21,6 +21,8 @@ const SAVE_PATH := "user://player_data.cfg"
 const SAVE_SECTION := "player"
 
 signal bug_bounty_changed(new_amount)
+signal question_amount_change(new_amount)
+signal evaluation_amount_change(new_amount)
 
 func _ready() -> void:
 	load_data()
@@ -163,10 +165,13 @@ func use_evaluate() -> void:
 # Increase / add
 func add_questions(amount: int) -> void:
 	data["questions_used"] += amount
+	emit_signal("question_amount_change", amount)
 	save_data()
 
 func add_evaluates(amount: int) -> void:
 	data["evaluate_used"] += amount
+	question_amount_change
+	emit_signal("evaluation_amount_change", amount)
 	save_data()
 
 # Get current value
