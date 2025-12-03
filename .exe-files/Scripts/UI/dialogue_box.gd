@@ -5,6 +5,7 @@ extends Control
 @onready var close_button: Button = $CloseButton
 
 func _ready():
+	visible = false
 	close_button.pressed.connect(hide_dialogue)
 
 func show_dialogue(message: String):
