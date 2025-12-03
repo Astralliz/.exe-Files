@@ -7,8 +7,8 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_obhul"]
 font = ExtResource("4_obhul")
-font_size = 15
-font_color = Color(0.73067, 0.619497, 0.980175, 1)
+font_color = Color(0.682353, 0.403922, 1, 1)
+outline_color = Color(0, 1, 1, 1)
 
 [node name="Dialogue Box" type="Control"]
 layout_mode = 3
@@ -41,7 +41,7 @@ offset_top = 32.0
 offset_right = 872.0
 offset_bottom = 80.0
 theme_override_fonts/normal_font = ExtResource("4_obhul")
-theme_override_font_sizes/normal_font_size = 13
+theme_override_font_sizes/normal_font_size = 15
 
 [node name="CloseButton" type="Button" parent="."]
 layout_mode = 0
