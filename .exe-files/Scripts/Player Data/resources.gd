@@ -1,8 +1,8 @@
 extends Node
 
-@onready var questions_amount: Label = $HBoxContainer/Question/Amount
-@onready var evaluation_amount: Label = $HBoxContainer/Evaluate/Amount
-@onready var bb_amount: Label = $HBoxContainer/BugBounty/Amount
+@onready var questions_amount: Label = $HBoxContainer/Question/Panel/Amount
+@onready var evaluation_amount: Label = $HBoxContainer/Evaluate/Panel/Amount
+@onready var bb_amount: Label = $HBoxContainer/BugBounty/Panel/Amount
 
 var current_level: int = 1  # default, can be set from parent scene
 
