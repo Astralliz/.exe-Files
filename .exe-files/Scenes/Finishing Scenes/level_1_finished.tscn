@@ -55,6 +55,7 @@ You're now ready for more harder days
 horizontal_alignment = 1
 
 [node name="Accept" type="Button" parent="."]
+layout_mode = 0
 offset_left = 483.0
 offset_top = 397.0
 offset_right = 665.0

@@ -81,14 +81,14 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_v3qtl")
 theme_override_styles/normal = SubResource("StyleBoxTexture_1bry2")
 text = "Start"
 
-[node name="AchievementBtn" type="Button" parent="HBoxContainer"]
+[node name="ShopBtn" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_1bry2")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/hover = SubResource("StyleBoxFlat_1bry2")
 theme_override_styles/normal = SubResource("StyleBoxTexture_1bry2")
-text = "Achievements"
+text = "Shop"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -102,9 +102,24 @@ theme_override_font_sizes/font_size = 90
 text = ".EXE FILES"
 
 [node name="Username" parent="." instance=ExtResource("4_wj7ay")]
+visible = false
 layout_mode = 1
 
+[node name="AchievementBtn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 932.0
+offset_top = 81.0
+offset_right = 1129.0
+offset_bottom = 130.0
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_1bry2")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxFlat_1bry2")
+theme_override_styles/normal = SubResource("StyleBoxTexture_1bry2")
+text = "Achievements"
+
 [node name="Button3" type="Button" parent="."]
+layout_mode = 0
 offset_left = 995.0
 offset_top = 28.0
 offset_right = 1128.0
@@ -118,5 +133,6 @@ text = "Settings"
 
 [connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_info_pressed"]
 [connection signal="pressed" from="HBoxContainer/Button2" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="HBoxContainer/AchievementBtn" to="." method="_on_achievement_btn_pressed"]
+[connection signal="pressed" from="HBoxContainer/ShopBtn" to="." method="_on_shop_btn_pressed"]
+[connection signal="pressed" from="AchievementBtn" to="." method="_on_achievement_btn_pressed"]
 [connection signal="pressed" from="Button3" to="." method="_on_settings_pressed"]

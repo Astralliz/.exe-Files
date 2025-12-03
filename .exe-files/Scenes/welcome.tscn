@@ -23,6 +23,7 @@ offset_bottom = 649.0
 color = Color(0, 0, 0, 0.509804)
 
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 0
 offset_left = 211.0
 offset_top = 104.0
 offset_right = 943.0

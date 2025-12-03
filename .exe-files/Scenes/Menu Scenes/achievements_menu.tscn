@@ -80,6 +80,7 @@ theme_override_font_sizes/font_size = 45
 text = "Achievements"
 
 [node name="BackBtn" type="Button" parent="."]
+layout_mode = 0
 offset_left = 980.0
 offset_top = 114.0
 offset_right = 1047.0
@@ -143,6 +144,7 @@ size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_y53px")
 
 [node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/Panel3"]
+layout_mode = 0
 offset_left = 0.119995
 offset_top = 95.0
 offset_right = 153.12
@@ -156,6 +158,7 @@ size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_n573o")
 
 [node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/Panel4"]
+layout_mode = 0
 offset_left = 2.12
 offset_top = 96.0
 offset_right = 137.12
@@ -169,6 +172,7 @@ size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_lc3fj")
 
 [node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/Panel5"]
+layout_mode = 0
 offset_left = 4.12
 offset_top = 94.0
 offset_right = 145.12

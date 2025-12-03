@@ -4,8 +4,8 @@ extends Control
 @onready var save_button: Button = $Panel/VBoxContainer/Save
 
 func _ready() -> void:
-	if !Player_Data.is_new_game():
-		print("This is the first time opening the game!")
+	if Player_Data.data["username"]:
+		print("has value")
 		# You can show tutorials or first-time setup
 		visible = false
 	
@@ -23,7 +23,4 @@ func _on_submit_pressed() -> void:
 	Player_Data.set_username(name)
 	print("Username set to:", Player_Data.data["username"])
 	
-	Player_Data.set_new_game(false)
-	# Optionally, go to next scene
-
 	visible = false
