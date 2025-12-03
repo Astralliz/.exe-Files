@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6ierr5birdtj"]
+[gd_scene load_steps=12 format=3 uid="uid://b6ierr5birdtj"]
 
 [ext_resource type="Script" uid="uid://c4ui54he3pil7" path="res://Scripts/UI/menu_controller.gd" id="1_oya7i"]
 [ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="2_fciq2"]
 [ext_resource type="Texture2D" uid="uid://bpdo8bf18gauj" path="res://Assets/images/rectangle.png" id="3_gwmmo"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="4_2j2bg"]
 [ext_resource type="Texture2D" uid="uid://b28uwmv3pk23t" path="res://Assets/Button/utton.png" id="5_6xvm1"]
+[ext_resource type="Script" uid="uid://ddwlpk2j8alue" path="res://Scripts/Player Data/bug_bounty.gd" id="6_fciq2"]
+[ext_resource type="Script" uid="uid://bfuge6pnaco5n" path="res://Scripts/Player Data/shop.gd" id="7_gwmmo"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d562m"]
 texture = ExtResource("2_fciq2")
@@ -68,4 +70,59 @@ offset_bottom = 163.0
 theme_override_styles/hover = SubResource("StyleBoxFlat_c17u4")
 theme_override_styles/normal = SubResource("StyleBoxTexture_jjquq")
 
+[node name="Total Amount" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 107.0
+offset_right = 867.0
+offset_bottom = 163.0
+script = ExtResource("6_fciq2")
+
+[node name="BugCoin" type="Label" parent="Total Amount"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_2j2bg")
+theme_override_font_sizes/font_size = 35
+text = "Bug Coin:"
+
+[node name="Amount" type="Label" parent="Total Amount"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_2j2bg")
+theme_override_font_sizes/font_size = 35
+text = "0000"
+
+[node name="Offer" type="HBoxContainer" parent="."]
+offset_left = 240.0
+offset_top = 253.0
+offset_right = 944.0
+offset_bottom = 459.0
+theme_override_constants/separation = 20
+script = ExtResource("7_gwmmo")
+
+[node name="Questions" type="Button" parent="Offer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("4_2j2bg")
+theme_override_font_sizes/font_size = 35
+text = "+5
+Questions"
+
+[node name="Evaluates" type="Button" parent="Offer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("4_2j2bg")
+theme_override_font_sizes/font_size = 35
+text = "+5
+Evaluates"
+
+[node name="Notification" type="Label" parent="."]
+offset_left = 249.0
+offset_top = 491.0
+offset_right = 940.0
+offset_bottom = 539.0
+theme_override_fonts/font = ExtResource("4_2j2bg")
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 1
+
 [connection signal="pressed" from="Button" to="." method="_on_shop_back_button_pressed"]
+[connection signal="pressed" from="Offer/Questions" to="Offer" method="_on_buy_questions_pressed"]
+[connection signal="pressed" from="Offer/Evaluates" to="Offer" method="_on_buy_evaluates_pressed"]

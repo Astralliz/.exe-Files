@@ -13,11 +13,14 @@ var data: Dictionary = {
 	"speedtime": {},   # { "level1": 120.5, "level2": 95.2 } in seconds
 	"achievements": [], # ["FirstScan", "ExpertAnalyzer"]
 	"questions_used": 0,   # { "level1": 3, "level2": 1 } - track skill/question usage
-	"evaluate_used": 0
+	"evaluate_used": 0,
+	"bug_bounty": 40
 }
 
 const SAVE_PATH := "user://player_data.cfg"
 const SAVE_SECTION := "player"
+
+signal bug_bounty_changed(new_amount)
 
 func _ready() -> void:
 	load_data()
@@ -36,6 +39,8 @@ func save_data() -> void:
 	cfg.set_value(SAVE_SECTION, "speedtime", data["speedtime"])
 	cfg.set_value(SAVE_SECTION, "achievements", data["achievements"])
 	cfg.set_value(SAVE_SECTION, "questions_used", data["questions_used"])
+	cfg.set_value(SAVE_SECTION, "evaluate_used", data["evaluate_used"])
+	cfg.set_value(SAVE_SECTION, "bug_bounty", int(data["bug_bounty"]))
 
 	var err := cfg.save(SAVE_PATH)
 	if err == OK:
@@ -57,33 +62,40 @@ func load_data() -> void:
 	data["username"] = str(cfg.get_value(SAVE_SECTION, "username", data["username"]))
 	data["level"] = int(cfg.get_value(SAVE_SECTION, "level", data["level"]))
 
-	# ---- FIX: EXPLICIT TYPING ----
+	# ---- Speedtime ----
 	var st: Dictionary = cfg.get_value(SAVE_SECTION, "speedtime", {})
 	if typeof(st) == TYPE_DICTIONARY:
 		data["speedtime"] = st.duplicate(true)
 	else:
 		data["speedtime"] = {}
 
-	# ---- FIX: EXPLICIT TYPING ----
+	# ---- Achievements ----
 	var ach: Array = cfg.get_value(SAVE_SECTION, "achievements", [])
 	if typeof(ach) == TYPE_ARRAY:
 		data["achievements"] = ach.duplicate(true)
 	else:
 		data["achievements"] = []
-		
-	# ---- Quesiton ----
+
+	# ---- Questions Used ----
 	var qu: Dictionary = cfg.get_value(SAVE_SECTION, "questions_used", {})
 	if typeof(qu) == TYPE_DICTIONARY:
 		data["questions_used"] = qu.duplicate(true)
 	else:
 		data["questions_used"] = {}
-		
-	# ---- Evaluate ----
+
+	# ---- Evaluate Used ----
 	var eval: Dictionary = cfg.get_value(SAVE_SECTION, "evaluate_used", {})
 	if typeof(eval) == TYPE_DICTIONARY:
 		data["evaluate_used"] = eval.duplicate(true)
 	else:
 		data["evaluate_used"] = {}
+
+	# ---- Bug Bounty Coins ----
+	var bb: Dictionary = cfg.get_value(SAVE_SECTION, "bug_bounty", 0)
+	if typeof(bb) == TYPE_INT:
+		data["bug_bounty"] = bb
+	else:
+		data["bug_bounty"] = 0
 
 	print("Player data loaded from %s" % SAVE_PATH)
 
@@ -163,15 +175,50 @@ func get_questions_left() -> int:
 
 func get_evaluate_left() -> int:
 	return int(data["evaluate_used"])
+	
+	
+# ----------------------- Bug Bounty Coins -----------------------
+# Add coins (or subtract if negative)
+func modify_bug_bounty(amount: int) -> void:
+	var current := int(data.get("bug_bounty", 0))
+	current += amount
+	if current < 0:
+		current = 0  # Prevent negative coins
+	data["bug_bounty"] = current
+	save_data()
+	emit_signal("bug_bounty_changed", current)
+
+# Spend coins (returns true if enough coins, false if not)
+func spend_bug_bounty(amount: int) -> bool:
+	var current := int(data.get("bug_bounty", 0))
+	if amount <= 0:
+		return false  # invalid amount
+	if current >= amount:
+		data["bug_bounty"] = current - amount
+		save_data()
+		emit_signal("bug_bounty_changed", data["bug_bounty"])
+		return true
+	return false  # not enough coins
+
+# Add coins (wrapper)
+func add_bug_bounty(amount: int) -> void:
+	modify_bug_bounty(amount)
+
+# Get current coin count
+func get_bug_bounty() -> int:
+	return int(data.get("bug_bounty", 0))
 
 # ----------------------- Reset -----------------------
 func reset_data() -> void:
 	data = {
+		"new_game": true,
+		"welcome_showed": false,
 		"username": "",
 		"level": 1,
 		"speedtime": {},
 		"achievements": [],
 		"questions_used": 0,
-		"evaluate_used": 0
+		"evaluate_used": 0,
+		"bug_bounty": 0
 	}
 	save_data()
