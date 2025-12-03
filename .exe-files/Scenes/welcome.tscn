@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://dw6xdap2uo0gv"]
+[gd_scene load_steps=7 format=3 uid="uid://dw6xdap2uo0gv"]
 
 [ext_resource type="Script" uid="uid://dh6qohoh1useb" path="res://Scripts/Player Data/Welcome.gd" id="1_4dm54"]
 [ext_resource type="Texture2D" uid="uid://dud14egjhs4im" path="res://Assets/images/finished window.png" id="1_iqcfy"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="2_4dm54"]
+[ext_resource type="Texture2D" uid="uid://b6fgga2m5gkeu" path="res://Assets/images/Gemini_Generated_Image_z0rj2uz0rj2uz0rj (1).png" id="4_5bkde"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5bkde"]
 texture = ExtResource("1_iqcfy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rwtka"]
+texture = ExtResource("4_5bkde")
 
 [node name="Welcome" type="Control"]
 layout_mode = 3
@@ -47,15 +51,23 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -260.0
-offset_top = -84.0
-offset_right = 260.0
-offset_bottom = 84.0
+offset_left = -64.0
+offset_top = -111.0
+offset_right = 262.0
+offset_bottom = 57.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_4dm54")
 theme_override_font_sizes/font_size = 26
 text = "sample text"
 horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 62.0
+offset_right = 317.0
+offset_bottom = 288.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_rwtka")
 
 [connection signal="pressed" from="Panel/ContinueBtn" to="." method="_on_continue_btn_pressed"]
