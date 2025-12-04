@@ -53,7 +53,7 @@ func evaluate(file: FileMetadata, rules: Array, answer: Dictionary = {}) -> Dict
 			"is_hidden":
 				if file.hidden:
 					score += rule.score
-					triggered = true
+					triggered = false
 			"random_filename":
 				if _is_random_filename(file.filename):
 					score += rule.score
@@ -68,10 +68,10 @@ func evaluate(file: FileMetadata, rules: Array, answer: Dictionary = {}) -> Dict
 					triggered = true
 					
 			# Only apply if answer is passed in
-			"type_mismatch":
-				if answer.has("extension") and answer["extension"] != file.extension:
-					score += rule.score
-					triggered = true
+			#"type_mismatch":
+				#if answer.has("extension") and answer["extension"] != file.extension:
+					#score += rule.score
+					#triggered = true
 		if triggered:
 			issues.append(rule.condition)
 	return {

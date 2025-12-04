@@ -61,6 +61,16 @@ layout_mode = 2
 text = "Source:"
 label_settings = ExtResource("2_jt5wq")
 
+[node name="Modified" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Source:"
+label_settings = ExtResource("2_jt5wq")
+
+[node name="Hidden" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Source:"
+label_settings = ExtResource("2_jt5wq")
+
 [node name="StampAnchor" type="Node2D" parent="."]
 position = Vector2(0, 56)
 

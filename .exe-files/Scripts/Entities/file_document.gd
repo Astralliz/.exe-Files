@@ -8,6 +8,8 @@ extends Node2D
 @onready var size: Label = $VBoxContainer/Size
 @onready var publisher: Label = $VBoxContainer/Publisher
 @onready var source: Label = $VBoxContainer/Source
+@onready var modified: Label = $VBoxContainer/Modified
+@onready var hidden_label: Label = $VBoxContainer/Hidden
 @onready var stamp_anchor: Node2D = $StampAnchor
 @onready var document_area_2d: Area2D = $DocumentArea2D
 @onready var interact_area_2d: Area2D = $InteractArea2D
@@ -38,6 +40,19 @@ func set_metadata(data: FileMetadata):
 	size.text = "Size: %.2f MB" % data.size_mb
 	publisher.text = "Publisher: %s" % data.publisher
 	source.text = "Source: %s" % data.source
+	
+	var day = GameState.day
+
+	# --- Level-based display ---
+	if day > 2:
+		modified.show()
+		modified.text = "Modified: %d hrs ago" % data.modified_hours_ago
+
+		hidden_label.show()
+		hidden_label.text = "Hidden: %s" % ( "Yes" if data.hidden else "No" )
+	else:
+		modified.hide()
+		hidden_label.hide()
 
 func initialize_paper():
 	_state = 0

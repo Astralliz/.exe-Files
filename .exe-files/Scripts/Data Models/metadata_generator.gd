@@ -36,51 +36,82 @@ var source_pool := [
 	"unknown"
 ]
 
+var risky_source := ["email"]
+
+var modified := [10, 13, 27, 50, 32, 3, 63,55]
+
+var is_hidden := [false, true]
+
 var max_risky := 3        # max risky files per level
 var total_files := 7      # total Filetizens per level
 var spawned_files := []   # track spawned metadata to control risky count
 
+
 func _ready():
 	spawned_files.clear()
 
+func setup_day_config():
+	var day = GameState.day
+
+	# Max risky per day
+	if day <= 2:
+		max_risky = 3
+	else:
+		max_risky = 4
+
+	# Total files per day
+	if day <= 2:
+		total_files = 7
+	else:
+		total_files = 9
+
 func generate_metadata() -> FileMetadata:
+	setup_day_config()
+	
 	var data := FileMetadata.new()
 	var engine := HeuristicEngine.new()
-	var rules_for_level = RuleBase.new().get_rules(1)  # level 1 rules
+	var rules_for_level = RuleBase.new().get_rules(GameState.day)
 
-	# Count how many risky files remain to spawn
+	# Count risky files remaining
 	var risky_remaining = max_risky - spawned_files.count(func(f): return f.risk_score > 1)
 
 	# Decide if this file should be risky
 	var make_risky = false
 	if risky_remaining > 0 and (total_files - spawned_files.size()) <= risky_remaining:
-		# Force risky if needed to reach max_risky
 		make_risky = true
 	elif risky_remaining > 0:
 		make_risky = randf() < 0.5
 
-	if make_risky:
-		# Combine multiple factors to ensure score >1
-		data.extension = risky_extensions.pick_random() if randf() < 0.5 else extension_pool_safe.pick_random()
-		data.size_mb = randf_range(51, 70) if randf() < 0.5 else randf_range(10, 50)
-		data.source = "unknown" if randf() < 0.5 else source_pool.pick_random()
-		data.publisher = "unknown" if randf() < 0.5 else publisher_pool.pick_random()
-	else:
-		# Safe Filetizen, ensure score <=1
-		data.extension = extension_pool_safe.pick_random()
-		data.size_mb = randf_range(10, 50)
-		data.source = source_pool.pick_random()
-		data.publisher = publisher_pool.pick_random()
-
-	# Fill other fields
+	# Basic fields
 	data.filename = filename_pool.pick_random()
-	data.hidden = false
 	data.signature_valid = true
 	data.requires_admin = false
-	data.modified_hours_ago = randi_range(50, 1200)
+
+	# Decide risky vs safe
+	if make_risky:
+		data.extension = risky_extensions.pick_random() if randf() < 0.5 else extension_pool_safe.pick_random()
+		data.size_mb = randf_range(51, 70) if randf() < 0.5 else randf_range(10, 50)
+		data.publisher = "unknown" if randf() < 0.5 else publisher_pool.pick_random()
+	else:
+		data.extension = extension_pool_safe.pick_random()
+		data.size_mb = randf_range(10, 50)
+		data.publisher = publisher_pool.pick_random()
+
+	# Source, hidden, modified only for Day >=3
+	if GameState.day >= 3:
+		data.source = "email" if randf() < 0.6 else source_pool.pick_random()
+		data.hidden = is_hidden.pick_random()
+		data.modified_hours_ago = modified.pick_random()
+	else:
+		# Basic safe source for Day 1-2
+		data.source = source_pool.pick_random()
+		data.hidden = false
+		data.modified_hours_ago = randi_range(50, 1200)  # generic value
+
+	# Determine claimed type
 	data.claimed_type = determine_claimed_type(data.extension)
 
-	# Evaluate risk score after assignment
+	# Evaluate risk score
 	var evaluate = engine.evaluate(data, rules_for_level)
 	data.risk_score = evaluate.score
 
@@ -88,6 +119,7 @@ func generate_metadata() -> FileMetadata:
 	spawned_files.append(data)
 
 	return data
+
 
 func determine_claimed_type(ext: String) -> String:
 	match ext:

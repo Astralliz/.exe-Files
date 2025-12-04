@@ -210,3 +210,5 @@ vertical_alignment = 1
 
 [connection signal="pressed" from="Back_Button" to="." method="_on_back_1_pressed"]
 [connection signal="pressed" from="HBoxContainer/Day_1_Button" to="." method="_on_day_1_start_pressed"]
+[connection signal="pressed" from="HBoxContainer/Day_2_Button" to="." method="_on_day_2_start_pressed"]
+[connection signal="pressed" from="HBoxContainer/Day_3_Button" to="." method="_on_day_3_start_pressed"]

@@ -9,25 +9,47 @@ var added_eval = 6
 var added_ques = 4
 var achievement = "Metadata Detective"
 
+var day: int
+
 func _ready() -> void:
-	continue_btn.hide()
-	accept_btn.hide()
-	Player_Data.set_level(2)
-	Player_Data.unlock_achievement(achievement)
-	Player_Data.add_evaluates(added_eval)
-	Player_Data.add_questions(added_ques)
-	message.text = "Congrats!\n You Unlock an\n Achievement \n'" +  achievement + "'\nPlay More Day\n to Unlock more!"
+	day = GameState.day
+	setup_dialogue(day)
+
+
+func setup_dialogue(day: int) -> void:
+	# DAY 1 COMPLETE — unlock achievement + rewards
+	if day == 1:
+		continue_btn.hide()
+		accept_btn.hide()
+
+		# Rewards + achievement
+		Player_Data.set_level(2)
+		Player_Data.unlock_achievement(achievement)
+		Player_Data.add_evaluates(added_eval)
+		Player_Data.add_questions(added_ques)
+
+		message.text = "Congrats!\nYou unlocked an\nAchievement:\n'" + achievement + "'\nKeep playing to unlock more!"
+	
+	# OTHER DAYS — NO ACHIEVEMENT
+	else:
+		ach_continue_btn.hide()
+		accept_btn.hide()
+		continue_btn.show()
+		
+		message.text = "Great job!\nYou finished Day " + str(day) + "\nGet ready for the next challenge!"
 
 
 func _on_achievement_pressed() -> void:
-	message.text = "\nCONGRATS\n You get a \n" + str(added_eval) + " evaluates! \n and \n" + str(added_ques) + " Questions!"
+	message.text = "\nCONGRATS!\nYou received:\n" + str(added_eval) + " Evaluates\n" + str(added_ques) + " Questions!"
 	accept_btn.show()
 	ach_continue_btn.hide()
 
+
 func _on_accept_pressed() -> void:
-	message.text =  "\nCongrats  For Completing\n Your First Day\n You're now ready for more \n harder days \n to come.\n"
-	continue_btn.show()
+	message.text = "\nDay 1 Complete!\nMore challenging days await!"
 	accept_btn.hide()
+	continue_btn.show()
+
 
 func _on_continue_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Menu Scenes/Story Scene/story_1.tscn")

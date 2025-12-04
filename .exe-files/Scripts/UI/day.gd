@@ -42,7 +42,7 @@ const RuleBase = preload("res://Scripts/Algorithm/Rules/rule_base.gd")
 var dialogue_database := DialogueDatabase.new()
 var engine := HeuristicEngine.new()
 var rule_base := RuleBase.new()
-var rules_for_level1 = rule_base.get_rules(1)
+var rules_for_level: Array
 
 var moved_out := false
 var current_document: FileDocument
@@ -50,9 +50,17 @@ var current_document: FileDocument
 var filetizen_count := 0
 const MAX_FILETIZENS := 7
 
+var day: int
+
 func _ready():
+	day = GameState.day
+	print("day: ", day)
+	var rule_level = get_rule_level_from_day(day)
+	
+	rules_for_level = rule_base.get_rules(rule_level)
+	
 	level_finished.hide()
-	resource_display.set_level(1)
+	resource_display.set_level(day)
 	
 	$main_background.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	$control_room.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -111,6 +119,13 @@ func move_declined_filetizen():
 	var direction = Vector2(screen_w + 200, filetizen.position.y) - filetizen.position
 	filetizen.move_component.move(direction, -300)
 
+func get_rule_level_from_day(day: int) -> int:
+	if day <= 2:
+		return 1
+	elif day == 3:
+		return 2
+	return 1  # default fallback
+
 func _process(delta):
 	var target = get_viewport().get_visible_rect().size / 2.0
 	
@@ -119,7 +134,7 @@ func _process(delta):
 			filetizen.move_component.stop()
 			moved_out = true
 			
-			var evaluate = engine.evaluate(filetizen.metadata, rules_for_level1, current_answers)
+			var evaluate = engine.evaluate(filetizen.metadata, rules_for_level, current_answers)
 			print("Score: ", evaluate.score)
 			print("Issues: ", evaluate.issues)
 			
@@ -128,7 +143,7 @@ func _process(delta):
 			current_answers = answer_gen.generate_answers(filetizen.metadata, evaluate.score) # temp 0 for now
 
 			# 2️⃣ Evaluate score including answer
-			evaluate.score += engine.evaluate_type_mismatch(filetizen.metadata, current_answers, rules_for_level1)
+			evaluate.score += engine.evaluate_type_mismatch(filetizen.metadata, current_answers, rules_for_level)
 			filetizen.metadata.risk_score = evaluate.score
 			filetizen.metadata.issues = evaluate.issues
 
@@ -246,5 +261,5 @@ func handle_player_decision(player_approved: bool):
 	else:
 		level_finished.z_index = 20
 		level_finished.show()
-		Player_Data.set_level(2)
+		Player_Data.set_level(day + 1)
 		print("Player Level:", Player_Data.data["level"])
