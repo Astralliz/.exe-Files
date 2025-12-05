@@ -34,7 +34,7 @@ func setup_dialogue(day: int) -> void:
 		accept_btn.hide()
 		continue_btn.show()
 		
-		message.text = "Great job!\nYou finished Day " + str(day) + "\nGet ready for the next challenge!"
+		message.text = "\nGreat job!\nYou finished Day " + str(day) + "\nGet ready for the next challenge!"
 
 
 func _on_achievement_pressed() -> void:
