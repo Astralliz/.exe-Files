@@ -18,12 +18,10 @@ func _ready() -> void:
 
 func setup_dialogue(day: int) -> void:
 	# DAY 1 COMPLETE — unlock achievement + rewards
-	if day == 1:
+	if day == 1 && Player_Data.data["level"] < 1:
 		continue_btn.hide()
 		accept_btn.hide()
 
-		# Rewards + achievement
-		Player_Data.set_level(2)
 		Player_Data.unlock_achievement(achievement)
 		Player_Data.add_evaluates(added_eval)
 		Player_Data.add_questions(added_ques)

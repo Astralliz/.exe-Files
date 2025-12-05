@@ -261,5 +261,13 @@ func handle_player_decision(player_approved: bool):
 	else:
 		level_finished.z_index = 20
 		level_finished.show()
-		Player_Data.set_level(day + 1)
+		level_up()
 		print("Player Level:", Player_Data.data["level"])
+		
+func level_up():
+	var current_level = Player_Data.data["level"]
+	if day > current_level:
+		Player_Data.set_level(day)
+		print("Level up! New player level: ", day)
+	else:
+		print("Player already has a higher level: ", current_level)

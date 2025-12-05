@@ -9,7 +9,7 @@ var data: Dictionary = {
 	"new_game": true,
 	"welcome_showed": false,
 	"username": "",
-	"level": 1,
+	"level": 0,
 	"speedtime": {},   # { "level1": 120.5, "level2": 95.2 } in seconds
 	"achievements": [], # ["FirstScan", "ExpertAnalyzer"]
 	"questions_used": 0,   # { "level1": 3, "level2": 1 } - track skill/question usage

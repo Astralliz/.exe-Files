@@ -24,12 +24,12 @@ func _on_day_3_start_pressed():
 	get_tree().change_scene_to_file("res://Scenes/Menu Scenes/Story Scene/day.tscn")
 
 func _ready() -> void:
-	if Player_Data.data["level"] > 1:
+	if Player_Data.data["level"] >= 1:
 		day_2_panel.hide()
 		day_2_lock.hide()
 		day_2_label.hide()
 
-	if Player_Data.data["level"] > 2:
+	if Player_Data.data["level"] >= 2:
 		day_3_panel.hide()
 		day_3_lock.hide()
 		day_3_label.hide()
