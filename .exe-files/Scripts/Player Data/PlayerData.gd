@@ -160,6 +160,7 @@ func use_question() -> void:
 func use_evaluate() -> void:
 	if data["evaluate_used"] > 0:
 		data["evaluate_used"] -= 1
+		emit_signal("evaluation_amount_change", data["evaluate_used"])
 		save_data()
 
 # Increase / add
@@ -170,7 +171,6 @@ func add_questions(amount: int) -> void:
 
 func add_evaluates(amount: int) -> void:
 	data["evaluate_used"] += amount
-	question_amount_change
 	emit_signal("evaluation_amount_change", amount)
 	save_data()
 

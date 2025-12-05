@@ -144,6 +144,9 @@ func _on_evaluate_pressed():
 	# Reset labels first
 	suggestion.visible = false
 	suggestion2.visible = false
+	
+	if !GameState.day <= 1:
+		Player_Data.use_evaluate()
 
 	if s <= 1:
 		text += "SAFE ✓"
