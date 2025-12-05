@@ -80,17 +80,17 @@ offset_right = 935.0
 offset_bottom = 236.0
 script = ExtResource("6_2j2bg")
 
-[node name="Question" type="HBoxContainer" parent="HBoxContainer"]
+[node name="Filters" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="HBoxContainer/Question"]
+[node name="Label" type="Label" parent="HBoxContainer/Filters"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_2j2bg")
 theme_override_font_sizes/font_size = 26
-text = "Questions:"
+text = "FIlters:"
 
-[node name="Amount" type="Label" parent="HBoxContainer/Question"]
+[node name="Amount" type="Label" parent="HBoxContainer/Filters"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_2j2bg")
 theme_override_font_sizes/font_size = 26
@@ -141,13 +141,13 @@ offset_bottom = 459.0
 theme_override_constants/separation = 20
 script = ExtResource("7_gwmmo")
 
-[node name="Questions" type="Button" parent="Offer"]
+[node name="Filters" type="Button" parent="Offer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("4_2j2bg")
 theme_override_font_sizes/font_size = 35
 text = "+5
-Questions"
+Filters"
 
 [node name="Evaluates" type="Button" parent="Offer"]
 layout_mode = 2
@@ -168,5 +168,5 @@ theme_override_font_sizes/font_size = 35
 horizontal_alignment = 1
 
 [connection signal="pressed" from="Button" to="." method="_on_shop_back_button_pressed"]
-[connection signal="pressed" from="Offer/Questions" to="Offer" method="_on_buy_questions_pressed"]
+[connection signal="pressed" from="Offer/Filters" to="Offer" method="_on_buy_filters_pressed"]
 [connection signal="pressed" from="Offer/Evaluates" to="Offer" method="_on_buy_evaluates_pressed"]

@@ -12,7 +12,7 @@ var data: Dictionary = {
 	"level": 0,
 	"speedtime": {},   # { "level1": 120.5, "level2": 95.2 } in seconds
 	"achievements": [], # ["FirstScan", "ExpertAnalyzer"]
-	"questions_used": 0,   # { "level1": 3, "level2": 1 } - track skill/question usage
+	"filter_used": 0,   # { "level1": 3, "level2": 1 } - track skill/question usage
 	"evaluate_used": 0,
 	"bug_bounty": 40
 }
@@ -21,7 +21,7 @@ const SAVE_PATH := "user://player_data.cfg"
 const SAVE_SECTION := "player"
 
 signal bug_bounty_changed(new_amount)
-signal question_amount_change(new_amount)
+signal filter_amount_change(new_amount)
 signal evaluation_amount_change(new_amount)
 
 func _ready() -> void:
@@ -40,7 +40,7 @@ func save_data() -> void:
 	cfg.set_value(SAVE_SECTION, "level", int(data["level"]))
 	cfg.set_value(SAVE_SECTION, "speedtime", data["speedtime"])
 	cfg.set_value(SAVE_SECTION, "achievements", data["achievements"])
-	cfg.set_value(SAVE_SECTION, "questions_used", data["questions_used"])
+	cfg.set_value(SAVE_SECTION, "filter_used", data["filter_used"])
 	cfg.set_value(SAVE_SECTION, "evaluate_used", data["evaluate_used"])
 	cfg.set_value(SAVE_SECTION, "bug_bounty", int(data["bug_bounty"]))
 
@@ -79,11 +79,11 @@ func load_data() -> void:
 		data["achievements"] = []
 
 	# ---- Questions Used ----
-	var qu: Dictionary = cfg.get_value(SAVE_SECTION, "questions_used", {})
+	var qu: Dictionary = cfg.get_value(SAVE_SECTION, "filter_used", {})
 	if typeof(qu) == TYPE_DICTIONARY:
-		data["questions_used"] = qu.duplicate(true)
+		data["filter_used"] = qu.duplicate(true)
 	else:
-		data["questions_used"] = {}
+		data["filter_used"] = {}
 
 	# ---- Evaluate Used ----
 	var eval: Dictionary = cfg.get_value(SAVE_SECTION, "evaluate_used", {})
@@ -152,9 +152,10 @@ func get_speedtime(level_name: String) -> float:
 
 # ----------------------- Questions / Evaluate -----------------------
 # Decrease (use)
-func use_question() -> void:
-	if data["questions_used"] > 0:
-		data["questions_used"] -= 1
+func use_filter() -> void:
+	if data["filter_used"] > 0:
+		data["filter_used"] -= 1
+		emit_signal("filter_amount_change", data["filter_used"])
 		save_data()
 
 func use_evaluate() -> void:
@@ -164,9 +165,9 @@ func use_evaluate() -> void:
 		save_data()
 
 # Increase / add
-func add_questions(amount: int) -> void:
-	data["questions_used"] += amount
-	emit_signal("question_amount_change", amount)
+func add_filter(amount: int) -> void:
+	data["filter_used"] += amount
+	emit_signal("filter_amount_change", amount)
 	save_data()
 
 func add_evaluates(amount: int) -> void:
@@ -175,8 +176,8 @@ func add_evaluates(amount: int) -> void:
 	save_data()
 
 # Get current value
-func get_questions_left() -> int:
-	return int(data["questions_used"])
+func get_filter_left() -> int:
+	return int(data["filter_used"])
 
 func get_evaluate_left() -> int:
 	return int(data["evaluate_used"])
@@ -222,7 +223,7 @@ func reset_data() -> void:
 		"level": 1,
 		"speedtime": {},
 		"achievements": [],
-		"questions_used": 0,
+		"filter_used": 0,
 		"evaluate_used": 0,
 		"bug_bounty": 0
 	}

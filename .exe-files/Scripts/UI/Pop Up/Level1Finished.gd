@@ -6,7 +6,7 @@ extends Control
 @onready var ach_continue_btn: Button = $Achievement
 
 var added_eval = 6
-var added_ques = 4
+var added_fils = 4
 var achievement = "Metadata Detective"
 
 var day: int
@@ -24,7 +24,7 @@ func setup_dialogue(day: int) -> void:
 
 		Player_Data.unlock_achievement(achievement)
 		Player_Data.add_evaluates(added_eval)
-		Player_Data.add_questions(added_ques)
+		Player_Data.add_filter(added_fils)
 
 		message.text = "Congrats!\nYou unlocked an\nAchievement:\n'" + achievement + "'\nKeep playing to unlock more!"
 	
@@ -38,7 +38,7 @@ func setup_dialogue(day: int) -> void:
 
 
 func _on_achievement_pressed() -> void:
-	message.text = "\nCONGRATS!\nYou received:\n" + str(added_eval) + " Evaluates\n" + str(added_ques) + " Questions!"
+	message.text = "\nCONGRATS!\nYou received:\n" + str(added_eval) + " Evaluates\n" + str(added_fils) + " Filters!"
 	accept_btn.show()
 	ach_continue_btn.hide()
 

@@ -18,10 +18,21 @@ script = ExtResource("1_eeqe2")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 297.0
-offset_top = 429.0
-offset_right = 878.0
-offset_bottom = 489.0
+offset_left = 212.0
+offset_top = 419.0
+offset_right = 907.0
+offset_bottom = 479.0
+theme_override_constants/separation = 40
+
+[node name="Filter" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/Filter"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_eeqe2")
+theme_override_font_sizes/font_size = 26
+text = "Filters:"
 
 [node name="Evaluate" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -33,12 +44,26 @@ theme_override_fonts/font = ExtResource("2_eeqe2")
 theme_override_font_sizes/font_size = 26
 text = "Evaluates:"
 
-[node name="Panel" type="Panel" parent="HBoxContainer/Evaluate"]
+[node name="BugBounty" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/BugBounty"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_eeqe2")
+theme_override_font_sizes/font_size = 26
+text = "Bug bounty:"
+
+[node name="Filters" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 345.0
+offset_top = 418.0
+offset_right = 433.0
+offset_bottom = 478.0
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_mml7n")
 
-[node name="Amount" type="Label" parent="HBoxContainer/Evaluate/Panel"]
+[node name="Amount" type="Label" parent="Filters"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,22 +77,39 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BugBounty" type="HBoxContainer" parent="HBoxContainer"]
+[node name="Evaluates" type="Panel" parent="."]
 layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="HBoxContainer/BugBounty"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_eeqe2")
-theme_override_font_sizes/font_size = 26
-text = "Bug bounty:"
-
-[node name="Panel" type="Panel" parent="HBoxContainer/BugBounty"]
-layout_mode = 2
+offset_left = 609.0
+offset_top = 417.0
+offset_right = 697.0
+offset_bottom = 477.0
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_mml7n")
 
-[node name="Amount" type="Label" parent="HBoxContainer/BugBounty/Panel"]
+[node name="Amount" type="Label" parent="Evaluates"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.258824, 0.901961, 0.964706, 1)
+theme_override_fonts/font = ExtResource("2_eeqe2")
+theme_override_font_sizes/font_size = 26
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BugBounty" type="Panel" parent="."]
+layout_mode = 2
+offset_left = 868.0
+offset_top = 419.0
+offset_right = 957.0
+offset_bottom = 479.0
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_mml7n")
+
+[node name="Amount" type="Label" parent="BugBounty"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

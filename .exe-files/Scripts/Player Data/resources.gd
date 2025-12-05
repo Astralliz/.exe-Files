@@ -1,8 +1,8 @@
 extends Node
 
-@onready var questions_amount: Label = $HBoxContainer/Question/Panel/Amount
-@onready var evaluation_amount: Label = $HBoxContainer/Evaluate/Panel/Amount
-@onready var bb_amount: Label = $HBoxContainer/BugBounty/Panel/Amount
+@onready var filter_amount: Label = $Filters/Amount
+@onready var evaluation_amount: Label = $Evaluates/Amount
+@onready var bb_amount: Label = $BugBounty/Amount
 
 var current_level: int = 1  # default, can be set from parent scene
 
@@ -13,7 +13,7 @@ func _ready() -> void:
 
 	# Initial display
 	update_bounty_amount()
-	update_question_amount()
+	update_filter_amount()
 	update_evaluation_amount()
 
 # -------------------------
@@ -25,14 +25,14 @@ func update_bounty_amount(new_amount: int = -1) -> void:
 	else:
 		bb_amount.text = str(Player_Data.get_bug_bounty())
 
-func update_question_amount(new_question_amount: int = -1) -> void:
+func update_filter_amount(new_filter_amount: int = -1) -> void:
 	if current_level == 1:
-		questions_amount.text = "∞"
+		filter_amount.text = "∞"
 	else:
-		if new_question_amount >= Player_Data.get_questions_left():
-			questions_amount.text = str(new_question_amount)
+		if new_filter_amount >= Player_Data.get_filter_left():
+			filter_amount.text = str(new_filter_amount)
 		else:
-			questions_amount.text = str(Player_Data.get_questions_left())
+			filter_amount.text = str(Player_Data.get_filter_left())
 
 func update_evaluation_amount(new_evaluation_amount: int = -1) -> void:
 	if current_level == 1:
@@ -46,5 +46,5 @@ func update_evaluation_amount(new_evaluation_amount: int = -1) -> void:
 # Optional: helper to set level from parent
 func set_level(level: int) -> void:
 	current_level = level
-	update_question_amount()
+	update_filter_amount()
 	update_evaluation_amount()
