@@ -9,6 +9,7 @@ extends Node2D
 @onready var decline_btn: Button = $DeclineBtn
 @onready var answer_label : Label = $Answer_Label
 @onready var level_finished: Control = $Level1Finished
+@onready var wrong_decision_popup: Control = $GameOver
 @onready var dialogue_box: DialogueBox = $"Dialogue Box"
 
 # -------------------------------------------------
@@ -60,6 +61,7 @@ func _ready():
 	rules_for_level = rule_base.get_rules(rule_level)
 	
 	level_finished.hide()
+	wrong_decision_popup.hide()
 	resource_display.set_level(day)
 	
 	$main_background.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -217,6 +219,7 @@ func handle_player_decision(player_approved: bool):
 	var is_correct = player_approved == approved
 
 	var message: String
+	var show_gameover: bool = false
 	if is_correct:
 		message = dialogue_database.get_random_correct()
 		if player_approved and approved:
@@ -229,12 +232,23 @@ func handle_player_decision(player_approved: bool):
 	elif not player_approved and approved:
 		message = dialogue_database.get_random_false_negative()
 		print("✘ False Negative!")
+	elif player_approved and not approved:
+		# Approved but should have declined → game over
+		message = "Game Over: This file was unsafe but you approved it!\n" + dialogue_database.get_random_wrong()
+		message += "\n" + dialogue_database.build_wrong_details(filetizen.metadata.issues)
+		show_gameover = true
+		print("✘ Incorrect decision! Game Over!")
 	else:
 		message = dialogue_database.get_random_wrong()
 		message += "\n" + dialogue_database.build_wrong_details(filetizen.metadata.issues)
 		print("✘ Incorrect decision!")
 
-	dialogue_box.show_dialogue(message)
+	# Show dialogue if not game over
+	if not show_gameover:
+		dialogue_box.show_dialogue(message)
+	else:
+		wrong_decision_popup.show()
+		wrong_decision_popup.text.text = message
 
 	if player_approved:
 		await get_tree().create_timer(1.0).timeout
@@ -250,8 +264,8 @@ func handle_player_decision(player_approved: bool):
 	await get_tree().create_timer(3.0).timeout
 	moved_out = false
 	
-	# Only spawn new Filetizen if under the max count
-	if filetizen_count < MAX_FILETIZENS:
+	# Only spawn new Filetizen if under the max count AND game is not over
+	if filetizen_count < MAX_FILETIZENS and not show_gameover:
 		dialogue_box.hide_dialogue()
 		spawn_new_filetizen()
 		filetizen_count += 1
@@ -259,10 +273,16 @@ func handle_player_decision(player_approved: bool):
 		await get_tree().create_timer(1.0).timeout
 		spawn_new_file_document()
 	else:
-		level_finished.z_index = 20
-		level_finished.show()
-		level_up()
-		print("Player Level:", Player_Data.data["level"])
+		# Either max filetizens reached OR game over
+		if show_gameover:
+			wrong_decision_popup.show()
+			# The text is already set earlier when decision was wrong
+		else:
+			level_finished.z_index = 20
+			level_finished.show()
+			level_up()
+			print("Player Level:", Player_Data.data["level"])
+
 		
 func level_up():
 	var current_level = Player_Data.data["level"]
