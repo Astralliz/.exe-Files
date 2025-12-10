@@ -6,8 +6,7 @@ var TEMP_SAVE := true  # true = only memory, false = save to disk
 
 # Default data
 var data: Dictionary = {
-	"new_game": true,
-	"welcome_showed": false,
+	"new_to_game": 0,
 	"username": "",
 	"level": 0,
 	"speedtime": {},   # { "level1": 120.5, "level2": 95.2 } in seconds
@@ -107,20 +106,12 @@ func load_data() -> void:
 
 # ----------------------- New Game -----------------------
 # Check if this is a new game
-func is_new_game() -> bool:
-	return bool(data.get("new_game", true))
+func get_new_game_status() -> int:
+	return data.get("new_to_game", 0)
 
 # Set new_game flag
-func set_new_game(value: bool) -> void:
-	data["new_game"] = value
-	save_data()
-
-func is_welcome_showed() -> bool:
-	return bool(data.get("welcome_showed", true))
-
-# Set new_game flag
-func set_welcome_showed(value: bool) -> void:
-	data["welcome_showed"] = value
+func set_new_game_status(value: int) -> void:
+	data["new_to_game"] = value
 	save_data()
 # ----------------------- HELPERS / API -----------------------
 func set_username(name: String) -> void:
