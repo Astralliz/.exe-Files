@@ -1,5 +1,6 @@
 class_name MoveComponent
 extends Node
+@onready var walking: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 @export var actor: Node2D
 var velocity: Vector2 = Vector2.ZERO
@@ -19,11 +20,13 @@ var bouncing := false
 # -----------------------
 func move(direction: Vector2, speed: float):
 	velocity = direction.normalized() * speed
+	walking.play()
 
 func stop():
 	velocity = Vector2.ZERO
 	time_acc = 0.0
 	actor.scale = base_scale
+	walking.stop()
 
 # Optional: bounce when spawned
 func appear_bounce():

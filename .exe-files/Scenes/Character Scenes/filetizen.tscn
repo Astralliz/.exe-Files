@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://mpbxai4ade75"]
+[gd_scene load_steps=5 format=3 uid="uid://mpbxai4ade75"]
 
 [ext_resource type="Script" uid="uid://kdou4kaoj5ro" path="res://Scripts/Character/filetizen.gd" id="1_w3var"]
 [ext_resource type="Texture2D" uid="uid://bitqtspuwqiif" path="res://Assets/Sprites/clean_file.png" id="2_u3aof"]
 [ext_resource type="Script" uid="uid://d0av55ja450n2" path="res://Components/move_component.gd" id="3_u3aof"]
+[ext_resource type="AudioStream" uid="uid://dcsi1x1f16gwn" path="res://Assets/Audio/SFX_Footsteps.wav" id="4_wub8f"]
 
 [node name="Filetizen" type="Node2D"]
 script = ExtResource("1_w3var")
@@ -15,5 +16,8 @@ texture = ExtResource("2_u3aof")
 script = ExtResource("3_u3aof")
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://d0av55ja450n2"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MoveComponent"]
+stream = ExtResource("4_wub8f")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
