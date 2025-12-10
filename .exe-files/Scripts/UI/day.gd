@@ -54,6 +54,7 @@ const MAX_FILETIZENS := 7
 var day: int
 
 func _ready():
+	GlobalMusic.stop()
 	day = GameState.day
 	print("day: ", day)
 	var rule_level = get_rule_level_from_day(day)
