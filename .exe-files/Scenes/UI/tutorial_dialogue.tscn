@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://1t4noejl0s7v"]
+
+[ext_resource type="Texture2D" uid="uid://cy8xynrmywbvn" path="res://Assets/Sprites/mentor.png" id="1_hoj2a"]
+[ext_resource type="Script" uid="uid://cn0dum7n20sy2" path="res://Scripts/UI/tutorial_dialogue.gd" id="1_llbmp"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="2_epyot"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_llbmp"]
+font = ExtResource("2_epyot")
+font_size = 25
+font_color = Color(0.855889, 0.429064, 0.864663, 1)
+
+[node name="Tutorial Dialogue" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_llbmp")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.831373)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(128, 536)
+scale = Vector2(0.336842, 0.333333)
+texture = ExtResource("1_hoj2a")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 256.0
+offset_top = 472.0
+offset_right = 408.0
+offset_bottom = 495.0
+text = "Mentor"
+label_settings = SubResource("LabelSettings_llbmp")
+
+[node name="TextBox" type="RichTextLabel" parent="."]
+layout_mode = 2
+offset_left = 256.0
+offset_top = 512.0
+offset_right = 1008.0
+offset_bottom = 608.0
+theme_override_fonts/normal_font = ExtResource("2_epyot")
+theme_override_font_sizes/normal_font_size = 20
+text = "asdadasd"
+
+[node name="CloseButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1016.0
+offset_top = 552.0
+offset_right = 1136.0
+offset_bottom = 600.0
+theme_override_fonts/font = ExtResource("2_epyot")
+theme_override_font_sizes/font_size = 25
+text = "CLOSE"

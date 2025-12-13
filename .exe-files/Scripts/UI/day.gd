@@ -1,3 +1,4 @@
+class_name Day
 extends Node2D
 
 @onready var filetizen = $Filetizen
@@ -12,17 +13,13 @@ extends Node2D
 @onready var wrong_decision_popup: Control = $GameOver
 @onready var dialogue_box: DialogueBox = $"Dialogue Box"
 
-# -------------------------------------------------
 # Audio
-# -------------------------------------------------
 @onready var pickup_sound = $Audio_Pickup
 @onready var button_sound = $Button_Click
 @onready var paper_printing = $Printing_Paper
 @onready var filetizen_talking = $Talking
 
-# -------------------------------------------------
-# Sliding Panel (Questions Scene
-# -------------------------------------------------
+# Sliding Panel (Questions Scene)
 @onready var sliding_panel : Control = $SlidingPanel
 var current_answers : Dictionary = {}
 
@@ -37,6 +34,13 @@ var current_answers : Dictionary = {}
 
 @onready var resource_display = $ResourceDisplay
 
+# Signals for Tutorial
+signal filetizen_spawned
+signal document_spawned
+signal question_asked(key: String)
+signal verdict_chosen(approved: bool)
+signal verdict_resolved(is_correct: bool)
+
 const HeuristicEngine = preload("res://Scripts/Algorithm/heuristic_engine.gd")
 const RuleBase = preload("res://Scripts/Algorithm/Rules/rule_base.gd")
 
@@ -44,13 +48,11 @@ var dialogue_database := DialogueDatabase.new()
 var engine := HeuristicEngine.new()
 var rule_base := RuleBase.new()
 var rules_for_level: Array
-
 var moved_out := false
 var current_document: FileDocument
-#Counter loop
+# Counter loop
 var filetizen_count := 0
 const MAX_FILETIZENS := 7
-
 var day: int
 
 func _ready():
@@ -97,6 +99,7 @@ func spawn_new_filetizen():
 	var new_filetizen: Node2D = spawn_filetizen.spawn(spawn_pos, actors)
 	filetizen = new_filetizen
 	move_filetizen_to_center()
+	emit_signal("filetizen_spawned")
 
 func move_filetizen_to_center():
 	var target = get_viewport().get_visible_rect().size / 2.0
@@ -110,6 +113,7 @@ func spawn_new_file_document():
 	new_doc.initialize_paper()
 	paper_printing.play()
 	current_document = new_doc
+	emit_signal("document_spawned")
 
 # MOVE FILETIZEN AFTER DECISION
 func move_approved_filetizen():
@@ -196,6 +200,7 @@ func _on_question_button_pressed(key: String) -> void:
 
 		# clear the label
 		answer_label.text = ""
+		emit_signal("question_asked", key)
 
 func enable_buttons(state: bool):
 	approve_btn.disabled = not state
@@ -214,13 +219,17 @@ func _on_decline_btn_pressed() -> void:
 	handle_player_decision(false)
 
 func handle_player_decision(player_approved: bool):
+	emit_signal("verdict_chosen", player_approved)
+	
 	enable_buttons(false)
 	var score = filetizen.metadata.risk_score
 	var approved = score <= 1.0
 	var is_correct = player_approved == approved
-
 	var message: String
 	var show_gameover: bool = false
+	
+	emit_signal("verdict_resolved", is_correct)
+	
 	if is_correct:
 		message = dialogue_database.get_random_correct()
 		if player_approved and approved:
