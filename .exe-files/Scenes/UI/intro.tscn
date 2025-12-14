@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://bifherxc77qxi"]
+
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="1_btt5a"]
+[ext_resource type="Script" uid="uid://cag0u7ybixjam" path="res://Scripts/UI/intro.gd" id="1_r1sfl"]
+
+[node name="Intro" type="Node2D"]
+script = ExtResource("1_r1sfl")
+
+[node name="BackgroundRect" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.941176)
+
+[node name="TextBox" type="RichTextLabel" parent="."]
+offset_left = 120.0
+offset_top = 72.0
+offset_right = 1032.0
+offset_bottom = 488.0
+theme_override_fonts/normal_font = ExtResource("1_btt5a")
+theme_override_font_sizes/normal_font_size = 30
+text = "In a world where data moves faster than people, every file is a potential threat.
+
+You are an Security Officer assigned to the System Gate.
+
+Your task is simple: 
+Accomodate the passing filetizens and check their credentials.
+
+One mistake is all it takes."
+
+[node name="ContinueButton" type="Button" parent="."]
+offset_left = 912.0
+offset_top = 552.0
+offset_right = 1112.0
+offset_bottom = 600.0
+theme_override_fonts/font = ExtResource("1_btt5a")
+theme_override_font_sizes/font_size = 30
+text = "continue"
+
+[node name="FadeRect" type="ColorRect" parent="."]
+z_index = 1000
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
