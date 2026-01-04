@@ -48,7 +48,7 @@ func _on_continue_pressed() -> void:
 		_fade_and_switch()
 
 func switch_scene() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Menu Scenes/Story Scene/tutorial.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Menu Scenes/Story Scene/day.tscn")
 
 func _type_text(text: String) -> void:
 	is_typing = true
