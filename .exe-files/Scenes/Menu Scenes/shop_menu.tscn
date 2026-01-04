@@ -114,9 +114,9 @@ text = "0"
 
 [node name="Total Amount" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 392.0
+offset_left = 436.0
 offset_top = 109.0
-offset_right = 819.0
+offset_right = 863.0
 offset_bottom = 165.0
 script = ExtResource("6_fciq2")
 
@@ -145,17 +145,21 @@ script = ExtResource("7_gwmmo")
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("4_2j2bg")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 30
 text = "+5
-Filters"
+Filters
+
+Price: 20"
 
 [node name="Evaluates" type="Button" parent="Offer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("4_2j2bg")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 30
 text = "+5
-Evaluates"
+Evaluates
+
+price: 20"
 
 [node name="Notification" type="Label" parent="."]
 layout_mode = 0

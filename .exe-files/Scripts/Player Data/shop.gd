@@ -12,7 +12,7 @@ func _show_notification(text: String) -> void:
 	notification.text = ""
 	
 func _on_buy_filters_pressed() -> void:
-	if Player_Data.get_bug_bounty() < 5:
+	if Player_Data.get_bug_bounty() < 20:
 		_show_notification("Insufficient Bug Bounty Balance")
 	else:
 		Player_Data.add_filter(bought)
@@ -20,7 +20,7 @@ func _on_buy_filters_pressed() -> void:
 		_show_notification("Successfully bought")
 
 func _on_buy_evaluates_pressed() -> void:
-	if Player_Data.get_bug_bounty() < 5:
+	if Player_Data.get_bug_bounty() <20:
 		_show_notification("Insufficient Bug Bounty Balance")
 	else:
 		Player_Data.add_evaluates(bought)

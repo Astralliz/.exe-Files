@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bpqlx7i7hvdtj"]
+[gd_scene load_steps=18 format=3 uid="uid://bpqlx7i7hvdtj"]
 
 [ext_resource type="Script" uid="uid://dmpa5futryf4n" path="res://Scripts/UI/story_controller.gd" id="1_3f07l"]
 [ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="1_qkcn5"]
@@ -14,14 +14,46 @@ texture = ExtResource("1_qkcn5")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i64nf"]
 texture = ExtResource("2_iojkw")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7j04u"]
+bg_color = Color(0.694118, 0.654902, 0.654902, 0.380392)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i64nf"]
+bg_color = Color(0, 0, 0, 0.509804)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s3gio"]
+bg_color = Color(0, 0, 0, 0.509804)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hgxv2"]
+bg_color = Color(0, 0, 0, 0.509804)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iojkw"]
 bg_color = Color(0.952941, 0.384314, 1, 0.270588)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p2sox"]
 texture = ExtResource("4_iojkw")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i64nf"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4o02"]
 bg_color = Color(0.945098, 0.247059, 1, 0.717647)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hgxv2"]
 texture = ExtResource("6_3f07l")
@@ -71,10 +103,14 @@ theme_override_constants/separation = 80
 [node name="Button" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/hover = SubResource("StyleBoxFlat_7j04u")
+theme_override_styles/normal = SubResource("StyleBoxFlat_i64nf")
 
 [node name="Button2" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/hover = SubResource("StyleBoxFlat_s3gio")
+theme_override_styles/normal = SubResource("StyleBoxFlat_hgxv2")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -150,7 +186,7 @@ offset_left = 618.0
 offset_top = 189.0
 offset_right = 1016.0
 offset_bottom = 530.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_i64nf")
+theme_override_styles/panel = SubResource("StyleBoxFlat_x4o02")
 
 [node name="Panel4" type="Panel" parent="."]
 layout_mode = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cdyouk3kkeoq2"]
+[gd_scene load_steps=20 format=3 uid="uid://cdyouk3kkeoq2"]
 
 [ext_resource type="Script" uid="uid://q558epmkqhtb" path="res://Scripts/UI/story1_controller.gd" id="1_pq51y"]
 [ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="2_a8o4c"]
@@ -19,11 +19,64 @@ bg_color = Color(0.952941, 0.384314, 1, 0.270588)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u71fn"]
 texture = ExtResource("5_jfk2s")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pq51y"]
+bg_color = Color(0.694118, 0.654902, 0.654902, 0.380392)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yismj"]
+bg_color = Color(0, 0, 0, 0.509804)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yfre7"]
+bg_color = Color(0, 0, 0, 0.509804)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6yj2"]
+bg_color = Color(0, 0, 0, 0.509804)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lj6ts"]
+bg_color = Color(0, 0, 0, 0.509804)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cfbdy"]
+bg_color = Color(0, 0, 0, 0.509804)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u71fn"]
 bg_color = Color(0.945098, 0.247059, 1, 0.717647)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x6irx"]
 texture = ExtResource("6_pq51y")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6irx"]
+bg_color = Color(0.945098, 0.247059, 1, 0.717647)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [node name="Story1" type="Control"]
 layout_mode = 3
@@ -114,6 +167,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("4_okpo2")
 theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxFlat_pq51y")
+theme_override_styles/normal = SubResource("StyleBoxFlat_yismj")
 text = "Day 1"
 
 [node name="Day_2_Button" type="Button" parent="HBoxContainer"]
@@ -121,6 +176,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("4_okpo2")
 theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxFlat_yfre7")
+theme_override_styles/normal = SubResource("StyleBoxFlat_m6yj2")
 text = "Day 2"
 
 [node name="Day_3_Button" type="Button" parent="HBoxContainer"]
@@ -128,6 +185,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("4_okpo2")
 theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = SubResource("StyleBoxFlat_lj6ts")
+theme_override_styles/normal = SubResource("StyleBoxFlat_cfbdy")
 text = "Day 3"
 
 [node name="Day_2_Lock_Panel" type="Panel" parent="."]
@@ -136,7 +195,7 @@ offset_left = 447.0
 offset_top = 255.0
 offset_right = 709.0
 offset_bottom = 501.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_yismj")
+theme_override_styles/panel = SubResource("StyleBoxFlat_u71fn")
 
 [node name="Day_2_lock" type="Panel" parent="."]
 layout_mode = 1
@@ -175,7 +234,7 @@ offset_left = 755.0
 offset_top = 256.0
 offset_right = 1016.0
 offset_bottom = 499.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_yismj")
+theme_override_styles/panel = SubResource("StyleBoxFlat_x6irx")
 
 [node name="Day_3_lock" type="Panel" parent="."]
 layout_mode = 1
