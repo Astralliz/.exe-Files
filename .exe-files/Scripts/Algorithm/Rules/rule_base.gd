@@ -22,7 +22,7 @@ var all_rules = [
 # Rules per level
 var level_rules = {
 	1: [
-		#MAx score 3.4
+		#MAx score 3.4 
 		{"id": "R1", "condition": "size_large", "score": 0.8},
 		{"id": "R2", "condition": "ext_exe", "score": 1},
 		{"id": "R3", "condition": "ext_script", "score": 0.5},

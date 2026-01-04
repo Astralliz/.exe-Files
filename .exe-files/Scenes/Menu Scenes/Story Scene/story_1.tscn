@@ -132,10 +132,10 @@ text = "Day 3"
 
 [node name="Day_2_Lock_Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 445.0
+offset_left = 447.0
 offset_top = 255.0
 offset_right = 709.0
-offset_bottom = 498.0
+offset_bottom = 501.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_yismj")
 
 [node name="Day_2_lock" type="Panel" parent="."]
@@ -172,9 +172,9 @@ vertical_alignment = 1
 [node name="Day_3_Lock_Panel" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 755.0
-offset_top = 254.0
-offset_right = 1019.0
-offset_bottom = 497.0
+offset_top = 256.0
+offset_right = 1016.0
+offset_bottom = 499.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_yismj")
 
 [node name="Day_3_lock" type="Panel" parent="."]

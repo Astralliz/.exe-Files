@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://x2gbjws5hn5w"]
 
-[ext_resource type="AudioStream" uid="uid://cltqqqasywbqe" path="res://Assets/Audio/menu music.wav" id="1_dgu11"]
+[ext_resource type="AudioStream" uid="uid://btt4jrt4lnwip" path="res://Assets/Audio/globalMusic.wav" id="1_o385e"]
 [ext_resource type="Script" uid="uid://mg3340niytx" path="res://Scripts/UI/menu_music.gd" id="2_o385e"]
 
 [node name="GlobalMusic" type="AudioStreamPlayer"]
-stream = ExtResource("1_dgu11")
+stream = ExtResource("1_o385e")
 autoplay = true
 script = ExtResource("2_o385e")
