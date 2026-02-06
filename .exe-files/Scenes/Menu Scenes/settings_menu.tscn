@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1jtcjre1suu6"]
+[gd_scene load_steps=11 format=3 uid="uid://c1jtcjre1suu6"]
 
 [ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="1_6htda"]
 [ext_resource type="Script" uid="uid://c4ui54he3pil7" path="res://Scripts/UI/menu_controller.gd" id="1_r2e5e"]
 [ext_resource type="Texture2D" uid="uid://bpdo8bf18gauj" path="res://Assets/images/rectangle.png" id="2_r2e5e"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_wqxdw"]
 [ext_resource type="Texture2D" uid="uid://b28uwmv3pk23t" path="res://Assets/Button/utton.png" id="4_tlxtj"]
+[ext_resource type="Script" uid="uid://jmjye8nsw1k4" path="res://Scripts/UI/settings/settings_audio.gd" id="6_wqxdw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i5icr"]
 texture = ExtResource("1_6htda")
@@ -68,5 +69,92 @@ offset_right = 1047.0
 offset_bottom = 163.0
 theme_override_styles/hover = SubResource("StyleBoxFlat_jmvne")
 theme_override_styles/normal = SubResource("StyleBoxTexture_cg6wl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 186.0
+offset_right = 1065.0
+offset_bottom = 557.0
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_wqxdw")
+theme_override_font_sizes/font_size = 30
+text = "Volume Settings"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+script = ExtResource("6_wqxdw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("3_wqxdw")
+theme_override_font_sizes/font_size = 25
+text = "Music Volume"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("3_wqxdw")
+theme_override_font_sizes/font_size = 25
+text = "SFX Volume"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_wqxdw")
+theme_override_font_sizes/font_size = 30
+text = "Manage Data"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 3.8
+theme_override_fonts/font = ExtResource("3_wqxdw")
+theme_override_font_sizes/font_size = 25
+text = "Edit Username"
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 3.8
+theme_override_fonts/font = ExtResource("3_wqxdw")
+theme_override_font_sizes/font_size = 25
+text = "Delete Data"
 
 [connection signal="pressed" from="Button" to="." method="_on_settings_back_pressed"]

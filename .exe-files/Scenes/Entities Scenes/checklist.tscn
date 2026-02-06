@@ -109,3 +109,4 @@ theme_override_colors/font_color = Color(0.984375, 0.164864, 0.0307617, 1)
 [node name="Audio_Pickup" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-104, -144)
 stream = ExtResource("5_pwa2m")
+bus = &"SFX"

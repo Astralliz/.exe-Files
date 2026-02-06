@@ -77,3 +77,4 @@ position = Vector2(0, 56)
 [node name="Audio_Pickup" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-40, 120)
 stream = ExtResource("4_dnsdm")
+bus = &"SFX"

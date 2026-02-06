@@ -223,7 +223,7 @@ func handle_player_decision(player_approved: bool):
 	
 	enable_buttons(false)
 	var score = filetizen.metadata.risk_score
-	var approved = score <= 1.0
+	var approved = score <= 1.0	
 	var is_correct = player_approved == approved
 	var message: String
 	var show_gameover: bool = false
