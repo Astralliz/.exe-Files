@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c64oc7fc0ahdf"]
+[gd_scene load_steps=11 format=3 uid="uid://c64oc7fc0ahdf"]
 
 [ext_resource type="Script" uid="uid://c4ui54he3pil7" path="res://Scripts/UI/menu_controller.gd" id="1_vapen"]
 [ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="2_ssqnt"]
@@ -12,6 +12,10 @@ texture = ExtResource("2_ssqnt")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2esyf"]
 texture = ExtResource("3_kult1")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ssqnt"]
+content_margin_left = 20.0
+content_margin_right = 20.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jsiqt"]
 texture = ExtResource("5_iqnu0")
@@ -80,20 +84,513 @@ theme_override_font_sizes/font_size = 25
 text = "Level3"
 
 [node name="MetdataPanel" type="Panel" parent="Panel2"]
+visible = false
 layout_mode = 0
 offset_left = 102.0
 offset_top = 221.0
 offset_right = 1057.0
 offset_bottom = 557.0
 
-[node name="Label" type="Label" parent="Panel2/MetdataPanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel2/MetdataPanel"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+offset_right = 958.0
+offset_bottom = 336.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel2/MetdataPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="Rule1" type="VBoxContainer" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("4_uhe4a")
-theme_override_font_sizes/font_size = 20
-text = "Metadata Panel"
+theme_override_font_sizes/font_size = 28
+text = "🔘Large Files"
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Files that are unusually large may contain hidden payloads, bundled malware, or unnecessary components."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Tip: If a file is much bigger than expected (e.g., a “PDF” that’s hundreds of MB), be cautious before opening it."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Rule2" type="VBoxContainer" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘Executable File"
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Executable files (.exe) can directly run programs on your system."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Tip: Never run .exe files from untrusted sources, emails, or pop-ups — this is one of the most common malware entry points."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Rule3" type="VBoxContainer" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘Script File"
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Script files (.bat) can execute commands automatically."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Tip: Even small script files can cause serious damage. Avoid running scripts unless you fully trust the source."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Rule4" type="VBoxContainer" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘Dropper Behavior"
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule4"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ A dropper installs or downloads other malicious files after execution(.js, .vbs, etc.)"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule4"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Tip: Malware often comes in stages. A harmless-looking file may just be the “delivery tool” for something worse."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Rule5" type="VBoxContainer" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule5"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘Unknown Publisher"
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule5"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ The file’s developer or publisher cannot be verified."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule5"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Tip: If Windows warns you that the publisher is unknown, stop and think — reputable software is usually signed."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Rule6" type="VBoxContainer" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule6"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘Recently Modified"
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule6"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ The file was changed very recently, possibly to evade detection."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule6"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Tip: New or freshly modified files are more likely to be suspicious, especially if they come from unknown sources."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Rule7" type="VBoxContainer" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule7"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘Email Source"
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule7"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ The file originated from an email attachment."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule7"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Tip: Email attachments are a top attack vector. Always double-check the sender and never rush to open attachments."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Rule8" type="VBoxContainer" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule8"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘Unknown Source"
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule8"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ The file’s origin cannot be traced."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule8"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Tip: If you don’t know where a file came from, assume it could be unsafe."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Rule9" type="VBoxContainer" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule9"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘Hidden File"
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule9"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ The file is hidden from normal view."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule9"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Tip: Malware often hides itself to avoid detection. Be cautious with files that don’t appear unless hidden items are enabled."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Rule10" type="VBoxContainer" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule10"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘Random File Name"
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule10"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ The file name looks random or meaningless."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule10"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Tip: Random names are often used to avoid detection. Legitimate software usually has readable names."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Rule11" type="VBoxContainer" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule11"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘Invalid Digital Signature"
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule11"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ The file’s digital signature is broken or tampered with."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule11"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Tip: Invalid signatures can mean the file was modified after being signed — a major red flag."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Rule12" type="VBoxContainer" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule12"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘Requires Administrator Access"
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule12"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ The file asks for admin privileges to run."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule12"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Tip: Admin access gives full system control. Never grant it unless you completely trust the application."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Rule13" type="VBoxContainer" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule13"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘File Type Mismatch"
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule13"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ The file claims to be one type but behaves like another."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule13"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Tip: A file named document.pdf.exe is a classic trick. Always show file extensions in your system settings."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Rule14" type="VBoxContainer" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule14"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘Compressed Executable"
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule14"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ The executable is packed or compressed to hide its real behavior."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/MetdataPanel/ScrollContainer/VBoxContainer/Rule14"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Tip: Compression is often used to evade antivirus scans. Be extra careful with compressed executables."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
 
 [node name="Level1Panel" type="Panel" parent="Panel2"]
 layout_mode = 0
@@ -103,6 +600,7 @@ offset_right = 1057.0
 offset_bottom = 557.0
 
 [node name="Label" type="Label" parent="Panel2/Level1Panel"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -111,6 +609,7 @@ theme_override_font_sizes/font_size = 20
 text = "LEvel1 Panel"
 
 [node name="Level2Panel" type="Panel" parent="Panel2"]
+visible = false
 layout_mode = 0
 offset_left = 102.0
 offset_top = 221.0
@@ -118,6 +617,7 @@ offset_right = 1057.0
 offset_bottom = 557.0
 
 [node name="Label" type="Label" parent="Panel2/Level2Panel"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -126,6 +626,7 @@ theme_override_font_sizes/font_size = 20
 text = "Lefel2"
 
 [node name="Level3Panel" type="Panel" parent="Panel2"]
+visible = false
 layout_mode = 0
 offset_left = 102.0
 offset_top = 221.0
@@ -133,6 +634,7 @@ offset_right = 1057.0
 offset_bottom = 557.0
 
 [node name="Label" type="Label" parent="Panel2/Level3Panel"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
