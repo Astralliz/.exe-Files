@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1jtcjre1suu6"]
+[gd_scene load_steps=12 format=3 uid="uid://c1jtcjre1suu6"]
 
 [ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="1_6htda"]
 [ext_resource type="Script" uid="uid://c4ui54he3pil7" path="res://Scripts/UI/menu_controller.gd" id="1_r2e5e"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_wqxdw"]
 [ext_resource type="Texture2D" uid="uid://b28uwmv3pk23t" path="res://Assets/Button/utton.png" id="4_tlxtj"]
 [ext_resource type="Script" uid="uid://jmjye8nsw1k4" path="res://Scripts/UI/settings/settings_audio.gd" id="6_wqxdw"]
+[ext_resource type="Script" uid="uid://cwrfhp0otyx3x" path="res://Scripts/UI/settings/settings_dialog_controller.gd" id="7_tlxtj"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i5icr"]
 texture = ExtResource("1_6htda")
@@ -138,8 +139,9 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 50
+script = ExtResource("7_tlxtj")
 
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer2"]
+[node name="Username" type="Button" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -148,7 +150,7 @@ theme_override_fonts/font = ExtResource("3_wqxdw")
 theme_override_font_sizes/font_size = 25
 text = "Edit Username"
 
-[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer2"]
+[node name="UserDAta" type="Button" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -158,3 +160,5 @@ theme_override_font_sizes/font_size = 25
 text = "Delete Data"
 
 [connection signal="pressed" from="Button" to="." method="_on_settings_back_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Username" to="VBoxContainer/HBoxContainer2" method="_on_username_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/UserDAta" to="VBoxContainer/HBoxContainer2" method="_on_user_d_ata_pressed"]

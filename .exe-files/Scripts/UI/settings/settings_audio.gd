@@ -7,7 +7,6 @@ const MUSIC_BUS := "Music"
 const SFX_BUS := "SFX"
 
 func _ready():
-	print("SFX bus index:", AudioServer.get_bus_index("SFX"))	
 	# --- MUSIC ---
 	var music_bus = AudioServer.get_bus_index(MUSIC_BUS)
 	music_slider.value = db_to_linear(

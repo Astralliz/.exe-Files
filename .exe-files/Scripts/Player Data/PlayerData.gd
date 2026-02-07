@@ -22,6 +22,7 @@ const SAVE_SECTION := "player"
 signal bug_bounty_changed(new_amount)
 signal filter_amount_change(new_amount)
 signal evaluation_amount_change(new_amount)
+signal username_changed(new_username)
 
 func _ready() -> void:
 	load_data()
@@ -115,8 +116,10 @@ func set_new_game_status(value: int) -> void:
 	save_data()
 # ----------------------- HELPERS / API -----------------------
 func set_username(name: String) -> void:
+	print("SET USERNAME:", name, " INSTANCE:", self)
 	data["username"] = name
 	save_data()
+	emit_signal("username_changed", name)
 
 func unlock_achievement(id: String) -> void:
 	if id == "":
@@ -208,14 +211,13 @@ func get_bug_bounty() -> int:
 # ----------------------- Reset -----------------------
 func reset_data() -> void:
 	data = {
-		"new_game": true,
-		"welcome_showed": false,
+		"new_to_game": 0,
 		"username": "",
-		"level": 1,
+		"level": 0,
 		"speedtime": {},
 		"achievements": [],
 		"filter_used": 0,
 		"evaluate_used": 0,
-		"bug_bounty": 0
+		"bug_bounty": 40
 	}
 	save_data()
