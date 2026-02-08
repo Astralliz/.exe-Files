@@ -5,6 +5,10 @@ extends Control
 @onready var continue_btn: Button = $Continue
 @onready var ach_continue_btn: Button = $Achievement
 
+@onready var trophy_panel: Panel = $TrophyPanel
+@onready var trophy_image: TextureRect = $TrophyPanel/TrophyImage
+@onready var achievement_label: Label = $TrophyPanel/AchievementLabel
+
 var added_eval = 6
 var added_fils = 4
 var achievement = "Metadata Detective"
@@ -13,6 +17,7 @@ var day: int
 
 func _ready() -> void:
 	day = GameState.day
+	trophy_panel.visible = false
 	setup_dialogue(day)
 
 
@@ -26,7 +31,11 @@ func setup_dialogue(day: int) -> void:
 		Player_Data.add_evaluates(added_eval)
 		Player_Data.add_filter(added_fils)
 
-		message.text = "Congrats!\nYou unlocked an\nAchievement:\n'" + achievement + "'\nKeep playing to unlock more!"
+		message.text = "Congrats!\nYou unlocked an Achievement!"
+
+		show_trophy_animation()
+		
+		achievement_label.text = achievement
 	
 	# OTHER DAYS — NO ACHIEVEMENT
 	else:
@@ -35,20 +44,45 @@ func setup_dialogue(day: int) -> void:
 		continue_btn.show()
 		
 		message.text = "\nGreat job!\nYou finished Day " + str(day) + "\nGet ready for the next challenge!"
+		
+
+func show_trophy_animation() -> void:
+	trophy_panel.visible = true
+
+	# Start small
+	trophy_panel.scale = Vector2(0.2, 0.2)
+
+	# Ensure scale happens from center
+	await get_tree().process_frame
+	trophy_panel.pivot_offset = trophy_panel.size / 2
+
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.set_ease(Tween.EASE_OUT)
+
+	tween.tween_property(
+		trophy_panel,
+		"scale",
+		Vector2.ONE,
+		0.6
+	)
 
 
 func _on_achievement_pressed() -> void:
 	message.text = "\nCONGRATS!\nYou received:\n" + str(added_eval) + " Evaluates\n" + str(added_fils) + " Filters!"
 	accept_btn.show()
+	trophy_panel.visible = false
 	ach_continue_btn.hide()
 
 
 func _on_accept_pressed() -> void:
-	message.text = "\nDay 1 Complete!\nMore challenging days await!"
+	message.text = "\n\nDay 1 Complete!\nMore challenging days await!"
 	accept_btn.hide()
+	trophy_panel.visible = false
 	continue_btn.show()
 
 
 func _on_continue_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Menu Scenes/Story Scene/story_1.tscn")
+	trophy_panel.visible = false
 	GlobalMusic.play()

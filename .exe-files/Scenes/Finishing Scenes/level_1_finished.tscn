@@ -1,15 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddtsynehhxi41"]
+[gd_scene load_steps=9 format=3 uid="uid://ddtsynehhxi41"]
 
 [ext_resource type="Script" uid="uid://csgcrujo5cbmk" path="res://Scripts/UI/Pop Up/Level1Finished.gd" id="1_d0x3u"]
 [ext_resource type="Texture2D" uid="uid://dud14egjhs4im" path="res://Assets/images/finished window.png" id="1_dald2"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="2_8dgci"]
 [ext_resource type="Texture2D" uid="uid://cy8xynrmywbvn" path="res://Assets/Sprites/mentor.png" id="4_m8uy5"]
+[ext_resource type="Texture2D" uid="uid://b7bsg171s52qy" path="res://Assets/Trophy/MetadataDetective.png" id="5_547lw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8dgci"]
 texture = ExtResource("1_dald2")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_547lw"]
 texture = ExtResource("4_m8uy5")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_547lw"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="Level1Finished" type="Control"]
 layout_mode = 3
@@ -36,10 +40,10 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_8dgci")
 
 [node name="Continue" type="Button" parent="."]
 layout_mode = 0
-offset_left = 483.0
-offset_top = 401.0
-offset_right = 665.0
-offset_bottom = 463.0
+offset_left = 729.0
+offset_top = 426.0
+offset_right = 911.0
+offset_bottom = 488.0
 theme_override_fonts/font = ExtResource("2_8dgci")
 theme_override_font_sizes/font_size = 30
 text = "Continue"
@@ -56,31 +60,65 @@ horizontal_alignment = 1
 
 [node name="Accept" type="Button" parent="."]
 layout_mode = 0
-offset_left = 483.0
-offset_top = 397.0
-offset_right = 665.0
-offset_bottom = 459.0
+offset_left = 725.0
+offset_top = 429.0
+offset_right = 907.0
+offset_bottom = 491.0
 theme_override_fonts/font = ExtResource("2_8dgci")
 theme_override_font_sizes/font_size = 30
 text = "Accept"
 
 [node name="Achievement" type="Button" parent="."]
 layout_mode = 0
-offset_left = 483.0
-offset_top = 397.0
-offset_right = 665.0
-offset_bottom = 461.0
+offset_left = 728.0
+offset_top = 426.0
+offset_right = 910.0
+offset_bottom = 490.0
 theme_override_fonts/font = ExtResource("2_8dgci")
 theme_override_font_sizes/font_size = 30
 text = "Continue"
 
 [node name="Panel2" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 251.0
-offset_top = 192.0
-offset_right = 457.0
-offset_bottom = 383.0
+offset_left = 280.0
+offset_top = 226.0
+offset_right = 486.0
+offset_bottom = 417.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_547lw")
+
+[node name="TrophyPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 592.0
+offset_top = 186.0
+offset_right = 777.0
+offset_bottom = 417.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_547lw")
+
+[node name="TrophyImage" type="TextureRect" parent="TrophyPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 6.0
+offset_right = 291.0
+offset_bottom = 494.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.376215, 0.291459)
+texture = ExtResource("5_547lw")
+stretch_mode = 5
+
+[node name="AchievementLabel" type="Label" parent="TrophyPanel"]
+layout_mode = 0
+offset_left = -16.0
+offset_top = 203.0
+offset_right = 212.0
+offset_bottom = 231.0
+theme_override_fonts/font = ExtResource("2_8dgci")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="Accept" to="." method="_on_accept_pressed"]
