@@ -84,7 +84,6 @@ theme_override_font_sizes/font_size = 25
 text = "Level3"
 
 [node name="MetdataPanel" type="Panel" parent="Panel2"]
-visible = false
 layout_mode = 0
 offset_left = 102.0
 offset_top = 221.0
@@ -609,7 +608,6 @@ theme_override_font_sizes/font_size = 20
 text = "LEvel1 Panel"
 
 [node name="Level2Panel" type="Panel" parent="Panel2"]
-visible = false
 layout_mode = 0
 offset_left = 102.0
 offset_top = 221.0
@@ -626,7 +624,6 @@ theme_override_font_sizes/font_size = 20
 text = "Lefel2"
 
 [node name="Level3Panel" type="Panel" parent="Panel2"]
-visible = false
 layout_mode = 0
 offset_left = 102.0
 offset_top = 221.0

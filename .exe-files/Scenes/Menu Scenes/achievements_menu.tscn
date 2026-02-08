@@ -1,12 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://cm4bu8kgxg5gg"]
+[gd_scene load_steps=12 format=3 uid="uid://cm4bu8kgxg5gg"]
 
 [ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="1_pn3f3"]
 [ext_resource type="Script" uid="uid://c4ui54he3pil7" path="res://Scripts/UI/menu_controller.gd" id="1_wsird"]
 [ext_resource type="Texture2D" uid="uid://bpdo8bf18gauj" path="res://Assets/images/rectangle.png" id="2_wsird"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_gjhoa"]
 [ext_resource type="Texture2D" uid="uid://b28uwmv3pk23t" path="res://Assets/Button/utton.png" id="4_ifktr"]
-[ext_resource type="Script" uid="uid://drfy8s22ejjfd" path="res://Scripts/Player Data/Achievements.gd" id="6_gjhoa"]
-[ext_resource type="Texture2D" uid="uid://dud14egjhs4im" path="res://Assets/images/finished window.png" id="7_ifktr"]
+[ext_resource type="Texture2D" uid="uid://b7bsg171s52qy" path="res://Assets/Trophy/MetadataDetective.png" id="6_gjhoa"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_msj3w"]
 texture = ExtResource("1_pn3f3")
@@ -20,20 +19,8 @@ bg_color = Color(0.952941, 0.384314, 1, 0.270588)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5mc3w"]
 texture = ExtResource("4_ifktr")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fa3lm"]
-texture = ExtResource("7_ifktr")
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ifktr"]
-texture = ExtResource("7_ifktr")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y53px"]
-texture = ExtResource("7_ifktr")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n573o"]
-texture = ExtResource("7_ifktr")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lc3fj"]
-texture = ExtResource("7_ifktr")
+texture = ExtResource("6_gjhoa")
 
 [node name="AchievementsMenu" type="Control"]
 layout_mode = 3
@@ -88,96 +75,142 @@ offset_bottom = 163.0
 theme_override_styles/hover = SubResource("StyleBoxFlat_fa3lm")
 theme_override_styles/normal = SubResource("StyleBoxTexture_5mc3w")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -379.12
-offset_top = -121.0
-offset_right = 379.12
-offset_bottom = 121.0
-grow_horizontal = 2
-grow_vertical = 2
-vertical_scroll_mode = 0
-script = ExtResource("6_gjhoa")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
-clip_children = 1
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+offset_left = 126.0
+offset_top = 203.0
+offset_right = 1043.0
+offset_bottom = 492.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Panel" type="Panel" parent="ScrollContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Achievment1" type="Panel" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxTexture_fa3lm")
 
-[node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/Panel"]
-layout_mode = 0
-offset_left = 2.12
-offset_top = 89.0
-offset_right = 145.12
-offset_bottom = 170.0
-text = "not unlock"
-horizontal_alignment = 1
-
-[node name="Panel2" type="Panel" parent="ScrollContainer/HBoxContainer"]
-layout_mode = 2
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/Achievment1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_ifktr")
 
-[node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/Panel2"]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Achievment1/Panel"]
 layout_mode = 0
-offset_left = 4.12
-offset_top = 93.0
-offset_right = 143.12
-offset_bottom = 174.0
-text = "not unlcok"
+offset_left = 1.0
+offset_top = 16.0
+offset_right = 180.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("3_gjhoa")
+theme_override_font_sizes/font_size = 15
+text = "Metadata Detective"
 horizontal_alignment = 1
 
-[node name="Panel3" type="Panel" parent="ScrollContainer/HBoxContainer"]
+[node name="Achievment2" type="Panel" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxTexture_y53px")
 
-[node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/Panel3"]
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/Achievment2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_ifktr")
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Achievment2/Panel"]
 layout_mode = 0
-offset_left = 0.119995
-offset_top = 95.0
-offset_right = 153.12
-offset_bottom = 176.0
-text = "not unlock"
+offset_left = 1.0
+offset_top = 16.0
+offset_right = 180.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("3_gjhoa")
+theme_override_font_sizes/font_size = 15
+text = "Threat Neutralizer"
 horizontal_alignment = 1
 
-[node name="Panel4" type="Panel" parent="ScrollContainer/HBoxContainer"]
+[node name="Achievment3" type="Panel" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxTexture_n573o")
 
-[node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/Panel4"]
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/Achievment3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_ifktr")
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Achievment3/Panel"]
 layout_mode = 0
-offset_left = 2.12
-offset_top = 96.0
-offset_right = 137.12
-offset_bottom = 172.0
-text = "not unlock"
+offset_left = 1.0
+offset_top = 16.0
+offset_right = 180.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("3_gjhoa")
+theme_override_font_sizes/font_size = 15
+text = "Metadata Detective"
 horizontal_alignment = 1
 
-[node name="Panel5" type="Panel" parent="ScrollContainer/HBoxContainer"]
+[node name="Achievment4" type="Panel" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxTexture_lc3fj")
 
-[node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/Panel5"]
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/Achievment4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_ifktr")
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Achievment4/Panel"]
 layout_mode = 0
-offset_left = 4.12
-offset_top = 94.0
-offset_right = 145.12
-offset_bottom = 175.0
-text = "not unlock"
+offset_left = 1.0
+offset_top = 16.0
+offset_right = 180.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("3_gjhoa")
+theme_override_font_sizes/font_size = 15
+text = "Metadata Detective"
+horizontal_alignment = 1
+
+[node name="Achievment5" type="Panel" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer/Achievment5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_ifktr")
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Achievment5/Panel"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 16.0
+offset_right = 180.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("3_gjhoa")
+theme_override_font_sizes/font_size = 15
+text = "Metadata Detective"
 horizontal_alignment = 1
 
 [connection signal="pressed" from="BackBtn" to="." method="_on_back_btn_pressed"]
