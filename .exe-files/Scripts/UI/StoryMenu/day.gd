@@ -130,9 +130,10 @@ func move_declined_filetizen():
 func get_rule_level_from_day(day: int) -> int:
 	if day <= 2:
 		return 1
-	elif day == 3:
+	elif day <= 4:
 		return 2
-	return 1  # default fallback
+	else:
+		return 3
 
 func _process(delta):
 	var target = get_viewport().get_visible_rect().size / 2.0
@@ -151,7 +152,6 @@ func _process(delta):
 			current_answers = answer_gen.generate_answers(filetizen.metadata, evaluate.score) # temp 0 for now
 
 			# 2️⃣ Evaluate score including answer
-			evaluate.score += engine.evaluate_type_mismatch(filetizen.metadata, current_answers, rules_for_level)
 			filetizen.metadata.risk_score = evaluate.score
 			filetizen.metadata.issues = evaluate.issues
 

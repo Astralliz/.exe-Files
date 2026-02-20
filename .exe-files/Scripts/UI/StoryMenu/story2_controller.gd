@@ -12,7 +12,7 @@ func _on_back_1_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Menu Scenes/story_menu.tscn")
 
 func _on_day_4_start_pressed() -> void:
-	GameState.day == 4
+	GameState.day = 4
 	get_tree().change_scene_to_file("res://Scenes/Menu Scenes/Story Scene/day.tscn")
 
 func _on_day_5_start_pressed() -> void:
@@ -24,12 +24,12 @@ func _on_day_3_start_pressed():
 	get_tree().change_scene_to_file("res://Scenes/Menu Scenes/Story Scene/day.tscn")
 
 func _ready() -> void:
-	if Player_Data.data["level"] >= 5:
+	if Player_Data.data["level"] >= 4:
 		day_5_panel.hide()
 		day_5_lock.hide()
 		day_5_label.hide()
 
-	if Player_Data.data["level"] >=6:
+	if Player_Data.data["level"] >=5:
 		day_6_panel.hide()
 		day_6_lock.hide()
 		day_6_label.hide()

@@ -15,8 +15,8 @@ var all_rules = [
 	{"id": "R10", "condition": "random_filename", "score": 0.6},
 	{"id": "R11", "condition": "invalid_signature", "score": 1},
 	{"id": "R12", "condition": "needs_admin", "score": 1},
-	{"id": "R13", "condition": "type_mismatch", "score": 1},
-	{"id": "R14", "condition": "compressed_exec", "score": 0.8},
+	#{"id": "R13", "condition": "type_mismatch", "score": 1},
+	{"id": "R13", "condition": "compressed_exec", "score": 0.8},
 ]
 
 # Rules per level
@@ -48,17 +48,15 @@ var level_rules = {
 		{"id": "R2", "condition": "ext_exe", "score": 1.5},
 		{"id": "R3", "condition": "ext_script", "score": 1},
 		{"id": "R4", "condition": "ext_dropper", "score": 1},
-		{"id": "R5", "condition": "name_installer", "score": 0.7},
-		{"id": "R6", "condition": "unknown_publisher", "score": 1.2},
-		{"id": "R7", "condition": "recent_modified", "score": 0.7},
-		{"id": "R8", "condition": "src_email", "score": 1.2},
-		{"id": "R9", "condition": "src_unknown", "score": 1},
-		{"id": "R10", "condition": "is_hidden", "score": 0.9},
-		{"id": "R11", "condition": "random_filename", "score": 0.7},
-		{"id": "R12", "condition": "invalid_signature", "score": 1.2},
-		{"id": "R13", "condition": "needs_admin", "score": 1.3},
-		{"id": "R14", "condition": "type_mismatch", "score": 1.1},
-		{"id": "R15", "condition": "compressed_exec", "score": 1},
+		{"id": "R5", "condition": "unknown_publisher", "score": 1.2},
+		{"id": "R6", "condition": "recent_modified", "score": 0.7},
+		{"id": "R7", "condition": "src_email", "score": 0.8},
+		{"id": "R8", "condition": "src_unknown", "score": 1},
+		{"id": "R9", "condition": "is_hidden", "score": 0.9},
+		{"id": "R10", "condition": "random_filename", "score": 0.7},
+		{"id": "R11", "condition": "invalid_signature", "score": 1.2},
+		{"id": "R12", "condition": "needs_admin", "score": 1.3},
+		{"id": "R13", "condition": "compressed_exec", "score": 1},
 	]
 }
 

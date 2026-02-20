@@ -30,10 +30,6 @@ func evaluate(file: FileMetadata, rules: Array, answer: Dictionary = {}) -> Dict
 				if file.extension in [".js", ".vbs"]:
 					score += rule.score
 					triggered = true
-			"name_installer":
-				if "setup" in file.filename.to_lower() or "installer" in file.filename.to_lower():
-					score += rule.score
-					triggered = true
 			"unknown_publisher":
 				if file.publisher == "unknown":
 					score += rule.score
@@ -53,7 +49,7 @@ func evaluate(file: FileMetadata, rules: Array, answer: Dictionary = {}) -> Dict
 			"is_hidden":
 				if file.hidden:
 					score += rule.score
-					triggered = false
+					triggered = true
 			"random_filename":
 				if _is_random_filename(file.filename):
 					score += rule.score
@@ -79,13 +75,13 @@ func evaluate(file: FileMetadata, rules: Array, answer: Dictionary = {}) -> Dict
 		"issues": issues
 	}
 
-func evaluate_type_mismatch(file: FileMetadata, answer: Dictionary, rules: Array) -> float:
-	var score = 0.0
-	for rule in rules:
-		if rule.condition == "type_mismatch":
-			if answer.has("extension") and answer["extension"] != file.extension:
-				score += rule.score
-	return score
+#func evaluate_type_mismatch(file: FileMetadata, answer: Dictionary, rules: Array) -> float:
+	#var score = 0.0
+	#for rule in rules:
+		#if rule.condition == "type_mismatch":
+			#if answer.has("extension") and answer["extension"] != file.extension:
+				#score += rule.score
+	#return score
 
 func _is_random_filename(name: String) -> bool:
 	# If filename has many numbers or mixed-case random letters

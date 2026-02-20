@@ -13,6 +13,11 @@ var added_eval = 6
 var added_fils = 4
 var achievement = ["Metadata Detective", "System Gatekeeper"]
 
+var achievement_images := {
+	"Metadata Detective": "res://Assets/Trophy/MetadataDetective.png",
+	"System Gatekeeper": "res://Assets/Trophy/SystemGatekeeper.png"
+}
+
 var day: int
 
 func _ready() -> void:
@@ -27,23 +32,34 @@ func setup_dialogue(day: int) -> void:
 		continue_btn.hide()
 		accept_btn.hide()
 
-		Player_Data.unlock_achievement(achievement[0])
+		var unlocked = achievement[0]
+
+		Player_Data.unlock_achievement(unlocked)
 		Player_Data.add_evaluates(added_eval)
 		Player_Data.add_filter(added_fils)
 
+		achievement_label.text = unlocked
+		set_trophy_image(unlocked)
+		show_trophy_animation()
+
 		message.text = "Congrats!\nYou unlocked an Achievement!"
 
-		show_trophy_animation()
 		
-		achievement_label.text = achievement
+		achievement_label.text = achievement[0]
 	
 	# OTHER DAYS — NO ACHIEVEMENT
 	
-	elif day == 4 && Player_Data.data["level"] > 3:
+	elif day == 3 && Player_Data.data["level"] >= 2:
 		continue_btn.hide()
 		accept_btn.hide()
-		
-		Player_Data.unlock_achievement(achievement[1])
+
+		var unlocked = achievement[1]
+
+		Player_Data.unlock_achievement(unlocked)
+		achievement_label.text = unlocked
+		set_trophy_image(unlocked)
+
+		show_trophy_animation()
 	else:
 		ach_continue_btn.hide()
 		accept_btn.hide()
@@ -51,6 +67,10 @@ func setup_dialogue(day: int) -> void:
 		
 		message.text = "\nGreat job!\nYou finished Day " + str(day) + "\nGet ready for the next challenge!"
 		
+
+func set_trophy_image(achievement_name: String) -> void:
+	if achievement_images.has(achievement_name):
+		trophy_image.texture = load(achievement_images[achievement_name])
 
 func show_trophy_animation() -> void:
 	trophy_panel.visible = true
@@ -89,6 +109,9 @@ func _on_accept_pressed() -> void:
 
 
 func _on_continue_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Menu Scenes/Story Scene/story_1.tscn")
+	if Player_Data.data["level"] >= 3:
+		get_tree().change_scene_to_file("res://Scenes/Menu Scenes/story_menu.tscn")
+	else: 
+		get_tree().change_scene_to_file("res://Scenes/Menu Scenes/Story Scene/story_1.tscn")
 	trophy_panel.visible = false
 	GlobalMusic.play()

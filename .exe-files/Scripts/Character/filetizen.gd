@@ -16,6 +16,15 @@ func _ready():
 		print("Size: ", metadata.size_mb)
 		print("Source: ", metadata.source)
 		print("Publisher: ", metadata.publisher)
+	elif GameState.day <= 4:
+		print("Spawned Filetizen: ")
+		print("Name: ", metadata.filename)
+		print("Extension: ", metadata.extension)
+		print("Size: ", metadata.size_mb)
+		print("Source: ", metadata.source)
+		print("Publisher: ", metadata.publisher)
+		print("Modified: ", metadata.modified_hours_ago)
+		print("Hidden: ", metadata.hidden)
 	else:
 		print("Spawned Filetizen: ")
 		print("Name: ", metadata.filename)
@@ -25,6 +34,9 @@ func _ready():
 		print("Publisher: ", metadata.publisher)
 		print("Modified: ", metadata.modified_hours_ago)
 		print("Hidden: ", metadata.hidden)
+		print("Signature: ", metadata.signature_valid)
+		print("Admin: ", metadata.requires_admin)
+		print("Compressed: ", metadata.is_compressed)
 
 		# Level 2 adds more conditions and increases scores
 #{"id": "R1", "condition": "size_large", "score": 1},

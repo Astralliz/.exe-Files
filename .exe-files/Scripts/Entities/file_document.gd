@@ -2,14 +2,17 @@ class_name FileDocument
 extends Node2D
 
 @onready var paper: Sprite2D = $Sprite2D
-@onready var vbox: VBoxContainer = $VBoxContainer
-@onready var file_name: Label = $VBoxContainer/FileName
-@onready var extension: Label = $VBoxContainer/Extension
-@onready var size: Label = $VBoxContainer/Size
-@onready var publisher: Label = $VBoxContainer/Publisher
-@onready var source: Label = $VBoxContainer/Source
-@onready var modified: Label = $VBoxContainer/Modified
-@onready var hidden_label: Label = $VBoxContainer/Hidden
+@onready var vbox: VBoxContainer = $ScrollContainer/VBoxContainer
+@onready var file_name: Label = $ScrollContainer/VBoxContainer/FileName
+@onready var extension: Label = $ScrollContainer/VBoxContainer/Extension
+@onready var size: Label = $ScrollContainer/VBoxContainer/Size
+@onready var publisher: Label = $ScrollContainer/VBoxContainer/Publisher
+@onready var source: Label = $ScrollContainer/VBoxContainer/Source
+@onready var modified: Label = $ScrollContainer/VBoxContainer/Modified
+@onready var hidden_label: Label = $ScrollContainer/VBoxContainer/Hidden
+@onready var signature_label: Label = $ScrollContainer/VBoxContainer/Signature
+@onready var admin_label:Label = $ScrollContainer/VBoxContainer/Admin
+@onready var compressed_label:Label = $ScrollContainer/VBoxContainer/Compressed
 @onready var stamp_anchor: Node2D = $StampAnchor
 @onready var document_area_2d: Area2D = $DocumentArea2D
 @onready var interact_area_2d: Area2D = $InteractArea2D
@@ -35,6 +38,8 @@ var CENTER := Vector2(830, 420)
 var DOWN_POS := Vector2(830, 510)
 
 func set_metadata(data: FileMetadata):
+	metadata = data
+	
 	file_name.text = "Filename: %s" % data.filename
 	extension.text = "Extension: %s" % data.extension
 	size.text = "Size: %.2f MB" % data.size_mb
@@ -42,17 +47,55 @@ func set_metadata(data: FileMetadata):
 	source.text = "Source: %s" % data.source
 	
 	var day = GameState.day
-
-	# --- Level-based display ---
-	if day > 2:
+	
+	# -------------------------
+	# LEVEL 1 (Day 1–2)
+	# -------------------------
+	if day <= 2:
+		modified.hide()
+		hidden_label.hide()
+		signature_label.hide()
+		admin_label.hide()
+		compressed_label.hide()
+	
+	# -------------------------
+	# LEVEL 2 (Day 3–4)
+	# -------------------------
+	elif day <= 4:
 		modified.show()
 		modified.text = "Modified: %d hrs ago" % data.modified_hours_ago
 
 		hidden_label.show()
-		hidden_label.text = "Hidden: %s" % ( "Yes" if data.hidden else "No" )
+		hidden_label.text = "Hidden: %s" % ("Yes" if data.hidden else "No")
+		
+		signature_label.hide()
+		admin_label.hide()
+		compressed_label.hide()
+	
+	# -------------------------
+	# LEVEL 3 (Day 5–6)
+	# -------------------------
 	else:
-		modified.hide()
-		hidden_label.hide()
+		modified.show()
+		modified.text = "Modified: %d hrs ago" % data.modified_hours_ago
+
+		hidden_label.show()
+		hidden_label.text = "Hidden: %s" % ("Yes" if data.hidden else "No")
+
+		signature_label.show()
+		signature_label.text = "Digital Signature: %s" % ("Valid" if data.signature_valid else "INVALID")
+		
+		if data.signature_valid:
+			signature_label.text = "Digital Signature: Valid"
+			signature_label.modulate = Color.WHITE
+		else:	
+			signature_label.text = "Digital Signature: INVALID"
+			signature_label.modulate = Color.RED
+		admin_label.show()
+		admin_label.text = "Requires Admin: %s" % ("Yes" if data.requires_admin else "No")
+
+		compressed_label.show()
+		compressed_label.text = "Compressed: %s" % ("Yes" if data.is_compressed else "No")
 
 func initialize_paper():
 	_state = 0

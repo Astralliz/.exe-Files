@@ -15,7 +15,7 @@ func _on_button_2_pressed() -> void:
 	
 
 func _ready() -> void:
-	if Player_Data.data["level"] >= 4:
+	if Player_Data.data["level"] >= 3:
 		story_2_panel.hide()
 		story_2_lock.hide()
 		story_2_label.hide()
