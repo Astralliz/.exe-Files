@@ -11,7 +11,7 @@ extends Control
 
 var added_eval = 6
 var added_fils = 4
-var achievement = "Metadata Detective"
+var achievement = ["Metadata Detective", "System Gatekeeper"]
 
 var day: int
 
@@ -27,7 +27,7 @@ func setup_dialogue(day: int) -> void:
 		continue_btn.hide()
 		accept_btn.hide()
 
-		Player_Data.unlock_achievement(achievement)
+		Player_Data.unlock_achievement(achievement[0])
 		Player_Data.add_evaluates(added_eval)
 		Player_Data.add_filter(added_fils)
 
@@ -38,6 +38,12 @@ func setup_dialogue(day: int) -> void:
 		achievement_label.text = achievement
 	
 	# OTHER DAYS — NO ACHIEVEMENT
+	
+	elif day == 4 && Player_Data.data["level"] > 3:
+		continue_btn.hide()
+		accept_btn.hide()
+		
+		Player_Data.unlock_achievement(achievement[1])
 	else:
 		ach_continue_btn.hide()
 		accept_btn.hide()

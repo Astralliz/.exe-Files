@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://bpqlx7i7hvdtj"]
 
-[ext_resource type="Script" uid="uid://dmpa5futryf4n" path="res://Scripts/UI/story_controller.gd" id="1_3f07l"]
+[ext_resource type="Script" uid="uid://dmpa5futryf4n" path="res://Scripts/UI/StoryMenu/story_controller.gd" id="1_3f07l"]
 [ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="1_qkcn5"]
 [ext_resource type="Texture2D" uid="uid://bpdo8bf18gauj" path="res://Assets/images/rectangle.png" id="2_iojkw"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_p2sox"]
@@ -224,4 +224,5 @@ visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_story_1_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_back_pressed"]

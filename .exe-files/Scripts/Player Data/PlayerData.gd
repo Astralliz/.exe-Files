@@ -8,8 +8,8 @@ var TEMP_SAVE := true  # true = only memory, false = save to disk
 var data: Dictionary = {
 	"new_to_game": 0,
 	"username": "",
-	"level": 0,
-	"speedtime": {},   # { "level1": 120.5, "level2": 95.2 } in seconds
+	"level": 4,
+	"total_inspected": 0,  
 	"achievements": [], # ["FirstScan", "ExpertAnalyzer"]
 	"filter_used": 0,   # { "level1": 3, "level2": 1 } - track skill/question usage
 	"evaluate_used": 0,
@@ -38,7 +38,7 @@ func save_data() -> void:
 	var cfg := ConfigFile.new()
 	cfg.set_value(SAVE_SECTION, "username", data["username"])
 	cfg.set_value(SAVE_SECTION, "level", int(data["level"]))
-	cfg.set_value(SAVE_SECTION, "speedtime", data["speedtime"])
+	cfg.set_value(SAVE_SECTION, "total_inspected", data["total_inspected"])
 	cfg.set_value(SAVE_SECTION, "achievements", data["achievements"])
 	cfg.set_value(SAVE_SECTION, "filter_used", data["filter_used"])
 	cfg.set_value(SAVE_SECTION, "evaluate_used", data["evaluate_used"])
@@ -64,12 +64,13 @@ func load_data() -> void:
 	data["username"] = str(cfg.get_value(SAVE_SECTION, "username", data["username"]))
 	data["level"] = int(cfg.get_value(SAVE_SECTION, "level", data["level"]))
 
-	# ---- Speedtime ----
-	var st: Dictionary = cfg.get_value(SAVE_SECTION, "speedtime", {})
-	if typeof(st) == TYPE_DICTIONARY:
-		data["speedtime"] = st.duplicate(true)
+	# ---- Total inspected ----
+	var ti: int = int(cfg.get_value(SAVE_SECTION, "total_inspected", 0))
+	data["total_inspected"] = ti
+	if typeof(ti) == TYPE_INT:
+		data["total_inspected"] = ti
 	else:
-		data["speedtime"] = {}
+		data["total_inspected"] = 0
 
 	# ---- Achievements ----
 	var ach: Array = cfg.get_value(SAVE_SECTION, "achievements", [])
@@ -132,17 +133,14 @@ func set_level(lvl: int) -> void:
 	data["level"] = int(lvl)
 	save_data()
 
-# ----------------------- Speedtime -----------------------
-func set_speedtime(level_name: String, seconds: float) -> void:
-	if level_name == "":
-		return
-	var current = float(data["speedtime"].get(level_name, 99999.9)) # default very high
-	if seconds < current:  # only save if faster
-		data["speedtime"][level_name] = seconds
-		save_data()
-
-func get_speedtime(level_name: String) -> float:
-	return float(data["speedtime"].get(level_name, 0))
+# ----------------------- Total INspected -----------------------
+func add_correct_inspection() -> void:
+	data["total_inspected"] += 1
+	save_data()
+	
+# Getter
+func get_total_inspected() -> int:
+	return int(data["total_inspected"])
 
 # ----------------------- Questions / Evaluate -----------------------
 # Decrease (use)
@@ -214,7 +212,7 @@ func reset_data() -> void:
 		"new_to_game": 0,
 		"username": "",
 		"level": 0,
-		"speedtime": {},
+		"total_inspected": 0,
 		"achievements": [],
 		"filter_used": 0,
 		"evaluate_used": 0,

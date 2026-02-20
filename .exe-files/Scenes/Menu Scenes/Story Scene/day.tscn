@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://b52y0fj86sfe7"]
 
-[ext_resource type="Script" uid="uid://cl8kjlwaigwmr" path="res://Scripts/UI/day.gd" id="1_c6jxy"]
+[ext_resource type="Script" uid="uid://cl8kjlwaigwmr" path="res://Scripts/UI/StoryMenu/day.gd" id="1_c6jxy"]
 [ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="2_2x7vk"]
 [ext_resource type="Texture2D" uid="uid://bjtqkmwq8fiib" path="res://Assets/images/controll_room_bg.png" id="3_wlewr"]
 [ext_resource type="Script" uid="uid://5jr1nl78gvmg" path="res://Components/spawner_component.gd" id="4_6brgw"]

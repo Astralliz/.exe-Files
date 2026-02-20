@@ -1,23 +1,23 @@
-[gd_scene load_steps=20 format=3 uid="uid://cdyouk3kkeoq2"]
+[gd_scene load_steps=20 format=3 uid="uid://b26tal24xhjnf"]
 
-[ext_resource type="Script" uid="uid://q558epmkqhtb" path="res://Scripts/UI/StoryMenu/story1_controller.gd" id="1_pq51y"]
-[ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="2_a8o4c"]
-[ext_resource type="Texture2D" uid="uid://bpdo8bf18gauj" path="res://Assets/images/rectangle.png" id="3_xieug"]
-[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="4_okpo2"]
-[ext_resource type="Texture2D" uid="uid://b28uwmv3pk23t" path="res://Assets/Button/utton.png" id="5_jfk2s"]
-[ext_resource type="Texture2D" uid="uid://cddjt6414swve" path="res://Assets/Button/uim_padlock.png" id="6_pq51y"]
+[ext_resource type="Script" uid="uid://d2du1ioyoami" path="res://Scripts/UI/StoryMenu/story2_controller.gd" id="1_w5aha"]
+[ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="2_jsydi"]
+[ext_resource type="Texture2D" uid="uid://bpdo8bf18gauj" path="res://Assets/images/rectangle.png" id="3_h8vtj"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="4_f64oh"]
+[ext_resource type="Texture2D" uid="uid://b28uwmv3pk23t" path="res://Assets/Button/utton.png" id="5_0bt4v"]
+[ext_resource type="Texture2D" uid="uid://cddjt6414swve" path="res://Assets/Button/uim_padlock.png" id="6_ngcxm"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m6yj2"]
-texture = ExtResource("2_a8o4c")
+texture = ExtResource("2_jsydi")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cfbdy"]
-texture = ExtResource("3_xieug")
+texture = ExtResource("3_h8vtj")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4gvu1"]
 bg_color = Color(0.952941, 0.384314, 1, 0.270588)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u71fn"]
-texture = ExtResource("5_jfk2s")
+texture = ExtResource("5_0bt4v")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pq51y"]
 bg_color = Color(0.694118, 0.654902, 0.654902, 0.380392)
@@ -69,7 +69,7 @@ corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x6irx"]
-texture = ExtResource("6_pq51y")
+texture = ExtResource("6_ngcxm")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6irx"]
 bg_color = Color(0.945098, 0.247059, 1, 0.717647)
@@ -78,14 +78,14 @@ corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
 
-[node name="Story1" type="Control"]
+[node name="Story2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_pq51y")
+script = ExtResource("1_w5aha")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -116,9 +116,9 @@ offset_left = -110.792
 offset_top = -16.08
 offset_right = 110.208
 offset_bottom = 49.92
-theme_override_fonts/font = ExtResource("4_okpo2")
+theme_override_fonts/font = ExtResource("4_f64oh")
 theme_override_font_sizes/font_size = 45
-text = "Story 1"
+text = "Story 2"
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 1
@@ -131,7 +131,7 @@ offset_left = -89.552
 offset_top = -1.67999
 offset_right = 96.448
 offset_bottom = 42.32
-theme_override_fonts/font = ExtResource("4_okpo2")
+theme_override_fonts/font = ExtResource("4_f64oh")
 theme_override_font_sizes/font_size = 25
 text = "Choose Day"
 
@@ -162,34 +162,34 @@ offset_right = 425.176
 offset_bottom = 174.0
 theme_override_constants/separation = 50
 
-[node name="Day_1_Button" type="Button" parent="HBoxContainer"]
+[node name="Day_4_Button" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("4_okpo2")
+theme_override_fonts/font = ExtResource("4_f64oh")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/hover = SubResource("StyleBoxFlat_pq51y")
 theme_override_styles/normal = SubResource("StyleBoxFlat_yismj")
-text = "Day 1"
+text = "Day 4"
 
-[node name="Day_2_Button" type="Button" parent="HBoxContainer"]
+[node name="Day_5_Button" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("4_okpo2")
+theme_override_fonts/font = ExtResource("4_f64oh")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/hover = SubResource("StyleBoxFlat_yfre7")
 theme_override_styles/normal = SubResource("StyleBoxFlat_m6yj2")
-text = "Day 2"
+text = "Day 5"
 
-[node name="Day_3_Button" type="Button" parent="HBoxContainer"]
+[node name="Day_6_Button" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("4_okpo2")
+theme_override_fonts/font = ExtResource("4_f64oh")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/hover = SubResource("StyleBoxFlat_lj6ts")
 theme_override_styles/normal = SubResource("StyleBoxFlat_cfbdy")
-text = "Day 3"
+text = "Day 6"
 
-[node name="Day_2_Lock_Panel" type="Panel" parent="."]
+[node name="Day_5_Lock_Panel" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 447.0
 offset_top = 255.0
@@ -197,7 +197,7 @@ offset_right = 709.0
 offset_bottom = 501.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_u71fn")
 
-[node name="Day_2_lock" type="Panel" parent="."]
+[node name="Day_5_lock" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.712
@@ -210,7 +210,7 @@ offset_right = -215.224
 offset_bottom = 33.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_x6irx")
 
-[node name="Day_2_label" type="Label" parent="."]
+[node name="Day_5_label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.296
@@ -221,14 +221,14 @@ offset_left = 119.008
 offset_top = 22.36
 offset_right = 350.008
 offset_bottom = 94.36
-theme_override_fonts/font = ExtResource("4_okpo2")
+theme_override_fonts/font = ExtResource("4_f64oh")
 theme_override_font_sizes/font_size = 26
-text = "Finished day 1 
+text = "Finished day 4
 to unlock"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Day_3_Lock_Panel" type="Panel" parent="."]
+[node name="Day_6_Lock_Panel" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 755.0
 offset_top = 256.0
@@ -236,7 +236,7 @@ offset_right = 1016.0
 offset_bottom = 499.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_x6irx")
 
-[node name="Day_3_lock" type="Panel" parent="."]
+[node name="Day_6_lock" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.712
@@ -249,7 +249,7 @@ offset_right = 92.776
 offset_bottom = 36.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_x6irx")
 
-[node name="Day_3_label" type="Label" parent="."]
+[node name="Day_6_label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.296
@@ -260,14 +260,14 @@ offset_left = 433.008
 offset_top = 31.36
 offset_right = 664.008
 offset_bottom = 103.36
-theme_override_fonts/font = ExtResource("4_okpo2")
+theme_override_fonts/font = ExtResource("4_f64oh")
 theme_override_font_sizes/font_size = 26
-text = "Finished day 2
+text = "Finished day 5
 to unlock"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="Back_Button" to="." method="_on_back_1_pressed"]
-[connection signal="pressed" from="HBoxContainer/Day_1_Button" to="." method="_on_day_1_start_pressed"]
-[connection signal="pressed" from="HBoxContainer/Day_2_Button" to="." method="_on_day_2_start_pressed"]
-[connection signal="pressed" from="HBoxContainer/Day_3_Button" to="." method="_on_day_3_start_pressed"]
+[connection signal="pressed" from="HBoxContainer/Day_4_Button" to="." method="_on_day_4_start_pressed"]
+[connection signal="pressed" from="HBoxContainer/Day_5_Button" to="." method="_on_day_5_start_pressed"]
+[connection signal="pressed" from="HBoxContainer/Day_6_Button" to="." method="_on_day_3_start_pressed"]

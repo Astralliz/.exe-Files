@@ -8,7 +8,7 @@ var current_level: int = 1  # default, can be set from parent scene
 
 func _ready() -> void:
 	Player_Data.connect("bug_bounty_changed", Callable(self, "update_bounty_amount"))
-	Player_Data.connect("question_amount_change", Callable(self, "update_question_amount"))
+	Player_Data.connect("filter_amount_change", Callable(self, "update_filter_amount"))
 	Player_Data.connect("evaluation_amount_change", Callable(self, "update_evaluation_amount"))
 
 	# Initial display
