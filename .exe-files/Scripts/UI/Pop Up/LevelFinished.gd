@@ -77,75 +77,6 @@ func show_normal_completion(day: int) -> void:
 	message.text = "\nGreat job!\nYou finished Day " + str(day) + "\nGet ready for the next challenge!"
 	continue_btn.show()
 
-#func setup_dialogue(day: int) -> void:
-	## DAY 1 COMPLETE — unlock achievement + rewards
-	#if day == 1 && Player_Data.data["level"] < 1:
-		#continue_btn.hide()
-		#accept_btn.hide()
-#
-		#var unlocked = achievement[0]
-#
-		#Player_Data.unlock_achievement(unlocked)
-		#Player_Data.add_evaluates(added_eval)
-		#Player_Data.add_filter(added_fils)
-#
-		#achievement_label.text = unlocked
-		#set_trophy_image(unlocked)
-		#show_trophy_animation()
-#
-		#message.text = "Congrats!\nYou unlocked an Achievement!"
-#
-		#
-		#achievement_label.text = achievement[0]
-	#
-	## OTHER DAYS — NO ACHIEVEMENT
-	#
-	#elif day == 3 && Player_Data.data["level"] >= 2:
-		#continue_btn.hide()
-		#accept_btn.hide()
-#
-		#var unlocked = achievement[1]
-#
-		#Player_Data.unlock_achievement(unlocked)
-		#achievement_label.text = unlocked
-		#set_trophy_image(unlocked)
-#
-		#show_trophy_animation()
-		#
-	#elif day == 6 && Player_Data.data["level"] >= 5:
-		#continue_btn.hide()
-		#accept_btn.hide()
-#
-		#var unlocked = achievement[4]
-#
-		#Player_Data.unlock_achievement(unlocked)
-		#achievement_label.text = unlocked
-		#set_trophy_image(unlocked)
-#
-		#show_trophy_animation()
-#
-	#elif Player_Data.data["total_inspected"] >= 100:
-		#continue_btn.hide()
-		#accept_btn.hide()
-#
-		#var unlocked = achievement[2]
-#
-		#if !Player_Data.data["achievements"].has(unlocked):
-			#Player_Data.unlock_achievement(unlocked)
-#
-		#achievement_label.text = unlocked
-		#set_trophy_image(unlocked)
-#
-		#show_trophy_animation()
-#
-	#else:
-		#ach_continue_btn.hide()
-		#accept_btn.hide()
-		#continue_btn.show()
-		#
-		#message.text = "\nGreat job!\nYou finished Day " + str(day) + "\nGet ready for the next challenge!"
-		#
-
 func set_trophy_image(achievement_name: String) -> void:
 	if achievement_images.has(achievement_name):
 		trophy_image.texture = load(achievement_images[achievement_name])
@@ -171,13 +102,11 @@ func show_trophy_animation() -> void:
 		0.6
 	)
 
-
 func _on_achievement_pressed() -> void:
 	message.text = "\nCONGRATS!\nYou received:\n" + str(added_eval) + " Evaluates\n" + str(added_fils) + " Filters!"
 	accept_btn.show()
 	trophy_panel.visible = false
 	ach_continue_btn.hide()
-
 
 func _on_accept_pressed() -> void:
 	message.text = "\n\nDay " +  str(day) + " Complete!\nMore challenging days await!"
@@ -185,9 +114,8 @@ func _on_accept_pressed() -> void:
 	trophy_panel.visible = false
 	continue_btn.show()
 
-
 func _on_continue_pressed() -> void:
-	if Player_Data.data["level"] >= 3:
+	if Player_Data.data["level"] == 3:
 		get_tree().change_scene_to_file("res://Scenes/Menu Scenes/story_menu.tscn")
 	else: 
 		get_tree().change_scene_to_file("res://Scenes/Menu Scenes/Story Scene/story_1.tscn")

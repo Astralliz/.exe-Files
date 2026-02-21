@@ -297,7 +297,6 @@ func handle_player_decision(player_approved: bool):
 
 	await next_turn_or_end(result.show_gameover)
 
-
 func evaluate_decision(player_approved: bool) -> Dictionary:
 
 	var score = filetizen.metadata.risk_score
@@ -324,19 +323,16 @@ func evaluate_decision(player_approved: bool) -> Dictionary:
 
 	return result
 
-
 func apply_rewards(player_approved: bool, suspicious: bool):
 	if player_approved and not suspicious:
 		Player_Data.add_bug_bounty(1)
 	elif not player_approved and suspicious:
 		Player_Data.add_bug_bounty(2)
 
-
 func build_wrong_message() -> String:
 	var message = dialogue_database.get_random_wrong()
 	message += "\n" + dialogue_database.build_wrong_details(filetizen.metadata.issues)
 	return message
-
 
 func build_gameover_message() -> String:
 	var message = "Game Over: This file was unsafe but you approved it!\n"
@@ -344,14 +340,12 @@ func build_gameover_message() -> String:
 	message += "\n" + dialogue_database.build_wrong_details(filetizen.metadata.issues)
 	return message
 
-
 func show_decision_feedback(result: Dictionary):
 	if result.show_gameover:
 		wrong_decision_popup.show()
 		wrong_decision_popup.text.text = result.message
 	else:
 		dialogue_box.show_dialogue(result.message)
-
 
 func process_filetizen_exit(player_approved: bool) -> void:
 
@@ -401,83 +395,6 @@ func commit_day_progress():
 
 	correct_today = 0
 
-#func handle_player_decision(player_approved: bool):
-#
-	#emit_signal("verdict_chosen", player_approved)
-	#enable_buttons(false)
-#
-	#var score = filetizen.metadata.risk_score
-	#var approved = score <= 1.0	
-	#var is_correct = player_approved == approved
-	#var message: String
-	#var show_gameover: bool = false
-	#
-	#emit_signal("verdict_resolved", is_correct)
-	#
-	#if is_correct:
-		#message = dialogue_database.get_random_correct()
-		#if player_approved and approved:
-			## Correct approval
-			#Player_Data.add_bug_bounty(1)
-		#elif not player_approved and not approved:
-			## Correct decline
-			#Player_Data.add_bug_bounty(2)
-		#print("✔ Correct decision!")
-	#elif not player_approved and approved:
-		#message = dialogue_database.get_random_false_negative()
-		#print("✘ False Negative!")
-	#elif player_approved and not approved:
-		## Approved but should have declined → game over
-		#message = "Game Over: This file was unsafe but you approved it!\n" + dialogue_database.get_random_wrong()
-		#message += "\n" + dialogue_database.build_wrong_details(filetizen.metadata.issues)
-		#show_gameover = true
-		#print("✘ Incorrect decision! Game Over!")
-	#else:
-		#message = dialogue_database.get_random_wrong()
-		#message += "\n" + dialogue_database.build_wrong_details(filetizen.metadata.issues)
-		#print("✘ Incorrect decision!")
-#
-	## Show dialogue if not game over
-	#if not show_gameover:
-		#dialogue_box.show_dialogue(message)
-	#else:
-		#wrong_decision_popup.show()
-		#wrong_decision_popup.text.text = message
-#
-	#if player_approved:
-		#await get_tree().create_timer(1.0).timeout
-		#move_approved_filetizen()
-	#else:
-		#await get_tree().create_timer(1.0).timeout
-		#move_declined_filetizen()
-	#
-	#if current_document:
-		#current_document.queue_free()
-		#current_document = null
-	#
-	#await get_tree().create_timer(3.0).timeout
-	#moved_out = false
-	#
-	## Only spawn new Filetizen if under the max count AND game is not over
-	#if filetizen_count < MAX_FILETIZENS and not show_gameover:
-		#dialogue_box.hide_dialogue()
-		#spawn_new_filetizen()
-		#filetizen_count += 1
-		#move_filetizen_to_center()
-		#await get_tree().create_timer(1.0).timeout
-		#spawn_new_file_document()
-	#else:
-		## Either max filetizens reached OR game over
-		#if show_gameover:
-			#wrong_decision_popup.show()
-			## The text is already set earlier when decision was wrong
-		#else:
-			#level_finished.z_index = 20
-			#level_finished.show()
-			#level_up()
-			#print("Player Level:", Player_Data.data["level"])
-#
-		#
 func level_up():
 	var current_level = Player_Data.data["level"]
 	if day > current_level:
