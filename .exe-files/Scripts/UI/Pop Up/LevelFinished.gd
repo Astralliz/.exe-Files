@@ -9,13 +9,16 @@ extends Control
 @onready var trophy_image: TextureRect = $TrophyPanel/TrophyImage
 @onready var achievement_label: Label = $TrophyPanel/AchievementLabel
 
-var added_eval = 6
-var added_fils = 4
-var achievement = ["Metadata Detective", "System Gatekeeper"]
+var added_eval = 5
+var added_fils = 1
+var achievement = ["Metadata Detective", "System Gatekeeper", "Audit Master", "Threat Neutralizer", "System Architect"]
 
 var achievement_images := {
 	"Metadata Detective": "res://Assets/Trophy/MetadataDetective.png",
-	"System Gatekeeper": "res://Assets/Trophy/SystemGatekeeper.png"
+	"System Gatekeeper": "res://Assets/Trophy/SystemGatekeeper.png",
+	"Audit Master" : "res://Assets/Trophy/AuditMaster.png",
+	"Threat Neutralizer" : "res://Assets/Trophy/ThreatNeutralizer.png",
+	"System Architect" : "res://Assets/Trophy/SystemArchitect.png"
 }
 
 var day: int
@@ -25,48 +28,123 @@ func _ready() -> void:
 	trophy_panel.visible = false
 	setup_dialogue(day)
 
-
 func setup_dialogue(day: int) -> void:
-	# DAY 1 COMPLETE — unlock achievement + rewards
-	if day == 1 && Player_Data.data["level"] < 1:
-		continue_btn.hide()
-		accept_btn.hide()
 
-		var unlocked = achievement[0]
+	# RESET EVERYTHING
+	accept_btn.hide()
+	continue_btn.hide()
+	ach_continue_btn.hide()
+	trophy_panel.visible = false
+	message.text = ""
+	
+	var unlocked: String = ""
 
-		Player_Data.unlock_achievement(unlocked)
+	# Check achievements in priority order
+	if day == 1 and Player_Data.data["level"] < 1:
+		unlocked = achievement[0]
 		Player_Data.add_evaluates(added_eval)
 		Player_Data.add_filter(added_fils)
 
-		achievement_label.text = unlocked
-		set_trophy_image(unlocked)
-		show_trophy_animation()
+	elif day == 3 and Player_Data.data["level"] >= 2:
+		unlocked = achievement[1]
 
-		message.text = "Congrats!\nYou unlocked an Achievement!"
+	elif day == 6 and Player_Data.data["level"] >= 5:
+		unlocked = achievement[4]
 
-		
-		achievement_label.text = achievement[0]
-	
-	# OTHER DAYS — NO ACHIEVEMENT
-	
-	elif day == 3 && Player_Data.data["level"] >= 2:
-		continue_btn.hide()
-		accept_btn.hide()
+	elif Player_Data.data["total_inspected"] >= 100:
+		unlocked = achievement[2]
 
-		var unlocked = achievement[1]
-
-		Player_Data.unlock_achievement(unlocked)
-		achievement_label.text = unlocked
-		set_trophy_image(unlocked)
-
-		show_trophy_animation()
+	# If we found an achievement
+	if unlocked != "":
+		show_achievement(unlocked)
 	else:
-		ach_continue_btn.hide()
-		accept_btn.hide()
-		continue_btn.show()
-		
-		message.text = "\nGreat job!\nYou finished Day " + str(day) + "\nGet ready for the next challenge!"
-		
+		show_normal_completion(day)
+
+func show_achievement(unlocked: String) -> void:
+
+	if !Player_Data.data["achievements"].has(unlocked):
+		Player_Data.unlock_achievement(unlocked)
+
+	achievement_label.text = unlocked
+	set_trophy_image(unlocked)
+
+	message.text = "Congrats!\nYou unlocked an Achievement!"
+
+	show_trophy_animation()
+	ach_continue_btn.show()
+
+func show_normal_completion(day: int) -> void:
+	message.text = "\nGreat job!\nYou finished Day " + str(day) + "\nGet ready for the next challenge!"
+	continue_btn.show()
+
+#func setup_dialogue(day: int) -> void:
+	## DAY 1 COMPLETE — unlock achievement + rewards
+	#if day == 1 && Player_Data.data["level"] < 1:
+		#continue_btn.hide()
+		#accept_btn.hide()
+#
+		#var unlocked = achievement[0]
+#
+		#Player_Data.unlock_achievement(unlocked)
+		#Player_Data.add_evaluates(added_eval)
+		#Player_Data.add_filter(added_fils)
+#
+		#achievement_label.text = unlocked
+		#set_trophy_image(unlocked)
+		#show_trophy_animation()
+#
+		#message.text = "Congrats!\nYou unlocked an Achievement!"
+#
+		#
+		#achievement_label.text = achievement[0]
+	#
+	## OTHER DAYS — NO ACHIEVEMENT
+	#
+	#elif day == 3 && Player_Data.data["level"] >= 2:
+		#continue_btn.hide()
+		#accept_btn.hide()
+#
+		#var unlocked = achievement[1]
+#
+		#Player_Data.unlock_achievement(unlocked)
+		#achievement_label.text = unlocked
+		#set_trophy_image(unlocked)
+#
+		#show_trophy_animation()
+		#
+	#elif day == 6 && Player_Data.data["level"] >= 5:
+		#continue_btn.hide()
+		#accept_btn.hide()
+#
+		#var unlocked = achievement[4]
+#
+		#Player_Data.unlock_achievement(unlocked)
+		#achievement_label.text = unlocked
+		#set_trophy_image(unlocked)
+#
+		#show_trophy_animation()
+#
+	#elif Player_Data.data["total_inspected"] >= 100:
+		#continue_btn.hide()
+		#accept_btn.hide()
+#
+		#var unlocked = achievement[2]
+#
+		#if !Player_Data.data["achievements"].has(unlocked):
+			#Player_Data.unlock_achievement(unlocked)
+#
+		#achievement_label.text = unlocked
+		#set_trophy_image(unlocked)
+#
+		#show_trophy_animation()
+#
+	#else:
+		#ach_continue_btn.hide()
+		#accept_btn.hide()
+		#continue_btn.show()
+		#
+		#message.text = "\nGreat job!\nYou finished Day " + str(day) + "\nGet ready for the next challenge!"
+		#
 
 func set_trophy_image(achievement_name: String) -> void:
 	if achievement_images.has(achievement_name):
@@ -102,7 +180,7 @@ func _on_achievement_pressed() -> void:
 
 
 func _on_accept_pressed() -> void:
-	message.text = "\n\nDay 1 Complete!\nMore challenging days await!"
+	message.text = "\n\nDay " +  str(day) + " Complete!\nMore challenging days await!"
 	accept_btn.hide()
 	trophy_panel.visible = false
 	continue_btn.show()
