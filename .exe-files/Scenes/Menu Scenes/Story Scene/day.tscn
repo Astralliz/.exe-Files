@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b52y0fj86sfe7"]
+[gd_scene load_steps=25 format=3 uid="uid://b52y0fj86sfe7"]
 
 [ext_resource type="Script" uid="uid://cl8kjlwaigwmr" path="res://Scripts/UI/StoryMenu/day.gd" id="1_c6jxy"]
 [ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="2_2x7vk"]
@@ -17,7 +17,9 @@
 [ext_resource type="AudioStream" uid="uid://bsyvqtiv7snui" path="res://Assets/Audio/Picking Item/printing paper.mp3" id="15_c4oy2"]
 [ext_resource type="PackedScene" uid="uid://ddtsynehhxi41" path="res://Scenes/Finishing Scenes/level_1_finished.tscn" id="16_vk2dw"]
 [ext_resource type="PackedScene" uid="uid://de5ho3ehe1qqw" path="res://Scenes/UI/dialogue_box.tscn" id="17_is13e"]
+[ext_resource type="AudioStream" uid="uid://dtxeeolnu6okp" path="res://Assets/Audio/SFX_Open_Door.wav" id="18_73b7g"]
 [ext_resource type="PackedScene" uid="uid://2fhuw27q7ay0" path="res://Scenes/UI/resource_display.tscn" id="18_c4oy2"]
+[ext_resource type="AudioStream" uid="uid://b0qchflbw4kd6" path="res://Assets/Audio/SFX_Close_Door.wav" id="19_h4n5b"]
 [ext_resource type="PackedScene" uid="uid://be8jefwdga0gx" path="res://Scenes/Finishing Scenes/game_over.tscn" id="19_vkem0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2xmuy"]
@@ -122,6 +124,14 @@ bus = &"SFX"
 
 [node name="Printing_Paper" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_c4oy2")
+bus = &"SFX"
+
+[node name="Open_Door" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_73b7g")
+bus = &"SFX"
+
+[node name="Closed_Door" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_h4n5b")
 bus = &"SFX"
 
 [node name="Level1Finished" parent="." instance=ExtResource("16_vk2dw")]
