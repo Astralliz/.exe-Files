@@ -598,14 +598,421 @@ offset_top = 221.0
 offset_right = 1057.0
 offset_bottom = 557.0
 
-[node name="Label" type="Label" parent="Panel2/Level1Panel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel2/Level1Panel"]
+offset_right = 958.0
+offset_bottom = 336.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel2/Level1Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="Rule1" type="VBoxContainer" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("4_uhe4a")
-theme_override_font_sizes/font_size = 20
-text = "LEvel1 Panel"
+theme_override_font_sizes/font_size = 28
+text = "🔘LEVEL 1 — Beginner Inspection"
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Applied to: Day 1–2"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Suspicious Threshold: 1.0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "🧠 How Flagging Works"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Tip2" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ A Filetizen becomes SUSPICIOUS when:
+      Total risk score ≥ 1.0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Tip3" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Example Combinations:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Tip4" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "      ☉ 2 medium flags = Suspicious
+      ☉ 3 small flags = Suspicious
+      ☉ 1 strong + 1 small = Suspicious"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule2" type="VBoxContainer" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🧾 Metadata Used in Level 1"
+
+[node name="Rule3" type="VBoxContainer" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Large Files"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟢 Small"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Files that are unusually large may contain hidden payloads, bundled malware, or unnecessary components."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.4"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule4" type="VBoxContainer" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Executable File (.exe)"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule4"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟡 Medium"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule4"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Executable files can directly run code on a system and are common malware carriers."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule4"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.7"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule5" type="VBoxContainer" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule5"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Script File (.bat, .ps1)"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule5"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟢 Small"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule5"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Scripts can automate malicious actions silently in the background."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule5"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.4"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule6" type="VBoxContainer" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule6"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Dropper File(.js, .vbs)"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule6"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟡 Medium"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule6"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ A dropper installs additional malicious software once executed."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule6"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.5"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule7" type="VBoxContainer" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule7"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Unknown Publisher"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule7"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟡 Medium"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule7"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Files without a verified publisher may come from untrusted sources."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule7"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.6"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule8" type="VBoxContainer" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule8"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Unknown Source"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule8"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟢 Small"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule8"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Files downloaded from unverified or suspicious locations are high risk."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule8"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.4"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule9" type="VBoxContainer" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule9"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Type Mismatch"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule9"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟢 Very Small"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule9"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ When the file extension does not match with what the filetizen saying he is."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level1Panel/ScrollContainer/VBoxContainer/Rule9"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.2"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
 
 [node name="Level2Panel" type="Panel" parent="Panel2"]
 layout_mode = 0
@@ -614,14 +1021,557 @@ offset_top = 221.0
 offset_right = 1057.0
 offset_bottom = 557.0
 
-[node name="Label" type="Label" parent="Panel2/Level2Panel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel2/Level2Panel"]
+offset_right = 958.0
+offset_bottom = 336.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel2/Level2Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="Rule1" type="VBoxContainer" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("4_uhe4a")
-theme_override_font_sizes/font_size = 20
-text = "Lefel2"
+theme_override_font_sizes/font_size = 28
+text = "🔘LEVEL 2 — Intermediate Inspection"
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Applied to: Day 3–4"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Suspicious Threshold: 1.5"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "🧠 How Flagging Works"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Tip2" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ A Filetizen becomes SUSPICIOUS when:
+      Total risk score ≥ 1.5"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Tip3" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Example Combinations:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Tip4" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "      ☉ 3–4 medium flags = Suspicious
+      ☉ 2 strong + 1 small = Suspicious
+      ☉ Multiple small inconsistencies combined = Suspicious"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule2" type="VBoxContainer" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🧾 Metadata Used in Level 1"
+
+[node name="Rule3" type="VBoxContainer" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Large Files"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟢 Small"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Files that are unusually large may contain hidden payloads, bundled malware, or unnecessary components."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.4"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule4" type="VBoxContainer" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Executable File (.exe)"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule4"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟡 Medium"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule4"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Executable files can directly run code on a system and are common malware carriers."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule4"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.6"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule5" type="VBoxContainer" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule5"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Script File (.bat, .ps1)"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule5"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟢 Small"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule5"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Scripts can automate malicious actions silently in the background."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule5"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.4"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule6" type="VBoxContainer" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule6"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Dropper File(.js, .vbs)"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule6"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟡 Medium"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule6"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ A dropper installs additional malicious software once executed."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule6"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.5"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule7" type="VBoxContainer" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule7"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Unknown Publisher"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule7"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟡 Medium"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule7"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Files without a verified publisher may come from untrusted sources."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule7"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.6"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule8" type="VBoxContainer" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule8"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Unknown Source"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule8"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟡 Medium"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule8"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Files downloaded from unverified or suspicious locations are high risk."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule8"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.5"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule9" type="VBoxContainer" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule9"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Type Mismatch"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule9"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟢 Very Small"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule9"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ When the file extension does not match with what the filetizen saying he is."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule9"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.2"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule10" type="VBoxContainer" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule10"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Recently Modified"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule10"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟢 Small"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule10"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Files recently modified without clear reason may indicate tampering."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule10"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.3"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule11" type="VBoxContainer" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule11"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Email Source"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule11"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟢 Small"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule11"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Files received through email are common phishing or malware vectors."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule11"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.4"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule12" type="VBoxContainer" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule12"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Hidden File"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule12"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟡 Medium"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule12"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Malware often hides itself to avoid detection by users."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level2Panel/ScrollContainer/VBoxContainer/Rule12"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.6"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
 
 [node name="Level3Panel" type="Panel" parent="Panel2"]
 layout_mode = 0
@@ -630,14 +1580,736 @@ offset_top = 221.0
 offset_right = 1057.0
 offset_bottom = 557.0
 
-[node name="Label" type="Label" parent="Panel2/Level3Panel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel2/Level3Panel"]
+offset_right = 958.0
+offset_bottom = 336.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel2/Level3Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="Rule1" type="VBoxContainer" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("4_uhe4a")
-theme_override_font_sizes/font_size = 20
-text = "Level 3 Panel"
+theme_override_font_sizes/font_size = 28
+text = "🔘LEVEL 3 — Advanced Threat Analysis"
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Applied to: Day 5–6"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Suspicious Threshold: 2.0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "🧠 How Flagging Works"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Tip2" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ A Filetizen becomes SUSPICIOUS when:
+      Total risk score ≥ 2.0"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Tip3" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Example Combinations:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Tip4" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule1"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "      ☉ 4–5 medium flags = Suspicious
+      ☉ 2 high-risk + 2 medium = Suspicious
+      ☉ Several subtle anomalies combined = Suspicious"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule2" type="VBoxContainer" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🧾 Metadata Used in Level 1"
+
+[node name="Rule3" type="VBoxContainer" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Large Files"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟢 Small"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Files that are unusually large may contain hidden payloads, bundled malware, or unnecessary components."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.4"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule4" type="VBoxContainer" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Executable File (.exe)"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule4"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟡 Medium"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule4"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Executable files can directly run code on a system and are common malware carriers."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule4"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.7"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule5" type="VBoxContainer" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule5"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Script File (.bat, .ps1)"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule5"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟡 Medium"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule5"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Scripts can automate malicious actions silently in the background."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule5"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.5"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule6" type="VBoxContainer" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule6"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Dropper File(.js, .vbs)"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule6"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟡 Medium"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule6"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ A dropper installs additional malicious software once executed."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule6"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.6"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule7" type="VBoxContainer" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule7"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Unknown Publisher"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule7"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟡 Medium"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule7"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Files without a verified publisher may come from untrusted sources."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule7"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.6"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule8" type="VBoxContainer" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule8"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Unknown Source"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule8"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟡 Medium"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule8"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Files downloaded from unverified or suspicious locations are high risk."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule8"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.5"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule9" type="VBoxContainer" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule9"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Type Mismatch"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule9"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟢 Very Small"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule9"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ When the file extension does not match with what the filetizen saying he is."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule9"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.2"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule10" type="VBoxContainer" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule10"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Recently Modified"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule10"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟢 Small"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule10"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Files recently modified without clear reason may indicate tampering."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule10"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.4"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule11" type="VBoxContainer" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule11"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Email Source"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule11"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟡 Medium"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule11"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Files received through email are common phishing or malware vectors."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule11"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.5"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule12" type="VBoxContainer" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule12"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Hidden File"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule12"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟡 Medium"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule12"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Malware often hides itself to avoid detection by users."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule12"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.5"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule13" type="VBoxContainer" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule13"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Random Filename"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule13"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟢 Small"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule13"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Nonsensical or randomly generated filenames may indicate automated malware generation."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule13"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.4"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule14" type="VBoxContainer" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule14"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Invalid Digital Signature"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule14"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🔴 High"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule14"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Files with invalid or tampered digital signatures may have been modified maliciously."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule14"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.8"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule15" type="VBoxContainer" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule15"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Requires Administrator Privileges"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule15"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🔴 High"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule15"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Malware often requests elevated privileges to gain system-wide control."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule15"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.8"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Rule16" type="VBoxContainer" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule16"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 28
+text = "🔘 Compressed Executable"
+
+[node name="Explanation2" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule16"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Risk Level: 🟡 Medium"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Explanation" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule16"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "☉ Executables packed inside compressed files may attempt to bypass detection systems."
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 3
+
+[node name="Tip" type="RichTextLabel" parent="Panel2/Level3Panel/ScrollContainer/VBoxContainer/Rule16"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_uhe4a")
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ssqnt")
+text = "Score: 0.5"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

@@ -16,7 +16,7 @@ var filename_pool := [
 ]
 
 var extension_pool_safe := [".txt", ".pdf", ".png", ".jpg", ".mp3", ".mp4", ".docx"]
-var risky_extensions := [".exe", ".bat", ".js", ".vbs"]
+var risky_extensions := [".exe", ".bat", ".js",".ps1", ".vbs"]
 
 var publisher_pool := [
 	"unknown",
