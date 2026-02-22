@@ -54,7 +54,7 @@ var current_document: FileDocument
 var correct_today: int = 0
 # Counter loop
 var filetizen_count := 0
-const MAX_FILETIZENS := 7
+var max_filetizens: int
 var day: int
 
 var current_answers : Dictionary = {}
@@ -76,6 +76,7 @@ func _ready():
 	print("day: ", day)
 	var rule_level = get_rule_level_from_day(day)
 	rules_for_level = rule_base.get_rules(rule_level)
+	max_filetizens = get_filetizen_count_from_day(day)
 
 	level_finished.hide()
 	wrong_decision_popup.hide()
@@ -107,6 +108,17 @@ func get_rule_level_from_day(day: int) -> int:
 		return 2
 	else:
 		return 3
+
+func get_filetizen_count_from_day(day: int) -> int:
+	match get_rule_level_from_day(day):
+		1:
+			return 7
+		2:
+			return 9
+		3:
+			return 10
+		_:
+			return 7
 
 func get_suspicious_threshold() -> float:
 	match get_rule_level_from_day(day):
@@ -366,7 +378,7 @@ func process_filetizen_exit(player_approved: bool) -> void:
 
 func next_turn_or_end(show_gameover: bool) -> void:
 
-	if filetizen_count < MAX_FILETIZENS and not show_gameover:
+	if filetizen_count < max_filetizens and not show_gameover:
 		dialogue_box.hide_dialogue()
 		spawn_new_filetizen()
 		filetizen_count += 1
