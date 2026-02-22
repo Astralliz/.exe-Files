@@ -63,11 +63,11 @@ func evaluate(file: FileMetadata, rules: Array, answer: Dictionary = {}) -> Dict
 					score += rule.score
 					triggered = true
 					
-			# Only apply if answer is passed in
-			#"type_mismatch":
-				#if answer.has("extension") and answer["extension"] != file.extension:
-					#score += rule.score
-					#triggered = true
+			 #Only apply if answer is passed in
+			"type_mismatch":
+				if answer.has("extension") and answer["extension"] != file.extension:
+					score += rule.score
+					triggered = true
 		if triggered:
 			issues.append(rule.condition)
 	return {
@@ -75,13 +75,13 @@ func evaluate(file: FileMetadata, rules: Array, answer: Dictionary = {}) -> Dict
 		"issues": issues
 	}
 
-#func evaluate_type_mismatch(file: FileMetadata, answer: Dictionary, rules: Array) -> float:
-	#var score = 0.0
-	#for rule in rules:
-		#if rule.condition == "type_mismatch":
-			#if answer.has("extension") and answer["extension"] != file.extension:
-				#score += rule.score
-	#return score
+func evaluate_type_mismatch(file: FileMetadata, answer: Dictionary, rules: Array) -> float:
+	var score = 0.0
+	for rule in rules:
+		if rule.condition == "type_mismatch":
+			if answer.has("extension") and answer["extension"] != file.extension:
+				score += rule.score
+	return score
 
 func _is_random_filename(name: String) -> bool:
 	# If filename has many numbers or mixed-case random letters
