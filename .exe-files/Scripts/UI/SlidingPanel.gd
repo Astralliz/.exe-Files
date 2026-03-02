@@ -1,7 +1,7 @@
 extends Control
 
 @onready var panel = $QuestionPanel
-@onready var content = $Panel/VBoxContainer
+@onready var content = $Panel/ScrollContainer/VBoxContainer
 
 var is_open := false
 

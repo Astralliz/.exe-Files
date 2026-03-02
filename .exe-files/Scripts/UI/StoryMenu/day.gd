@@ -61,11 +61,17 @@ var current_answers : Dictionary = {}
 
 # Question buttons inside SlidingPanel
 @onready var question_buttons : Dictionary = {
-	"filename": sliding_panel.get_node("Panel/VBoxContainer/Question1"),
-	"extension": sliding_panel.get_node("Panel/VBoxContainer/Question2"),
-	"size": sliding_panel.get_node("Panel/VBoxContainer/Question3"),
-	"source": sliding_panel.get_node("Panel/VBoxContainer/Question4"),
-	"publisher": sliding_panel.get_node("Panel/VBoxContainer/Question5")
+	"filename": sliding_panel.get_node("Panel/ScrollContainer/VBoxContainer/Question1"),
+	"extension": sliding_panel.get_node("Panel/ScrollContainer/VBoxContainer/Question2"),
+	"size": sliding_panel.get_node("Panel/ScrollContainer/VBoxContainer/Question3"),
+	"source": sliding_panel.get_node("Panel/ScrollContainer/VBoxContainer/Question4"),
+	"publisher": sliding_panel.get_node("Panel/ScrollContainer/VBoxContainer/Question5"),
+	
+	"modified": sliding_panel.get_node("Panel/ScrollContainer/VBoxContainer/Question6"),
+	"hidden": sliding_panel.get_node("Panel/ScrollContainer/VBoxContainer/Question7"),
+	"signature": sliding_panel.get_node("Panel/ScrollContainer/VBoxContainer/Question8"),
+	"admin": sliding_panel.get_node("Panel/ScrollContainer/VBoxContainer/Question9"),
+	"compressed": sliding_panel.get_node("Panel/ScrollContainer/VBoxContainer/Question10")
 }
 
 func _ready():
@@ -191,16 +197,54 @@ func move_declined_filetizen():
 # QUESTION SYSTEM
 # =========================
 func setup_question_buttons():
-	question_buttons = {
-		"filename": sliding_panel.get_node("Panel/VBoxContainer/Question1"),
-		"extension": sliding_panel.get_node("Panel/VBoxContainer/Question2"),
-		"size": sliding_panel.get_node("Panel/VBoxContainer/Question3"),
-		"source": sliding_panel.get_node("Panel/VBoxContainer/Question4"),
-		"publisher": sliding_panel.get_node("Panel/VBoxContainer/Question5")
-	}
 
+	# Connect all buttons
 	for key in question_buttons.keys():
 		question_buttons[key].pressed.connect(_on_question_button_pressed.bind(key))
+
+	update_question_visibility()
+
+func update_question_visibility():
+
+	var level = get_rule_level_from_day(day)
+
+	# Hide everything first
+	for btn in question_buttons.values():
+		btn.visible = false
+
+	match level:
+
+		# =====================
+		# LEVEL 1
+		# =====================
+		1:
+			question_buttons["filename"].visible = true
+			question_buttons["extension"].visible = true
+			question_buttons["size"].visible = true
+			question_buttons["source"].visible = true
+			question_buttons["publisher"].visible = true
+
+		# =====================
+		# LEVEL 2
+		# =====================
+		2:
+			for key in [
+				"filename",
+				"extension",
+				"size",
+				"source",
+				"publisher",
+				"modified",
+				"hidden"
+			]:
+				question_buttons[key].visible = true
+
+		# =====================
+		# LEVEL 3
+		# =====================
+		3:
+			for key in question_buttons.keys():
+				question_buttons[key].visible = true
 
 # QUESTION BUTTON PRESSED
 func _on_question_button_pressed(key: String) -> void:
@@ -256,7 +300,7 @@ func _process(delta):
 			
 			# 1️⃣ Generate answers first (for risky files, it will create lies)
 			var answer_gen = AnswerGenerator.new()
-			current_answers = answer_gen.generate_answers(filetizen.metadata, evaluate.score) # temp 0 for now
+			current_answers = answer_gen.generate_answers(filetizen.metadata, evaluate.score, GameState.day) # temp 0 for now
 
 			# 2️⃣ Evaluate score including answer
 			filetizen.metadata.risk_score = evaluate.score
