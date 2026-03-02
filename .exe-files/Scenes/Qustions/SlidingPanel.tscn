@@ -27,33 +27,58 @@ offset_right = 814.0
 offset_bottom = 701.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_eie38")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
 layout_mode = 0
-offset_left = 28.0
-offset_top = 35.0
-offset_right = 409.0
-offset_bottom = 315.0
+offset_left = 26.0
+offset_top = 23.0
+offset_right = 415.0
+offset_bottom = 216.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 5
 
-[node name="Question1" type="Button" parent="Panel/VBoxContainer"]
+[node name="Question1" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 text = "What is your name?"
 
-[node name="Question2" type="Button" parent="Panel/VBoxContainer"]
+[node name="Question2" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 text = "What type of file are you?"
 
-[node name="Question3" type="Button" parent="Panel/VBoxContainer"]
+[node name="Question3" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 text = "How big is your file"
 
-[node name="Question4" type="Button" parent="Panel/VBoxContainer"]
+[node name="Question4" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 text = "What is your source location?"
 
-[node name="Question5" type="Button" parent="Panel/VBoxContainer"]
+[node name="Question5" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 text = "Who created or published you?"
+
+[node name="Question6" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "When was your last modification?"
+
+[node name="Question7" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Are you hidden from the system view?"
+
+[node name="Question8" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Do you have a valid digital signature?"
+
+[node name="Question9" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Are you requesting admin access?"
+
+[node name="Question10" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Are you in a compressed format?"
 
 [node name="QuestionPanel" type="Panel" parent="."]
 layout_mode = 0
