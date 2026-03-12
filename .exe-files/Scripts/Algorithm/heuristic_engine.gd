@@ -84,6 +84,32 @@ func evaluate_type_mismatch(file: FileMetadata, answer: Dictionary, rules: Array
 	return score
 
 func _is_random_filename(name: String) -> bool:
-	# If filename has many numbers or mixed-case random letters
-	var pattern = r"[A-Za-z0-9]{8,}"
-	return name.match(pattern)
+	var long_name := name.length() >= 12
+	var many_numbers := _has_many_numbers(name)
+	var mixed_case := _has_mixed_case(name)
+
+	if long_name and (many_numbers or mixed_case):
+		return true
+	
+	return false
+
+func _has_many_numbers(name: String) -> bool:
+	var digits := 0
+	
+	for c in name:
+		if c.is_valid_int():
+			digits += 1
+	
+	return digits >= name.length() * 0.35
+
+func _has_mixed_case(name: String) -> bool:
+	var has_upper := false
+	var has_lower := false
+
+	for c in name:
+		if c >= "A" and c <= "Z":
+			has_upper = true
+		elif c >= "a" and c <= "z":
+			has_lower = true
+
+	return has_upper and has_lower

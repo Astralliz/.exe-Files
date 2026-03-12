@@ -1,7 +1,7 @@
 class_name MetadataGenerator
 extends Node
 
-var filename_pool := [
+var safe_filenames := [
 	"test",
 	"document1",
 	"receipt",
@@ -11,8 +11,15 @@ var filename_pool := [
 	"notes",
 	"profile_pic",
 	"invoice",
-	"report",
-	"asdasg1341342362613e1eads4134123sd"
+	"report"
+]
+
+var suspicious_filenames := [
+	"asdasg1341342362613e1eads4134123sd",
+	"xJ9aK2pL2533132827",
+	"ajd92ks1h3k8d",
+	"temp9384kd93kd",
+	"sys_update_8923"
 ]
 
 var extension_pool_safe := [".txt", ".pdf", ".png", ".jpg", ".mp3", ".mp4", ".docx"]
@@ -71,6 +78,17 @@ func get_rule_level_from_day(day: int) -> int:
 	else:
 		return 3
 
+
+func generate_random_malware_filename() -> String:
+	var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+	var length = randi_range(12, 24)
+	var result = ""
+
+	for i in range(length):
+		result += chars[randi() % chars.length()]
+
+	return result
+
 func generate_metadata() -> FileMetadata:
 	setup_day_config()
 	
@@ -89,8 +107,15 @@ func generate_metadata() -> FileMetadata:
 	elif risky_remaining > 0:
 		make_risky = randf() < 0.5
 
-	# Basic fields
-	data.filename = filename_pool.pick_random()
+	# FILENAME SELECTION
+	if make_risky:
+		if randf() < 0.5:
+			data.filename = suspicious_filenames.pick_random()
+		else:
+			data.filename = generate_random_malware_filename()
+	else:
+		data.filename = safe_filenames.pick_random()
+
 	data.signature_valid = true
 	data.requires_admin = false
 	data.is_compressed = false
@@ -116,6 +141,7 @@ func generate_metadata() -> FileMetadata:
 			data.extension = risky_extensions.pick_random() if randf() < 0.5 else extension_pool_safe.pick_random()
 			data.size_mb = randf_range(51, 70) if randf() < 0.5 else randf_range(10, 50)
 			data.publisher = "unknown" if randf() < 0.5 else publisher_pool.pick_random()
+			
 
 	else:
 		# ✅ SAFE FILE LOGIC (ALL LEVELS)
@@ -158,7 +184,7 @@ func generate_metadata() -> FileMetadata:
 	spawned_files.append(data)
 
 	return data
-
+	
 
 func determine_claimed_type(ext: String) -> String:
 	match ext:
