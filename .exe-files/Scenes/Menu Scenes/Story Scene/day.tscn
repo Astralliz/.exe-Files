@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b52y0fj86sfe7"]
+[gd_scene load_steps=27 format=3 uid="uid://b52y0fj86sfe7"]
 
 [ext_resource type="Script" uid="uid://cl8kjlwaigwmr" path="res://Scripts/UI/StoryMenu/day.gd" id="1_c6jxy"]
 [ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="2_2x7vk"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://5jr1nl78gvmg" path="res://Components/spawner_component.gd" id="4_6brgw"]
 [ext_resource type="PackedScene" uid="uid://mpbxai4ade75" path="res://Scenes/Character Scenes/filetizen.tscn" id="5_y1tcq"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="6_2x7vk"]
+[ext_resource type="Texture2D" uid="uid://bpr4gwqcsbq4" path="res://Assets/images/Filter_Button.png" id="7_7wd0r"]
 [ext_resource type="Texture2D" uid="uid://c30hxuwk71wne" path="res://Assets/images/printer.png" id="7_wlewr"]
 [ext_resource type="PackedScene" uid="uid://7lh2ohceok4o" path="res://Scenes/Entities Scenes/file_document.tscn" id="7_y1tcq"]
 [ext_resource type="Texture2D" uid="uid://dyaht84w33t60" path="res://Assets/Sprites/alarm.png" id="8_6brgw"]
@@ -30,6 +31,9 @@ texture = ExtResource("3_wlewr")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y1tcq"]
 texture = ExtResource("8_6brgw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dop2y"]
+texture = ExtResource("7_7wd0r")
 
 [node name="Day" type="Node2D"]
 script = ExtResource("1_c6jxy")
@@ -71,6 +75,16 @@ theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("6_2x7vk")
 theme_override_font_sizes/font_size = 30
 text = "APPROVE"
+
+[node name="ApproveBtn2" type="Button" parent="."]
+offset_left = 83.0
+offset_top = 47.0
+offset_right = 175.0
+offset_bottom = 138.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("6_2x7vk")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_dop2y")
 
 [node name="DeclineBtn" type="Button" parent="."]
 offset_left = 24.0
