@@ -48,17 +48,29 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_higcg")
 text = " Filename correct?"
 
-[node name="Extension" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
+[node name="RandomName" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_higcg")
-text = " Extension Correct?"
+text = " is file have random name?"
 
-[node name="Dangerous_Extension" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
+[node name="Exe" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_higcg")
-text = " Dangerous Extension?"
+text = "Is extension .exe?"
+
+[node name="TypeScript" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_higcg")
+text = "Is file type a Script?"
+
+[node name="Dropper" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_higcg")
+text = "Is file type a Dropper?"
 
 [node name="Size" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -70,13 +82,49 @@ text = " File Size > 50 MB?"
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_higcg")
-text = " Publisher Correct?"
+text = " Unknown Publisher?"
 
-[node name="Source" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
+[node name="SourceEmail" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_higcg")
-text = " Source Correct?"
+text = "Is the source from email?"
+
+[node name="SourceUnknown" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_higcg")
+text = " Unknown Source?"
+
+[node name="Modification" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_higcg")
+text = "Modified for the last 24 hrs?"
+
+[node name="IsHidden" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_higcg")
+text = "is hidden?"
+
+[node name="Signature" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_higcg")
+text = "Don't Have Valid signature?"
+
+[node name="Admin" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_higcg")
+text = "Need a Admin access?"
+
+[node name="Compressed" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_higcg")
+text = "Is Compressed?"
 
 [node name="Spacing" type="Control" parent="ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)

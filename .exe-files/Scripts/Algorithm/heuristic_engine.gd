@@ -39,7 +39,7 @@ func evaluate(file: FileMetadata, rules: Array, answer: Dictionary = {}) -> Dict
 					score += rule.score
 					triggered = true
 			"src_email":
-				if file.source == "email":
+				if file.source in ["email", "Email Attachment"]:
 					score += rule.score
 					triggered = true
 			"src_unknown":

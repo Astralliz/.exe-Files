@@ -52,13 +52,13 @@ text = "What type of file are you?"
 layout_mode = 2
 text = "How big is your file"
 
-[node name="Question4" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "What is your source location?"
-
 [node name="Question5" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 text = "Who created or published you?"
+
+[node name="Question4" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "What is your source location?"
 
 [node name="Question6" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
