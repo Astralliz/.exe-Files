@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwh7thrn4kypr"]
+
+[ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="1_0b8bs"]
+[ext_resource type="Texture2D" uid="uid://bjtqkmwq8fiib" path="res://Assets/images/controll_room_bg.png" id="1_l036b"]
+[ext_resource type="Texture2D" uid="uid://ca8j1hu3oj24e" path="res://Assets/Sprites/corrupted_file.png" id="2_mii5k"]
+[ext_resource type="VideoStream" uid="uid://behf5xki7wxxu" path="res://Assets/video/glitch.ogv" id="2_q4u1p"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cw2oi"]
+texture = ExtResource("1_0b8bs")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0b8bs"]
+texture = ExtResource("2_mii5k")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q4u1p"]
+texture = ExtResource("1_l036b")
+
+[node name="FilterActivated" type="Node2D"]
+
+[node name="main_background" type="Panel" parent="."]
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 1151.0
+offset_bottom = 644.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_cw2oi")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 209.0
+offset_top = 113.0
+offset_right = 949.0
+offset_bottom = 626.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_0b8bs")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+modulate = Color(1, 1, 1, 0.392157)
+offset_left = 243.0
+offset_top = 69.0
+offset_right = 923.0
+offset_bottom = 438.0
+stream = ExtResource("2_q4u1p")
+autoplay = true
+expand = true
+loop = true
+
+[node name="control_room" type="Panel" parent="."]
+offset_right = 1152.0
+offset_bottom = 643.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_q4u1p")
