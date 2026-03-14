@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var metadata: FileMetadata
 @onready var generator: MetadataGenerator
+@onready var sprite: Sprite2D = $Sprite2D
 @onready var move_component: MoveComponent = $MoveComponent
 @onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 
@@ -37,6 +38,13 @@ func _ready():
 		print("Signature: ", metadata.signature_valid)
 		print("Admin: ", metadata.requires_admin)
 		print("Compressed: ", metadata.is_compressed)
+		
+
+func activate_filter():
+	sprite.modulate.a = 0.0
+
+func deactivate_filter():
+	sprite.modulate.a = 1.0
 
 		# Level 2 adds more conditions and increases scores
 #{"id": "R1", "condition": "size_large", "score": 1},
