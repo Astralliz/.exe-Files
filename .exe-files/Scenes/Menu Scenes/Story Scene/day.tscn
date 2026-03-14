@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b52y0fj86sfe7"]
+[gd_scene load_steps=35 format=3 uid="uid://b52y0fj86sfe7"]
 
 [ext_resource type="Script" uid="uid://cl8kjlwaigwmr" path="res://Scripts/UI/StoryMenu/day.gd" id="1_c6jxy"]
 [ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="2_2x7vk"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://v8h3o2h6y7e" path="res://Assets/images/Red_Button.png" id="5_h4n5b"]
 [ext_resource type="PackedScene" uid="uid://mpbxai4ade75" path="res://Scenes/Character Scenes/filetizen.tscn" id="5_y1tcq"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="6_2x7vk"]
+[ext_resource type="Texture2D" uid="uid://c0lmhsyvrxgbm" path="res://Assets/Button/Settings.png" id="7_onhaq"]
 [ext_resource type="Texture2D" uid="uid://c30hxuwk71wne" path="res://Assets/images/printer.png" id="7_wlewr"]
 [ext_resource type="PackedScene" uid="uid://7lh2ohceok4o" path="res://Scenes/Entities Scenes/file_document.tscn" id="7_y1tcq"]
 [ext_resource type="PackedScene" uid="uid://cew4m80j5s8fi" path="res://Scenes/Entities Scenes/checklist.tscn" id="9_7xjw4"]
@@ -23,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://2fhuw27q7ay0" path="res://Scenes/UI/resource_display.tscn" id="18_c4oy2"]
 [ext_resource type="AudioStream" uid="uid://b0qchflbw4kd6" path="res://Assets/Audio/SFX_Close_Door.wav" id="19_h4n5b"]
 [ext_resource type="PackedScene" uid="uid://be8jefwdga0gx" path="res://Scenes/Finishing Scenes/game_over.tscn" id="19_vkem0"]
+[ext_resource type="PackedScene" uid="uid://b5ibouyttb1cq" path="res://Scenes/UI/pause.tscn" id="25_fkp12"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2xmuy"]
 texture = ExtResource("2_2x7vk")
@@ -32,6 +34,17 @@ texture = ExtResource("3_wlewr")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dop2y"]
 texture = ExtResource("5_7wd0r")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_onhaq"]
+texture = ExtResource("7_onhaq")
+modulate_color = Color(0.535156, 0.530975, 0.530975, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fkp12"]
+texture = ExtResource("7_onhaq")
+modulate_color = Color(0.533333, 0.529412, 0.529412, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1c8bs"]
+texture = ExtResource("7_onhaq")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y1tcq"]
 texture = ExtResource("5_h4n5b")
@@ -79,12 +92,21 @@ scale = Vector2(0.631043, 0.617647)
 texture = ExtResource("7_wlewr")
 
 [node name="Panel" type="Panel" parent="."]
-offset_left = 1068.0
+offset_left = 1076.0
 offset_top = 85.0
-offset_right = 1127.0
+offset_right = 1143.0
 offset_bottom = 142.0
 rotation = -3.14417
 theme_override_styles/panel = SubResource("StyleBoxTexture_dop2y")
+
+[node name="PauseBtn" type="Button" parent="."]
+offset_left = 1091.0
+offset_top = 15.0
+offset_right = 1147.0
+offset_bottom = 72.0
+theme_override_styles/hover = SubResource("StyleBoxTexture_onhaq")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_fkp12")
+theme_override_styles/normal = SubResource("StyleBoxTexture_1c8bs")
 
 [node name="FilterPanel" type="Panel" parent="."]
 offset_left = 69.0
@@ -175,11 +197,12 @@ stream = ExtResource("19_h4n5b")
 bus = &"SFX"
 
 [node name="Level1Finished" parent="." instance=ExtResource("16_vk2dw")]
-visible = false
 
 [node name="GameOver" parent="." instance=ExtResource("19_vkem0")]
-visible = false
 
+[node name="Pause" parent="." instance=ExtResource("25_fkp12")]
+
+[connection signal="pressed" from="PauseBtn" to="." method="_on_pause_btn_pressed"]
 [connection signal="pressed" from="FilterPanel/FilterBtn" to="." method="_on_filter_btn_pressed"]
 [connection signal="pressed" from="ApproveBtn" to="." method="_on_approve_btn_pressed"]
 [connection signal="pressed" from="DeclineBtn" to="." method="_on_decline_btn_pressed"]

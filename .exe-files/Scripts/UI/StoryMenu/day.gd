@@ -15,6 +15,9 @@ extends Node2D
 @onready var wrong_decision_popup: Control = $GameOver
 @onready var dialogue_box: DialogueBox = $"Dialogue Box"
 
+@onready var paused_btn: Button = $PauseBtn
+@onready var paused: Control = $Pause
+
 @onready var resource_display = $ResourceDisplay
 
 # Audio
@@ -88,6 +91,7 @@ func _ready():
 
 	level_finished.hide()
 	wrong_decision_popup.hide()
+	paused.hide()
 	resource_display.set_level(day)
 	filter_activated.hide()
 
@@ -477,3 +481,9 @@ func level_up():
 		print("Level up! New player level: ", day)
 	else:
 		print("Player already has a higher level: ", current_level)
+
+
+func _on_pause_btn_pressed() -> void:
+	paused.show()
+	paused.z_index = 20
+	get_tree().paused = true
