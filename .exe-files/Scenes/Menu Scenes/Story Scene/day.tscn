@@ -1,9 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://b52y0fj86sfe7"]
+[gd_scene load_steps=30 format=3 uid="uid://b52y0fj86sfe7"]
 
 [ext_resource type="Script" uid="uid://cl8kjlwaigwmr" path="res://Scripts/UI/StoryMenu/day.gd" id="1_c6jxy"]
 [ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="2_2x7vk"]
+[ext_resource type="PackedScene" uid="uid://dwh7thrn4kypr" path="res://Scenes/Entities Scenes/filter_activated.tscn" id="3_dop2y"]
 [ext_resource type="Texture2D" uid="uid://bjtqkmwq8fiib" path="res://Assets/images/controll_room_bg.png" id="3_wlewr"]
 [ext_resource type="Script" uid="uid://5jr1nl78gvmg" path="res://Components/spawner_component.gd" id="4_6brgw"]
+[ext_resource type="Texture2D" uid="uid://dyaht84w33t60" path="res://Assets/Sprites/alarm.png" id="5_7wd0r"]
 [ext_resource type="Texture2D" uid="uid://v8h3o2h6y7e" path="res://Assets/images/Red_Button.png" id="5_h4n5b"]
 [ext_resource type="PackedScene" uid="uid://mpbxai4ade75" path="res://Scenes/Character Scenes/filetizen.tscn" id="5_y1tcq"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="6_2x7vk"]
@@ -27,6 +29,9 @@ texture = ExtResource("2_2x7vk")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_27r5i"]
 texture = ExtResource("3_wlewr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dop2y"]
+texture = ExtResource("5_7wd0r")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y1tcq"]
 texture = ExtResource("5_h4n5b")
@@ -59,6 +64,8 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_2xmuy")
 
 [node name="Actors" type="Node2D" parent="."]
 
+[node name="FilterActivated" parent="." instance=ExtResource("3_dop2y")]
+
 [node name="control_room" type="Panel" parent="."]
 offset_right = 1152.0
 offset_bottom = 643.0
@@ -72,20 +79,21 @@ scale = Vector2(0.631043, 0.617647)
 texture = ExtResource("7_wlewr")
 
 [node name="Panel" type="Panel" parent="."]
-offset_left = 1005.0
-offset_top = 34.0
-offset_right = 1068.0
-offset_bottom = 91.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_y1tcq")
+offset_left = 1068.0
+offset_top = 85.0
+offset_right = 1127.0
+offset_bottom = 142.0
+rotation = -3.14417
+theme_override_styles/panel = SubResource("StyleBoxTexture_dop2y")
 
-[node name="Panel2" type="Panel" parent="."]
+[node name="FilterPanel" type="Panel" parent="."]
 offset_left = 69.0
 offset_top = 62.0
 offset_right = 152.0
 offset_bottom = 137.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_y1tcq")
 
-[node name="Button" type="Button" parent="Panel2"]
+[node name="FilterBtn" type="Button" parent="FilterPanel"]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 6.0
@@ -172,5 +180,6 @@ visible = false
 [node name="GameOver" parent="." instance=ExtResource("19_vkem0")]
 visible = false
 
+[connection signal="pressed" from="FilterPanel/FilterBtn" to="." method="_on_filter_btn_pressed"]
 [connection signal="pressed" from="ApproveBtn" to="." method="_on_approve_btn_pressed"]
 [connection signal="pressed" from="DeclineBtn" to="." method="_on_decline_btn_pressed"]

@@ -2,10 +2,12 @@ class_name Day
 extends Node2D
 
 @onready var filetizen = $Filetizen
+@onready var filter_activated: Node2D = $FilterActivated
 @onready var spawn_filetizen: SpawnerComponent = $FiletizenSpawner
 @onready var document_spawner: SpawnerComponent = $DocumentSpawner
 @onready var actors: Node2D = $Actors
 @onready var documents: Node2D = $Document
+@onready var filter_btn: Button = $FilterPanel/FilterBtn
 @onready var approve_btn: Button = $ApproveBtn
 @onready var decline_btn: Button = $DeclineBtn
 @onready var answer_label : Label = $Answer_Label
@@ -87,6 +89,7 @@ func _ready():
 	level_finished.hide()
 	wrong_decision_popup.hide()
 	resource_display.set_level(day)
+	filter_activated.hide()
 
 	enable_buttons(false)
 
@@ -157,6 +160,7 @@ func move_filetizen_to_center():
 	var target = get_viewport().get_visible_rect().size / 2.0
 	var direction = target - filetizen.position
 	filetizen.move_component.move(direction, 250)
+	
 
 func spawn_new_file_document():
 	var spawn_pos = Vector2(1035, 274)
@@ -334,6 +338,21 @@ func _on_decline_btn_pressed() -> void:
 		current_document.spawn_decline_stamp()
 	button_sound.play()
 	handle_player_decision(false)
+
+func _on_filter_btn_pressed() -> void:
+
+	var score = filetizen.metadata.risk_score
+	var suspicious = is_file_suspicious(score)
+
+	filter_activated.play(suspicious)
+
+	if filetizen:
+		filetizen.activate_filter()
+
+	await filter_activated.finished
+
+	if filetizen:
+		filetizen.deactivate_filter()
 
 # =========================
 # DECISION SYSTEM 
