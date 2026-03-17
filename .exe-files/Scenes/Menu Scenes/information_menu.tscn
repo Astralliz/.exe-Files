@@ -599,6 +599,7 @@ offset_right = 1057.0
 offset_bottom = 557.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel2/Level1Panel"]
+layout_mode = 0
 offset_right = 958.0
 offset_bottom = 336.0
 
@@ -1022,6 +1023,7 @@ offset_right = 1057.0
 offset_bottom = 557.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel2/Level2Panel"]
+layout_mode = 0
 offset_right = 958.0
 offset_bottom = 336.0
 
@@ -1581,6 +1583,7 @@ offset_right = 1057.0
 offset_bottom = 557.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel2/Level3Panel"]
+layout_mode = 0
 offset_right = 958.0
 offset_bottom = 336.0
 
