@@ -8,7 +8,7 @@ var TEMP_SAVE := true  # true = only memory, false = save to disk
 var data: Dictionary = {
 	"new_to_game": 0,
 	"username": "",
-	"level": 5,
+	"level": 0,
 	"total_inspected": 0,  
 	"achievements": [], # ["FirstScan", "ExpertAnalyzer"]
 	"filter_used": 0,   # { "level1": 3, "level2": 1 } - track skill/question usage
@@ -80,9 +80,9 @@ func load_data() -> void:
 		data["achievements"] = []
 
 	# ---- Questions Used ----
-	var qu: Dictionary = cfg.get_value(SAVE_SECTION, "filter_used", {})
-	if typeof(qu) == TYPE_DICTIONARY:
-		data["filter_used"] = qu.duplicate(true)
+	var filt: Dictionary = cfg.get_value(SAVE_SECTION, "filter_used", {})
+	if typeof(filt) == TYPE_DICTIONARY:
+		data["filter_used"] = filt.duplicate(true)
 	else:
 		data["filter_used"] = {}
 

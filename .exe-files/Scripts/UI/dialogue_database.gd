@@ -19,6 +19,11 @@ var false_negative_feedback := [
 	"[FALSE NEGATIVE] That file was fine—trust your inspections next time."
 ]
 
+var insufficient_resource := [
+	"Insufficient amount of Filters",
+	"Insufficient amount of Evaluate"
+]
+
 func get_random_correct() -> String:
 	return correct_feedback.pick_random()
 

@@ -101,6 +101,7 @@ offset_bottom = 182.0
 text = "Back"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="AudioPanel"]
+layout_mode = 0
 offset_right = 672.0
 offset_bottom = 135.0
 size_flags_vertical = 3
@@ -699,7 +700,6 @@ autowrap_mode = 2
 horizontal_alignment = 3
 
 [node name="Level1Panel" type="Panel" parent="InformationPanel"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1129,7 +1129,6 @@ scroll_active = false
 autowrap_mode = 2
 
 [node name="Level2Panel" type="Panel" parent="InformationPanel"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1695,7 +1694,6 @@ scroll_active = false
 autowrap_mode = 2
 
 [node name="Level3Panel" type="Panel" parent="InformationPanel"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2441,6 +2439,7 @@ scroll_active = false
 autowrap_mode = 2
 
 [node name="GeneralBckBtn" type="Button" parent="InformationPanel"]
+layout_mode = 0
 offset_left = 244.0
 offset_top = 319.0
 offset_right = 394.0

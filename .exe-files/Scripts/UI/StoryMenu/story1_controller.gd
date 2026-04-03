@@ -12,10 +12,13 @@ func _on_back_1_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Menu Scenes/story_menu.tscn")
 
 func _on_day_1_start_pressed():
-	if GameState.day == 0:
-		get_tree().change_scene_to_file("res://Scenes/UI/intro.tscn")
+
+	if Player_Data.data["new_to_game"] == 2:
 		GameState.day = 1
-	elif GameState.day == 2:
+		Player_Data.data["new_to_game"] = 3
+		get_tree().change_scene_to_file("res://Scenes/UI/intro.tscn")
+	else:
+		GameState.day = 1
 		get_tree().change_scene_to_file("res://Scenes/Menu Scenes/Story Scene/day.tscn")
 
 

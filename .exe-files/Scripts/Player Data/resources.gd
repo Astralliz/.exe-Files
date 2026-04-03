@@ -26,7 +26,7 @@ func update_bounty_amount(new_amount: int = -1) -> void:
 		bb_amount.text = str(Player_Data.get_bug_bounty())
 
 func update_filter_amount(new_filter_amount: int = -1) -> void:
-	if current_level == 1:
+	if Player_Data.data["level"] < 1:
 		filter_amount.text = "∞"
 	else:
 		if new_filter_amount >= Player_Data.get_filter_left():
@@ -35,7 +35,7 @@ func update_filter_amount(new_filter_amount: int = -1) -> void:
 			filter_amount.text = str(Player_Data.get_filter_left())
 
 func update_evaluation_amount(new_evaluation_amount: int = -1) -> void:
-	if current_level == 1:
+	if Player_Data.data["level"] < 1:
 		evaluation_amount.text = "∞"
 	else:
 		if new_evaluation_amount >= Player_Data.get_evaluate_left():

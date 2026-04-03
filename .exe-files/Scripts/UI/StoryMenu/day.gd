@@ -96,6 +96,8 @@ func _ready():
 	filter_activated.hide()
 
 	enable_buttons(false)
+	get_tree().paused = false
+	print("Game started, paused state:", get_tree().paused)
 
 	setup_question_buttons()	
 
@@ -108,7 +110,7 @@ func _ready():
 	filetizen_count += 1
 	move_filetizen_to_center()
 
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(1.0, false).timeout
 	spawn_new_file_document()
 
 # =========================
@@ -272,7 +274,7 @@ func _on_question_button_pressed(key: String) -> void:
 		await type_text(answer_label, text, cps)
 
 		# hold full text for 0.5s
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(1, false).timeout
 
 		# clear the label
 		answer_label.text = ""
@@ -286,7 +288,7 @@ func type_text(label: Label, full_text: String, cps: float = 30.0) -> float:
 
 	for i in text.length():
 		label.text = text.substr(0, i + 1)
-		await get_tree().create_timer(1.0 / cps).timeout
+		await get_tree().create_timer(1.0 / cps, false).timeout
 
 	return duration
 
@@ -345,6 +347,13 @@ func _on_decline_btn_pressed() -> void:
 
 func _on_filter_btn_pressed() -> void:
 
+	# ✅ Check if player has filters left
+	if Player_Data.data["level"] >= 1:
+		if Player_Data.get_filter_left() <= 0:
+			show_no_filter_popup("filter")
+			return
+		Player_Data.use_filter()  # Deduct normally
+
 	var score = filetizen.metadata.risk_score
 	var suspicious = is_file_suspicious(score)
 
@@ -357,6 +366,20 @@ func _on_filter_btn_pressed() -> void:
 
 	if filetizen:
 		filetizen.deactivate_filter()
+
+func show_no_filter_popup(resource_type: String) -> void:
+	var message: String = ""
+
+	match resource_type:
+		"filter":
+			message = dialogue_database.insufficient_resource[0]  # "Insufficient amount of Filters"
+		"evaluate":
+			message = dialogue_database.insufficient_resource[1]  # "Insufficient amount of Evaluate"
+		_:
+			message = "Insufficient resources!"
+
+	# Show the dialogue box instead of printing
+	dialogue_box.show_dialogue(message)
 
 # =========================
 # DECISION SYSTEM 
@@ -428,7 +451,7 @@ func show_decision_feedback(result: Dictionary):
 
 func process_filetizen_exit(player_approved: bool) -> void:
 
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(1.0, false).timeout
 
 	if player_approved:
 		move_approved_filetizen()
@@ -439,7 +462,7 @@ func process_filetizen_exit(player_approved: bool) -> void:
 		current_document.queue_free()
 		current_document = null
 
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(3.0, false).timeout
 	moved_out = false
 
 
@@ -451,7 +474,7 @@ func next_turn_or_end(show_gameover: bool) -> void:
 		filetizen_count += 1
 		move_filetizen_to_center()
 
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(1.0, false).timeout
 		spawn_new_file_document()
 
 	else:

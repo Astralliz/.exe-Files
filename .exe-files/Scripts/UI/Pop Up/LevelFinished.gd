@@ -27,6 +27,7 @@ func _ready() -> void:
 	day = GameState.day
 	trophy_panel.visible = false
 	setup_dialogue(day)
+	Player_Data.data["new_to_game"] = 4
 
 func setup_dialogue(day: int) -> void:
 

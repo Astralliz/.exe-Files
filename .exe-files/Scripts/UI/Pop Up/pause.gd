@@ -83,4 +83,5 @@ func _on_level_3_pressed() -> void:
 #----------------------------------------
 func _on_button_4_pressed() -> void:
 	get_tree().paused = false
+	await get_tree().process_frame
 	get_tree().change_scene_to_file("res://Scenes/Menu Scenes/story_menu.tscn")

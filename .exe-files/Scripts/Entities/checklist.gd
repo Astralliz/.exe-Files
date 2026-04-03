@@ -1,6 +1,8 @@
 class_name Checklist
 extends Node2D
 
+signal insufficient_resource(resource_type: String)
+
 @onready var document_area_2d: Area2D = $DocumentArea2D
 @onready var interact_area_2d: Area2D = $InteractArea2D
 @onready var list: Sprite2D = $Sprite2D
@@ -278,8 +280,11 @@ func _on_evaluate_pressed():
 	suggestion.visible = false
 	suggestion2.visible = false
 
-	if !GameState.day <= 1:
-		Player_Data.use_evaluate()
+	if Player_Data.data["level"] >= 1:
+		if Player_Data.get_evaluate_left() <= 0:
+			emit_signal("insufficient_resource", "evaluate")
+			return
+		Player_Data.use_evaluate()  # Deduct evaluation
 
 	if s <= 1.0:
 		text += "SAFE ✓"
