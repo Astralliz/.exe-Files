@@ -398,7 +398,7 @@ func start_minigame():
 	filetizen_talking.stop()
 	paper_printing.stop()
 
-	var minigame_scene = preload("res://Scenes/Mini Games Scene/mini_game_1.tscn")
+	var minigame_scene = preload("res://Scenes/Mini Games Scene/malware_attack.tscn")
 	var minigame_instance = minigame_scene.instantiate()
 
 	# Add to current scene (NOT as child in editor, only runtime)
