@@ -1,4 +1,15 @@
-[gd_scene format=3 uid="uid://2db65y34uaaw"]
+[gd_scene load_steps=7 format=3 uid="uid://2db65y34uaaw"]
+
+[ext_resource type="Script" uid="uid://cxlashul4l20a" path="res://Scripts/Entities/trojan_attack.gd" id="1_suuf4"]
+[ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="2_608ro"]
+[ext_resource type="Texture2D" uid="uid://dud14egjhs4im" path="res://Assets/images/finished window.png" id="3_k6vm6"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="4_5x5vd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g4ktk"]
+texture = ExtResource("2_608ro")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vmo6o"]
+texture = ExtResource("3_k6vm6")
 
 [node name="TrojanAttack" type="Control"]
 layout_mode = 3
@@ -7,3 +18,59 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_suuf4")
+
+[node name="main_background" type="Panel" parent="."]
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 1151.0
+offset_bottom = 644.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_g4ktk")
+
+[node name="BlurBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.509804)
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 211.0
+offset_top = 104.0
+offset_right = 943.0
+offset_bottom = 520.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_vmo6o")
+
+[node name="TextEdit" type="RichTextLabel" parent="."]
+offset_left = 358.0
+offset_top = 154.0
+offset_right = 790.0
+offset_bottom = 389.0
+theme_override_fonts/normal_font = ExtResource("4_5x5vd")
+theme_override_font_sizes/normal_font_size = 35
+text = "Trojan attack"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Finished" type="Button" parent="."]
+offset_left = 611.0
+offset_top = 380.0
+offset_right = 821.0
+offset_bottom = 438.0
+theme_override_fonts/font = ExtResource("4_5x5vd")
+theme_override_font_sizes/font_size = 20
+text = "Finished"
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 324.0
+offset_top = 375.0
+offset_right = 534.0
+offset_bottom = 433.0
+theme_override_fonts/font = ExtResource("4_5x5vd")
+theme_override_font_sizes/font_size = 20
+text = "quit"
+
+[connection signal="pressed" from="Finished" to="." method="_on_finished_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

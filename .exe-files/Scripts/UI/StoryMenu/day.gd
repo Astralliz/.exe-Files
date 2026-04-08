@@ -49,6 +49,7 @@ const RuleBase = preload("res://Scripts/Algorithm/Rules/rule_base.gd")
 var dialogue_database := DialogueDatabase.new()
 var engine := HeuristicEngine.new()
 var rule_base := RuleBase.new()
+var decision_tree := DecisionTreeAnalyzer.new() 
 
 # =========================
 # GAME STATE
@@ -67,6 +68,8 @@ var current_answers : Dictionary = {}
 # C---------- Mini Games state ----------------
 var pending_player_approved: bool = false
 var minigame_active: bool = false
+var current_attack_type: String = ""
+var current_metadata_dict: Dictionary = {}
 
 # Question buttons inside SlidingPanel
 @onready var question_buttons : Dictionary = {
@@ -189,12 +192,12 @@ func spawn_new_file_document():
 # =========================
 func move_approved_filetizen():
 	var screen_w = get_viewport().get_visible_rect().size.x
-	var direction = Vector2(screen_w + 200, filetizen.position.y) - filetizen.position
-	filetizen.move_component.move(direction, 300)
-
-	await wait_until_filetizen_exits(screen_w)
-
-	closing_door.play()
+	if filetizen and is_instance_valid(filetizen):
+		var direction = Vector2(screen_w + 200, filetizen.position.y) - filetizen.position
+		filetizen.move_component.move(direction, 300)
+		await wait_until_filetizen_exits(screen_w)
+		closing_door.play()
+	filetizen = null 
 
 func wait_until_filetizen_exits(screen_w: float) -> void:
 	while filetizen and is_instance_valid(filetizen):
@@ -204,8 +207,11 @@ func wait_until_filetizen_exits(screen_w: float) -> void:
 
 func move_declined_filetizen():
 	var screen_w = get_viewport().get_visible_rect().size.x
-	var direction = Vector2(screen_w + 200, filetizen.position.y) - filetizen.position
-	filetizen.move_component.move(direction, -300)
+	if filetizen and is_instance_valid(filetizen):
+		var direction = Vector2(screen_w + 200, filetizen.position.y) - filetizen.position
+		filetizen.move_component.move(direction, -300)
+		await wait_until_filetizen_exits(screen_w)
+	filetizen = null 
 
 # =========================
 # QUESTION SYSTEM
@@ -391,25 +397,36 @@ func show_no_filter_popup(resource_type: String) -> void:
 func start_minigame():
 	print("MINIGAME STARTED")
 	
-		# 🔇 STOP ALL SOUNDS
+	# 🔇 STOP ALL SOUNDS
 	button_sound.stop()
 	opening_door.stop()
 	closing_door.stop()
 	filetizen_talking.stop()
 	paper_printing.stop()
 
-	var minigame_scene = preload("res://Scenes/Mini Games Scene/malware_attack.tscn")
+	current_attack_type = decision_tree.predict(current_metadata_dict)
+	decision_tree.print_prediction_details(current_metadata_dict, current_attack_type)
+	
+	var minigame_scene_path = decision_tree.get_minigame_scene_path(current_attack_type)
+	var minigame_scene = load(minigame_scene_path)
+	
+	# Fallback if scene doesn't exist
+	if minigame_scene == null:
+		print("ERROR: Minigame scene not found at: ", minigame_scene_path)
+		print("Defaulting to malware attack minigame")
+		minigame_scene = preload("res://Scenes/Mini Games Scene/malware_attack.tscn")
+	
 	var minigame_instance = minigame_scene.instantiate()
-
+ 
 	# Add to current scene (NOT as child in editor, only runtime)
 	get_tree().current_scene.add_child(minigame_instance)
-
+ 
 	# Optional: make sure it's on top
 	minigame_instance.z_index = 100
-
+ 
 	# Connect signal
 	minigame_instance.connect("minigame_finished", Callable(self, "_on_minigame_finished"))
-
+ 
 func on_minigame_result(success: bool):
 
 	print("MINIGAME RESULT: ", success)
@@ -441,14 +458,21 @@ func handle_player_decision(player_approved: bool):
 	var result = evaluate_decision(player_approved)
 
 	emit_signal("verdict_resolved", result.is_correct)
+	
+	current_metadata_dict = {}
+	current_metadata_dict["filename"] = filetizen.metadata.filename
+	current_metadata_dict["extension"] = filetizen.metadata.extension
+	current_metadata_dict["publisher"] = filetizen.metadata.publisher
+	current_metadata_dict["source"] = filetizen.metadata.source
+	current_metadata_dict["size"] = filetizen.metadata.size_mb
+
+	await get_tree().create_timer(0.8).timeout
 	show_decision_feedback(result)
 
-	# 🚨 STOP NORMAL FLOW if minigame triggered
 	if result.trigger_minigame:
 		return
 
 	await process_filetizen_exit(player_approved)
-
 	await next_turn_or_end(result.show_gameover)
 
 func evaluate_decision(player_approved: bool) -> Dictionary:
@@ -506,6 +530,7 @@ func build_gameover_message() -> String:
 
 func show_decision_feedback(result: Dictionary):
 	if result.trigger_minigame:
+		await get_tree().create_timer(0.5).timeout
 		start_minigame()
 
 	elif result.show_gameover:
@@ -520,9 +545,9 @@ func process_filetizen_exit(player_approved: bool) -> void:
 	await get_tree().create_timer(1.0, false).timeout
 
 	if player_approved:
-		move_approved_filetizen()
+		await move_approved_filetizen()
 	else:
-		move_declined_filetizen()
+		await move_declined_filetizen()
 
 	if current_document:
 		current_document.queue_free()
@@ -573,7 +598,6 @@ func level_up():
 		print("Level up! New player level: ", day)
 	else:
 		print("Player already has a higher level: ", current_level)
-
 
 func _on_pause_btn_pressed() -> void:
 	paused.show()
