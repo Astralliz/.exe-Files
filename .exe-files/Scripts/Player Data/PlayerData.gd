@@ -13,7 +13,8 @@ var data: Dictionary = {
 	"achievements": [], # ["FirstScan", "ExpertAnalyzer"]
 	"filter_used": 0,   # { "level1": 3, "level2": 1 } - track skill/question usage
 	"evaluate_used": 0,
-	"bug_bounty": 40
+	"bug_bounty": 40,
+	"minigame_usage": {}
 }
 
 const SAVE_PATH := "user://player_data.cfg"
@@ -43,6 +44,7 @@ func save_data() -> void:
 	cfg.set_value(SAVE_SECTION, "filter_used", data["filter_used"])
 	cfg.set_value(SAVE_SECTION, "evaluate_used", data["evaluate_used"])
 	cfg.set_value(SAVE_SECTION, "bug_bounty", int(data["bug_bounty"]))
+	cfg.set_value(SAVE_SECTION, "minigame_usage", data["minigame_usage"])
 
 	var err := cfg.save(SAVE_PATH)
 	if err == OK:
@@ -100,11 +102,38 @@ func load_data() -> void:
 	else:
 		data["bug_bounty"] = 0
 
+	# ---- Mini Games ----
+	var mg = cfg.get_value(SAVE_SECTION, "minigame_usage", {})
+	if typeof(mg) == TYPE_DICTIONARY:
+		data["minigame_usage"] = mg.duplicate(true)
+	else:
+		data["minigame_usage"] = {}
+
 	print("Player data loaded from %s" % SAVE_PATH)
 
 # -----------------------
 # HELPERS / API
 # -----------------------
+
+# ----------------------- Mini Games System ----------------------
+# Get today's real-world date
+func get_today_date() -> String:
+	return Time.get_date_string_from_system()  # "YYYY-MM-DD"
+
+# Build unique key: "2026-04-08_day1"
+func build_minigame_key(day: int) -> String:
+	return get_today_date() + "_day" + str(day)
+
+# Check if minigame can be used
+func can_use_minigame(day: int) -> bool:
+	var key = build_minigame_key(day)
+	return not data["minigame_usage"].has(key)
+
+# Mark minigame as used
+func mark_minigame_used(day: int) -> void:
+	var key = build_minigame_key(day)
+	data["minigame_usage"][key] = true
+	save_data()
 
 # ----------------------- New Game -----------------------
 # Check if this is a new game
@@ -216,6 +245,7 @@ func reset_data() -> void:
 		"achievements": [],
 		"filter_used": 0,
 		"evaluate_used": 0,
-		"bug_bounty": 40
+		"bug_bounty": 40,
+		"minigame_usage": {}
 	}
 	save_data()

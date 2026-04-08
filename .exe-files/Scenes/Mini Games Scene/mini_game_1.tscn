@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmgorupsqhdnx"]
+
+[ext_resource type="Script" uid="uid://cf1lhu4i4aeqc" path="res://Scripts/Entities/mini_game_1.gd" id="1_qxdqa"]
+[ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="2_owt5f"]
+[ext_resource type="Texture2D" uid="uid://dud14egjhs4im" path="res://Assets/images/finished window.png" id="3_1kr1v"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="4_s22t0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3eyko"]
+texture = ExtResource("2_owt5f")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cla3m"]
+texture = ExtResource("3_1kr1v")
+
+[node name="MiniGame1" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_qxdqa")
+
+[node name="main_background" type="Panel" parent="."]
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 1151.0
+offset_bottom = 644.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_3eyko")
+
+[node name="BlurBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.509804)
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 211.0
+offset_top = 104.0
+offset_right = 943.0
+offset_bottom = 520.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_cla3m")
+
+[node name="TextEdit" type="RichTextLabel" parent="."]
+offset_left = 358.0
+offset_top = 154.0
+offset_right = 790.0
+offset_bottom = 389.0
+theme_override_fonts/normal_font = ExtResource("4_s22t0")
+theme_override_font_sizes/normal_font_size = 35
+text = "Trigger Mini Game  1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Finished" type="Button" parent="."]
+offset_left = 611.0
+offset_top = 380.0
+offset_right = 821.0
+offset_bottom = 438.0
+theme_override_fonts/font = ExtResource("4_s22t0")
+theme_override_font_sizes/font_size = 20
+text = "Finished"
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 324.0
+offset_top = 375.0
+offset_right = 534.0
+offset_bottom = 433.0
+theme_override_fonts/font = ExtResource("4_s22t0")
+theme_override_font_sizes/font_size = 20
+text = "quit"
+
+[connection signal="pressed" from="Finished" to="." method="_on_finished_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

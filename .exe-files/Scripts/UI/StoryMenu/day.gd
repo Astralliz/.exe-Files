@@ -64,6 +64,10 @@ var day: int
 
 var current_answers : Dictionary = {}
 
+# C---------- Mini Games state ----------------
+var pending_player_approved: bool = false
+var minigame_active: bool = false
+
 # Question buttons inside SlidingPanel
 @onready var question_buttons : Dictionary = {
 	"filename": sliding_panel.get_node("Panel/ScrollContainer/VBoxContainer/Question1"),
@@ -382,6 +386,51 @@ func show_no_filter_popup(resource_type: String) -> void:
 	dialogue_box.show_dialogue(message)
 
 # =========================
+# MINI GAMES SYSTEM 
+# =========================
+func start_minigame():
+	print("MINIGAME STARTED")
+	
+		# 🔇 STOP ALL SOUNDS
+	button_sound.stop()
+	opening_door.stop()
+	closing_door.stop()
+	filetizen_talking.stop()
+	paper_printing.stop()
+
+	var minigame_scene = preload("res://Scenes/Mini Games Scene/mini_game_1.tscn")
+	var minigame_instance = minigame_scene.instantiate()
+
+	# Add to current scene (NOT as child in editor, only runtime)
+	get_tree().current_scene.add_child(minigame_instance)
+
+	# Optional: make sure it's on top
+	minigame_instance.z_index = 100
+
+	# Connect signal
+	minigame_instance.connect("minigame_finished", Callable(self, "_on_minigame_finished"))
+
+func on_minigame_result(success: bool):
+
+	print("MINIGAME RESULT: ", success)
+
+	minigame_active = false
+	wrong_decision_popup.hide()
+
+	if success:
+		# ✅ CONTINUE GAME FLOW
+		await process_filetizen_exit(pending_player_approved)
+		await next_turn_or_end(false)
+
+	else:
+		# ❌ REAL GAME OVER
+		wrong_decision_popup.show()
+		wrong_decision_popup.text.text = build_gameover_message()
+		
+func _on_minigame_finished(success: bool):
+	on_minigame_result(success)
+
+# =========================
 # DECISION SYSTEM 
 # =========================
 func handle_player_decision(player_approved: bool):
@@ -392,8 +441,11 @@ func handle_player_decision(player_approved: bool):
 	var result = evaluate_decision(player_approved)
 
 	emit_signal("verdict_resolved", result.is_correct)
-
 	show_decision_feedback(result)
+
+	# 🚨 STOP NORMAL FLOW if minigame triggered
+	if result.trigger_minigame:
+		return
 
 	await process_filetizen_exit(player_approved)
 
@@ -407,7 +459,8 @@ func evaluate_decision(player_approved: bool) -> Dictionary:
 	var result = {
 		"is_correct": false,
 		"message": "",
-		"show_gameover": false
+		"show_gameover": false,
+		"trigger_minigame": false
 	}
 
 	if player_approved == (not suspicious):
@@ -418,8 +471,17 @@ func evaluate_decision(player_approved: bool) -> Dictionary:
 		correct_today += 1
 	else:
 		if player_approved and suspicious:
-			result.show_gameover = true
-			result.message = build_gameover_message()
+			if Player_Data.can_use_minigame(day):
+				result.trigger_minigame = true
+				result.message = "You made a critical mistake!\nComplete the minigame to recover!"
+				
+				pending_player_approved = player_approved
+				minigame_active = true
+				
+				Player_Data.mark_minigame_used(day)
+			else:
+				result.show_gameover = true
+				result.message = build_gameover_message()
 		else:
 			result.message = build_wrong_message()
 
@@ -443,9 +505,13 @@ func build_gameover_message() -> String:
 	return message
 
 func show_decision_feedback(result: Dictionary):
-	if result.show_gameover:
+	if result.trigger_minigame:
+		start_minigame()
+
+	elif result.show_gameover:
 		wrong_decision_popup.show()
 		wrong_decision_popup.text.text = result.message
+
 	else:
 		dialogue_box.show_dialogue(result.message)
 
@@ -467,6 +533,9 @@ func process_filetizen_exit(player_approved: bool) -> void:
 
 
 func next_turn_or_end(show_gameover: bool) -> void:
+	
+	if minigame_active:
+		return
 
 	if filetizen_count < max_filetizens and not show_gameover:
 		dialogue_box.hide_dialogue()
