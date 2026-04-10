@@ -8,7 +8,7 @@ var TEMP_SAVE := true  # true = only memory, false = save to disk
 var data: Dictionary = {
 	"new_to_game": 0,
 	"username": "",
-	"level": 0,
+	"level": 4,
 	"total_inspected": 0,  
 	"achievements": [], # ["FirstScan", "ExpertAnalyzer"]
 	"filter_used": 0,   # { "level1": 3, "level2": 1 } - track skill/question usage

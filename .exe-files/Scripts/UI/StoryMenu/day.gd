@@ -69,6 +69,7 @@ var current_answers : Dictionary = {}
 var pending_player_approved: bool = false
 var minigame_active: bool = false
 var current_attack_type: String = ""
+var is_game_over: bool = false
 var current_metadata_dict: Dictionary = {}
 
 # Question buttons inside SlidingPanel
@@ -200,6 +201,9 @@ func move_approved_filetizen():
 	filetizen = null 
 
 func wait_until_filetizen_exits(screen_w: float) -> void:
+	if is_game_over:
+		return
+
 	while filetizen and is_instance_valid(filetizen):
 		if filetizen.position.x > screen_w + 150:
 			break
@@ -405,7 +409,11 @@ func start_minigame():
 	paper_printing.stop()
 
 	current_attack_type = decision_tree.predict(current_metadata_dict)
-	decision_tree.print_prediction_details(current_metadata_dict, current_attack_type)
+	decision_tree.print_prediction_details(
+		current_metadata_dict,
+		current_attack_type,
+		decision_tree.get_difficulty_level_from_day(day)
+	)
 	
 	var minigame_scene_path = decision_tree.get_minigame_scene_path(current_attack_type)
 	var minigame_scene = load(minigame_scene_path)
@@ -447,6 +455,30 @@ func on_minigame_result(success: bool):
 func _on_minigame_finished(success: bool):
 	on_minigame_result(success)
 
+func build_metadata_for_level(current_day: int) -> Dictionary:
+	var difficulty = decision_tree.get_difficulty_level_from_day(current_day)
+	
+	var metadata = {
+		"filename": filetizen.metadata.filename,
+		"extension": filetizen.metadata.extension,
+		"size": filetizen.metadata.size_mb,
+		"publisher": filetizen.metadata.publisher,
+		"source": filetizen.metadata.source
+	}
+	
+	# Add Level 2 fields if applicable (Days 3-4)
+	if difficulty >= 2:
+		metadata["modified_hours_ago"] = filetizen.metadata.modified_hours_ago
+		metadata["hidden"] = filetizen.metadata.hidden
+	
+	# Add Level 3 fields if applicable (Days 5+)
+	if difficulty >= 3:
+		metadata["signature_valid"] = filetizen.metadata.signature_valid
+		metadata["requires_admin"] = filetizen.metadata.requires_admin
+		metadata["is_compressed"] = filetizen.metadata.is_compressed
+	
+	return metadata
+
 # =========================
 # DECISION SYSTEM 
 # =========================
@@ -459,15 +491,14 @@ func handle_player_decision(player_approved: bool):
 
 	emit_signal("verdict_resolved", result.is_correct)
 	
-	current_metadata_dict = {}
-	current_metadata_dict["filename"] = filetizen.metadata.filename
-	current_metadata_dict["extension"] = filetizen.metadata.extension
-	current_metadata_dict["publisher"] = filetizen.metadata.publisher
-	current_metadata_dict["source"] = filetizen.metadata.source
-	current_metadata_dict["size"] = filetizen.metadata.size_mb
+	current_metadata_dict = build_metadata_for_level(day)
 
 	await get_tree().create_timer(0.8).timeout
 	show_decision_feedback(result)
+
+	if result.show_gameover:
+		is_game_over = true
+		return
 
 	if result.trigger_minigame:
 		return
@@ -534,6 +565,9 @@ func show_decision_feedback(result: Dictionary):
 		start_minigame()
 
 	elif result.show_gameover:
+		if filetizen and is_instance_valid(filetizen):
+			filetizen.move_component.stop()
+
 		wrong_decision_popup.show()
 		wrong_decision_popup.text.text = result.message
 

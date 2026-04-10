@@ -21,6 +21,7 @@ grow_vertical = 2
 script = ExtResource("1_8afa3")
 
 [node name="main_background" type="Panel" parent="."]
+layout_mode = 0
 offset_left = 3.0
 offset_top = 2.0
 offset_right = 1151.0
@@ -37,6 +38,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.509804)
 
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 0
 offset_left = 211.0
 offset_top = 104.0
 offset_right = 943.0
@@ -44,6 +46,7 @@ offset_bottom = 520.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_4sff4")
 
 [node name="TextEdit" type="RichTextLabel" parent="."]
+layout_mode = 0
 offset_left = 358.0
 offset_top = 154.0
 offset_right = 790.0
@@ -55,6 +58,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Finished" type="Button" parent="."]
+layout_mode = 0
 offset_left = 611.0
 offset_top = 380.0
 offset_right = 821.0
@@ -64,6 +68,7 @@ theme_override_font_sizes/font_size = 20
 text = "Finished"
 
 [node name="Quit" type="Button" parent="."]
+layout_mode = 0
 offset_left = 324.0
 offset_top = 375.0
 offset_right = 534.0
