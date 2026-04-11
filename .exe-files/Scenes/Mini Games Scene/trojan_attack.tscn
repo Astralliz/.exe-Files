@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://2db65y34uaaw"]
+[gd_scene load_steps=9 format=3 uid="uid://2db65y34uaaw"]
 
 [ext_resource type="Script" uid="uid://cxlashul4l20a" path="res://Scripts/Entities/trojan_attack.gd" id="1_suuf4"]
 [ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="2_608ro"]
@@ -10,6 +10,12 @@ texture = ExtResource("2_608ro")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vmo6o"]
 texture = ExtResource("3_k6vm6")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_suuf4"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_608ro"]
+bg_color = Color(0.964844, 0.448502, 0.448502, 1)
 
 [node name="TrojanAttack" type="Control"]
 layout_mode = 3
@@ -39,25 +45,80 @@ color = Color(0, 0, 0, 0.509804)
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 211.0
-offset_top = 104.0
-offset_right = 943.0
-offset_bottom = 520.0
+offset_left = 29.0
+offset_top = 153.0
+offset_right = 1134.0
+offset_bottom = 633.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_vmo6o")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 17.0
+offset_right = 1075.0
+offset_bottom = 239.0
+
+[node name="Box1" type="Panel" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_suuf4")
+
+[node name="Box2" type="Panel" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_suuf4")
+
+[node name="Box3" type="Panel" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_608ro")
+
+[node name="Box4" type="Panel" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_suuf4")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 244.0
+offset_right = 1076.0
+offset_bottom = 462.0
+
+[node name="Box5" type="Panel" parent="Panel/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_suuf4")
+
+[node name="Box6" type="Panel" parent="Panel/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_suuf4")
+
+[node name="Box7" type="Panel" parent="Panel/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_suuf4")
+
+[node name="Box8" type="Panel" parent="Panel/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_suuf4")
 
 [node name="TextEdit" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 358.0
-offset_top = 154.0
-offset_right = 790.0
-offset_bottom = 389.0
+offset_left = 359.0
+offset_top = -41.0
+offset_right = 791.0
+offset_bottom = 194.0
 theme_override_fonts/normal_font = ExtResource("4_5x5vd")
-theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/normal_font_size = 50
 text = "Trojan attack"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Finished" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 611.0
 offset_top = 380.0
@@ -68,6 +129,7 @@ theme_override_font_sizes/font_size = 20
 text = "Finished"
 
 [node name="Quit" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 324.0
 offset_top = 375.0
@@ -76,6 +138,26 @@ offset_bottom = 433.0
 theme_override_fonts/font = ExtResource("4_5x5vd")
 theme_override_font_sizes/font_size = 20
 text = "quit"
+
+[node name="Level" type="Label" parent="."]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 98.0
+offset_right = 293.0
+offset_bottom = 152.0
+theme_override_fonts/font = ExtResource("4_5x5vd")
+theme_override_font_sizes/font_size = 35
+text = "Level 1"
+
+[node name="Wrong" type="Label" parent="."]
+layout_mode = 0
+offset_left = 835.0
+offset_top = 95.0
+offset_right = 972.0
+offset_bottom = 149.0
+theme_override_fonts/font = ExtResource("4_5x5vd")
+theme_override_font_sizes/font_size = 35
+text = "Wrong: 2"
 
 [connection signal="pressed" from="Finished" to="." method="_on_finished_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
