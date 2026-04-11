@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1q40twj1l7jq"]
+[gd_scene load_steps=8 format=3 uid="uid://c1q40twj1l7jq"]
 
 [ext_resource type="Script" uid="uid://q8lxde31l5na" path="res://Scripts/Entities/injection_attack.gd" id="1_t7g1a"]
 [ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="2_67x5j"]
@@ -10,6 +10,10 @@ texture = ExtResource("2_67x5j")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7ducl"]
 texture = ExtResource("3_c2pl3")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7g1a"]
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
 
 [node name="InjectionAttack" type="Control"]
 layout_mode = 3
@@ -97,6 +101,26 @@ offset_bottom = 622.0
 max_value = 5.0
 value = 2.0
 fill_mode = 3
+
+[node name="SystemBottom" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 163.0
+offset_top = 579.0
+offset_right = 994.0
+offset_bottom = 625.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_t7g1a")
+
+[node name="Label" type="Label" parent="SystemBottom"]
+layout_mode = 0
+offset_left = 337.0
+offset_top = -3.0
+offset_right = 487.0
+offset_bottom = 47.0
+theme_override_fonts/font = ExtResource("4_b3kxr")
+theme_override_font_sizes/font_size = 35
+text = "System"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Finished" to="." method="_on_finished_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

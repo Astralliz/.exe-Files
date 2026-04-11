@@ -16,6 +16,8 @@ enum InjectionGameState { PLAYING, WON, LOST }
 @onready var container_panel: Panel = $Panel
 @onready var slice_count_bar: ProgressBar = $SliceCount
 @onready var fallen_count_bar: ProgressBar = $FallenCount
+@onready var system_bottom: Panel = $SystemBottom
+@onready var system_label: Label = $SystemBottom/Label
 
 # Game variables
 var current_state: InjectionGameState = InjectionGameState.PLAYING
@@ -136,6 +138,9 @@ func _ready() -> void:
 	fallen_count_bar.value = 0
 	fallen_count_bar.modulate = Color.RED
 	
+	# Setup system bottom panel
+	system_bottom.modulate = Color(0.2, 0.2, 0.2, 1.0)  # Dark gray base color
+	
 	# Ensure container panel is visible and ready
 	container_panel.clip_contents = true
 	
@@ -159,8 +164,12 @@ func _process(delta: float) -> void:
 		var item = falling_items[i]
 		if item.update(delta):
 			# Item has reached the bottom
-			if not item.is_sliced and item.is_corrupted:
-				on_corrupted_file_fallen(item)
+			if not item.is_sliced:
+				if item.is_corrupted:
+					on_corrupted_file_fallen(item)
+				else:
+					# Clean file passed through safely
+					system_glow_effect(Color(0.2, 1.0, 0.2, 1.0))
 			items_to_remove.append(i)
 	
 	# Remove items in reverse order
@@ -234,6 +243,9 @@ func on_corrupted_file_sliced(item: FallingFile) -> void:
 	slice_count += 1
 	update_slice_bar()
 	
+	# Trigger system glow effect - GREEN for successfully neutralized
+	system_glow_effect(Color(0.2, 1.0, 0.2, 1.0))
+	
 	# Win condition
 	if slice_count >= max_slices:
 		end_game(true)
@@ -241,6 +253,9 @@ func on_corrupted_file_sliced(item: FallingFile) -> void:
 func on_corrupted_file_fallen(item: FallingFile) -> void:
 	fallen_count += 1
 	update_fallen_bar()
+	
+	# Trigger system glow effect - RED for corrupted breach
+	system_glow_effect(Color(1.0, 0.2, 0.2, 1.0))
 	
 	# Lose condition
 	if fallen_count >= max_fallen:
@@ -305,6 +320,29 @@ func create_slice_effect(screen_pos: Vector2) -> void:
 	effect.queue_free()
 
 # ==============================
+# SYSTEM BOTTOM EFFECTS
+# ==============================
+
+func system_glow_effect(color: Color) -> void:
+	"""Create a cool glow pulse effect on the system bottom panel"""
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.set_ease(Tween.EASE_OUT)
+	
+	# Glow outward effect
+	var base_color = Color(0.2, 0.2, 0.2, 1.0)
+	system_bottom.modulate = color
+	
+	tween.tween_property(system_bottom, "modulate", base_color, 0.5)
+	
+	# Scale pulse
+	var pulse_tween = create_tween()
+	pulse_tween.set_trans(Tween.TRANS_QUAD)
+	pulse_tween.set_ease(Tween.EASE_OUT)
+	pulse_tween.tween_property(system_bottom, "scale", Vector2(1.05, 1.05), 0.2)
+	pulse_tween.tween_property(system_bottom, "scale", Vector2(1.0, 1.0), 0.2)
+
+# ==============================
 # GAME END
 # ==============================
 
@@ -339,14 +377,6 @@ func play_victory_animation() -> void:
 	container_panel.modulate = Color.GREEN
 	
 	tween.tween_property(container_panel, "modulate", original_modulate, 0.3)
-	tween.tween_callback(func():
-		# Victory pulse
-		var pulse_tween = create_tween()
-		pulse_tween.set_trans(Tween.TRANS_ELASTIC)
-		pulse_tween.set_ease(Tween.EASE_OUT)
-		pulse_tween.tween_property(container_panel, "scale", Vector2(1.05, 1.05), 0.4)
-		pulse_tween.tween_property(container_panel, "scale", Vector2(1.0, 1.0), 0.2)
-	)
 	
 	await tween.finished
 	await get_tree().create_timer(1.0).timeout
@@ -369,15 +399,6 @@ func play_game_over_animation() -> void:
 	container_panel.modulate = Color.RED
 	
 	tween.tween_property(container_panel, "modulate", original_modulate, 0.3)
-	tween.tween_callback(func():
-		# Shake effect
-		for i in range(3):
-			var shake_tween = create_tween()
-			shake_tween.set_trans(Tween.TRANS_QUAD)
-			shake_tween.set_ease(Tween.EASE_OUT)
-			shake_tween.tween_property(container_panel, "position", 
-				container_panel.position + Vector2(randf_range(-5, 5), 0), 0.1)
-	)
 	
 	await tween.finished
 	await get_tree().create_timer(1.0).timeout
