@@ -46,10 +46,12 @@ signal verdict_resolved(is_correct: bool)
 const HeuristicEngine = preload("res://Scripts/Algorithm/heuristic_engine.gd")
 const RuleBase = preload("res://Scripts/Algorithm/Rules/rule_base.gd")
 
+# 🎮 MINIGAME PATH - Update this to your minigame scene
+const MINIGAME_SCENE_PATH = "res://Scenes/Mini Games Scene/malware_attack.tscn"
+
 var dialogue_database := DialogueDatabase.new()
 var engine := HeuristicEngine.new()
 var rule_base := RuleBase.new()
-var decision_tree := DecisionTreeAnalyzer.new() 
 
 # =========================
 # GAME STATE
@@ -68,9 +70,7 @@ var current_answers : Dictionary = {}
 # C---------- Mini Games state ----------------
 var pending_player_approved: bool = false
 var minigame_active: bool = false
-var current_attack_type: String = ""
 var is_game_over: bool = false
-var current_metadata_dict: Dictionary = {}
 
 # Question buttons inside SlidingPanel
 @onready var question_buttons : Dictionary = {
@@ -399,7 +399,7 @@ func show_no_filter_popup(resource_type: String) -> void:
 # MINI GAMES SYSTEM 
 # =========================
 func start_minigame():
-	print("MINIGAME STARTED")
+	print("🎮 MINIGAME STARTED")
 	
 	# 🔇 STOP ALL SOUNDS
 	button_sound.stop()
@@ -407,22 +407,15 @@ func start_minigame():
 	closing_door.stop()
 	filetizen_talking.stop()
 	paper_printing.stop()
-
-	current_attack_type = decision_tree.predict(current_metadata_dict)
-	decision_tree.print_prediction_details(
-		current_metadata_dict,
-		current_attack_type,
-		decision_tree.get_difficulty_level_from_day(day)
-	)
 	
-	var minigame_scene_path = decision_tree.get_minigame_scene_path(current_attack_type)
-	var minigame_scene = load(minigame_scene_path)
+	# Load and instantiate the minigame scene
+	var minigame_scene = load(MINIGAME_SCENE_PATH)
 	
 	# Fallback if scene doesn't exist
 	if minigame_scene == null:
-		print("ERROR: Minigame scene not found at: ", minigame_scene_path)
-		print("Defaulting to malware attack minigame")
-		minigame_scene = preload("res://Scenes/Mini Games Scene/malware_attack.tscn")
+		print("ERROR: Minigame scene not found at: ", MINIGAME_SCENE_PATH)
+		push_error("Failed to load minigame scene. Please check the path: " + MINIGAME_SCENE_PATH)
+		return
 	
 	var minigame_instance = minigame_scene.instantiate()
  
@@ -437,7 +430,7 @@ func start_minigame():
  
 func on_minigame_result(success: bool):
 
-	print("MINIGAME RESULT: ", success)
+	print("🎮 MINIGAME RESULT: ", success)
 
 	minigame_active = false
 	wrong_decision_popup.hide()
@@ -455,30 +448,6 @@ func on_minigame_result(success: bool):
 func _on_minigame_finished(success: bool):
 	on_minigame_result(success)
 
-func build_metadata_for_level(current_day: int) -> Dictionary:
-	var difficulty = decision_tree.get_difficulty_level_from_day(current_day)
-	
-	var metadata = {
-		"filename": filetizen.metadata.filename,
-		"extension": filetizen.metadata.extension,
-		"size": filetizen.metadata.size_mb,
-		"publisher": filetizen.metadata.publisher,
-		"source": filetizen.metadata.source
-	}
-	
-	# Add Level 2 fields if applicable (Days 3-4)
-	if difficulty >= 2:
-		metadata["modified_hours_ago"] = filetizen.metadata.modified_hours_ago
-		metadata["hidden"] = filetizen.metadata.hidden
-	
-	# Add Level 3 fields if applicable (Days 5+)
-	if difficulty >= 3:
-		metadata["signature_valid"] = filetizen.metadata.signature_valid
-		metadata["requires_admin"] = filetizen.metadata.requires_admin
-		metadata["is_compressed"] = filetizen.metadata.is_compressed
-	
-	return metadata
-
 # =========================
 # DECISION SYSTEM 
 # =========================
@@ -490,8 +459,6 @@ func handle_player_decision(player_approved: bool):
 	var result = evaluate_decision(player_approved)
 
 	emit_signal("verdict_resolved", result.is_correct)
-	
-	current_metadata_dict = build_metadata_for_level(day)
 
 	await get_tree().create_timer(0.8).timeout
 	show_decision_feedback(result)
