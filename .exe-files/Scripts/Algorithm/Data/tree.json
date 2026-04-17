@@ -1,0 +1,444 @@
+{
+  "feature": "source_Email Attachment",
+  "threshold": 0.5,
+  "left": {
+	"feature": "random_name",
+	"threshold": 0.5,
+	"left": {
+	  "feature": "size",
+	  "threshold": 40.22403335571289,
+	  "left": {
+		"feature": "is_compressed",
+		"threshold": 0.5,
+		"left": {
+		  "value": [
+			[
+			  0.0,
+			  1.0,
+			  0.0,
+			  0.0
+			]
+		  ]
+		},
+		"right": {
+		  "value": [
+			[
+			  0.0,
+			  1.0,
+			  0.0,
+			  0.0
+			]
+		  ]
+		}
+	  },
+	  "right": {
+		"feature": "extension_.bat",
+		"threshold": 0.5,
+		"left": {
+		  "feature": "extension_.ps1",
+		  "threshold": 0.5,
+		  "left": {
+			"value": [
+			  [
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			  ]
+			]
+		  },
+		  "right": {
+			"feature": "publisher_Blue Horizon",
+			"threshold": 0.5,
+			"left": {
+			  "value": [
+				[
+				  1.0,
+				  0.0,
+				  0.0,
+				  0.0
+				]
+			  ]
+			},
+			"right": {
+			  "value": [
+				[
+				  1.0,
+				  0.0,
+				  0.0,
+				  0.0
+				]
+			  ]
+			}
+		  }
+		},
+		"right": {
+		  "value": [
+			[
+			  1.0,
+			  0.0,
+			  0.0,
+			  0.0
+			]
+		  ]
+		}
+	  }
+	},
+	"right": {
+	  "feature": "extension_.ps1",
+	  "threshold": 0.5,
+	  "left": {
+		"feature": "extension_.bat",
+		"threshold": 0.5,
+		"left": {
+		  "feature": "publisher_unknown",
+		  "threshold": 0.5,
+		  "left": {
+			"value": [
+			  [
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			  ]
+			]
+		  },
+		  "right": {
+			"feature": "extension_.jpg",
+			"threshold": 0.5,
+			"left": {
+			  "feature": "extension_.mp3",
+			  "threshold": 0.5,
+			  "left": {
+				"feature": "extension_.js",
+				"threshold": 0.5,
+				"left": {
+				  "value": [
+					[
+					  0.0,
+					  0.015693112467306012,
+					  0.0,
+					  0.9843068875326938
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.0,
+					  1.0,
+					  0.0,
+					  0.0
+					]
+				  ]
+				}
+			  },
+			  "right": {
+				"feature": "source_External Drive",
+				"threshold": 0.5,
+				"left": {
+				  "value": [
+					[
+					  0.0,
+					  1.0,
+					  0.0,
+					  0.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.0,
+					  1.0,
+					  0.0,
+					  0.0
+					]
+				  ]
+				}
+			  }
+			},
+			"right": {
+			  "feature": "modified_hours",
+			  "threshold": 4.0,
+			  "left": {
+				"value": [
+				  [
+					0.0,
+					1.0,
+					0.0,
+					0.0
+				  ]
+				]
+			  },
+			  "right": {
+				"value": [
+				  [
+					0.0,
+					1.0,
+					0.0,
+					0.0
+				  ]
+				]
+			  }
+			}
+		  }
+		},
+		"right": {
+		  "feature": "publisher_unknown",
+		  "threshold": 0.5,
+		  "left": {
+			"value": [
+			  [
+				1.0,
+				0.0,
+				0.0,
+				0.0
+			  ]
+			]
+		  },
+		  "right": {
+			"value": [
+			  [
+				1.0,
+				0.0,
+				0.0,
+				0.0
+			  ]
+			]
+		  }
+		}
+	  },
+	  "right": {
+		"feature": "source_USB Device",
+		"threshold": 0.5,
+		"left": {
+		  "value": [
+			[
+			  1.0,
+			  0.0,
+			  0.0,
+			  0.0
+			]
+		  ]
+		},
+		"right": {
+		  "value": [
+			[
+			  1.0,
+			  0.0,
+			  0.0,
+			  0.0
+			]
+		  ]
+		}
+	  }
+	}
+  },
+  "right": {
+	"feature": "extension_.ps1",
+	"threshold": 0.5,
+	"left": {
+	  "feature": "extension_.bat",
+	  "threshold": 0.5,
+	  "left": {
+		"feature": "publisher_unknown",
+		"threshold": 0.5,
+		"left": {
+		  "feature": "random_name",
+		  "threshold": 0.5,
+		  "left": {
+			"feature": "publisher_Blue Horizon",
+			"threshold": 0.5,
+			"left": {
+			  "value": [
+				[
+				  0.0,
+				  1.0,
+				  0.0,
+				  0.0
+				]
+			  ]
+			},
+			"right": {
+			  "value": [
+				[
+				  0.0,
+				  1.0,
+				  0.0,
+				  0.0
+				]
+			  ]
+			}
+		  },
+		  "right": {
+			"feature": "publisher_NovaApps",
+			"threshold": 0.5,
+			"left": {
+			  "value": [
+				[
+				  0.0,
+				  0.0,
+				  1.0,
+				  0.0
+				]
+			  ]
+			},
+			"right": {
+			  "value": [
+				[
+				  0.0,
+				  0.0,
+				  1.0,
+				  0.0
+				]
+			  ]
+			}
+		  }
+		},
+		"right": {
+		  "feature": "extension_.js",
+		  "threshold": 0.5,
+		  "left": {
+			"feature": "extension_.exe",
+			"threshold": 0.5,
+			"left": {
+			  "feature": "extension_.vbs",
+			  "threshold": 0.5,
+			  "left": {
+				"value": [
+				  [
+					0.0,
+					0.0,
+					1.0,
+					0.0
+				  ]
+				]
+			  },
+			  "right": {
+				"feature": "modified_hours",
+				"threshold": 6.5,
+				"left": {
+				  "value": [
+					[
+					  0.0,
+					  1.0,
+					  0.0,
+					  0.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.0,
+					  1.0,
+					  0.0,
+					  0.0
+					]
+				  ]
+				}
+			  }
+			},
+			"right": {
+			  "feature": "modified_hours",
+			  "threshold": 2.0,
+			  "left": {
+				"value": [
+				  [
+					0.0,
+					1.0,
+					0.0,
+					0.0
+				  ]
+				]
+			  },
+			  "right": {
+				"value": [
+				  [
+					0.0,
+					1.0,
+					0.0,
+					0.0
+				  ]
+				]
+			  }
+			}
+		  },
+		  "right": {
+			"feature": "size",
+			"threshold": 44.350690841674805,
+			"left": {
+			  "value": [
+				[
+				  0.0,
+				  1.0,
+				  0.0,
+				  0.0
+				]
+			  ]
+			},
+			"right": {
+			  "value": [
+				[
+				  0.0,
+				  1.0,
+				  0.0,
+				  0.0
+				]
+			  ]
+			}
+		  }
+		}
+	  },
+	  "right": {
+		"feature": "publisher_unknown",
+		"threshold": 0.5,
+		"left": {
+		  "value": [
+			[
+			  1.0,
+			  0.0,
+			  0.0,
+			  0.0
+			]
+		  ]
+		},
+		"right": {
+		  "value": [
+			[
+			  1.0,
+			  0.0,
+			  0.0,
+			  0.0
+			]
+		  ]
+		}
+	  }
+	},
+	"right": {
+	  "feature": "publisher_OpenSoft Labs",
+	  "threshold": 0.5,
+	  "left": {
+		"value": [
+		  [
+			1.0,
+			0.0,
+			0.0,
+			0.0
+		  ]
+		]
+	  },
+	  "right": {
+		"value": [
+		  [
+			1.0,
+			0.0,
+			0.0,
+			0.0
+		  ]
+		]
+	  }
+	}
+  }
+}

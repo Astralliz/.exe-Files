@@ -1,0 +1,240 @@
+[gd_scene load_steps=11 format=3 uid="uid://bn12caq6smxpn"]
+
+[ext_resource type="Script" uid="uid://cf1lhu4i4aeqc" path="res://Scripts/Entities/mini_game_1.gd" id="1_vt4pt"]
+[ext_resource type="Texture2D" uid="uid://mfs626umuk1k" path="res://Assets/images/belt.jpg" id="2_yrjel"]
+[ext_resource type="Texture2D" uid="uid://8qm0p0n6ip5q" path="res://Assets/images/Frame 13.png" id="3_yo611"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="4_tn1ee"]
+[ext_resource type="Texture2D" uid="uid://ck0mm7df1x13" path="res://Assets/images/Malware2.png" id="5_tngjt"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ygon6"]
+texture = ExtResource("2_yrjel")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3eyko"]
+texture = ExtResource("3_yo611")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6ld0"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0m7gj"]
+texture = ExtResource("5_tngjt")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wrir1"]
+bg_color = Color(0.180392, 0.117647, 0.427451, 0.929412)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="MiniGame" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_vt4pt")
+
+[node name="Conveyor" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = -41.0
+offset_top = 142.0
+offset_right = 2279.0
+offset_bottom = 334.0
+
+[node name="Belt1" type="Panel" parent="Conveyor"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_ygon6")
+
+[node name="Belt2" type="Panel" parent="Conveyor"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_ygon6")
+
+[node name="main_background" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 1157.0
+offset_bottom = 644.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_3eyko")
+
+[node name="BlurBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.509804)
+
+[node name="TextEdit" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 373.0
+offset_top = -49.0
+offset_right = 805.0
+offset_bottom = 186.0
+theme_override_fonts/normal_font = ExtResource("4_tn1ee")
+theme_override_font_sizes/normal_font_size = 50
+text = "Mini Games"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Finished" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 611.0
+offset_top = 380.0
+offset_right = 821.0
+offset_bottom = 438.0
+theme_override_fonts/font = ExtResource("4_tn1ee")
+theme_override_font_sizes/font_size = 20
+text = "Finished"
+
+[node name="Quit" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 324.0
+offset_top = 375.0
+offset_right = 534.0
+offset_bottom = 433.0
+theme_override_fonts/font = ExtResource("4_tn1ee")
+theme_override_font_sizes/font_size = 20
+text = "quit"
+
+[node name="PaperContainer" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 164.0
+offset_right = 1127.0
+offset_bottom = 601.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ld0")
+
+[node name="AttackClass" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 371.0
+offset_right = 1073.0
+offset_bottom = 592.0
+theme_override_constants/separation = 20
+
+[node name="Malware" type="Panel" parent="AttackClass"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_0m7gj")
+
+[node name="Label" type="Label" parent="AttackClass/Malware"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 43.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_tn1ee")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_wrir1")
+text = "malware"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Injection" type="Panel" parent="AttackClass"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_0m7gj")
+
+[node name="Label" type="Label" parent="AttackClass/Injection"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 43.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_tn1ee")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_wrir1")
+text = "Injection"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Phishing" type="Panel" parent="AttackClass"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_0m7gj")
+
+[node name="Label" type="Label" parent="AttackClass/Phishing"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 43.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_tn1ee")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_wrir1")
+text = "Phishing"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Trojan" type="Panel" parent="AttackClass"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_0m7gj")
+
+[node name="Label" type="Label" parent="AttackClass/Trojan"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 43.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_tn1ee")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_wrir1")
+text = "Trojan"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bounty" type="Label" parent="."]
+layout_mode = 0
+offset_left = 813.0
+offset_top = 43.0
+offset_right = 1000.0
+offset_bottom = 114.0
+theme_override_fonts/font = ExtResource("4_tn1ee")
+theme_override_font_sizes/font_size = 30
+text = "Bug BOunty :"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 45.0
+offset_right = 250.0
+offset_bottom = 116.0
+theme_override_fonts/font = ExtResource("4_tn1ee")
+theme_override_font_sizes/font_size = 30
+text = "Score :"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreValue" type="Label" parent="."]
+layout_mode = 0
+offset_left = 197.0
+offset_top = 45.0
+offset_right = 384.0
+offset_bottom = 116.0
+theme_override_fonts/font = ExtResource("4_tn1ee")
+theme_override_font_sizes/font_size = 30
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BountyValue" type="Label" parent="."]
+layout_mode = 0
+offset_left = 966.0
+offset_top = 41.0
+offset_right = 1153.0
+offset_bottom = 112.0
+theme_override_fonts/font = ExtResource("4_tn1ee")
+theme_override_font_sizes/font_size = 30
+text = "49"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UI_Layer" type="CanvasLayer" parent="."]
+
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://bm8r30efnd7jn"]
+
+[ext_resource type="Script" uid="uid://fcq3vljiq30w" path="res://Scripts/Entities/mini_game_file.gd" id="1_kcaga"]
+[ext_resource type="Texture2D" uid="uid://bj7xytr144m1g" path="res://Assets/Sprites/large-paper.png" id="1_vjgry"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_vx5gf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kcaga"]
+size = Vector2(94.5, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vx5gf"]
+size = Vector2(94, 62)
+
+[node name="MiniGameFile" type="Node2D"]
+script = ExtResource("1_kcaga")
+
+[node name="File" type="Sprite2D" parent="."]
+position = Vector2(1.52588e-05, 1.00002)
+scale = Vector2(0.424779, 0.377301)
+texture = ExtResource("1_vjgry")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="FileNo" type="Label" parent="."]
+offset_left = -31.0
+offset_top = -45.0
+offset_right = 25.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vx5gf")
+theme_override_font_sizes/font_size = 70
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="DocumentArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DocumentArea2D"]
+position = Vector2(-0.25, -30)
+shape = SubResource("RectangleShape2D_kcaga")
+
+[node name="InteractArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea2D"]
+position = Vector2(0, 31)
+shape = SubResource("RectangleShape2D_vx5gf")
+debug_color = Color(0.719335, 0.250785, 1, 0.42)

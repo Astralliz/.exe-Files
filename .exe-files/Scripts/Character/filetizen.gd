@@ -3,7 +3,7 @@ extends Node2D
 @onready var metadata: FileMetadata
 @onready var generator: MetadataGenerator
 @onready var sprite: Sprite2D = $Sprite2D
-@onready var move_component: MoveComponent = $MoveComponent
+@onready var move_component:  = $MoveComponent
 @onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 
 func _ready():

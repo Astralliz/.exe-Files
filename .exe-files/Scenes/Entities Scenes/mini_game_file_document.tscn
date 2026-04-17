@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://goifw71ydyot"]
+
+[ext_resource type="Script" uid="uid://66i8g2ktlgog" path="res://Scripts/Entities/mini_game_file_document.gd" id="1_m0uo7"]
+[ext_resource type="Texture2D" uid="uid://bj7xytr144m1g" path="res://Assets/Sprites/large-paper.png" id="2_xskq0"]
+[ext_resource type="LabelSettings" uid="uid://j2u4pmijyrwc" path="res://Assets/Fonts/KMS_label_settings.tres" id="3_xctqn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_erm76"]
+size = Vector2(256.5, 258)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_51tu1"]
+size = Vector2(258, 110)
+
+[node name="MiniGameFileDocument" type="Node2D"]
+script = ExtResource("1_m0uo7")
+
+[node name="File" type="Sprite2D" parent="."]
+position = Vector2(5.5, 5.25003)
+scale = Vector2(1.15487, 1.14264)
+texture = ExtResource("2_xskq0")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+offset_left = -107.5
+offset_top = -163.75
+offset_right = 116.5
+offset_bottom = 141.25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="FileNo" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Name:"
+label_settings = ExtResource("3_xctqn")
+
+[node name="FileName" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Name:"
+label_settings = ExtResource("3_xctqn")
+
+[node name="Extension" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Extension:"
+label_settings = ExtResource("3_xctqn")
+
+[node name="Size" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Size:"
+label_settings = ExtResource("3_xctqn")
+
+[node name="Publisher" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Publisher:"
+label_settings = ExtResource("3_xctqn")
+
+[node name="Source" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Source:"
+label_settings = ExtResource("3_xctqn")
+
+[node name="AttackType" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Source:"
+label_settings = ExtResource("3_xctqn")
+
+[node name="DocumentArea2D" type="Area2D" parent="."]
+position = Vector2(-75.5, -117.75)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DocumentArea2D"]
+position = Vector2(80.75, 69)
+scale = Vector2(0.992304, 1)
+shape = SubResource("RectangleShape2D_erm76")
+
+[node name="InteractArea2D" type="Area2D" parent="."]
+position = Vector2(-75.5, -117.75)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea2D"]
+position = Vector2(81, 252)
+shape = SubResource("RectangleShape2D_51tu1")
+debug_color = Color(0.719335, 0.250785, 1, 0.42)
