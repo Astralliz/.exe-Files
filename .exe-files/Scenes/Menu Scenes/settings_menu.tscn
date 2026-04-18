@@ -50,39 +50,48 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_xmvc4")
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.167
-anchor_top = 0.203
-anchor_right = 0.167
-anchor_bottom = 0.203
-offset_left = -81.384
-offset_top = -26.544
-offset_right = 121.616
-offset_bottom = 36.456
+anchor_top = 0.15
+anchor_right = 1.0
+anchor_bottom = 0.295
+offset_bottom = 0.399994
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_wqxdw")
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 125
 text = "Settings"
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 980.0
-offset_top = 114.0
-offset_right = 1047.0
-offset_bottom = 163.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.861
+anchor_top = 0.15
+anchor_right = 0.919
+anchor_bottom = 0.235
+offset_left = -0.120117
+offset_right = 6.5199
+offset_bottom = 0.199982
 theme_override_styles/hover = SubResource("StyleBoxFlat_jmvne")
 theme_override_styles/normal = SubResource("StyleBoxTexture_cg6wl")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 142.0
-offset_top = 186.0
-offset_right = 1065.0
-offset_bottom = 557.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.087
+anchor_top = 0.295
+anchor_right = 0.901
+anchor_bottom = 0.813
+offset_left = -0.0400085
+offset_top = 0.399994
+offset_right = -0.920044
+offset_bottom = -0.0400391
 theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 6
 theme_override_fonts/font = ExtResource("3_wqxdw")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 60
 text = "Volume Settings"
 horizontal_alignment = 1
 
@@ -100,7 +109,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_fonts/font = ExtResource("3_wqxdw")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 45
 text = "Music Volume"
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
@@ -118,7 +127,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_fonts/font = ExtResource("3_wqxdw")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 45
 text = "SFX Volume"
 
 [node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/VBoxContainer3"]
@@ -131,7 +140,7 @@ value = 1.0
 [node name="Label2" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_wqxdw")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 60
 text = "Manage Data"
 horizontal_alignment = 1
 
@@ -147,7 +156,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 size_flags_stretch_ratio = 3.8
 theme_override_fonts/font = ExtResource("3_wqxdw")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 45
 text = "Edit Username"
 
 [node name="UserDAta" type="Button" parent="VBoxContainer/HBoxContainer2"]
@@ -156,7 +165,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 size_flags_stretch_ratio = 3.8
 theme_override_fonts/font = ExtResource("3_wqxdw")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 45
 text = "Delete Data"
 
 [connection signal="pressed" from="Button" to="." method="_on_settings_back_pressed"]

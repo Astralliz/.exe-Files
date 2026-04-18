@@ -28,6 +28,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_oya7i")
 
 [node name="Panel" type="Panel" parent="."]
@@ -51,33 +53,42 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_hxx1h")
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.167
-anchor_top = 0.203
-anchor_right = 0.167
-anchor_bottom = 0.203
-offset_left = -81.384
-offset_top = -26.544
-offset_right = 121.616
-offset_bottom = 36.456
+anchor_top = 0.15
+anchor_right = 1.0
+anchor_bottom = 0.295
+offset_bottom = 0.399994
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_2j2bg")
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 125
 text = "Shop"
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 980.0
-offset_top = 114.0
-offset_right = 1047.0
-offset_bottom = 163.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.861
+anchor_top = 0.15
+anchor_right = 0.922
+anchor_bottom = 0.235
+offset_left = -0.120117
+offset_right = 0.759888
+offset_bottom = 0.199982
 theme_override_styles/hover = SubResource("StyleBoxFlat_c17u4")
 theme_override_styles/normal = SubResource("StyleBoxTexture_jjquq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 240.0
-offset_top = 185.0
-offset_right = 935.0
-offset_bottom = 236.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.16
+anchor_top = 0.361
+anchor_right = 0.836
+anchor_bottom = 0.441
+offset_left = -0.200012
+offset_top = 0.119995
+offset_right = -612.12
+offset_bottom = -35.28
+scale = Vector2(1.8933, 1.70157)
 script = ExtResource("6_2j2bg")
 
 [node name="Filters" type="HBoxContainer" parent="HBoxContainer"]
@@ -113,11 +124,19 @@ theme_override_font_sizes/font_size = 26
 text = "0"
 
 [node name="Total Amount" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 436.0
-offset_top = 109.0
-offset_right = 863.0
-offset_bottom = 165.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.498
+anchor_top = 0.282
+anchor_right = 0.498
+anchor_bottom = 0.282
+offset_left = -285.16
+offset_top = 0.440033
+offset_right = 16.84
+offset_bottom = 44.44
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.8933, 1.70157)
 script = ExtResource("6_fciq2")
 
 [node name="BugCoin" type="Label" parent="Total Amount"]
@@ -133,11 +152,19 @@ theme_override_font_sizes/font_size = 35
 text = "0000"
 
 [node name="Offer" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 240.0
-offset_top = 253.0
-offset_right = 944.0
-offset_bottom = 459.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.49
+anchor_top = 0.447
+anchor_right = 0.49
+anchor_bottom = 0.447
+offset_left = -795.8
+offset_top = -3.76001
+offset_right = 53.2
+offset_bottom = 195.24
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.8933, 1.70157)
 theme_override_constants/separation = 20
 script = ExtResource("7_gwmmo")
 
@@ -162,11 +189,19 @@ Evaluates
 price: 20"
 
 [node name="Notification" type="Label" parent="."]
-layout_mode = 0
-offset_left = 249.0
-offset_top = 491.0
-offset_right = 940.0
-offset_bottom = 539.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.785
+anchor_right = 0.5
+anchor_bottom = 0.785
+offset_left = -744.0
+offset_top = 0.200012
+offset_right = 35.0
+offset_bottom = 56.2
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.8933, 1.70157)
 theme_override_fonts/font = ExtResource("4_2j2bg")
 theme_override_font_sizes/font_size = 35
 horizontal_alignment = 1
