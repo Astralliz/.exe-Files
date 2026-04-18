@@ -25,6 +25,13 @@ Player_Data="*res://Scripts/Player Data/PlayerData.gd"
 GameState="*res://Scripts/game_state.gd"
 GlobalMusic="*res://Scenes/Menu Scenes/GlobalMusic.tscn"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [input]
 
 click={
@@ -41,3 +48,4 @@ rightClick={
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
