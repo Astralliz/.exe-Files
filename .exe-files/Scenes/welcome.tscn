@@ -21,53 +21,71 @@ grow_vertical = 2
 script = ExtResource("1_4dm54")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 1147.0
-offset_bottom = 649.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 0.509804)
 
 [node name="Panel" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 211.0
-offset_top = 104.0
-offset_right = 943.0
-offset_bottom = 520.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.213
+anchor_top = 0.198
+anchor_right = 0.787
+anchor_bottom = 0.769
+offset_left = 0.039978
+offset_top = 0.159988
+offset_right = 0.959839
+offset_bottom = 0.479919
 theme_override_styles/panel = SubResource("StyleBoxTexture_5bkde")
 
 [node name="ContinueBtn" type="Button" parent="Panel"]
-layout_mode = 0
-offset_left = 238.0
-offset_top = 309.0
-offset_right = 489.0
-offset_bottom = 373.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.82
+anchor_right = 0.5
+anchor_bottom = 0.82
+offset_left = -156.5
+offset_top = -45.94
+offset_right = 157.5
+offset_bottom = 60.06
 theme_override_fonts/font = ExtResource("2_4dm54")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 45
 text = "Continue"
 
 [node name="WelcomeMessage" type="Label" parent="Panel"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -111.0
-offset_right = 262.0
-offset_bottom = 57.0
+anchors_preset = -1
+anchor_left = 0.689
+anchor_top = 0.321
+anchor_right = 0.689
+anchor_bottom = 0.321
+offset_left = -162.967
+offset_top = -0.0570068
+offset_right = 163.033
+offset_bottom = 167.943
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_4dm54")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 50
 text = "sample text"
 horizontal_alignment = 1
 
 [node name="Panel" type="Panel" parent="Panel"]
-layout_mode = 0
-offset_left = 64.0
-offset_top = 62.0
-offset_right = 317.0
-offset_bottom = 288.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.157
+anchor_right = 0.25
+anchor_bottom = 0.157
+offset_left = -198.75
+offset_top = 0.130997
+offset_right = 198.25
+offset_bottom = 352.131
 theme_override_styles/panel = SubResource("StyleBoxTexture_rwtka")
 
 [connection signal="pressed" from="Panel/ContinueBtn" to="." method="_on_continue_btn_pressed"]

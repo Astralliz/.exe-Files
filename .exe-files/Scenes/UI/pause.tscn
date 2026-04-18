@@ -18,21 +18,27 @@ content_margin_right = 20.0
 [node name="Pause" type="Control"]
 process_mode = 3
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1920.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_2ceew")
 
 [node name="BlurBackground" type="ColorRect" parent="."]
 layout_mode = 0
-offset_right = 1153.0
-offset_bottom = 653.0
+offset_right = 1923.0
+offset_bottom = 1084.0
 color = Color(0, 0, 0, 0.509804)
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 211.0
-offset_top = 104.0
-offset_right = 943.0
-offset_bottom = 520.0
+offset_left = 294.0
+offset_top = 153.0
+offset_right = 1618.0
+offset_bottom = 945.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_3vu23")
 
 [node name="Label" type="Label" parent="."]
