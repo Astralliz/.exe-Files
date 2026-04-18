@@ -21,10 +21,10 @@ script = ExtResource("1_nddsn")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 370.0
-offset_top = 419.0
-offset_right = 814.0
-offset_bottom = 701.0
+offset_left = 494.0
+offset_top = 543.0
+offset_right = 938.0
+offset_bottom = 825.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_eie38")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
@@ -82,9 +82,9 @@ text = "Are you in a compressed format?"
 
 [node name="QuestionPanel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 363.0
-offset_top = 390.0
-offset_right = 744.0
-offset_bottom = 442.0
+offset_left = 487.0
+offset_top = 514.0
+offset_right = 868.0
+offset_bottom = 566.0
 scale = Vector2(1.2, 1.2)
 theme_override_styles/panel = SubResource("StyleBoxTexture_yul2f")

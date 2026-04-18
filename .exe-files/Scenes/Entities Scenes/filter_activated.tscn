@@ -16,33 +16,33 @@ script = ExtResource("1_cw2oi")
 
 [node name="SafeSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2qny2")
-position = Vector2(582, 321)
-scale = Vector2(0.554348, 0.568182)
+position = Vector2(897, 756)
+scale = Vector2(1.42221, 1.59517)
 texture = ExtResource("3_2qny2")
 
 [node name="SuspiciousSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2qny2")
-position = Vector2(585, 321)
-scale = Vector2(0.515, 0.568)
+position = Vector2(902, 758)
+scale = Vector2(1.3662, 1.5411)
 texture = ExtResource("2_mii5k")
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
 modulate = Color(1, 1, 1, 0.392157)
-offset_left = 243.0
-offset_top = 69.0
-offset_right = 923.0
-offset_bottom = 438.0
+offset_left = -6.0
+offset_top = 7.0
+offset_right = 1916.0
+offset_bottom = 1094.0
 stream = ExtResource("2_q4u1p")
 autoplay = true
 expand = true
 loop = true
 
 [node name="Label" type="Label" parent="."]
-offset_left = 421.0
-offset_top = 330.0
-offset_right = 770.0
-offset_bottom = 385.0
-theme_override_font_sizes/font_size = 26
+offset_left = 555.0
+offset_top = 823.0
+offset_right = 1372.0
+offset_bottom = 974.0
+theme_override_font_sizes/font_size = 45
 horizontal_alignment = 1
 
 [node name="Talking" type="AudioStreamPlayer2D" parent="."]

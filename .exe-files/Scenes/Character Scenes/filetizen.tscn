@@ -9,7 +9,7 @@
 script = ExtResource("1_w3var")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.554348, 0.568182)
+scale = Vector2(1.08641, 1.11191)
 texture = ExtResource("2_u3aof")
 
 [node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
