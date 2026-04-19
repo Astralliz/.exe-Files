@@ -18,8 +18,8 @@ const MINIGAME_FINISHED_SCENE = preload("res://Scenes/Finishing Scenes/mini_game
 const MAX_ROUNDS          = 10
 const CONVEYOR_SPEED      = 150.0
 const PAPER_SPAWN_INTERVAL = 1.5
-const PAPER_WIDTH         = 100
-const PAPER_HEIGHT        = 120
+const PAPER_WIDTH         = 220
+const PAPER_HEIGHT        = 280
 const PAPER_GAP           = 10
 
 var y_true: Array = []
@@ -278,7 +278,7 @@ func _spawn_paper() -> void:
 	var paper           = Paper.new()
 	paper.metadata      = meta
 	paper.game_reference = self
-	paper.position      = Vector2(paper_container.size.x - PAPER_WIDTH - 20, 20)
+	paper.position      = Vector2(paper_container.size.x - PAPER_WIDTH - 20, 30)
 	paper_container.add_child(paper)
 
 	paper.original_pos = paper.position

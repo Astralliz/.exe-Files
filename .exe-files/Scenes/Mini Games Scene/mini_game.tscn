@@ -27,15 +27,24 @@ corner_radius_bottom_left = 20
 
 [node name="MiniGame" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 938.0
+offset_top = 537.0
+offset_right = -982.0
+offset_bottom = -543.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_vt4pt")
 
 [node name="Conveyor" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = -41.0
-offset_top = 142.0
-offset_right = 2279.0
-offset_bottom = 334.0
+offset_left = -46.0
+offset_top = 229.0
+offset_right = 4944.0
+offset_bottom = 569.0
+theme_override_constants/separation = -1
 
 [node name="Belt1" type="Panel" parent="Conveyor"]
 layout_mode = 2
@@ -51,8 +60,8 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_ygon6")
 layout_mode = 0
 offset_left = 1.0
 offset_top = 2.0
-offset_right = 1157.0
-offset_bottom = 644.0
+offset_right = 2481.0
+offset_bottom = 1091.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_3eyko")
 
 [node name="BlurBackground" type="ColorRect" parent="."]
@@ -65,14 +74,13 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.509804)
 
 [node name="TextEdit" type="RichTextLabel" parent="."]
-visible = false
 layout_mode = 0
-offset_left = 373.0
-offset_top = -49.0
-offset_right = 805.0
-offset_bottom = 186.0
+offset_left = 937.0
+offset_top = -14.0
+offset_right = 1604.0
+offset_bottom = 221.0
 theme_override_fonts/normal_font = ExtResource("4_tn1ee")
-theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/normal_font_size = 100
 text = "Mini Games"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -101,19 +109,19 @@ text = "quit"
 
 [node name="PaperContainer" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 43.0
-offset_top = 164.0
-offset_right = 1127.0
-offset_bottom = 601.0
+offset_left = 118.0
+offset_top = 216.0
+offset_right = 2443.0
+offset_bottom = 1006.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_i6ld0")
 
 [node name="AttackClass" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 83.0
-offset_top = 371.0
-offset_right = 1073.0
-offset_bottom = 592.0
-theme_override_constants/separation = 20
+offset_left = 168.0
+offset_top = 611.0
+offset_right = 2325.0
+offset_bottom = 988.0
+theme_override_constants/separation = 150
 
 [node name="Malware" type="Panel" parent="AttackClass"]
 layout_mode = 2
@@ -189,48 +197,48 @@ vertical_alignment = 1
 
 [node name="Bounty" type="Label" parent="."]
 layout_mode = 0
-offset_left = 813.0
-offset_top = 43.0
-offset_right = 1000.0
-offset_bottom = 114.0
+offset_left = 1764.0
+offset_top = 123.0
+offset_right = 2077.0
+offset_bottom = 194.0
 theme_override_fonts/font = ExtResource("4_tn1ee")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 50
 text = "Bug BOunty :"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Score" type="Label" parent="."]
 layout_mode = 0
-offset_left = 69.0
-offset_top = 45.0
-offset_right = 250.0
-offset_bottom = 116.0
+offset_left = 412.0
+offset_top = 120.0
+offset_right = 593.0
+offset_bottom = 191.0
 theme_override_fonts/font = ExtResource("4_tn1ee")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 50
 text = "Score :"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ScoreValue" type="Label" parent="."]
 layout_mode = 0
-offset_left = 197.0
-offset_top = 45.0
-offset_right = 384.0
-offset_bottom = 116.0
+offset_left = 575.0
+offset_top = 120.0
+offset_right = 762.0
+offset_bottom = 191.0
 theme_override_fonts/font = ExtResource("4_tn1ee")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 50
 text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BountyValue" type="Label" parent="."]
 layout_mode = 0
-offset_left = 966.0
-offset_top = 41.0
-offset_right = 1153.0
-offset_bottom = 112.0
+offset_left = 2053.0
+offset_top = 121.0
+offset_right = 2240.0
+offset_bottom = 192.0
 theme_override_fonts/font = ExtResource("4_tn1ee")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 50
 text = "49"
 horizontal_alignment = 1
 vertical_alignment = 1
