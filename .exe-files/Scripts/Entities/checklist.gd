@@ -51,8 +51,8 @@ var drag_offset = Vector2.ZERO
 
 const CLOSED_SCALE := Vector2(0.3, 0.3)
 const OPEN_SCALE := Vector2(1.2, 1.2)
-var CLOSED_POS := Vector2(310, 510)
-var OPEN_POS := Vector2(310, 420)
+var CLOSED_POS := Vector2(700,850)
+var OPEN_POS := Vector2(710,520)
 
 var day = GameState.day
 

@@ -165,48 +165,54 @@ scene = ExtResource("7_y1tcq")
 position = Vector2(1243, 555)
 
 [node name="SlidingPanel" parent="." instance=ExtResource("11_r1cjk")]
-offset_left = 222.0
-offset_top = 26.0
-offset_right = 222.0
-offset_bottom = 26.0
+offset_left = 257.0
+offset_top = -50.0
+offset_right = 257.0
+offset_bottom = -50.0
 scale = Vector2(1.74775, 1.52607)
 
 [node name="Answer_Label" type="Label" parent="."]
-offset_left = 773.0
-offset_top = 599.0
-offset_right = 1122.0
-offset_bottom = 654.0
-theme_override_font_sizes/font_size = 26
+offset_left = 901.0
+offset_top = 575.0
+offset_right = 1668.0
+offset_bottom = 661.0
+theme_override_font_sizes/font_size = 40
 horizontal_alignment = 1
 
 [node name="Dialogue Box" parent="." instance=ExtResource("17_is13e")]
-offset_left = 404.0
-offset_top = 35.0
-offset_right = 404.0
-offset_bottom = 35.0
+offset_left = 311.0
+offset_top = 4.0
+offset_right = 311.0
+offset_bottom = 4.0
 
 [node name="Talking" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_rt716")
+volume_db = 24.0
 bus = &"SFX"
 
 [node name="Audio_Pickup" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_vk2dw")
+volume_db = 24.0
 bus = &"SFX"
 
 [node name="Button_Click" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_is13e")
+volume_db = 24.0
 bus = &"SFX"
 
 [node name="Printing_Paper" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_c4oy2")
+volume_db = 24.0
 bus = &"SFX"
 
 [node name="Open_Door" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("18_73b7g")
+volume_db = 24.0
 bus = &"SFX"
 
 [node name="Closed_Door" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("19_h4n5b")
+volume_db = 24.0
 bus = &"SFX"
 
 [node name="Level1Finished" parent="." instance=ExtResource("16_vk2dw")]
@@ -216,7 +222,10 @@ visible = false
 visible = false
 
 [node name="Pause" parent="." instance=ExtResource("25_fkp12")]
-visible = false
+offset_left = 314.0
+offset_top = -2.0
+offset_right = 314.0
+offset_bottom = -2.0
 
 [connection signal="pressed" from="PauseBtn" to="." method="_on_pause_btn_pressed"]
 [connection signal="pressed" from="FilterPanel/FilterBtn" to="." method="_on_filter_btn_pressed"]

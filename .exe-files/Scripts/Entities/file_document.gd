@@ -32,10 +32,10 @@ const PRINTED_SCALE = Vector2(0.7, 0.7)
 const ZOOM_SCALE = Vector2(1.2, 1.2)
 const PAPER_DOWN_SCALE = Vector2(0.3, 0.3)
 
-var FALL_START := Vector2(1035, 274)
-var FALL_END := Vector2(1035, 374)
-var CENTER := Vector2(830, 420)
-var DOWN_POS := Vector2(830, 510)
+var FALL_START := Vector2(2210, 454)
+var FALL_END := Vector2(2210, 674)
+var CENTER := Vector2(1830, 520)
+var DOWN_POS := Vector2(1870, 850)
 
 func set_metadata(data: FileMetadata):
 	metadata = data

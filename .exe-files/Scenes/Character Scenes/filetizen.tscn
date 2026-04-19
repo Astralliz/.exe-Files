@@ -19,6 +19,7 @@ metadata/_custom_type_script = "uid://d0av55ja450n2"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MoveComponent"]
 stream = ExtResource("4_wub8f")
+volume_db = 24.0
 bus = &"SFX"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

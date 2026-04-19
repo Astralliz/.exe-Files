@@ -22,9 +22,9 @@ script = ExtResource("1_nddsn")
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 494.0
-offset_top = 543.0
+offset_top = 472.0
 offset_right = 938.0
-offset_bottom = 825.0
+offset_bottom = 754.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_eie38")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
@@ -42,49 +42,59 @@ theme_override_constants/separation = 5
 
 [node name="Question1" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "What is your name?"
 
 [node name="Question2" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "What type of file are you?"
 
 [node name="Question3" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "How big is your file"
 
 [node name="Question5" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Who created or published you?"
 
 [node name="Question4" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "What is your source location?"
 
 [node name="Question6" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "When was your last modification?"
 
 [node name="Question7" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Are you hidden from the system view?"
 
 [node name="Question8" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Do you have a valid digital signature?"
 
 [node name="Question9" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Are you requesting admin access?"
 
 [node name="Question10" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Are you in a compressed format?"
 
 [node name="QuestionPanel" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 487.0
-offset_top = 514.0
+offset_top = 443.0
 offset_right = 868.0
-offset_bottom = 566.0
+offset_bottom = 495.0
 scale = Vector2(1.2, 1.2)
 theme_override_styles/panel = SubResource("StyleBoxTexture_yul2f")

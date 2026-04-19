@@ -5,7 +5,7 @@ extends Control
 
 var is_open := false
 
-var closed_pos := Vector2(0, 200)
+var closed_pos := Vector2(0, 320)
 var open_pos := Vector2(0, 10)
 
 func _ready():
