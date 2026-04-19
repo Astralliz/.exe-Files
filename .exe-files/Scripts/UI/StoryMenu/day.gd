@@ -47,7 +47,7 @@ const HeuristicEngine = preload("res://Scripts/Algorithm/heuristic_engine.gd")
 const RuleBase = preload("res://Scripts/Algorithm/Rules/rule_base.gd")
 
 # 🎮 MINIGAME PATH - Update this to your minigame scene
-const MINIGAME_SCENE_PATH = "res://Scenes/Mini Games Scene/malware_attack.tscn"
+const MINIGAME_SCENE_PATH = "res://Scenes/Mini Games Scene/mini_game.tscn"
 
 var dialogue_database := DialogueDatabase.new()
 var engine := HeuristicEngine.new()

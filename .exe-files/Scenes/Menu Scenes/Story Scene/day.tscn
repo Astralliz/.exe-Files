@@ -69,9 +69,9 @@ corner_radius_bottom_left = 50
 script = ExtResource("1_c6jxy")
 
 [node name="main_background" type="Panel" parent="."]
-offset_left = 3.0
+offset_left = 30.0
 offset_top = 2.0
-offset_right = 2463.0
+offset_right = 2490.0
 offset_bottom = 1082.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_2xmuy")
 
@@ -216,10 +216,16 @@ volume_db = 24.0
 bus = &"SFX"
 
 [node name="Level1Finished" parent="." instance=ExtResource("16_vk2dw")]
-visible = false
+offset_left = 291.0
+offset_top = 7.0
+offset_right = 291.0
+offset_bottom = 7.0
 
 [node name="GameOver" parent="." instance=ExtResource("19_vkem0")]
-visible = false
+offset_left = 269.0
+offset_top = 7.0
+offset_right = 269.0
+offset_bottom = 7.0
 
 [node name="Pause" parent="." instance=ExtResource("25_fkp12")]
 offset_left = 314.0

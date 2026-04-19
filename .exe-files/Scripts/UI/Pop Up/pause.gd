@@ -43,7 +43,6 @@ func _on_general_bck_btn_pressed() -> void:
 #----------------------------------------
 func _on_button_3_pressed() -> void:
 	buttonContainer.hide()
-	label.hide()
 	information_menu.show()
 	show_tab("metadata")
 
@@ -83,5 +82,9 @@ func _on_level_3_pressed() -> void:
 #----------------------------------------
 func _on_button_4_pressed() -> void:
 	get_tree().paused = false
-	await get_tree().process_frame
-	get_tree().change_scene_to_file("res://Scenes/Menu Scenes/story_menu.tscn")
+	hide()
+	
+	var game_over_scene = preload("res://Scenes/Finishing Scenes/game_over.tscn")
+	var game_over_instance = game_over_scene.instantiate()
+	
+	get_tree().current_scene.add_child(game_over_instance)

@@ -12,6 +12,7 @@ texture = ExtResource("1_f3sm6")
 texture = ExtResource("3_n5s0c")
 
 [node name="GameOver" type="Control"]
+z_index = 100
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,45 +22,51 @@ grow_vertical = 2
 script = ExtResource("1_kmkcb")
 
 [node name="BlurBackground" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 1153.0
-offset_bottom = 653.0
+layout_mode = 1
+anchors_preset = -1
+offset_left = -73.0
+offset_top = 3.0
+offset_right = 2537.0
+offset_bottom = 1081.0
 color = Color(0, 0, 0, 0.509804)
 
 [node name="Panel" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 211.0
-offset_top = 104.0
-offset_right = 943.0
-offset_bottom = 520.0
+layout_mode = 1
+anchors_preset = -1
+offset_left = 549.0
+offset_top = 161.0
+offset_right = 1938.0
+offset_bottom = 869.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_yhjks")
 
 [node name="Continue" type="Button" parent="."]
 layout_mode = 0
-offset_left = 483.0
-offset_top = 401.0
-offset_right = 665.0
-offset_bottom = 463.0
+offset_left = 1126.0
+offset_top = 691.0
+offset_right = 1308.0
+offset_bottom = 755.0
+scale = Vector2(1.35, 1.571)
 theme_override_fonts/font = ExtResource("2_kmkcb")
 theme_override_font_sizes/font_size = 30
 text = "Continue"
 
 [node name="Panel2" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 246.0
-offset_top = 196.0
-offset_right = 452.0
-offset_bottom = 387.0
+offset_left = 702.0
+offset_top = 280.0
+offset_right = 1160.0
+offset_bottom = 699.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_k6ta5")
 
 [node name="TextEdit" type="RichTextLabel" parent="."]
+process_mode = 3
 layout_mode = 0
-offset_left = 456.0
-offset_top = 155.0
-offset_right = 888.0
-offset_bottom = 390.0
+offset_left = 1205.0
+offset_top = 310.0
+offset_right = 1792.0
+offset_bottom = 642.0
 theme_override_fonts/normal_font = ExtResource("2_kmkcb")
-theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/normal_font_size = 65
 text = "Game Over"
 horizontal_alignment = 1
 vertical_alignment = 1

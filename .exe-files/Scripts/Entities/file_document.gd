@@ -33,7 +33,7 @@ const ZOOM_SCALE = Vector2(1.2, 1.2)
 const PAPER_DOWN_SCALE = Vector2(0.3, 0.3)
 
 var FALL_START := Vector2(2210, 454)
-var FALL_END := Vector2(2210, 674)
+var FALL_END := Vector2(2210, 600)
 var CENTER := Vector2(1830, 520)
 var DOWN_POS := Vector2(1870, 850)
 
