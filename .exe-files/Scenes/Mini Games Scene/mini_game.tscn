@@ -30,10 +30,7 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 938.0
-offset_top = 537.0
-offset_right = -982.0
-offset_bottom = -543.0
+offset_right = 526.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vt4pt")
@@ -42,7 +39,7 @@ script = ExtResource("1_vt4pt")
 layout_mode = 0
 offset_left = -46.0
 offset_top = 229.0
-offset_right = 4944.0
+offset_right = 4727.0
 offset_bottom = 569.0
 theme_override_constants/separation = -1
 
@@ -57,14 +54,13 @@ size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxTexture_ygon6")
 
 [node name="main_background" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 2.0
-offset_right = 2481.0
-offset_bottom = 1091.0
+layout_mode = 1
+offset_right = 2446.0
+offset_bottom = 1080.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_3eyko")
 
 [node name="BlurBackground" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -75,9 +71,9 @@ color = Color(0, 0, 0, 0.509804)
 
 [node name="TextEdit" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 937.0
+offset_left = 911.0
 offset_top = -14.0
-offset_right = 1604.0
+offset_right = 1578.0
 offset_bottom = 221.0
 theme_override_fonts/normal_font = ExtResource("4_tn1ee")
 theme_override_font_sizes/normal_font_size = 100
@@ -108,19 +104,20 @@ theme_override_font_sizes/font_size = 20
 text = "quit"
 
 [node name="PaperContainer" type="Panel" parent="."]
+z_index = 120
 layout_mode = 0
 offset_left = 118.0
 offset_top = 216.0
-offset_right = 2443.0
+offset_right = 2361.0
 offset_bottom = 1006.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_i6ld0")
 
 [node name="AttackClass" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 168.0
+offset_left = 129.0
 offset_top = 611.0
-offset_right = 2325.0
-offset_bottom = 988.0
+offset_right = 2330.0
+offset_bottom = 979.0
 theme_override_constants/separation = 150
 
 [node name="Malware" type="Panel" parent="AttackClass"]
@@ -197,10 +194,10 @@ vertical_alignment = 1
 
 [node name="Bounty" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1764.0
-offset_top = 123.0
-offset_right = 2077.0
-offset_bottom = 194.0
+offset_left = 1738.0
+offset_top = 119.0
+offset_right = 2051.0
+offset_bottom = 190.0
 theme_override_fonts/font = ExtResource("4_tn1ee")
 theme_override_font_sizes/font_size = 50
 text = "Bug BOunty :"
@@ -209,10 +206,10 @@ vertical_alignment = 1
 
 [node name="Score" type="Label" parent="."]
 layout_mode = 0
-offset_left = 412.0
-offset_top = 120.0
-offset_right = 593.0
-offset_bottom = 191.0
+offset_left = 394.0
+offset_top = 116.0
+offset_right = 575.0
+offset_bottom = 187.0
 theme_override_fonts/font = ExtResource("4_tn1ee")
 theme_override_font_sizes/font_size = 50
 text = "Score :"
@@ -221,10 +218,10 @@ vertical_alignment = 1
 
 [node name="ScoreValue" type="Label" parent="."]
 layout_mode = 0
-offset_left = 575.0
-offset_top = 120.0
-offset_right = 762.0
-offset_bottom = 191.0
+offset_left = 557.0
+offset_top = 116.0
+offset_right = 744.0
+offset_bottom = 187.0
 theme_override_fonts/font = ExtResource("4_tn1ee")
 theme_override_font_sizes/font_size = 50
 text = "3"
@@ -233,10 +230,10 @@ vertical_alignment = 1
 
 [node name="BountyValue" type="Label" parent="."]
 layout_mode = 0
-offset_left = 2053.0
-offset_top = 121.0
-offset_right = 2240.0
-offset_bottom = 192.0
+offset_left = 2027.0
+offset_top = 117.0
+offset_right = 2214.0
+offset_bottom = 188.0
 theme_override_fonts/font = ExtResource("4_tn1ee")
 theme_override_font_sizes/font_size = 50
 text = "49"

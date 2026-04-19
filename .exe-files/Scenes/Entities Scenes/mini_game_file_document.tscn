@@ -11,6 +11,7 @@ size = Vector2(439.381, 514)
 size = Vector2(436, 137)
 
 [node name="MiniGameFileDocument" type="Node2D"]
+z_index = 130
 script = ExtResource("1_m0uo7")
 
 [node name="File" type="Sprite2D" parent="."]

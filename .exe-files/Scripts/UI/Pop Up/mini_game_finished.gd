@@ -9,6 +9,7 @@ var rounds_data: Array
 var success_result: bool = false
 
 func set_data(success: bool, score: int, rounds: Array, metrics: Dictionary) -> void:
+	success_result = success 
 	rounds_data = rounds
 
 	_build_text(score, metrics)
@@ -18,7 +19,7 @@ func set_data(success: bool, score: int, rounds: Array, metrics: Dictionary) -> 
 
 
 func _build_text(score: int, metrics: Dictionary) -> void:
-	var text := "=== PERFORMANCE PER CLASS ===\n\n"
+	var text := "============== \nPERFORMANCE \nPER CLASS\n ==============\n\n"
 
 	for label in ["malware", "injection", "phishing", "trojan"]:
 		var p = metrics[label]["precision"] * 100
@@ -34,7 +35,7 @@ func _build_text(score: int, metrics: Dictionary) -> void:
 			text += " ❌ FAILED (<80%)\n\n"
 
 	var acc = metrics["accuracy"] * 100
-	text += "Overall Accuracy: %.2f%%" % acc
+	text += "Overall Accuracy: \n %.2f%%" % acc
 
 	score_label.text = text
 

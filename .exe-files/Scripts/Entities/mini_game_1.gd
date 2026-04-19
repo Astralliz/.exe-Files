@@ -92,7 +92,8 @@ class Paper extends Panel:
 			if event.pressed:
 				click_pos = event.position
 				last_touch_pos = event.position
-				drag_offset = event.position - global_position
+				var touch_global = get_viewport().get_mouse_position()
+				drag_offset = touch_global - global_position
 			else:
 				var release_pos = last_touch_pos
 				if is_dragging:
@@ -103,12 +104,15 @@ class Paper extends Panel:
 
 		elif event is InputEventScreenDrag:
 			last_touch_pos = event.position
+			
+			var touch_global = get_viewport().get_mouse_position()
+			
 			if state == State.OPEN:
 				if not is_dragging:
 					if event.position.distance_to(click_pos) > drag_threshold:
 						_start_dragging(event.position)
 				if is_dragging:
-					global_position = event.position - drag_offset
+					global_position = touch_global - drag_offset
 
 		# ── MOUSE ──────────────────────────────────────────
 		elif event is InputEventMouseButton:
@@ -266,6 +270,9 @@ func _process(delta: float) -> void:
 		spawn_timer = 0.0
 
 	_move_papers(delta)
+	
+	if current_round_index >= MAX_ROUNDS and active_papers.is_empty():
+		_finish_game(true)
 
 
 # ══════════════════════════════════════════════════════════════
@@ -365,8 +372,6 @@ func on_paper_correct(paper_no: int) -> void:
 	score_label.text  = str(total_score)
 	bounty_label.text = str(bounty_count)
 
-	if bounty_count >= MAX_ROUNDS:
-		_finish_game(true)
 
 
 func _rearrange_stopped_papers() -> void:
@@ -384,17 +389,34 @@ func _rearrange_stopped_papers() -> void:
 # END GAME
 # ══════════════════════════════════════════════════════════════
 func _finish_game(success: bool) -> void:
+	print("🔥 FINISH GAME TRIGGERED")
 	game_finished = true
 
 	var metrics = compute_metrics()
 
+	# ✅ Create a CanvasLayer (VERY IMPORTANT for mobile)
+	var layer = CanvasLayer.new()
+	get_tree().current_scene.add_child(layer)
+
 	var ui = MINIGAME_FINISHED_SCENE.instantiate()
-	get_tree().current_scene.add_child(ui)
+	layer.add_child(ui)
+
+	# ✅ Force fullscreen layout
+	ui.set_anchors_preset(Control.PRESET_FULL_RECT)
+	ui.offset_left = 0
+	ui.offset_top = 0
+	ui.offset_right = 0
+	ui.offset_bottom = 0
+
+	# ✅ Ensure it's visible
+	ui.visible = true
+
+	# ✅ Make sure it processes even if paused
+	ui.process_mode = Node.PROCESS_MODE_ALWAYS
 
 	ui.set_data(success, total_score, current_rounds, metrics)
 
 	ui.connect("minigame_finished", Callable(self, "_on_finished_screen_continue"))
-	
 
 func _on_finished_screen_continue(success: bool) -> void:
 	print("MiniGame UI finished → forwarding to Day")
