@@ -11,7 +11,7 @@ size = Vector2(439.381, 514)
 size = Vector2(436, 137)
 
 [node name="MiniGameFileDocument" type="Node2D"]
-z_index = 130
+z_index = 1999
 script = ExtResource("1_m0uo7")
 
 [node name="File" type="Sprite2D" parent="."]
@@ -63,12 +63,6 @@ text = "Publisher:"
 label_settings = ExtResource("3_xctqn")
 
 [node name="Source" type="Label" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
-text = "Source:"
-label_settings = ExtResource("3_xctqn")
-
-[node name="AttackType" type="Label" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Source:"

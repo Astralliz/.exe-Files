@@ -24,18 +24,20 @@ func _build_text(score: int, metrics: Dictionary) -> void:
 	for label in ["malware", "injection", "phishing", "trojan"]:
 		var p = metrics[label]["precision"] * 100
 		var r = metrics[label]["recall"] * 100
+		var f1 = metrics[label]["f1"] * 100   # ✅ GET F1
 
 		text += label.to_upper() + "\n"
 		text += " Precision: %.2f%%\n" % p
 		text += " Recall:    %.2f%%\n" % r
+		text += " F1-score:  %.2f%%\n" % f1   # ✅ DISPLAY F1
 
-		if p >= 80 and r >= 80:
+		if p >= 80 and r >= 80 and f1 >= 80:
 			text += " ✅ PASSED (≥80%)\n\n"
 		else:
 			text += " ❌ FAILED (<80%)\n\n"
 
 	var acc = metrics["accuracy"] * 100
-	text += "Overall Accuracy: \n %.2f%%" % acc
+	text += "Overall Accuracy:\n %.2f%%" % acc
 
 	score_label.text = text
 

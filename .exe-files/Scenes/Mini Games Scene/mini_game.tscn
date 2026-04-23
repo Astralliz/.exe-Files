@@ -30,7 +30,7 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 526.0
+offset_right = 555.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vt4pt")
@@ -38,8 +38,8 @@ script = ExtResource("1_vt4pt")
 [node name="Conveyor" type="HBoxContainer" parent="."]
 layout_mode = 0
 offset_left = -46.0
-offset_top = 229.0
-offset_right = 4727.0
+offset_top = 223.0
+offset_right = 3779.0
 offset_bottom = 569.0
 theme_override_constants/separation = -1
 
@@ -55,8 +55,8 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_ygon6")
 
 [node name="main_background" type="Panel" parent="."]
 layout_mode = 1
-offset_right = 2446.0
-offset_bottom = 1080.0
+offset_right = 2473.0
+offset_bottom = 1073.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_3eyko")
 
 [node name="BlurBackground" type="ColorRect" parent="."]
@@ -71,10 +71,10 @@ color = Color(0, 0, 0, 0.509804)
 
 [node name="TextEdit" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 911.0
-offset_top = -14.0
-offset_right = 1578.0
-offset_bottom = 221.0
+offset_left = 916.0
+offset_top = -17.0
+offset_right = 1583.0
+offset_bottom = 218.0
 theme_override_fonts/normal_font = ExtResource("4_tn1ee")
 theme_override_font_sizes/normal_font_size = 100
 text = "Mini Games"
@@ -104,11 +104,11 @@ theme_override_font_sizes/font_size = 20
 text = "quit"
 
 [node name="PaperContainer" type="Panel" parent="."]
-z_index = 120
+z_index = 99
 layout_mode = 0
 offset_left = 118.0
 offset_top = 216.0
-offset_right = 2361.0
+offset_right = 2399.0
 offset_bottom = 1006.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_i6ld0")
 
@@ -116,7 +116,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_i6ld0")
 layout_mode = 0
 offset_left = 129.0
 offset_top = 611.0
-offset_right = 2330.0
+offset_right = 2353.0
 offset_bottom = 979.0
 theme_override_constants/separation = 150
 
@@ -194,10 +194,10 @@ vertical_alignment = 1
 
 [node name="Bounty" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1738.0
-offset_top = 119.0
-offset_right = 2051.0
-offset_bottom = 190.0
+offset_left = 1737.0
+offset_top = 127.0
+offset_right = 2050.0
+offset_bottom = 198.0
 theme_override_fonts/font = ExtResource("4_tn1ee")
 theme_override_font_sizes/font_size = 50
 text = "Bug BOunty :"
@@ -206,10 +206,10 @@ vertical_alignment = 1
 
 [node name="Score" type="Label" parent="."]
 layout_mode = 0
-offset_left = 394.0
-offset_top = 116.0
-offset_right = 575.0
-offset_bottom = 187.0
+offset_left = 393.0
+offset_top = 124.0
+offset_right = 574.0
+offset_bottom = 195.0
 theme_override_fonts/font = ExtResource("4_tn1ee")
 theme_override_font_sizes/font_size = 50
 text = "Score :"
@@ -218,25 +218,24 @@ vertical_alignment = 1
 
 [node name="ScoreValue" type="Label" parent="."]
 layout_mode = 0
-offset_left = 557.0
-offset_top = 116.0
-offset_right = 744.0
-offset_bottom = 187.0
+offset_left = 556.0
+offset_top = 124.0
+offset_right = 743.0
+offset_bottom = 195.0
 theme_override_fonts/font = ExtResource("4_tn1ee")
 theme_override_font_sizes/font_size = 50
-text = "3"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BountyValue" type="Label" parent="."]
 layout_mode = 0
-offset_left = 2027.0
-offset_top = 117.0
-offset_right = 2214.0
-offset_bottom = 188.0
+offset_left = 2026.0
+offset_top = 125.0
+offset_right = 2213.0
+offset_bottom = 196.0
 theme_override_fonts/font = ExtResource("4_tn1ee")
 theme_override_font_sizes/font_size = 50
-text = "49"
 horizontal_alignment = 1
 vertical_alignment = 1
 

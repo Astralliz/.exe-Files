@@ -5,5 +5,6 @@
 [node name="Decline Stamp" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -0.523599
 scale = Vector2(0.0340355, 0.0418865)
 texture = ExtResource("1_q33p7")

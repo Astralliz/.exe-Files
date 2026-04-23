@@ -79,7 +79,7 @@ func _process(_delta: float) -> void:
 # ─────────────────────────────
 func open_document() -> void:
 	is_open = true
-	z_index = 100
+	z_index = 999
 
 # ─────────────────────────────
 # METADATA
@@ -100,6 +100,6 @@ func _update_ui() -> void:
 	container.get_node("Publisher").text = "Publisher: " + str(metadata.publisher)
 	container.get_node("Source").text = "Source: " + str(metadata.source)
 
-	var attack_type = container.get_node("AttackType")
-	attack_type.text = "Attack Type: " + str(metadata.actual_label).to_upper()
-	attack_type.add_theme_color_override("font_color", Color.RED)
+	#var attack_type = container.get_node("AttackType")
+	#attack_type.text = "Attack Type: " + str(metadata.actual_label).to_upper()
+	#attack_type.add_theme_color_override("font_color", Color.RED)

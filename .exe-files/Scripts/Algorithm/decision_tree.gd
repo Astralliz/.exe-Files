@@ -4,31 +4,66 @@ class_name DecisionTree
 var real_tree: RealDecisionTree
 
 # ==============================
-# DATA POOLS
+# ATTACK TYPES
 # ==============================
-const SAFE_FILENAMES = [
-	"test", "document1", "receipt", "photo_2025", "final_version",
-	"backup_file", "notes", "profile_pic", "invoice", "report"
-]
-
-const SUSPICIOUS_FILENAMES = [
-	"asdasg1341342362613e1eads4134123sd",
-	"xJ9aK2pL2533132827",
-	"ajd92ks1h3k8d",
-	"temp9384kd93kd",
-	"sys_update_8923"
-]
-
-const EXTENSION_POOL_SAFE = [".txt", ".pdf", ".png", ".jpg", ".mp3", ".mp4", ".docx"]
-const RISKY_EXTENSIONS = [".exe", ".bat", ".js", ".ps1", ".vbs"]
-
-const PUBLISHER_POOL = ["unknown", "ACME Software", "OpenSoft Labs", "Blue Horizon", "ByteForge", "NovaApps"]
-const SOURCE_POOL = ["Downloads", "Email Attachment", "USB Device", "External Drive", "Browser Cache", "unknown"]
-
 const ATTACK_TYPES = ["malware", "injection", "phishing", "trojan"]
 
 # ==============================
-# PAPER METADATA STRUCTURE
+# SHARED POOLS
+# ==============================
+const PUBLISHER_POOL = [
+	"unknown", "ACME Software", "OpenSoft Labs",
+	"Blue Horizon", "ByteForge", "NovaApps"
+]
+
+# ==============================
+# ATTACK-BASED POOLS
+# ==============================
+const ATTACK_POOLS = {
+	"malware": {
+		"filenames": ["system_update", "driver_patch", "security_fix"],
+		"extensions": [".exe", ".bat", ".ps1"],
+		"sources": ["Downloads", "Browser Cache"],
+		"hints": [
+			"Unsigned executable",
+			"Requests admin privileges",
+			"High disk activity"
+		]
+	},
+	"phishing": {
+		"filenames": ["invoice_urgent", "password_reset", "verify_account"],
+		"extensions": [".html", ".pdf", ".docx"],
+		"sources": ["Email Attachment"],
+		"hints": [
+			"Contains urgent language",
+			"Unknown sender",
+			"Requests sensitive info"
+		]
+	},
+	"injection": {
+		"filenames": ["query_input", "login_script", "form_data"],
+		"extensions": [".sql", ".js", ".txt"],
+		"sources": ["Web Form Input", "Downloads"],
+		"hints": [
+			"Contains SQL syntax",
+			"Suspicious symbols detected",
+			"User input anomaly"
+		]
+	},
+	"trojan": {
+		"filenames": ["game_crack", "free_installer", "premium_unlock"],
+		"extensions": [".exe", ".bat"],
+		"sources": ["Community Forum", "Downloads"],
+		"hints": [
+			"Disguised as legit software",
+			"Fake publisher",
+			"Hidden process detected"
+		]
+	}
+}
+
+# ==============================
+# METADATA STRUCTURE
 # ==============================
 class PaperMetadata:
 	var filename: String
@@ -44,7 +79,8 @@ class PaperMetadata:
 	var random_name: int
 	var actual_label: String
 	var paper_no: int
-	
+	var flags: Array = []
+
 	func to_dict() -> Dictionary:
 		return {
 			"filename": filename,
@@ -59,11 +95,12 @@ class PaperMetadata:
 			"modified_hours": modified_hours,
 			"random_name": random_name,
 			"actual_label": actual_label,
-			"paper_no": paper_no
+			"paper_no": paper_no,
+			"flags": flags
 		}
 
 # ==============================
-# HELPER FUNCTIONS
+# HELPERS
 # ==============================
 func is_random_filename(name: String) -> bool:
 	if name.length() > 15:
@@ -73,116 +110,95 @@ func is_random_filename(name: String) -> bool:
 	return false
 
 
+# ==============================
+# GENERATION (CORE FIX)
+# ==============================
 func generate_metadata(paper_no: int) -> PaperMetadata:
 	var metadata = PaperMetadata.new()
-	var make_risky = randf() < 0.5
-	
-	# Filename
-	metadata.filename = SUSPICIOUS_FILENAMES[randi() % SUSPICIOUS_FILENAMES.size()] if make_risky else SAFE_FILENAMES[randi() % SAFE_FILENAMES.size()]
-	
-	# Extension
-	var all_extensions = RISKY_EXTENSIONS + EXTENSION_POOL_SAFE if make_risky else EXTENSION_POOL_SAFE
-	metadata.extension = all_extensions[randi() % all_extensions.size()]
-	
-	# Size
-	metadata.size = randf_range(40, 80) if make_risky else randf_range(5, 40)
-	
-	# Publisher
-	metadata.publisher = "unknown" if (make_risky and randf() < 0.5) else PUBLISHER_POOL[randi() % PUBLISHER_POOL.size()]
-	
-	# Source
-	metadata.source = "Email Attachment" if randf() < 0.5 else SOURCE_POOL[randi() % SOURCE_POOL.size()]
-	
-	# Signature Valid
-	metadata.signature_valid = false if (make_risky and randf() < 0.5) else true
-	
-	# Requires Admin
-	metadata.requires_admin = true if (make_risky and randf() < 0.6) else false
-	
-	# Is Compressed
-	metadata.is_compressed = true if (make_risky and randf() < 0.4) else false
-	
-	# Hidden
-	metadata.hidden = true if randf() < 0.4 else false
-	
-	# Modified Hours
+
+	# 1. Pick attack type
+	var attack_type = ATTACK_TYPES[randi() % ATTACK_TYPES.size()]
+	var pool = ATTACK_POOLS[attack_type]
+
+	# 2. Basic fields
+	metadata.filename = pool["filenames"].pick_random()
+	metadata.extension = pool["extensions"].pick_random()
+	metadata.source = pool["sources"].pick_random()
+
+	# 3. Publisher logic
+	if attack_type == "trojan":
+		metadata.publisher = ["Micros0ft", "unknown"].pick_random()
+	elif attack_type == "phishing":
+		metadata.publisher = "unknown"
+	else:
+		metadata.publisher = PUBLISHER_POOL.pick_random()
+
+	# 4. Size (aligned with tree behavior)
+	if attack_type == "malware" or attack_type == "trojan":
+		metadata.size = randf_range(45, 80)
+	else:
+		metadata.size = randf_range(5, 40)
+
+	# 5. Boolean features
+	metadata.signature_valid = false if attack_type == "phishing" else randf() > 0.3
+	metadata.requires_admin = attack_type == "malware"
+	metadata.is_compressed = randf() < 0.4
+	metadata.hidden = randf() < 0.3
 	metadata.modified_hours = randi_range(1, 100)
-	
-	# Random Name
+
+	# 6. Random filename feature
 	metadata.random_name = 1 if is_random_filename(metadata.filename) else 0
-	
-	# Assign Label
+
+	# 7. FLAGS (UI hints)
+	metadata.flags = []
+	for i in range(2):
+		metadata.flags.append(pool["hints"].pick_random())
+
+	# 8. Model prediction (GROUND TRUTH)
 	metadata.actual_label = real_tree.predict(metadata)
+
 	metadata.paper_no = paper_no
-	print("AI:", metadata.actual_label)
+
+	print("AI:", metadata.actual_label, " | Generated:", attack_type)
+
 	return metadata
 
-func _init():
-	real_tree = RealDecisionTree.new()
-	real_tree.load_tree("res://Scripts/Algorithm/Data/tree.json")
-
-func assign_label(metadata: PaperMetadata) -> String:
-	var ext = metadata.extension
-	var pub = metadata.publisher
-	var src = metadata.source
-	var rnd = metadata.random_name
-	
-	# Injection rule
-	if ext in [".bat", ".ps1"]:
-		return "injection"
-	
-	# Malware rule
-	if ext in [".exe", ".js", ".vbs"]:
-		if pub == "unknown" or src in ["Downloads", "Browser Cache"]:
-			return "malware"
-	
-	# Phishing rule
-	if src == "Email Attachment":
-		if rnd == 1 or pub == "unknown":
-			return "phishing"
-	
-	# Trojan rule
-	if ext in [".txt", ".pdf", ".docx"]:
-		if pub == "unknown" and rnd == 1:
-			return "trojan"
-	
-	# Default
-	return "malware"
-
 
 # ==============================
-# DECISION TREE TRAVERSAL
+# TREE VISUALIZATION (OPTIONAL)
 # ==============================
 func traverse_tree(metadata: PaperMetadata) -> Array:
-	"""
-	Simulates traversing the decision tree and returns the path taken.
-	Returns array of step tuples: [(feature, decision), ...]
-	"""
 	var steps = []
-	
-	# Simplified decision tree based on the Python model
-	# This is a rule-based approximation of the trained decision tree
-	
-	var node = 0
-	var result = metadata.actual_label
-	
-	# Log decision path (simplified version)
-	steps.append(["source_%s" % metadata.source, "YES" if metadata.source == "Email Attachment" else "NO"])
-	steps.append(["extension_%s" % metadata.extension, "YES" if metadata.extension in [".exe", ".bat"] else "NO"])
-	steps.append(["publisher_%s" % metadata.publisher, "YES" if metadata.publisher == "unknown" else "NO"])
-	
+
+	steps.append(["source_" + metadata.source, "YES" if metadata.source == "Email Attachment" else "NO"])
+	steps.append(["extension_" + metadata.extension, "YES" if metadata.extension in [".exe", ".bat"] else "NO"])
+	steps.append(["publisher_" + metadata.publisher, "YES" if metadata.publisher == "unknown" else "NO"])
+
 	return steps
 
 
+# ==============================
+# ROUND GENERATION
+# ==============================
 func generate_all_rounds(count: int = 10) -> Array:
-	"""Generate the specified number of paper rounds"""
 	var rounds = []
+
 	for i in range(count):
 		var metadata = generate_metadata(i + 1)
+
 		rounds.append({
 			"metadata": metadata,
 			"steps": traverse_tree(metadata),
 			"score": 0,
-			"verdict": null  # Will be set by player
+			"verdict": null
 		})
+
 	return rounds
+
+
+# ==============================
+# INIT
+# ==============================
+func _init():
+	real_tree = RealDecisionTree.new()
+	real_tree.load_tree("res://Scripts/Algorithm/Data/tree.json")

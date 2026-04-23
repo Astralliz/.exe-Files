@@ -1,10 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://jkml53wlg5d4"]
+[gd_scene load_steps=3 format=3 uid="uid://jkml53wlg5d4"]
 
 [ext_resource type="PackedScene" uid="uid://b52y0fj86sfe7" path="res://Scenes/Menu Scenes/Story Scene/day.tscn" id="1_0l88a"]
-[ext_resource type="Script" uid="uid://2e0a6u4ksvcf" path="res://Scripts/UI/tutorial.gd" id="2_pjq4b"]
 [ext_resource type="PackedScene" uid="uid://1t4noejl0s7v" path="res://Scenes/UI/tutorial_dialogue.tscn" id="3_0h02k"]
 
 [node name="Tutorial" instance=ExtResource("1_0l88a")]
-script = ExtResource("2_pjq4b")
+script = null
 
-[node name="Tutorial Dialogue" parent="." index="15" instance=ExtResource("3_0h02k")]
+[node name="Checklist" parent="." index="14"]
+visible = false
+
+[node name="SlidingPanel" parent="." index="15"]
+visible = false
+
+[node name="Dialogue Box" parent="." index="17"]
+visible = false
+
+[node name="Level1Finished" parent="." index="24"]
+visible = false
+
+[node name="GameOver" parent="." index="25"]
+visible = false
+
+[node name="Pause" parent="." index="26"]
+visible = false
+
+[node name="Tutorial Dialogue" parent="." index="27" instance=ExtResource("3_0h02k")]
+z_index = 1140

@@ -6,5 +6,6 @@
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(5.00001, 3.8147e-06)
+rotation = -0.523599
 scale = Vector2(0.3, 0.361)
 texture = ExtResource("1_4cxn1")

@@ -1,59 +1,77 @@
-[gd_scene load_steps=5 format=3 uid="uid://1t4noejl0s7v"]
+[gd_scene load_steps=7 format=3 uid="uid://1t4noejl0s7v"]
 
 [ext_resource type="Texture2D" uid="uid://cy8xynrmywbvn" path="res://Assets/Sprites/mentor.png" id="1_hoj2a"]
 [ext_resource type="Script" uid="uid://cn0dum7n20sy2" path="res://Scripts/UI/tutorial_dialogue.gd" id="1_llbmp"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="2_epyot"]
+[ext_resource type="Texture2D" uid="uid://dud14egjhs4im" path="res://Assets/images/finished window.png" id="3_85a8o"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xuqga"]
+texture = ExtResource("3_85a8o")
 
 [sub_resource type="LabelSettings" id="LabelSettings_llbmp"]
 font = ExtResource("2_epyot")
-font_size = 25
+font_size = 85
 font_color = Color(0.855889, 0.429064, 0.864663, 1)
 
 [node name="Tutorial Dialogue" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_right = 1.298
+anchor_bottom = 0.997
+offset_right = -0.160156
+offset_bottom = 0.23999
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_llbmp")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+layout_mode = 1
+anchors_preset = -1
+offset_right = 2485.0
+offset_bottom = 1080.0
 color = Color(0, 0, 0, 0.831373)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(128, 536)
-scale = Vector2(0.336842, 0.333333)
+position = Vector2(281, 665)
+scale = Vector2(0.774436, 0.792969)
 texture = ExtResource("1_hoj2a")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 565.0
+offset_top = 524.0
+offset_right = 2297.0
+offset_bottom = 1006.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_xuqga")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
-offset_left = 256.0
-offset_top = 472.0
-offset_right = 408.0
-offset_bottom = 495.0
+offset_left = 603.0
+offset_top = 557.0
+offset_right = 978.0
+offset_bottom = 682.0
+theme_override_font_sizes/font_size = 40
 text = "Mentor"
 label_settings = SubResource("LabelSettings_llbmp")
+vertical_alignment = 1
 
 [node name="TextBox" type="RichTextLabel" parent="."]
 layout_mode = 2
-offset_left = 256.0
-offset_top = 512.0
-offset_right = 1008.0
-offset_bottom = 608.0
+offset_left = 628.0
+offset_top = 694.0
+offset_right = 2270.0
+offset_bottom = 874.0
 theme_override_fonts/normal_font = ExtResource("2_epyot")
-theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/normal_font_size = 50
 text = "asdadasd"
 
-[node name="CloseButton" type="Button" parent="."]
+[node name="NextButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1016.0
-offset_top = 552.0
-offset_right = 1136.0
-offset_bottom = 600.0
+offset_left = 2013.0
+offset_top = 898.0
+offset_right = 2247.0
+offset_bottom = 981.0
 theme_override_fonts/font = ExtResource("2_epyot")
-theme_override_font_sizes/font_size = 25
-text = "CLOSE"
+theme_override_font_sizes/font_size = 55
+text = "Next"
+
+[connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]

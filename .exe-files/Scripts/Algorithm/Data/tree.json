@@ -2,73 +2,339 @@
   "feature": "source_Email Attachment",
   "threshold": 0.5,
   "left": {
-	"feature": "random_name",
+	"feature": "requires_admin",
 	"threshold": 0.5,
 	"left": {
 	  "feature": "size",
-	  "threshold": 40.22403335571289,
+	  "threshold": 48.97794532775879,
 	  "left": {
-		"feature": "is_compressed",
+		"feature": "publisher_Micros0ft",
 		"threshold": 0.5,
 		"left": {
-		  "value": [
-			[
-			  0.0,
-			  1.0,
-			  0.0,
-			  0.0
-			]
-		  ]
+		  "feature": "extension_.exe",
+		  "threshold": 0.5,
+		  "left": {
+			"feature": "extension_.bat",
+			"threshold": 0.5,
+			"left": {
+			  "feature": "extension_.js",
+			  "threshold": 0.5,
+			  "left": {
+				"feature": "size",
+				"threshold": 47.27728462219238,
+				"left": {
+				  "value": [
+					[
+					  0.9952652197947461,
+					  0.0047347802052539354,
+					  0.0,
+					  0.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.8769134645423305,
+					  0.0,
+					  0.0,
+					  0.12308653545766947
+					]
+				  ]
+				}
+			  },
+			  "right": {
+				"feature": "modified_hours",
+				"threshold": 95.5,
+				"left": {
+				  "value": [
+					[
+					  0.9609816108035744,
+					  0.009520411230993439,
+					  0.0197638916694041,
+					  0.009734086296028205
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.8387888707037642,
+					  0.16121112929623566,
+					  0.0,
+					  0.0
+					]
+				  ]
+				}
+			  }
+			},
+			"right": {
+			  "feature": "size",
+			  "threshold": 35.129356384277344,
+			  "left": {
+				"feature": "hidden",
+				"threshold": 0.5,
+				"left": {
+				  "value": [
+					[
+					  0.0,
+					  0.0,
+					  0.0,
+					  1.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.0,
+					  0.0,
+					  1.0,
+					  0.0
+					]
+				  ]
+				}
+			  },
+			  "right": {
+				"value": [
+				  [
+					0.0,
+					0.0,
+					0.0,
+					1.0
+				  ]
+				]
+			  }
+			}
+		  },
+		  "right": {
+			"feature": "size",
+			"threshold": 47.80116271972656,
+			"left": {
+			  "feature": "is_compressed",
+			  "threshold": 0.5,
+			  "left": {
+				"value": [
+				  [
+					0.0,
+					0.0,
+					0.0,
+					1.0
+				  ]
+				]
+			  },
+			  "right": {
+				"feature": "modified_hours",
+				"threshold": 58.0,
+				"left": {
+				  "value": [
+					[
+					  0.0,
+					  0.0,
+					  0.0,
+					  1.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.25470809501087555,
+					  0.24476826691289016,
+					  0.0,
+					  0.5005236380762343
+					]
+				  ]
+				}
+			  }
+			},
+			"right": {
+			  "feature": "size",
+			  "threshold": 47.981550216674805,
+			  "left": {
+				"value": [
+				  [
+					0.0,
+					0.0,
+					1.0,
+					0.0
+				  ]
+				]
+			  },
+			  "right": {
+				"value": [
+				  [
+					0.0,
+					0.0,
+					0.0,
+					1.0
+				  ]
+				]
+			  }
+			}
+		  }
 		},
 		"right": {
-		  "value": [
-			[
-			  0.0,
-			  1.0,
-			  0.0,
-			  0.0
-			]
-		  ]
-		}
-	  },
-	  "right": {
-		"feature": "extension_.bat",
-		"threshold": 0.5,
-		"left": {
-		  "feature": "extension_.ps1",
+		  "feature": "hidden",
 		  "threshold": 0.5,
 		  "left": {
 			"value": [
 			  [
 				0.0,
-				1.0,
 				0.0,
-				0.0
+				0.0,
+				1.0
 			  ]
 			]
 		  },
 		  "right": {
-			"feature": "publisher_Blue Horizon",
-			"threshold": 0.5,
+			"feature": "modified_hours",
+			"threshold": 64.0,
 			"left": {
 			  "value": [
 				[
-				  1.0,
 				  0.0,
 				  0.0,
-				  0.0
+				  0.0,
+				  1.0
+				]
+			  ]
+			},
+			"right": {
+			  "feature": "size",
+			  "threshold": 42.05642127990723,
+			  "left": {
+				"feature": "has_crack",
+				"threshold": 0.5,
+				"left": {
+				  "value": [
+					[
+					  0.0,
+					  0.0,
+					  0.0,
+					  1.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.0,
+					  0.0,
+					  0.5037688442211056,
+					  0.4962311557788945
+					]
+				  ]
+				}
+			  },
+			  "right": {
+				"value": [
+				  [
+					1.0,
+					0.0,
+					0.0,
+					0.0
+				  ]
+				]
+			  }
+			}
+		  }
+		}
+	  },
+	  "right": {
+		"feature": "source_Web Form Input",
+		"threshold": 0.5,
+		"left": {
+		  "feature": "modified_hours",
+		  "threshold": 1.5,
+		  "left": {
+			"feature": "size",
+			"threshold": 63.78992462158203,
+			"left": {
+			  "value": [
+				[
+				  0.0,
+				  0.0,
+				  0.0,
+				  1.0
 				]
 			  ]
 			},
 			"right": {
 			  "value": [
 				[
+				  0.0,
+				  0.0,
 				  1.0,
-				  0.0,
-				  0.0,
 				  0.0
 				]
 			  ]
+			}
+		  },
+		  "right": {
+			"feature": "size",
+			"threshold": 51.147878646850586,
+			"left": {
+			  "feature": "size",
+			  "threshold": 51.09742736816406,
+			  "left": {
+				"value": [
+				  [
+					0.0,
+					0.0,
+					0.0,
+					1.0
+				  ]
+				]
+			  },
+			  "right": {
+				"value": [
+				  [
+					0.0,
+					1.0,
+					0.0,
+					0.0
+				  ]
+				]
+			  }
+			},
+			"right": {
+			  "feature": "modified_hours",
+			  "threshold": 29.5,
+			  "left": {
+				"feature": "modified_hours",
+				"threshold": 25.5,
+				"left": {
+				  "value": [
+					[
+					  0.0,
+					  0.0,
+					  0.0,
+					  1.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.0,
+					  0.13985634251758192,
+					  0.14516734286635086,
+					  0.7149763146160673
+					]
+				  ]
+				}
+			  },
+			  "right": {
+				"value": [
+				  [
+					0.0,
+					0.0,
+					0.0,
+					1.0
+				  ]
+				]
+			  }
 			}
 		  }
 		},
@@ -85,48 +351,104 @@
 	  }
 	},
 	"right": {
-	  "feature": "extension_.ps1",
+	  "feature": "publisher_Micros0ft",
 	  "threshold": 0.5,
 	  "left": {
-		"feature": "extension_.bat",
-		"threshold": 0.5,
+		"feature": "size",
+		"threshold": 29.779294967651367,
 		"left": {
-		  "feature": "publisher_unknown",
-		  "threshold": 0.5,
+		  "feature": "modified_hours",
+		  "threshold": 4.0,
 		  "left": {
-			"value": [
-			  [
-				0.0,
-				1.0,
-				0.0,
-				0.0
-			  ]
-			]
-		  },
-		  "right": {
-			"feature": "extension_.jpg",
+			"feature": "publisher_OpenSoft Labs",
 			"threshold": 0.5,
 			"left": {
-			  "feature": "extension_.mp3",
+			  "value": [
+				[
+				  1.0,
+				  0.0,
+				  0.0,
+				  0.0
+				]
+			  ]
+			},
+			"right": {
+			  "value": [
+				[
+				  0.0,
+				  0.0,
+				  1.0,
+				  0.0
+				]
+			  ]
+			}
+		  },
+		  "right": {
+			"feature": "size",
+			"threshold": 7.619959115982056,
+			"left": {
+			  "feature": "publisher_Blue Horizon",
 			  "threshold": 0.5,
 			  "left": {
-				"feature": "extension_.js",
+				"value": [
+				  [
+					1.0,
+					0.0,
+					0.0,
+					0.0
+				  ]
+				]
+			  },
+			  "right": {
+				"value": [
+				  [
+					0.0,
+					1.0,
+					0.0,
+					0.0
+				  ]
+				]
+			  }
+			},
+			"right": {
+			  "value": [
+				[
+				  1.0,
+				  0.0,
+				  0.0,
+				  0.0
+				]
+			  ]
+			}
+		  }
+		},
+		"right": {
+		  "feature": "has_free",
+		  "threshold": 0.5,
+		  "left": {
+			"feature": "source_Web Form Input",
+			"threshold": 0.5,
+			"left": {
+			  "feature": "has_crack",
+			  "threshold": 0.5,
+			  "left": {
+				"feature": "extension_.txt",
 				"threshold": 0.5,
 				"left": {
 				  "value": [
 					[
-					  0.0,
-					  0.015693112467306012,
-					  0.0,
-					  0.9843068875326938
+					  0.035769248852025363,
+					  0.8959993272601525,
+					  0.019028636688874924,
+					  0.0492027871989456
 					]
 				  ]
 				},
 				"right": {
 				  "value": [
 					[
-					  0.0,
 					  1.0,
+					  0.0,
 					  0.0,
 					  0.0
 					]
@@ -134,38 +456,24 @@
 				}
 			  },
 			  "right": {
-				"feature": "source_External Drive",
-				"threshold": 0.5,
-				"left": {
-				  "value": [
-					[
-					  0.0,
-					  1.0,
-					  0.0,
-					  0.0
-					]
+				"value": [
+				  [
+					0.0,
+					0.0,
+					0.0,
+					1.0
 				  ]
-				},
-				"right": {
-				  "value": [
-					[
-					  0.0,
-					  1.0,
-					  0.0,
-					  0.0
-					]
-				  ]
-				}
+				]
 			  }
 			},
 			"right": {
 			  "feature": "modified_hours",
-			  "threshold": 4.0,
+			  "threshold": 93.5,
 			  "left": {
 				"value": [
 				  [
-					0.0,
 					1.0,
+					0.0,
 					0.0,
 					0.0
 				  ]
@@ -182,128 +490,180 @@
 				]
 			  }
 			}
-		  }
-		},
-		"right": {
-		  "feature": "publisher_unknown",
-		  "threshold": 0.5,
-		  "left": {
-			"value": [
-			  [
-				1.0,
-				0.0,
-				0.0,
-				0.0
-			  ]
-			]
 		  },
 		  "right": {
 			"value": [
 			  [
-				1.0,
 				0.0,
 				0.0,
-				0.0
+				0.0,
+				1.0
 			  ]
 			]
 		  }
 		}
 	  },
 	  "right": {
-		"feature": "source_USB Device",
-		"threshold": 0.5,
+		"feature": "size",
+		"threshold": 62.77962684631348,
 		"left": {
-		  "value": [
-			[
-			  1.0,
-			  0.0,
-			  0.0,
-			  0.0
+		  "feature": "source_Community Forum",
+		  "threshold": 0.5,
+		  "left": {
+			"value": [
+			  [
+				0.0,
+				0.0,
+				0.0,
+				1.0
+			  ]
 			]
-		  ]
+		  },
+		  "right": {
+			"value": [
+			  [
+				0.0,
+				0.0,
+				0.0,
+				1.0
+			  ]
+			]
+		  }
 		},
 		"right": {
-		  "value": [
-			[
-			  1.0,
-			  0.0,
-			  0.0,
-			  0.0
+		  "feature": "size",
+		  "threshold": 64.12137603759766,
+		  "left": {
+			"value": [
+			  [
+				0.0,
+				0.0,
+				1.0,
+				0.0
+			  ]
 			]
-		  ]
+		  },
+		  "right": {
+			"value": [
+			  [
+				0.0,
+				0.0,
+				0.0,
+				1.0
+			  ]
+			]
+		  }
 		}
 	  }
 	}
   },
   "right": {
-	"feature": "extension_.ps1",
-	"threshold": 0.5,
+	"feature": "modified_hours",
+	"threshold": 45.5,
 	"left": {
-	  "feature": "extension_.bat",
-	  "threshold": 0.5,
+	  "feature": "modified_hours",
+	  "threshold": 44.5,
 	  "left": {
-		"feature": "publisher_unknown",
+		"feature": "extension_.docx",
 		"threshold": 0.5,
 		"left": {
-		  "feature": "random_name",
-		  "threshold": 0.5,
+		  "feature": "modified_hours",
+		  "threshold": 28.5,
 		  "left": {
-			"feature": "publisher_Blue Horizon",
-			"threshold": 0.5,
+			"feature": "modified_hours",
+			"threshold": 3.5,
 			"left": {
-			  "value": [
-				[
-				  0.0,
-				  1.0,
-				  0.0,
-				  0.0
+			  "feature": "size",
+			  "threshold": 29.43876361846924,
+			  "left": {
+				"value": [
+				  [
+					0.0,
+					0.0,
+					1.0,
+					0.0
+				  ]
 				]
-			  ]
+			  },
+			  "right": {
+				"feature": "size",
+				"threshold": 38.348541259765625,
+				"left": {
+				  "value": [
+					[
+					  0.5099502487562189,
+					  0.4900497512437811,
+					  0.0,
+					  0.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.0,
+					  0.0,
+					  1.0,
+					  0.0
+					]
+				  ]
+				}
+			  }
 			},
 			"right": {
 			  "value": [
 				[
 				  0.0,
-				  1.0,
 				  0.0,
+				  1.0,
 				  0.0
 				]
 			  ]
 			}
 		  },
 		  "right": {
-			"feature": "publisher_NovaApps",
-			"threshold": 0.5,
+			"feature": "modified_hours",
+			"threshold": 33.5,
 			"left": {
-			  "value": [
-				[
-				  0.0,
-				  0.0,
-				  1.0,
-				  0.0
+			  "feature": "size",
+			  "threshold": 46.93531036376953,
+			  "left": {
+				"feature": "modified_hours",
+				"threshold": 29.5,
+				"left": {
+				  "value": [
+					[
+					  0.0,
+					  0.0,
+					  1.0,
+					  0.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.37559429477020595,
+					  0.0,
+					  0.6244057052297939,
+					  0.0
+					]
+				  ]
+				}
+			  },
+			  "right": {
+				"value": [
+				  [
+					1.0,
+					0.0,
+					0.0,
+					0.0
+				  ]
 				]
-			  ]
+			  }
 			},
 			"right": {
-			  "value": [
-				[
-				  0.0,
-				  0.0,
-				  1.0,
-				  0.0
-				]
-			  ]
-			}
-		  }
-		},
-		"right": {
-		  "feature": "extension_.js",
-		  "threshold": 0.5,
-		  "left": {
-			"feature": "extension_.exe",
-			"threshold": 0.5,
-			"left": {
-			  "feature": "extension_.vbs",
+			  "feature": "has_verify",
 			  "threshold": 0.5,
 			  "left": {
 				"value": [
@@ -317,13 +677,157 @@
 			  },
 			  "right": {
 				"feature": "modified_hours",
-				"threshold": 6.5,
+				"threshold": 41.5,
 				"left": {
 				  "value": [
 					[
 					  0.0,
-					  1.0,
+					  0.138353765323993,
+					  0.861646234676007,
+					  0.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.5044025157232704,
 					  0.0,
+					  0.0,
+					  0.49559748427672956
+					]
+				  ]
+				}
+			  }
+			}
+		  }
+		},
+		"right": {
+		  "feature": "modified_hours",
+		  "threshold": 33.0,
+		  "left": {
+			"feature": "size",
+			"threshold": 12.166505336761475,
+			"left": {
+			  "value": [
+				[
+				  0.0,
+				  0.0,
+				  1.0,
+				  0.0
+				]
+			  ]
+			},
+			"right": {
+			  "feature": "size",
+			  "threshold": 12.763068199157715,
+			  "left": {
+				"value": [
+				  [
+					0.0,
+					0.0,
+					0.0,
+					1.0
+				  ]
+				]
+			  },
+			  "right": {
+				"feature": "size",
+				"threshold": 18.849875450134277,
+				"left": {
+				  "value": [
+					[
+					  0.0,
+					  0.4906832298136646,
+					  0.5093167701863355,
+					  0.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.04022854055782364,
+					  0.038658646292152474,
+					  0.8025339230269626,
+					  0.11857889012306122
+					]
+				  ]
+				}
+			  }
+			}
+		  },
+		  "right": {
+			"value": [
+			  [
+				0.0,
+				0.0,
+				1.0,
+				0.0
+			  ]
+			]
+		  }
+		}
+	  },
+	  "right": {
+		"feature": "size",
+		"threshold": 19.456778526306152,
+		"left": {
+		  "value": [
+			[
+			  0.0,
+			  0.0,
+			  1.0,
+			  0.0
+			]
+		  ]
+		},
+		"right": {
+		  "value": [
+			[
+			  0.0,
+			  1.0,
+			  0.0,
+			  0.0
+			]
+		  ]
+		}
+	  }
+	},
+	"right": {
+	  "feature": "extension_.docx",
+	  "threshold": 0.5,
+	  "left": {
+		"feature": "size",
+		"threshold": 27.574249267578125,
+		"left": {
+		  "feature": "size",
+		  "threshold": 27.388596534729004,
+		  "left": {
+			"feature": "modified_hours",
+			"threshold": 91.0,
+			"left": {
+			  "value": [
+				[
+				  0.0,
+				  0.0,
+				  1.0,
+				  0.0
+				]
+			  ]
+			},
+			"right": {
+			  "feature": "modified_hours",
+			  "threshold": 92.5,
+			  "left": {
+				"feature": "size",
+				"threshold": 20.677454948425293,
+				"left": {
+				  "value": [
+					[
+					  0.0,
+					  0.0,
+					  1.0,
 					  0.0
 					]
 				  ]
@@ -338,11 +842,153 @@
 					]
 				  ]
 				}
+			  },
+			  "right": {
+				"value": [
+				  [
+					0.0,
+					0.0,
+					1.0,
+					0.0
+				  ]
+				]
+			  }
+			}
+		  },
+		  "right": {
+			"value": [
+			  [
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			  ]
+			]
+		  }
+		},
+		"right": {
+		  "value": [
+			[
+			  0.0,
+			  0.0,
+			  1.0,
+			  0.0
+			]
+		  ]
+		}
+	  },
+	  "right": {
+		"feature": "size",
+		"threshold": 44.89906120300293,
+		"left": {
+		  "feature": "modified_hours",
+		  "threshold": 53.5,
+		  "left": {
+			"feature": "hidden",
+			"threshold": 0.5,
+			"left": {
+			  "value": [
+				[
+				  1.0,
+				  0.0,
+				  0.0,
+				  0.0
+				]
+			  ]
+			},
+			"right": {
+			  "value": [
+				[
+				  0.0,
+				  0.0,
+				  1.0,
+				  0.0
+				]
+			  ]
+			}
+		  },
+		  "right": {
+			"feature": "modified_hours",
+			"threshold": 60.5,
+			"left": {
+			  "feature": "modified_hours",
+			  "threshold": 59.5,
+			  "left": {
+				"value": [
+				  [
+					0.0,
+					0.0,
+					1.0,
+					0.0
+				  ]
+				]
+			  },
+			  "right": {
+				"feature": "size",
+				"threshold": 18.72266674041748,
+				"left": {
+				  "value": [
+					[
+					  0.0,
+					  0.0,
+					  0.0,
+					  1.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.0,
+					  0.0,
+					  1.0,
+					  0.0
+					]
+				  ]
+				}
 			  }
 			},
 			"right": {
+			  "value": [
+				[
+				  0.0,
+				  0.0,
+				  1.0,
+				  0.0
+				]
+			  ]
+			}
+		  }
+		},
+		"right": {
+		  "feature": "size",
+		  "threshold": 45.64299011230469,
+		  "left": {
+			"value": [
+			  [
+				1.0,
+				0.0,
+				0.0,
+				0.0
+			  ]
+			]
+		  },
+		  "right": {
+			"feature": "modified_hours",
+			"threshold": 94.5,
+			"left": {
+			  "value": [
+				[
+				  0.0,
+				  0.0,
+				  1.0,
+				  0.0
+				]
+			  ]
+			},
+			"right": {
 			  "feature": "modified_hours",
-			  "threshold": 2.0,
+			  "threshold": 97.5,
 			  "left": {
 				"value": [
 				  [
@@ -357,87 +1003,15 @@
 				"value": [
 				  [
 					0.0,
-					1.0,
 					0.0,
+					1.0,
 					0.0
 				  ]
 				]
 			  }
 			}
-		  },
-		  "right": {
-			"feature": "size",
-			"threshold": 44.350690841674805,
-			"left": {
-			  "value": [
-				[
-				  0.0,
-				  1.0,
-				  0.0,
-				  0.0
-				]
-			  ]
-			},
-			"right": {
-			  "value": [
-				[
-				  0.0,
-				  1.0,
-				  0.0,
-				  0.0
-				]
-			  ]
-			}
 		  }
 		}
-	  },
-	  "right": {
-		"feature": "publisher_unknown",
-		"threshold": 0.5,
-		"left": {
-		  "value": [
-			[
-			  1.0,
-			  0.0,
-			  0.0,
-			  0.0
-			]
-		  ]
-		},
-		"right": {
-		  "value": [
-			[
-			  1.0,
-			  0.0,
-			  0.0,
-			  0.0
-			]
-		  ]
-		}
-	  }
-	},
-	"right": {
-	  "feature": "publisher_OpenSoft Labs",
-	  "threshold": 0.5,
-	  "left": {
-		"value": [
-		  [
-			1.0,
-			0.0,
-			0.0,
-			0.0
-		  ]
-		]
-	  },
-	  "right": {
-		"value": [
-		  [
-			1.0,
-			0.0,
-			0.0,
-			0.0
-		  ]
-		]
 	  }
 	}
   }

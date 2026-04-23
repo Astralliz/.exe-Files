@@ -68,6 +68,7 @@ class Paper extends Panel:
 		var style = StyleBoxTexture.new()
 		style.texture = game_reference.PAPER_TEXTURE
 		add_theme_stylebox_override("panel", style)
+		
 
 		var lbl = Label.new()
 		lbl.text = str(metadata.paper_no)
@@ -435,7 +436,7 @@ func compute_metrics() -> Dictionary:
 
 	var result = {}
 
-	for label in labels:
+	for label in labels: 
 		var tp = 0
 		var fp = 0
 		var fn = 0
@@ -453,10 +454,16 @@ func compute_metrics() -> Dictionary:
 
 		var precision = tp / float(tp + fp) if (tp + fp) > 0 else 0
 		var recall = tp / float(tp + fn) if (tp + fn) > 0 else 0
+		
+		# ✅ F1-score added
+		var f1 = 0.0
+		if (precision + recall) > 0:
+			f1 = 2 * (precision * recall) / (precision + recall)
 
 		result[label] = {
 			"precision": precision,
-			"recall": recall
+			"recall": recall,
+			"f1": f1
 		}
 
 	# Accuracy

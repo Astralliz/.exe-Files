@@ -1,0 +1,238 @@
+[gd_scene load_steps=36 format=3 uid="uid://va4o8c7j3u6w"]
+
+[ext_resource type="Script" uid="uid://2e0a6u4ksvcf" path="res://Scripts/UI/tutorial.gd" id="1_opaq8"]
+[ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="1_tbkjj"]
+[ext_resource type="Texture2D" uid="uid://bjtqkmwq8fiib" path="res://Assets/images/controll_room_bg.png" id="2_8i8o4"]
+[ext_resource type="PackedScene" uid="uid://dwh7thrn4kypr" path="res://Scenes/Entities Scenes/filter_activated.tscn" id="2_tt6lo"]
+[ext_resource type="Texture2D" uid="uid://c30hxuwk71wne" path="res://Assets/images/printer.png" id="3_oap5k"]
+[ext_resource type="Texture2D" uid="uid://dyaht84w33t60" path="res://Assets/Sprites/alarm.png" id="4_qvjoc"]
+[ext_resource type="Texture2D" uid="uid://v8h3o2h6y7e" path="res://Assets/images/Red_Button.png" id="5_g06xb"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="6_i5tsn"]
+[ext_resource type="Script" uid="uid://5jr1nl78gvmg" path="res://Components/spawner_component.gd" id="7_ucwor"]
+[ext_resource type="Texture2D" uid="uid://c0lmhsyvrxgbm" path="res://Assets/Button/Settings.png" id="7_wjv7i"]
+[ext_resource type="PackedScene" uid="uid://mpbxai4ade75" path="res://Scenes/Character Scenes/filetizen.tscn" id="8_tt6lo"]
+[ext_resource type="PackedScene" uid="uid://2fhuw27q7ay0" path="res://Scenes/UI/resource_display.tscn" id="9_opaq8"]
+[ext_resource type="PackedScene" uid="uid://7lh2ohceok4o" path="res://Scenes/Entities Scenes/file_document.tscn" id="10_6pkc1"]
+[ext_resource type="PackedScene" uid="uid://cew4m80j5s8fi" path="res://Scenes/Entities Scenes/checklist.tscn" id="11_6djp3"]
+[ext_resource type="PackedScene" uid="uid://egnv2vu3ys4u" path="res://Scenes/Qustions/SlidingPanel.tscn" id="12_74h4x"]
+[ext_resource type="PackedScene" uid="uid://de5ho3ehe1qqw" path="res://Scenes/UI/dialogue_box.tscn" id="13_quwpc"]
+[ext_resource type="AudioStream" uid="uid://ccawkigrsp8y" path="res://Assets/Audio/Talking/SFX_Fine_Voice_03.wav" id="15_opaq8"]
+[ext_resource type="AudioStream" uid="uid://c8jqse7s80fg8" path="res://Assets/Audio/Picking Item/SFX_Pickup.wav" id="16_6pkc1"]
+[ext_resource type="AudioStream" uid="uid://dwxhnf48nyc30" path="res://Assets/Audio/Picking Item/SFX_Button.wav" id="17_6djp3"]
+[ext_resource type="AudioStream" uid="uid://bsyvqtiv7snui" path="res://Assets/Audio/Picking Item/printing paper.mp3" id="18_74h4x"]
+[ext_resource type="AudioStream" uid="uid://dtxeeolnu6okp" path="res://Assets/Audio/SFX_Open_Door.wav" id="19_quwpc"]
+[ext_resource type="AudioStream" uid="uid://b0qchflbw4kd6" path="res://Assets/Audio/SFX_Close_Door.wav" id="20_wjv7i"]
+[ext_resource type="PackedScene" uid="uid://b5ibouyttb1cq" path="res://Scenes/UI/pause.tscn" id="22_6pkc1"]
+[ext_resource type="PackedScene" uid="uid://ddtsynehhxi41" path="res://Scenes/Finishing Scenes/level_1_finished.tscn" id="23_74h4x"]
+[ext_resource type="PackedScene" uid="uid://be8jefwdga0gx" path="res://Scenes/Finishing Scenes/game_over.tscn" id="24_quwpc"]
+[ext_resource type="PackedScene" uid="uid://1t4noejl0s7v" path="res://Scenes/UI/tutorial_dialogue.tscn" id="25_quwpc"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ldbr2"]
+texture = ExtResource("1_tbkjj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_voudc"]
+texture = ExtResource("2_8i8o4")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bnvgc"]
+texture = ExtResource("4_qvjoc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_blpyw"]
+texture = ExtResource("7_wjv7i")
+modulate_color = Color(0.535156, 0.530975, 0.530975, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vehju"]
+texture = ExtResource("7_wjv7i")
+modulate_color = Color(0.533333, 0.529412, 0.529412, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mt1tw"]
+texture = ExtResource("7_wjv7i")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fsl7j"]
+texture = ExtResource("5_g06xb")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ikyd"]
+bg_color = Color(0.976471, 0.686275, 0.686275, 0.639216)
+border_color = Color(0.8, 0.8, 0.8, 0.0156863)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jj35u"]
+bg_color = Color(0.662745, 0.0392157, 0.0392157, 0.0431373)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[node name="TutorialScene" type="Node2D"]
+script = ExtResource("1_opaq8")
+
+[node name="main_background" type="Panel" parent="."]
+offset_left = 30.0
+offset_top = 2.0
+offset_right = 2490.0
+offset_bottom = 1082.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_ldbr2")
+
+[node name="Actors" type="Node2D" parent="."]
+
+[node name="FilterActivated" parent="." instance=ExtResource("2_tt6lo")]
+position = Vector2(547, 29)
+scale = Vector2(0.762957, 0.651952)
+
+[node name="control_room" type="Panel" parent="."]
+offset_right = 2460.0
+offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_voudc")
+
+[node name="Document" type="Node2D" parent="."]
+
+[node name="Printer" type="Sprite2D" parent="."]
+position = Vector2(2198, 426)
+scale = Vector2(1.07093, 0.986213)
+texture = ExtResource("3_oap5k")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 2278.0
+offset_top = 165.0
+offset_right = 2413.0
+offset_bottom = 272.0
+rotation = -3.14417
+theme_override_styles/panel = SubResource("StyleBoxTexture_bnvgc")
+
+[node name="PauseBtn" type="Button" parent="."]
+offset_left = 2311.0
+offset_top = 20.0
+offset_right = 2426.0
+offset_bottom = 134.0
+theme_override_styles/hover = SubResource("StyleBoxTexture_blpyw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vehju")
+theme_override_styles/normal = SubResource("StyleBoxTexture_mt1tw")
+
+[node name="FilterPanel" type="Panel" parent="."]
+offset_left = 219.0
+offset_top = 153.0
+offset_right = 360.0
+offset_bottom = 279.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_fsl7j")
+
+[node name="FilterBtn" type="Button" parent="FilterPanel"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 9.0
+offset_right = 142.0
+offset_bottom = 126.0
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2ikyd")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jj35u")
+
+[node name="ApproveBtn" type="Button" parent="."]
+offset_left = 82.0
+offset_top = 373.0
+offset_right = 512.0
+offset_bottom = 460.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("6_i5tsn")
+theme_override_font_sizes/font_size = 50
+text = "Tutorial"
+
+[node name="DeclineBtn" type="Button" parent="."]
+offset_left = 82.0
+offset_top = 483.0
+offset_right = 514.0
+offset_bottom = 567.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_i5tsn")
+theme_override_font_sizes/font_size = 50
+text = "DECLINE"
+
+[node name="FiletizenSpawner" type="Node2D" parent="."]
+script = ExtResource("7_ucwor")
+scene = ExtResource("8_tt6lo")
+
+[node name="ResourceDisplay" parent="." instance=ExtResource("9_opaq8")]
+offset_left = 424.0
+offset_top = 281.0
+offset_right = 424.0
+offset_bottom = 281.0
+
+[node name="DocumentSpawner" type="Node2D" parent="."]
+position = Vector2(903, 87)
+script = ExtResource("7_ucwor")
+scene = ExtResource("10_6pkc1")
+
+[node name="Checklist" parent="." instance=ExtResource("11_6djp3")]
+position = Vector2(1243, 555)
+
+[node name="SlidingPanel" parent="." instance=ExtResource("12_74h4x")]
+offset_left = 257.0
+offset_top = -50.0
+offset_right = 257.0
+offset_bottom = -50.0
+scale = Vector2(1.74775, 1.52607)
+
+[node name="Answer_Label" type="Label" parent="."]
+offset_left = 901.0
+offset_top = 575.0
+offset_right = 1668.0
+offset_bottom = 661.0
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+
+[node name="Dialogue Box" parent="." instance=ExtResource("13_quwpc")]
+offset_left = 311.0
+offset_top = 4.0
+offset_right = 311.0
+offset_bottom = 4.0
+
+[node name="Talking" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_opaq8")
+volume_db = 24.0
+bus = &"SFX"
+
+[node name="Audio_Pickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_6pkc1")
+volume_db = 24.0
+bus = &"SFX"
+
+[node name="Button_Click" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_6djp3")
+volume_db = 24.0
+bus = &"SFX"
+
+[node name="Printing_Paper" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_74h4x")
+volume_db = 24.0
+bus = &"SFX"
+
+[node name="Open_Door" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_quwpc")
+volume_db = 24.0
+bus = &"SFX"
+
+[node name="Closed_Door" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_wjv7i")
+volume_db = 24.0
+bus = &"SFX"
+
+[node name="Level1Finished" parent="." instance=ExtResource("23_74h4x")]
+offset_left = 291.0
+offset_top = 7.0
+offset_right = 291.0
+offset_bottom = 7.0
+
+[node name="GameOver" parent="." instance=ExtResource("24_quwpc")]
+offset_left = 269.0
+offset_top = 7.0
+offset_right = 269.0
+offset_bottom = 7.0
+
+[node name="Pause" parent="." instance=ExtResource("22_6pkc1")]
+offset_left = 314.0
+offset_top = -2.0
+offset_right = 314.0
+offset_bottom = -2.0
+
+[node name="Tutorial Dialogue" parent="." instance=ExtResource("25_quwpc")]
+z_index = 1140

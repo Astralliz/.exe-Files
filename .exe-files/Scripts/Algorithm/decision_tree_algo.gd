@@ -10,6 +10,17 @@ func load_tree(path: String):
 	var json = JSON.parse_string(file.get_as_text())
 	tree_data = json
 
+func extract_filename_features(name: String) -> Dictionary:
+	var lower = name.to_lower()
+	return {
+		"has_crack": 1 if lower.find("crack") != -1 else 0,
+		"has_free": 1 if lower.find("free") != -1 else 0,
+		"has_update": 1 if lower.find("update") != -1 else 0,
+		"has_verify": 1 if lower.find("verify") != -1 else 0,
+		"has_invoice": 1 if lower.find("invoice") != -1 else 0
+	}
+
+
 # Convert metadata → feature vector
 func metadata_to_features(metadata) -> Dictionary:
 	var features = {}
@@ -21,11 +32,11 @@ func metadata_to_features(metadata) -> Dictionary:
 		features["extension_" + ext] = 1 if metadata.extension == ext else 0
 
 	# Source
-	for src in ["Downloads", "Email Attachment", "USB Device", "External Drive", "Browser Cache", "unknown"]:
+	for src in ["Downloads", "Email Attachment", "USB Device", "External Drive", "Browser Cache", "unknown", "Web Form Input", "Community Forum"]:
 		features["source_" + src] = 1 if metadata.source == src else 0
 
 	# Publisher
-	for pub in ["unknown","ACME Software","OpenSoft Labs","Blue Horizon","ByteForge","NovaApps"]:
+	for pub in ["unknown","ACME Software","OpenSoft Labs","Blue Horizon","ByteForge","NovaApps", "Micros0ft"]:
 		features["publisher_" + pub] = 1 if metadata.publisher == pub else 0
 
 	# Boolean features
@@ -38,6 +49,12 @@ func metadata_to_features(metadata) -> Dictionary:
 	features["size"] = metadata.size
 	features["modified_hours"] = metadata.modified_hours
 	features["random_name"] = metadata.random_name
+	
+	# 🔥 CRITICAL: filename-derived features (MISSING BEFORE)
+	var fname_features = extract_filename_features(metadata.filename)
+
+	for key in fname_features.keys():
+		features[key] = fname_features[key]
 
 	return features
 
