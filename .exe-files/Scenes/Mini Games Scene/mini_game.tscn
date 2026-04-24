@@ -56,7 +56,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_ygon6")
 [node name="main_background" type="Panel" parent="."]
 layout_mode = 1
 offset_right = 2473.0
-offset_bottom = 1073.0
+offset_bottom = 1081.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_3eyko")
 
 [node name="BlurBackground" type="ColorRect" parent="."]
@@ -194,9 +194,9 @@ vertical_alignment = 1
 
 [node name="Bounty" type="Label" parent="."]
 layout_mode = 0
-offset_left = 1737.0
+offset_left = 1758.0
 offset_top = 127.0
-offset_right = 2050.0
+offset_right = 2071.0
 offset_bottom = 198.0
 theme_override_fonts/font = ExtResource("4_tn1ee")
 theme_override_font_sizes/font_size = 50
@@ -206,9 +206,9 @@ vertical_alignment = 1
 
 [node name="Score" type="Label" parent="."]
 layout_mode = 0
-offset_left = 393.0
+offset_left = 414.0
 offset_top = 124.0
-offset_right = 574.0
+offset_right = 595.0
 offset_bottom = 195.0
 theme_override_fonts/font = ExtResource("4_tn1ee")
 theme_override_font_sizes/font_size = 50
@@ -218,9 +218,9 @@ vertical_alignment = 1
 
 [node name="ScoreValue" type="Label" parent="."]
 layout_mode = 0
-offset_left = 556.0
+offset_left = 577.0
 offset_top = 124.0
-offset_right = 743.0
+offset_right = 764.0
 offset_bottom = 195.0
 theme_override_fonts/font = ExtResource("4_tn1ee")
 theme_override_font_sizes/font_size = 50
@@ -230,9 +230,9 @@ vertical_alignment = 1
 
 [node name="BountyValue" type="Label" parent="."]
 layout_mode = 0
-offset_left = 2026.0
+offset_left = 2047.0
 offset_top = 125.0
-offset_right = 2213.0
+offset_right = 2234.0
 offset_bottom = 196.0
 theme_override_fonts/font = ExtResource("4_tn1ee")
 theme_override_font_sizes/font_size = 50

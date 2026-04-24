@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://1t4noejl0s7v"]
 
 [ext_resource type="Texture2D" uid="uid://cy8xynrmywbvn" path="res://Assets/Sprites/mentor.png" id="1_hoj2a"]
-[ext_resource type="Script" uid="uid://cn0dum7n20sy2" path="res://Scripts/UI/tutorial_dialogue.gd" id="1_llbmp"]
+[ext_resource type="Script" uid="uid://cn0dum7n20sy2" path="res://Scripts/UI/Tutorial/tutorial_dialogue.gd" id="1_llbmp"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="2_epyot"]
 [ext_resource type="Texture2D" uid="uid://dud14egjhs4im" path="res://Assets/images/finished window.png" id="3_85a8o"]
 
@@ -14,6 +14,7 @@ font_size = 85
 font_color = Color(0.855889, 0.429064, 0.864663, 1)
 
 [node name="Tutorial Dialogue" type="Control"]
+z_index = 999
 layout_mode = 3
 anchor_right = 1.298
 anchor_bottom = 0.997

@@ -19,11 +19,13 @@ var suspicious_filenames := [
 	"xJ9aK2pL2533132827",
 	"ajd92ks1h3k8d",
 	"temp9384kd93kd",
-	"sys_update_8923"
+	"sys_update_8923",
+	"query_input", "login_script", "form_data",
+	"invoice_urgent", "password_reset", "verify_account"
 ]
 
 var extension_pool_safe := [".txt", ".pdf", ".png", ".jpg", ".mp3", ".mp4", ".docx"]
-var risky_extensions := [".exe", ".bat", ".js",".ps1", ".vbs"]
+var risky_extensions := [".exe", ".bat", ".js",".ps1", ".vbs", ".sql", ".html"]
 
 var publisher_pool := [
 	"unknown",
@@ -40,7 +42,8 @@ var source_pool := [
 	"USB Device",
 	"External Drive",
 	"Browser Cache",
-	"unknown"
+	"unknown",
+	"Web Form Input"
 ]
 
 var risky_source := ["email"]

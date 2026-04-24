@@ -1,0 +1,108 @@
+[gd_scene load_steps=9 format=3 uid="uid://cc4ag6s83pkmw"]
+
+[ext_resource type="Script" uid="uid://c6ta36myjlqns" path="res://Scripts/UI/Tutorial/question_tutorial_panel.gd" id="1_udir6"]
+[ext_resource type="Texture2D" uid="uid://bbnqfb4wl0nqj" path="res://Assets/images/left.png" id="2_nilfr"]
+[ext_resource type="Texture2D" uid="uid://dud14egjhs4im" path="res://Assets/images/finished window.png" id="3_tc7ml"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="4_4xdp0"]
+[ext_resource type="Texture2D" uid="uid://cy8xynrmywbvn" path="res://Assets/Sprites/mentor.png" id="5_8og3q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qhmjq"]
+bg_color = Color(0.129412, 0.12549, 0.129412, 0.901961)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vf24p"]
+texture = ExtResource("2_nilfr")
+
+[sub_resource type="LabelSettings" id="LabelSettings_pvips"]
+font = ExtResource("4_4xdp0")
+font_size = 60
+font_color = Color(0.682353, 0.403922, 1, 1)
+outline_color = Color(0, 1, 1, 1)
+
+[node name="QuestionTutorialPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_udir6")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 2463.0
+offset_bottom = 703.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qhmjq")
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_top = 698.0
+offset_right = 862.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qhmjq")
+
+[node name="Panel3" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 1600.0
+offset_top = 703.0
+offset_right = 2463.0
+offset_bottom = 1079.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qhmjq")
+
+[node name="ArrowLeft" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 1590.0
+offset_top = 877.0
+offset_right = 1781.0
+offset_bottom = 1060.0
+rotation = -0.561996
+theme_override_styles/panel = SubResource("StyleBoxTexture_vf24p")
+
+[node name="frame" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 581.0
+offset_top = 41.0
+offset_right = 2358.0
+offset_bottom = 494.0
+texture = ExtResource("3_tc7ml")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="frame"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 20.0
+offset_right = 272.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 22
+text = "Mentor"
+label_settings = SubResource("LabelSettings_pvips")
+
+[node name="NextButton" type="Button" parent="frame"]
+layout_mode = 0
+offset_left = 1542.0
+offset_top = 331.0
+offset_right = 1723.0
+offset_bottom = 408.0
+theme_override_fonts/font = ExtResource("4_4xdp0")
+theme_override_font_sizes/font_size = 55
+text = "Next"
+
+[node name="TextBox" type="RichTextLabel" parent="frame"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 100.0
+offset_right = 1528.0
+offset_bottom = 400.0
+theme_override_fonts/normal_font = ExtResource("4_4xdp0")
+theme_override_font_sizes/normal_font_size = 50
+text = "asdadasd"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(334, 261)
+scale = Vector2(0.57218, 0.582248)
+texture = ExtResource("5_8og3q")

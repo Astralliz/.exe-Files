@@ -99,6 +99,11 @@ func _update_ui() -> void:
 	container.get_node("Size").text = "Size: " + str(metadata.size)
 	container.get_node("Publisher").text = "Publisher: " + str(metadata.publisher)
 	container.get_node("Source").text = "Source: " + str(metadata.source)
+	if metadata.flags.size() > 0:
+		var hint = metadata.flags.pick_random()
+		container.get_node("Hint").text = "Hint💡: " + hint
+	else:
+		container.get_node("Hint").text = "Hint💡: None"
 
 	#var attack_type = container.get_node("AttackType")
 	#attack_type.text = "Attack Type: " + str(metadata.actual_label).to_upper()

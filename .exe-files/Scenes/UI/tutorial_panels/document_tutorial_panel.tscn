@@ -1,0 +1,146 @@
+[gd_scene load_steps=9 format=3 uid="uid://dlbfkhrjnwrei"]
+
+[ext_resource type="Script" uid="uid://cxderauyq7rb8" path="res://Scripts/UI/Tutorial/document_tutorial_panel.gd" id="1_vcydx"]
+[ext_resource type="Texture2D" uid="uid://dud14egjhs4im" path="res://Assets/images/finished window.png" id="2_g4ucp"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_qwe7u"]
+[ext_resource type="Texture2D" uid="uid://cy8xynrmywbvn" path="res://Assets/Sprites/mentor.png" id="4_ksrib"]
+[ext_resource type="Texture2D" uid="uid://d1rby554ji2td" path="res://Assets/images/Frame 14.png" id="5_u8h2q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btf34"]
+bg_color = Color(0.129412, 0.12549, 0.129412, 0.901961)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bnur2"]
+font = ExtResource("3_qwe7u")
+font_size = 60
+font_color = Color(0.682353, 0.403922, 1, 1)
+outline_color = Color(0, 1, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_escv7"]
+texture = ExtResource("5_u8h2q")
+
+[node name="DocumentTutorialPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vcydx")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 570.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_btf34")
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 1906.0
+offset_top = 7.0
+offset_right = 2452.0
+offset_bottom = 632.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_btf34")
+
+[node name="Panel3" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 1919.0
+offset_top = 882.0
+offset_right = 2456.0
+offset_bottom = 1081.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_btf34")
+
+[node name="Panel4" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 570.0
+offset_top = 4.0
+offset_right = 1907.0
+offset_bottom = 188.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_btf34")
+
+[node name="Panel5" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 570.0
+offset_top = 691.0
+offset_right = 1918.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_btf34")
+
+[node name="frame" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 508.0
+offset_top = 791.0
+offset_right = 1980.0
+offset_bottom = 1030.0
+texture = ExtResource("2_g4ucp")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="frame"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 20.0
+offset_right = 272.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 22
+text = "Mentor"
+label_settings = SubResource("LabelSettings_bnur2")
+
+[node name="NextButton" type="Button" parent="frame"]
+layout_mode = 0
+offset_left = 1259.0
+offset_top = 141.0
+offset_right = 1440.0
+offset_bottom = 218.0
+theme_override_fonts/font = ExtResource("3_qwe7u")
+theme_override_font_sizes/font_size = 55
+text = "Next"
+
+[node name="TextBox" type="RichTextLabel" parent="frame"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 100.0
+offset_right = 1228.0
+offset_bottom = 209.0
+theme_override_fonts/normal_font = ExtResource("3_qwe7u")
+theme_override_font_sizes/normal_font_size = 50
+text = "asdadasd"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(283, 849)
+scale = Vector2(0.57218, 0.582248)
+texture = ExtResource("4_ksrib")
+
+[node name="ArrowRight" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 341.0
+offset_top = 376.0
+offset_right = 532.0
+offset_bottom = 559.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_escv7")
+
+[node name="ArrowUp" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 2095.0
+offset_top = 1075.0
+offset_right = 2286.0
+offset_bottom = 1258.0
+rotation = -1.5708
+theme_override_styles/panel = SubResource("StyleBoxTexture_escv7")
+
+[connection signal="pressed" from="frame/NextButton" to="." method="_on_next_button_pressed"]

@@ -1,6 +1,6 @@
-[gd_scene load_steps=36 format=3 uid="uid://va4o8c7j3u6w"]
+[gd_scene load_steps=35 format=3 uid="uid://va4o8c7j3u6w"]
 
-[ext_resource type="Script" uid="uid://2e0a6u4ksvcf" path="res://Scripts/UI/tutorial.gd" id="1_opaq8"]
+[ext_resource type="Script" uid="uid://2e0a6u4ksvcf" path="res://Scripts/UI/Tutorial/tutorial.gd" id="1_opaq8"]
 [ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="1_tbkjj"]
 [ext_resource type="Texture2D" uid="uid://bjtqkmwq8fiib" path="res://Assets/images/controll_room_bg.png" id="2_8i8o4"]
 [ext_resource type="PackedScene" uid="uid://dwh7thrn4kypr" path="res://Scenes/Entities Scenes/filter_activated.tscn" id="2_tt6lo"]
@@ -23,9 +23,8 @@
 [ext_resource type="AudioStream" uid="uid://dtxeeolnu6okp" path="res://Assets/Audio/SFX_Open_Door.wav" id="19_quwpc"]
 [ext_resource type="AudioStream" uid="uid://b0qchflbw4kd6" path="res://Assets/Audio/SFX_Close_Door.wav" id="20_wjv7i"]
 [ext_resource type="PackedScene" uid="uid://b5ibouyttb1cq" path="res://Scenes/UI/pause.tscn" id="22_6pkc1"]
-[ext_resource type="PackedScene" uid="uid://ddtsynehhxi41" path="res://Scenes/Finishing Scenes/level_1_finished.tscn" id="23_74h4x"]
-[ext_resource type="PackedScene" uid="uid://be8jefwdga0gx" path="res://Scenes/Finishing Scenes/game_over.tscn" id="24_quwpc"]
 [ext_resource type="PackedScene" uid="uid://1t4noejl0s7v" path="res://Scenes/UI/tutorial_dialogue.tscn" id="25_quwpc"]
+[ext_resource type="Script" uid="uid://v4hqak5g17n1" path="res://Scripts/UI/Tutorial/tutorial_manager.gd" id="25_wjv7i"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ldbr2"]
 texture = ExtResource("1_tbkjj")
@@ -135,7 +134,7 @@ offset_bottom = 460.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("6_i5tsn")
 theme_override_font_sizes/font_size = 50
-text = "Tutorial"
+text = "Approve"
 
 [node name="DeclineBtn" type="Button" parent="."]
 offset_left = 82.0
@@ -216,23 +215,18 @@ stream = ExtResource("20_wjv7i")
 volume_db = 24.0
 bus = &"SFX"
 
-[node name="Level1Finished" parent="." instance=ExtResource("23_74h4x")]
-offset_left = 291.0
-offset_top = 7.0
-offset_right = 291.0
-offset_bottom = 7.0
-
-[node name="GameOver" parent="." instance=ExtResource("24_quwpc")]
-offset_left = 269.0
-offset_top = 7.0
-offset_right = 269.0
-offset_bottom = 7.0
-
 [node name="Pause" parent="." instance=ExtResource("22_6pkc1")]
 offset_left = 314.0
 offset_top = -2.0
 offset_right = 314.0
 offset_bottom = -2.0
 
-[node name="Tutorial Dialogue" parent="." instance=ExtResource("25_quwpc")]
+[node name="TutorialDialogue" parent="." instance=ExtResource("25_quwpc")]
 z_index = 1140
+
+[node name="TutorialManager" type="Node" parent="."]
+script = ExtResource("25_wjv7i")
+
+[connection signal="pressed" from="FilterPanel/FilterBtn" to="." method="_on_filter_btn_pressed"]
+[connection signal="pressed" from="ApproveBtn" to="." method="_on_approve_btn_pressed"]
+[connection signal="pressed" from="DeclineBtn" to="." method="_on_decline_btn_pressed"]

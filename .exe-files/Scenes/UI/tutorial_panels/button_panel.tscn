@@ -1,0 +1,198 @@
+[gd_scene load_steps=12 format=3 uid="uid://ch3yjox8nna41"]
+
+[ext_resource type="Script" uid="uid://27bp4eorflnw" path="res://Scripts/UI/Tutorial/button_panel.gd" id="1_cpupx"]
+[ext_resource type="Texture2D" uid="uid://bbnqfb4wl0nqj" path="res://Assets/images/left.png" id="1_n6yrk"]
+[ext_resource type="Texture2D" uid="uid://d1rby554ji2td" path="res://Assets/images/Frame 14.png" id="2_cpupx"]
+[ext_resource type="Texture2D" uid="uid://dud14egjhs4im" path="res://Assets/images/finished window.png" id="3_irw66"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="4_ayw5y"]
+[ext_resource type="Texture2D" uid="uid://cy8xynrmywbvn" path="res://Assets/Sprites/mentor.png" id="5_jam4p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fbmj4"]
+bg_color = Color(0.129412, 0.12549, 0.129412, 0.901961)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8oute"]
+texture = ExtResource("1_n6yrk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w5qn4"]
+texture = ExtResource("2_cpupx")
+
+[sub_resource type="LabelSettings" id="LabelSettings_2543m"]
+font = ExtResource("4_ayw5y")
+font_size = 60
+font_color = Color(0.682353, 0.403922, 1, 1)
+outline_color = Color(0, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_irw66"]
+font = ExtResource("4_ayw5y")
+font_size = 60
+font_color = Color(0.682353, 0.403922, 1, 1)
+outline_color = Color(0, 1, 1, 1)
+
+[node name="ButtonPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_cpupx")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 584.0
+offset_right = 2463.0
+offset_bottom = 700.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fbmj4")
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -5.0
+offset_top = 1.0
+offset_right = 585.0
+offset_bottom = 326.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fbmj4")
+
+[node name="Panel3" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 3.0
+offset_top = 625.0
+offset_right = 584.0
+offset_bottom = 1081.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fbmj4")
+
+[node name="Panel4" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 584.0
+offset_top = 828.0
+offset_right = 2462.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fbmj4")
+
+[node name="Panel5" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 1876.0
+offset_top = 700.0
+offset_right = 2465.0
+offset_bottom = 828.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fbmj4")
+
+[node name="ArrowLeft" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 607.0
+offset_top = 401.0
+offset_right = 798.0
+offset_bottom = 584.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_8oute")
+
+[node name="ArrowUp" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 1616.0
+offset_top = 1044.0
+offset_right = 1807.0
+offset_bottom = 1227.0
+rotation = -1.5708
+theme_override_styles/panel = SubResource("StyleBoxTexture_w5qn4")
+
+[node name="frame" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1361.0
+offset_top = 151.0
+offset_right = 2336.81
+offset_bottom = 635.0
+texture = ExtResource("3_irw66")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="frame"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 20.0
+offset_right = 272.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 22
+text = "Mentor"
+label_settings = SubResource("LabelSettings_2543m")
+
+[node name="NextButton" type="Button" parent="frame"]
+layout_mode = 0
+offset_left = 751.0
+offset_top = 376.0
+offset_right = 932.0
+offset_bottom = 453.0
+theme_override_fonts/font = ExtResource("4_ayw5y")
+theme_override_font_sizes/font_size = 55
+text = "Next"
+
+[node name="TextBox" type="RichTextLabel" parent="frame"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 100.0
+offset_right = 924.0
+offset_bottom = 334.0
+theme_override_fonts/normal_font = ExtResource("4_ayw5y")
+theme_override_font_sizes/normal_font_size = 50
+text = "asdadasd"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1124, 388)
+scale = Vector2(0.57218, 0.582248)
+texture = ExtResource("5_jam4p")
+
+[node name="frame2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 508.0
+offset_top = 791.0
+offset_right = 1980.0
+offset_bottom = 1030.0
+texture = ExtResource("3_irw66")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="frame2"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 20.0
+offset_right = 272.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 22
+text = "Mentor"
+label_settings = SubResource("LabelSettings_irw66")
+
+[node name="NextButton" type="Button" parent="frame2"]
+layout_mode = 0
+offset_left = 1259.0
+offset_top = 141.0
+offset_right = 1440.0
+offset_bottom = 218.0
+theme_override_fonts/font = ExtResource("4_ayw5y")
+theme_override_font_sizes/font_size = 55
+text = "Next"
+
+[node name="TextBox" type="RichTextLabel" parent="frame2"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 100.0
+offset_right = 1228.0
+offset_bottom = 209.0
+theme_override_fonts/normal_font = ExtResource("4_ayw5y")
+theme_override_font_sizes/normal_font_size = 50
+text = "asdadasd"
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(283, 849)
+scale = Vector2(0.57218, 0.582248)
+texture = ExtResource("5_jam4p")
+
+[connection signal="pressed" from="frame/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="frame2/NextButton" to="." method="_on_next_button_pressed"]
