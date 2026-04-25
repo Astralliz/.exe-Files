@@ -22,6 +22,10 @@ func _on_start_pressed() -> void:
 func _on_achievement_btn_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Menu Scenes/achievements_menu.tscn")
 
+#Survey Button
+func _on_survey_btn_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Menu Scenes/survey_menu.tscn")
+
 func _on_back_btn_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Menu Scenes/main_menu.tscn")
 

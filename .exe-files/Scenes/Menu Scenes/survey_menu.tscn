@@ -1,0 +1,118 @@
+[gd_scene load_steps=4 format=3 uid="uid://ciicdq0o7d1ui"]
+
+[ext_resource type="Script" uid="uid://ch3dg3qao44f6" path="res://Scripts/UI/survey_menu.gd" id="1_2diex"]
+[ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="2_qk6hv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3gimd"]
+texture = ExtResource("2_qk6hv")
+
+[node name="SurveyMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2diex")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_3gimd")
+
+[node name="Inner Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 1880.0
+offset_bottom = 1040.0
+
+[node name="Intro Panel" type="Panel" parent="Inner Panel"]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 264.0
+offset_right = 1352.0
+offset_bottom = 664.0
+
+[node name="IntroContainer" type="VBoxContainer" parent="Inner Panel/Intro Panel"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 48.0
+offset_right = 824.0
+offset_bottom = 88.0
+
+[node name="IntroText" type="Label" parent="Inner Panel/Intro Panel/IntroContainer"]
+layout_mode = 2
+text = "Hello! Welcome to the test."
+
+[node name="IntroBtn" type="Button" parent="Inner Panel/Intro Panel/IntroContainer"]
+layout_mode = 2
+text = "Next"
+
+[node name="Question Panel" type="Panel" parent="Inner Panel"]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 104.0
+offset_right = 1632.0
+offset_bottom = 840.0
+
+[node name="QuestionContainer" type="VBoxContainer" parent="Inner Panel/Question Panel"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 56.0
+offset_right = 1336.0
+offset_bottom = 96.0
+
+[node name="QuestionText" type="Label" parent="Inner Panel/Question Panel/QuestionContainer"]
+layout_mode = 2
+
+[node name="ChoicesContainer" type="VBoxContainer" parent="Inner Panel/Question Panel/QuestionContainer"]
+layout_mode = 2
+
+[node name="Choice1" type="Button" parent="Inner Panel/Question Panel/QuestionContainer/ChoicesContainer"]
+layout_mode = 2
+
+[node name="Choice2" type="Button" parent="Inner Panel/Question Panel/QuestionContainer/ChoicesContainer"]
+layout_mode = 2
+
+[node name="Choice3" type="Button" parent="Inner Panel/Question Panel/QuestionContainer/ChoicesContainer"]
+layout_mode = 2
+
+[node name="Choice4" type="Button" parent="Inner Panel/Question Panel/QuestionContainer/ChoicesContainer"]
+layout_mode = 2
+
+[node name="Choice5" type="Button" parent="Inner Panel/Question Panel/QuestionContainer/ChoicesContainer"]
+layout_mode = 2
+
+[node name="QuestionCounter" type="Label" parent="Inner Panel/Question Panel/QuestionContainer"]
+layout_mode = 2
+
+[node name="Result Panel" type="Panel" parent="Inner Panel"]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 264.0
+offset_right = 1352.0
+offset_bottom = 664.0
+
+[node name="ResultContainer" type="VBoxContainer" parent="Inner Panel/Result Panel"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 48.0
+offset_right = 824.0
+offset_bottom = 88.0
+
+[node name="ResultText" type="Label" parent="Inner Panel/Result Panel/ResultContainer"]
+layout_mode = 2
+
+[node name="RetakeBtn" type="Button" parent="Inner Panel/Result Panel/ResultContainer"]
+layout_mode = 2
+text = "RETAKE TEST"
+
+[node name="MenuBtn" type="Button" parent="Inner Panel/Result Panel/ResultContainer"]
+layout_mode = 2
+text = "RETURN TO MAIN MENU"
+
+[connection signal="pressed" from="Inner Panel/Intro Panel/IntroContainer/IntroBtn" to="." method="_on_intro_button_pressed"]
+[connection signal="pressed" from="Inner Panel/Result Panel/ResultContainer/RetakeBtn" to="." method="_on_retake_pressed"]
+[connection signal="pressed" from="Inner Panel/Result Panel/ResultContainer/MenuBtn" to="." method="_on_menu_pressed"]
