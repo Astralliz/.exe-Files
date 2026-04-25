@@ -1,10 +1,73 @@
-[gd_scene load_steps=4 format=3 uid="uid://ciicdq0o7d1ui"]
+[gd_scene load_steps=25 format=3 uid="uid://ciicdq0o7d1ui"]
 
 [ext_resource type="Script" uid="uid://ch3dg3qao44f6" path="res://Scripts/UI/survey_menu.gd" id="1_2diex"]
 [ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="2_qk6hv"]
+[ext_resource type="Texture2D" uid="uid://qn3bmwh7rrom" path="res://Assets/images/computer screen.png" id="3_3gimd"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="4_7648f"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3gimd"]
 texture = ExtResource("2_qk6hv")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7648f"]
+texture = ExtResource("3_3gimd")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7648f"]
+bg_color = Color(0.142858, 0.142858, 0.142858, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_plnor"]
+font = ExtResource("4_7648f")
+font_size = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gkav"]
+bg_color = Color(0.29265, 0.633851, 0.798979, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h6xae"]
+bg_color = Color(0.192545, 0.483374, 0.620483, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plnor"]
+bg_color = Color(0.23583, 0.555078, 0.70883, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c4eda"]
+bg_color = Color(0.141176, 0.141176, 0.141176, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_h6xae"]
+font = ExtResource("4_7648f")
+font_size = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1tmi"]
+bg_color = Color(0.128344, 0.128344, 0.128344, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cyksy"]
+bg_color = Color(0.309994, 0.689185, 0.46443, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8gkav"]
+font = ExtResource("4_7648f")
+font_size = 23
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7qhao"]
+bg_color = Color(0.141176, 0.141176, 0.141176, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7648f"]
+font = ExtResource("4_7648f")
+font_size = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vfr1l"]
+bg_color = Color(0.383023, 0.742003, 0.679144, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fukdp"]
+bg_color = Color(0.277671, 0.590481, 0.537161, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrufq"]
+bg_color = Color(0.328669, 0.670949, 0.610394, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdjd8"]
+bg_color = Color(0.882362, 0.541023, 0.613527, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7wph"]
+bg_color = Color(0.780367, 0.379196, 0.476855, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_csgvt"]
+bg_color = Color(0.848809, 0.465563, 0.551403, 1)
 
 [node name="SurveyMenu" type="Control"]
 layout_mode = 3
@@ -24,38 +87,57 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_3gimd")
 [node name="Inner Panel" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 40.0
-offset_top = 40.0
+offset_top = 56.0
 offset_right = 1880.0
 offset_bottom = 1040.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_7648f")
 
 [node name="Intro Panel" type="Panel" parent="Inner Panel"]
 layout_mode = 0
-offset_left = 488.0
-offset_top = 264.0
-offset_right = 1352.0
-offset_bottom = 664.0
+offset_left = 480.0
+offset_top = 192.0
+offset_right = 1344.0
+offset_bottom = 744.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7648f")
 
 [node name="IntroContainer" type="VBoxContainer" parent="Inner Panel/Intro Panel"]
 layout_mode = 0
-offset_left = 64.0
+offset_left = 40.0
 offset_top = 48.0
 offset_right = 824.0
-offset_bottom = 88.0
+offset_bottom = 152.0
+alignment = 1
 
 [node name="IntroText" type="Label" parent="Inner Panel/Intro Panel/IntroContainer"]
 layout_mode = 2
-text = "Hello! Welcome to the test."
+text = "Hello! Welcome to the assessment.
+
+This assessment is designed to evaluate your knowledge and awareness of file-based cyber threats."
+label_settings = SubResource("LabelSettings_plnor")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Control" type="Control" parent="Inner Panel/Intro Panel/IntroContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
 
 [node name="IntroBtn" type="Button" parent="Inner Panel/Intro Panel/IntroContainer"]
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_7648f")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxFlat_8gkav")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h6xae")
+theme_override_styles/normal = SubResource("StyleBoxFlat_plnor")
 text = "Next"
 
 [node name="Question Panel" type="Panel" parent="Inner Panel"]
 layout_mode = 0
-offset_left = 232.0
-offset_top = 104.0
-offset_right = 1632.0
-offset_bottom = 840.0
+offset_left = 240.0
+offset_top = 128.0
+offset_right = 1600.0
+offset_bottom = 864.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_c4eda")
 
 [node name="QuestionContainer" type="VBoxContainer" parent="Inner Panel/Question Panel"]
 layout_mode = 0
@@ -64,7 +146,29 @@ offset_top = 56.0
 offset_right = 1336.0
 offset_bottom = 96.0
 
+[node name="QuestionCounter" type="Label" parent="Inner Panel/Question Panel/QuestionContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_h6xae")
+
+[node name="QuestionProgress" type="ProgressBar" parent="Inner Panel/Question Panel/QuestionContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/background = SubResource("StyleBoxFlat_c1tmi")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cyksy")
+max_value = 15.0
+show_percentage = false
+
+[node name="Control" type="Control" parent="Inner Panel/Question Panel/QuestionContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
 [node name="QuestionText" type="Label" parent="Inner Panel/Question Panel/QuestionContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_8gkav")
+
+[node name="Control2" type="Control" parent="Inner Panel/Question Panel/QuestionContainer"]
+custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
 [node name="ChoicesContainer" type="VBoxContainer" parent="Inner Panel/Question Panel/QuestionContainer"]
@@ -72,45 +176,78 @@ layout_mode = 2
 
 [node name="Choice1" type="Button" parent="Inner Panel/Question Panel/QuestionContainer/ChoicesContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_7648f")
+theme_override_font_sizes/font_size = 23
 
 [node name="Choice2" type="Button" parent="Inner Panel/Question Panel/QuestionContainer/ChoicesContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_7648f")
+theme_override_font_sizes/font_size = 23
 
 [node name="Choice3" type="Button" parent="Inner Panel/Question Panel/QuestionContainer/ChoicesContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_7648f")
+theme_override_font_sizes/font_size = 23
 
 [node name="Choice4" type="Button" parent="Inner Panel/Question Panel/QuestionContainer/ChoicesContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_7648f")
+theme_override_font_sizes/font_size = 23
 
 [node name="Choice5" type="Button" parent="Inner Panel/Question Panel/QuestionContainer/ChoicesContainer"]
 layout_mode = 2
-
-[node name="QuestionCounter" type="Label" parent="Inner Panel/Question Panel/QuestionContainer"]
-layout_mode = 2
+theme_override_fonts/font = ExtResource("4_7648f")
+theme_override_font_sizes/font_size = 23
 
 [node name="Result Panel" type="Panel" parent="Inner Panel"]
 layout_mode = 0
 offset_left = 488.0
-offset_top = 264.0
-offset_right = 1352.0
-offset_bottom = 664.0
+offset_top = 192.0
+offset_right = 1344.0
+offset_bottom = 744.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7qhao")
 
 [node name="ResultContainer" type="VBoxContainer" parent="Inner Panel/Result Panel"]
 layout_mode = 0
-offset_left = 64.0
+offset_left = 32.0
 offset_top = 48.0
-offset_right = 824.0
-offset_bottom = 88.0
+offset_right = 816.0
+offset_bottom = 141.0
 
 [node name="ResultText" type="Label" parent="Inner Panel/Result Panel/ResultContainer"]
 layout_mode = 2
+label_settings = SubResource("LabelSettings_7648f")
+
+[node name="VerdictText" type="Label" parent="Inner Panel/Result Panel/ResultContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_7648f")
+
+[node name="Control" type="Control" parent="Inner Panel/Result Panel/ResultContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 
 [node name="RetakeBtn" type="Button" parent="Inner Panel/Result Panel/ResultContainer"]
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_7648f")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxFlat_vfr1l")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fukdp")
+theme_override_styles/normal = SubResource("StyleBoxFlat_rrufq")
 text = "RETAKE TEST"
 
-[node name="MenuBtn" type="Button" parent="Inner Panel/Result Panel/ResultContainer"]
+[node name="Control2" type="Control" parent="Inner Panel/Result Panel/ResultContainer"]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+
+[node name="MenuBtn" type="Button" parent="Inner Panel/Result Panel/ResultContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_7648f")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover = SubResource("StyleBoxFlat_cdjd8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_c7wph")
+theme_override_styles/normal = SubResource("StyleBoxFlat_csgvt")
 text = "RETURN TO MAIN MENU"
 
 [connection signal="pressed" from="Inner Panel/Intro Panel/IntroContainer/IntroBtn" to="." method="_on_intro_button_pressed"]

@@ -9,6 +9,8 @@ extends Control
 @onready var choices_container: VBoxContainer = $"Inner Panel/Question Panel/QuestionContainer/ChoicesContainer"
 @onready var result_panel: Panel = $"Inner Panel/Result Panel"
 @onready var result_text: Label = $"Inner Panel/Result Panel/ResultContainer/ResultText"
+@onready var question_progress: ProgressBar = $"Inner Panel/Question Panel/QuestionContainer/QuestionProgress"
+@onready var verdict_text: Label = $"Inner Panel/Result Panel/ResultContainer/VerdictText"
 
 # Declare Quiz Questions
 var quiz_questions = [
@@ -73,9 +75,9 @@ var likert_questions = [
 	"I know the correct actions to take when encountering a suspicious file."
 ]
 
+# Initialize Variables
 var current_index = 0
 var mode
-
 var quiz_score = 0
 var likert_total = 0
 
@@ -85,8 +87,6 @@ func _ready():
 	result_panel.hide()
 	
 	mode = "intro1"
-	intro_text.text = "Welcome to the assessment."
-	intro_btn.text = "Next"
 	
 	# Connect buttons
 	for i in range(choices_container.get_child_count()):
@@ -95,7 +95,7 @@ func _ready():
 
 func _on_intro_button_pressed():
 	if mode == "intro1":
-		intro_text.text = "This test will assess your knowledge and awareness..."
+		intro_text.text = "You will be presented with a series of questions related to identifying suspicious file behaviors and appropriate security practices. \n\nPlease answer each question to the best of your ability. \n\nClick ‘Start Test’ when you are ready to begin."
 		intro_btn.text = "Start Test"
 		mode = "intro2"
 	elif mode == "intro2":
@@ -108,7 +108,17 @@ func start_quiz():
 	question_panel.show()
 	show_question()
 
+# Shows each question
 func show_question():
+	var total_questions = quiz_questions.size() + likert_questions.size()
+	var display_index = current_index
+	
+	if mode == "likert":
+		display_index += quiz_questions.size()
+		
+	question_counter.text = "Question " + str(display_index + 1) + " / " + str(total_questions)
+	question_progress.value = display_index + 1
+	
 	if mode == "quiz":
 		var q = quiz_questions[current_index]
 		question_text.text = q["question"]
@@ -117,7 +127,6 @@ func show_question():
 			btn.text = q["choices"][i]
 			btn.show()
 		choices_container.get_child(4).hide()
-		question_counter.text = "Question " + str(current_index + 1) + " / 10"
 	elif mode == "likert":
 		var q = likert_questions[current_index]
 		question_text.text = q
@@ -126,10 +135,9 @@ func show_question():
 			var btn = choices_container.get_child(i)
 			btn.text = labels[i]
 			btn.show()
-		question_counter.text = "Survey " + str(current_index + 1) + " / 5"
 
-func _on_choice_pressed(index):
-	print("Clicked:", index)
+# Switches questions after answering
+func _on_choice_pressed(index): 
 	if mode == "quiz":
 		if index == quiz_questions[current_index]["correct"]:
 			quiz_score += 1
@@ -148,11 +156,39 @@ func _on_choice_pressed(index):
 func show_results():
 	question_panel.hide()
 	result_panel.show()
+
 	var quiz_percent = (quiz_score / 10.0) * 100
 	var likert_mean = likert_total / 5.0
+
+	var performance = ""
+	if quiz_percent >= 80:
+		performance = "High"
+	elif quiz_percent >= 50:
+		performance = "Moderateg"
+	else:
+		performance = "Low"
+		
+	var awareness = ""
+	if likert_mean >= 4:
+		awareness = "High Confidence"
+	elif likert_mean >= 3:
+		awareness = "Moderate Confidence"
+	else:
+		awareness = "Low Confidence"
+		
 	result_text.text = \
-		"Quiz Score: " + str(quiz_percent) + "%\n" + \
-		"Awareness Score: " + str(likert_mean)
+		"Results:\n\n" + \
+		"Quiz Score: " + str(round(quiz_percent)) + "%\n" + \
+		"Performance Level: " + performance + "\n\n" + \
+		"Awareness Score: " + str(round(likert_mean * 100) / 100.0) + "\n" + \
+		"Confidence Level: " + awareness
+	
+	if quiz_percent >= 80:
+		result_text.text += "\n\nExcellent performance!"
+	elif quiz_percent >= 50:
+		result_text.text += "\n\nYou're on the right track."
+	else:
+		result_text.text += "\n\nConsider reviewing the concepts more."
 
 func _on_retake_pressed():
 	quiz_score = 0
