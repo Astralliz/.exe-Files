@@ -11,84 +11,132 @@ extends Control
 
 var added_eval = 5
 var added_fils = 1
-var achievement = ["Metadata Detective", "System Gatekeeper", "Audit Master", "Threat Neutralizer", "System Architect"]
 
 var achievement_images := {
 	"Metadata Detective": "res://Assets/Trophy/MetadataDetective.png",
 	"System Gatekeeper": "res://Assets/Trophy/SystemGatekeeper.png",
-	"Audit Master" : "res://Assets/Trophy/AuditMaster.png",
-	"Threat Neutralizer" : "res://Assets/Trophy/ThreatNeutralizer.png",
-	"System Architect" : "res://Assets/Trophy/SystemArchitect.png"
+	"Audit Master": "res://Assets/Trophy/AuditMaster.png",
+	"Threat Neutralizer": "res://Assets/Trophy/ThreatNeutralizer.png",
+	"System Architect": "res://Assets/Trophy/SystemArchitect.png"
 }
 
 var day: int
+
+# =========================
+# QUEUE SYSTEM (FIXED)
+# =========================
+var achievement_queue: Array[String] = []
+var current_achievement_index := 0
+
 
 func _ready() -> void:
 	day = GameState.day
 	trophy_panel.visible = false
 	setup_dialogue(day)
-	Player_Data.data["new_to_game"] = 4
+
 
 func setup_dialogue(day: int) -> void:
 
-	# RESET EVERYTHING
+	# RESET UI
 	accept_btn.hide()
 	continue_btn.hide()
 	ach_continue_btn.hide()
 	trophy_panel.visible = false
 	message.text = ""
-	
-	var unlocked: String = ""
 
-	# Check achievements in priority order
-	if day == 1 and Player_Data.data["level"] < 1:
-		unlocked = achievement[0]
-		Player_Data.add_evaluates(added_eval)
-		Player_Data.add_filter(added_fils)
+	achievement_queue.clear()
+	current_achievement_index = 0
 
-	elif day == 3 and Player_Data.data["level"] >= 2:
-		unlocked = achievement[1]
+	# =========================
+	# SNAPSHOT NEWLY UNLOCKED
+	# =========================
+	if Player_Data.newly_unlocked.size() > 0:
+		achievement_queue = Player_Data.newly_unlocked.duplicate()
+		Player_Data.newly_unlocked.clear()
 
-	elif day == 6 and Player_Data.data["level"] >= 5:
-		unlocked = achievement[4]
-
-	elif Player_Data.data["total_inspected"] >= 100:
-		unlocked = achievement[2]
-
-	# If we found an achievement
-	if unlocked != "":
-		show_achievement(unlocked)
+	# =========================
+	# FLOW CONTROL
+	# =========================
+	if achievement_queue.size() > 0:
+		show_next_achievement()
 	else:
 		show_normal_completion(day)
 
-func show_achievement(unlocked: String) -> void:
 
-	if !Player_Data.data["achievements"].has(unlocked):
-		Player_Data.unlock_achievement(unlocked)
+# =========================
+# ACHIEVEMENT DISPLAY
+# =========================
+func show_next_achievement() -> void:
+
+	if current_achievement_index >= achievement_queue.size():
+		show_normal_completion(day)
+		return
+
+	var unlocked = achievement_queue[current_achievement_index]
 
 	achievement_label.text = unlocked
 	set_trophy_image(unlocked)
 
 	message.text = "Congrats!\nYou unlocked an Achievement!"
-
 	show_trophy_animation()
+
 	ach_continue_btn.show()
 
+
+func _on_achievement_pressed() -> void:
+
+	current_achievement_index += 1
+
+	if current_achievement_index < achievement_queue.size():
+		show_next_achievement()
+	else:
+		# FINAL REWARD SCREEN
+		message.text = "\nCONGRATS!\nYou received:\n" \
+			+ str(added_eval) + " Evaluates\n" \
+			+ str(added_fils) + " Filters!"
+
+		accept_btn.show()
+		trophy_panel.visible = false
+		ach_continue_btn.hide()
+
+
+# =========================
+# NORMAL FLOW
+# =========================
 func show_normal_completion(day: int) -> void:
 	message.text = "\nGreat job!\nYou finished Day " + str(day) + "\nGet ready for the next challenge!"
 	continue_btn.show()
 
+
+func _on_accept_pressed() -> void:
+	message.text = "\n\nDay " + str(day) + " Complete!\nMore challenging days await!"
+	accept_btn.hide()
+	trophy_panel.visible = false
+	continue_btn.show()
+
+
+func _on_continue_pressed() -> void:
+	if Player_Data.data["level"] == 3:
+		get_tree().change_scene_to_file("res://Scenes/Menu Scenes/story_menu.tscn")
+	else:
+		get_tree().change_scene_to_file("res://Scenes/Menu Scenes/Story Scene/story_1.tscn")
+
+	trophy_panel.visible = false
+	GlobalMusic.play()
+
+
+# =========================
+# UI HELPERS
+# =========================
 func set_trophy_image(achievement_name: String) -> void:
 	if achievement_images.has(achievement_name):
 		trophy_image.texture = load(achievement_images[achievement_name])
 
+
 func show_trophy_animation() -> void:
 	trophy_panel.visible = true
-
-	# Start small
 	trophy_panel.scale = Vector2(0.2, 0.2)
 
-	# Ensure scale happens from center
 	await get_tree().process_frame
 	trophy_panel.pivot_offset = trophy_panel.size / 2
 
@@ -102,23 +150,3 @@ func show_trophy_animation() -> void:
 		Vector2.ONE,
 		0.6
 	)
-
-func _on_achievement_pressed() -> void:
-	message.text = "\nCONGRATS!\nYou received:\n" + str(added_eval) + " Evaluates\n" + str(added_fils) + " Filters!"
-	accept_btn.show()
-	trophy_panel.visible = false
-	ach_continue_btn.hide()
-
-func _on_accept_pressed() -> void:
-	message.text = "\n\nDay " +  str(day) + " Complete!\nMore challenging days await!"
-	accept_btn.hide()
-	trophy_panel.visible = false
-	continue_btn.show()
-
-func _on_continue_pressed() -> void:
-	if Player_Data.data["level"] == 3:
-		get_tree().change_scene_to_file("res://Scenes/Menu Scenes/story_menu.tscn")
-	else: 
-		get_tree().change_scene_to_file("res://Scenes/Menu Scenes/Story Scene/story_1.tscn")
-	trophy_panel.visible = false
-	GlobalMusic.play()

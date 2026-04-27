@@ -8,6 +8,7 @@ signal closed(file_no: int)
 var file_no: int
 var metadata
 
+signal document_closed
 # ─────────────────────────────
 # STATE
 # ─────────────────────────────

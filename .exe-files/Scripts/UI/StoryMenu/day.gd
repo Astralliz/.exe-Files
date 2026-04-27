@@ -345,6 +345,7 @@ func _process(delta):
 func enable_buttons(state: bool):
 	approve_btn.disabled = not state
 	decline_btn.disabled = not state
+	filter_btn.disabled = not state
 
 func _on_approve_btn_pressed() -> void:
 	if current_document:
@@ -591,6 +592,25 @@ func commit_day_progress():
 		print("New total inspected:", Player_Data.data["total_inspected"])
 
 	correct_today = 0
+
+	Player_Data.set_level(max(Player_Data.data["level"], GameState.day))
+	Player_Data.save_data()
+
+	check_achievements()
+	
+
+func check_achievements():
+
+	if Player_Data.data["total_inspected"] >= 100:
+		Player_Data.queue_achievement("Audit Master")
+
+	var lvl = Player_Data.data["level"]
+
+	if lvl >= 3:
+		Player_Data.queue_achievement("System Gatekeeper")
+
+	if lvl >= 5:
+		Player_Data.queue_achievement("System Architect")
 
 func level_up():
 	var current_level = Player_Data.data["level"]

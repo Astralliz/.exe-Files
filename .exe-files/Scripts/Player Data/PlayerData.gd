@@ -6,16 +6,18 @@ var TEMP_SAVE := true  # true = only memory, false = save to disk
 
 # Default data
 var data: Dictionary = {
-	"new_to_game": 0,
-	"username": "",
-	"level": 0,
-	"total_inspected": 0,  
+	"new_to_game": 4,
+	"username": "xebec",
+	"level": 2,
+	"total_inspected": 94,  
 	"achievements": [], # ["FirstScan", "ExpertAnalyzer"]
-	"filter_used": 0,   # { "level1": 3, "level2": 1 } - track skill/question usage
+	"filter_used": 10,   # { "level1": 3, "level2": 1 } - track skill/question usage
 	"evaluate_used": 0,
 	"bug_bounty": 40,
 	"minigame_usage": {}
 }
+
+var newly_unlocked: Array[String] = []
 
 const SAVE_PATH := "user://player_data.cfg"
 const SAVE_SECTION := "player"
@@ -33,7 +35,7 @@ func _ready() -> void:
 # -----------------------
 func save_data() -> void:
 	if TEMP_SAVE:
-		print("TEMP SAVE: Player data saved in memory only:", data)
+		print("TEMP SAVE: Player data saved in memory only:", data, newly_unlocked)
 		return  # do not write to disk in dev mode
 
 	var cfg := ConfigFile.new()
@@ -151,12 +153,19 @@ func set_username(name: String) -> void:
 	save_data()
 	emit_signal("username_changed", name)
 
-func unlock_achievement(id: String) -> void:
+func queue_achievement(id: String) -> void:
 	if id == "":
 		return
-	if id not in data["achievements"]:
+
+	# permanent unlock
+	if not data["achievements"].has(id):
 		data["achievements"].append(id)
-		save_data()
+
+	# queue for UI (only once per session/day)
+	if not newly_unlocked.has(id):
+		newly_unlocked.append(id)
+
+	save_data()
 
 func set_level(lvl: int) -> void:
 	data["level"] = int(lvl)

@@ -59,6 +59,8 @@ class Paper extends Panel:
 
 	const SCALE_CONVEYOR = Vector2(1, 1)
 	const SCALE_OPEN = Vector2(1.5, 1.5)
+	
+	var opened_document: Node = null
 
 	# ── Setup ────────────────────────────────────────────────
 	func _ready() -> void:
@@ -145,7 +147,8 @@ class Paper extends Panel:
 	func _handle_tap() -> void:
 		match state:
 			State.CONVEYOR:
-				_open_file()
+				if self in game_reference.stopped_papers:
+					_open_file()
 			State.OPEN:
 				_close_file()
 
@@ -158,6 +161,9 @@ class Paper extends Panel:
 			game_reference.stopped_papers.append(self)
 
 		z_index = 100
+		modulate = Color(1, 1, 1, 0)
+		
+		original_pos = position
 
 		var doc = game_reference.FILE_DOCUMENT_SCENE.instantiate()
 		get_tree().current_scene.add_child(doc)
@@ -166,7 +172,22 @@ class Paper extends Panel:
 
 		# pass metadata
 		doc.set_metadata(metadata)
-		doc.open_document() 
+		opened_document = doc  
+		doc.open_document()
+		
+		# ✅ Wait for document to be freed, then show paper
+		await _monitor_document_close()
+
+	func _monitor_document_close() -> void:
+		# ✅ Poll until document is destroyed
+		while is_instance_valid(opened_document):
+			await get_tree().process_frame
+		
+		# ✅ Document was closed, show the paper again
+		if is_instance_valid(self):
+			modulate = Color(1, 1, 1, 1)  # Show paper (alpha = 1)
+			# ✅ KEEP state as OPEN so paper can still be dragged!
+			opened_document = null
 
 	func _close_file() -> void:
 		state = State.RETURNING
@@ -241,6 +262,7 @@ class Paper extends Panel:
 
 		_close_file()
 		is_animating = false
+
 # ══════════════════════════════════════════════════════════════
 # READY
 # ══════════════════════════════════════════════════════════════
@@ -422,10 +444,18 @@ func _finish_game(success: bool) -> void:
 func _on_finished_screen_continue(success: bool) -> void:
 	print("MiniGame UI finished → forwarding to Day")
 
-	# emit to Day
+	if success:
+		Player_Data.queue_achievement("Threat Neutralizer")
+
+	emit_signal("minigame_finished", success)
+	queue_free()
+
+	# =========================
+	# CONTINUE GAME FLOW
+	# =========================
+
 	emit_signal("minigame_finished", success)
 
-	# remove the minigame itself
 	queue_free()
 
 # ══════════════════════════════════════════════════════════════

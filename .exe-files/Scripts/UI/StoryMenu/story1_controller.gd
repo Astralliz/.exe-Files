@@ -18,7 +18,7 @@ func _on_day_1_start_pressed():
 		Player_Data.data["new_to_game"] = 3
 		get_tree().change_scene_to_file("res://Scenes/UI/intro.tscn")
 	else:
-		Player_Data.data["level"]= 1
+		GameState.day = 1
 		get_tree().change_scene_to_file("res://Scenes/Menu Scenes/Story Scene/day.tscn")
 
 
