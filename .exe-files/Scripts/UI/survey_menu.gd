@@ -15,54 +15,54 @@ extends Control
 # Declare Quiz Questions
 var quiz_questions = [
 	{
-		"question": "A program advertised as a utility tool installs additional unknown processes after being granted administrator access. What type of threat does this represent?",
-		"choices": ["Phishing", "Injection", "Trojan", "Firewall"],
+		"question": "A file claims to improve system performance but causes noticeable slowdowns after execution and attempts to run automatically. What does this behavior most likely indicate?",
+		"choices": ["Malware disguised as legitimate software", "Performance utility software", "Routine background activity", "Compatibility-related malfunction"],
+		"correct": 0
+	},
+	{
+		"question": "A file downloaded from an unknown website requests permission to run immediately after download. What is the most appropriate interpretation?",
+		"choices": ["Safe due to successful download", "Standard installation procedure", "Suspicious behavior linked to untrusted origin", "System-generated executable"],
 		"correct": 2
 	},
 	{
-		"question": "A file appears with a random filename, is hidden, and stored in an unusual directory. What does this most likely indicate?",
-		"choices": ["System optimization", "Temporary file usage", "Possible obfuscation to evade detection", "File compression process"],
-		"correct": 2
-	},
-	{
-		"question": "An email claims to be from a bank and urges immediate action, but the sender address slightly differs from the official domain. What type of threat does this represent?",
-		"choices": ["It is legitimate due to urgency", "It is phishing due to domain inconsistency", "It is an automated system alert", "It is a backup notification"],
+		"question": "An email claiming to be from a bank asks for account verification and urges immediate action, but the sender address slightly differs from the official domain. What type of threat does this represent?",
+		"choices": ["Legitimate authentication request", "Phishing attempt using social engineering tactics", "Routine account notification", "Delayed update message"],
 		"correct": 1
 	},
 	{
-		"question": "A system displays irregular strings of symbols and unexpected command-like inputs within a process. What is the most likely issue?",
-		"choices": ["File corruption", "Injection of malicious input into the system", "Normal debugging process", "Software update logs"],
+		"question": "A system displays irregular strings of symbols, abnormal formatting, and unexpected command-like inputs within a process. What is the most likely issue?",
+		"choices": ["Damaged or corrupted file", "Injection of malicious input into the system", "Debugging output", "Formatting inconsistency"],
 		"correct": 1
 	},
 	{
-		"question": "A compressed executable file is received from an unknown source and shows unusual behavior when opened. What is the best classification?",
-		"choices": ["Safe archived file", "Malware using obfuscation techniques", "Normal installer package", "System update file"],
-		"correct": 1
+		"question": "A downloadable file promises a free premium feature but behaves inconsistently with its description and installs additional components. What type of threat does this represent?",
+		"choices": ["Trojan disguised as legitimate software", "Injection of malicious code inside the system", "File compression tool", "Phishing attempt"],
+		"correct": 0
 	},
 	{
 		"question": "Why are executable files considered higher risk compared to other file types?",
-		"choices": ["They cannot be deleted", "They automatically encrypt files", "They can run commands directly on the system", "They are always hidden"],
+		"choices": ["They cannot be removed", "They encrypt data automatically", "They can run commands directly on the system", "They remain hidden by default"],
 		"correct": 2
 	},
 	{
 		"question": "When encountering a suspicious file with multiple risk indicators, what is the most appropriate action?",
-		"choices": ["Open it to verify contents", "Ignore the indicators", "Avoid execution and remove or report the file", "Rename the file"],
-		"correct": 2
+		"choices": ["Proceed to open it for verification despite risks", "Delete or report it once the damage occurs", "Rename the file in hopes of reducing risk", "Avoid running and report or delete"],
+		"correct": 3
 	},
 	{
 		"question": "Which of the following best distinguishes phishing from other types of cyberattacks?",
-		"choices": ["It relies on hidden system files", "It uses deceptive communication to trick users", "It compresses files to avoid detection", "It modifies system permissions"],
+		"choices": ["Relies on hidden system files", "Uses deceptive communication to trick users", "Compresses data to evade detection", "Modifies system permissions to run processes"],
 		"correct": 1
 	},
 	{
 		"question": "Why is a file with a mismatched file type considered suspicious?",
-		"choices": ["It improves performance", "It indicates possible disguise or masquerading behavior", "It is required for compatibility", "It reduces file size"],
-		"correct": 1
+		"choices": ["Suggests disguise or masquerading attempt", "Suggests enhanced functionality through disguise", "Suggests compatibility adjustments through mislabeling", "Suggests storage optimization by misrepresentation"],
+		"correct": 0
 	},
 	{
 		"question": "Which combination of indicators most strongly suggests a file may be malicious?",
-		"choices": ["Known publisher and verified signatures", "Unknown source and requests admin permission", "Small file size and recent modification", "Common file type and normal behavior"],
-		"correct": 1
+		"choices": ["Unknown publisher and random file name", "Large file size and recent modification", "Hidden file with mismatched file type", "Unknown source and known malware signatures"],
+		"correct": 3
 	},
 ]
 
@@ -82,7 +82,6 @@ var quiz_score = 0
 var likert_total = 0
 
 func _ready():
-	intro_panel.show()
 	question_panel.hide()
 	result_panel.hide()
 	
