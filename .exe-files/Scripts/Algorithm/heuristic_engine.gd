@@ -71,7 +71,7 @@ func evaluate(file: FileMetadata, rules: Array, answer: Dictionary = {}) -> Dict
 		if triggered:
 			issues.append(rule.condition)
 	return {
-		"score": score,
+		"score": score + 1,
 		"issues": issues
 	}
 

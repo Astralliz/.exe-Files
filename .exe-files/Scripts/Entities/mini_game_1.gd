@@ -14,6 +14,8 @@ const PAPER_TEXTURE = preload("res://Assets/Sprites/large-paper.png")
 const GAME_FONT     = preload("res://Assets/Fonts/kenney_mini_square.ttf")
 const FILE_DOCUMENT_SCENE = preload("res://Scenes/Entities Scenes/mini_game_file_document.tscn")
 const MINIGAME_FINISHED_SCENE = preload("res://Scenes/Finishing Scenes/mini_game_finished.tscn")
+const MINIGAME_TUTORIAL_PANEL = preload("res://Scenes/UI/tutorial_panels/mini_game_tutorial_panel.tscn")
+const MINIGAME_TUTORIAL_PANELS = preload("res://Scenes/UI/tutorial_panels/mini_game_Panel.tscn")
 
 const MAX_ROUNDS          = 10
 const CONVEYOR_SPEED      = 150.0
@@ -34,6 +36,7 @@ var bounty_count: int            = 0
 var game_finished: bool          = false
 var spawn_timer: float           = 0.0
 var attack_panels: Dictionary    = {}
+var is_tutorial_running: bool    = false
 
 
 
@@ -274,6 +277,83 @@ func _ready() -> void:
 	setup_attack_panels()
 	current_rounds = decision_tree.generate_all_rounds(MAX_ROUNDS)
 
+	# ✅ START TUTORIAL (if needed)
+	print("MiniGame started - checking tutorial requirements...")
+	await _check_and_run_tutorial()
+	print("Tutorial check complete - game ready!")
+
+# ══════════════════════════════════════════════════════════════
+# TUTORIAL HANDLING
+# ══════════════════════════════════════════════════════════════
+func _check_and_run_tutorial() -> void:
+	# Check if player has already completed the "Threat Neutralizer" achievement
+	if Player_Data.data["achievements"].has("Threat Neutralizer"):
+		print("✓ Tutorial skipped: Already have 'Threat Neutralizer' achievement")
+		return
+	
+	print("⚠ Tutorial starting - 'Threat Neutralizer' achievement not yet unlocked")
+	
+	# ✅ Set flag to indicate tutorial is running
+	is_tutorial_running = true
+	
+	# ✅ Pause the game (don't spawn papers or run game logic)
+	set_process(false)
+	
+	# Step 1: Show the initial dialogue tutorial
+	await _show_dialogue_tutorial()
+	
+	# ✅ RESUME GAME BEFORE PANEL TUTORIAL - so papers spawn and game runs while panel shows
+	set_process(true)
+	is_tutorial_running = false
+	print("✓ Dialogue tutorial finished - starting minigame with panel tutorial overlay")
+	
+	# Step 2: Show the interactive panel tutorial (game is running in background)
+	await _show_panel_tutorial()
+	
+	print("✓ Tutorial complete - minigame fully active")
+
+func _show_dialogue_tutorial() -> void:
+	print("Showing dialogue tutorial...")
+	
+	# Create a CanvasLayer to ensure tutorial appears on top
+	var canvas_layer = CanvasLayer.new()
+	get_tree().current_scene.add_child(canvas_layer)
+	
+	var tutorial_dialogue = MINIGAME_TUTORIAL_PANEL.instantiate() as MiniGameTutorialPanel
+	canvas_layer.add_child(tutorial_dialogue)
+	
+	# Ensure tutorial panel takes full screen
+	tutorial_dialogue.set_anchors_preset(Control.PRESET_FULL_RECT)
+	tutorial_dialogue.z_index = 100
+	
+	# Wait for the tutorial to finish
+	await tutorial_dialogue.tutorial_finished
+	print("✓ Dialogue tutorial finished")
+	
+	# Clean up canvas layer
+	canvas_layer.queue_free()
+
+func _show_panel_tutorial() -> void:
+	print("Showing panel tutorial...")
+	
+	# Create a CanvasLayer to ensure tutorial appears on top
+	var canvas_layer = CanvasLayer.new()
+	get_tree().current_scene.add_child(canvas_layer)
+	
+	var tutorial_panels = MINIGAME_TUTORIAL_PANELS.instantiate() as MiniGameTutorialPanels
+	canvas_layer.add_child(tutorial_panels)
+	
+	# Ensure tutorial panel takes full screen
+	tutorial_panels.set_anchors_preset(Control.PRESET_FULL_RECT)
+	tutorial_panels.z_index = 100
+	
+	# Wait for the tutorial to finish
+	await tutorial_panels.tutorial_completed
+	print("✓ Panel tutorial finished")
+	
+	# Clean up canvas layer
+	canvas_layer.queue_free()
+
 func record_result(predicted: String, actual: String):
 	y_pred.append(predicted)
 	y_true.append(actual)
@@ -282,7 +362,7 @@ func record_result(predicted: String, actual: String):
 # PROCESS
 # ══════════════════════════════════════════════════════════════
 func _process(delta: float) -> void:
-	if game_finished:
+	if game_finished or is_tutorial_running:
 		return
 
 	_update_conveyor(delta)
