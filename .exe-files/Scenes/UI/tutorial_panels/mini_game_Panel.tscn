@@ -68,6 +68,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_dvwyo")
 
 [node name="frame" type="TextureRect" parent="FirstPanel"]
+layout_mode = 0
 offset_left = 601.25
 offset_top = 592.0
 offset_right = 2378.25
@@ -128,7 +129,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_dvwyo")
 [node name="BlockPanel2" type="Panel" parent="SecondPanel"]
 layout_mode = 1
 anchors_preset = -1
-offset_left = 1445.0
+offset_left = 1568.0
 offset_top = -8.0
 offset_right = 2482.0
 offset_bottom = 1065.0
@@ -164,6 +165,7 @@ scale = Vector2(0.321147, 0.294135)
 texture = ExtResource("6_25f64")
 
 [node name="frame" type="TextureRect" parent="SecondPanel"]
+layout_mode = 0
 offset_left = 690.781
 offset_top = 815.0
 offset_right = 1962.78
@@ -262,6 +264,7 @@ scale = Vector2(0.321147, 0.294135)
 texture = ExtResource("6_25f64")
 
 [node name="frame" type="TextureRect" parent="ThirdPanel"]
+layout_mode = 0
 offset_left = 719.0
 offset_top = 33.0
 offset_right = 1991.0
@@ -300,6 +303,7 @@ theme_override_font_sizes/normal_font_size = 35
 text = "asdadasd"
 
 [node name="SkipButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 2151.0
 offset_top = 78.0
 offset_right = 2429.0

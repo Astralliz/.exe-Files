@@ -410,7 +410,7 @@ func start_minigame():
 	paper_printing.stop()
 	
 	# Load and instantiate the minigame scene
-	var minigame_scene = load(MINIGAME_SCENE_PATH)
+	var minigame_scene = SceneLoader.load_scene(MINIGAME_SCENE_PATH)
 	
 	# Fallback if scene doesn't exist
 	if minigame_scene == null:

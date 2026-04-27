@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsm6kkncq7duf"]
+
+[ext_resource type="Script" uid="uid://daga18doksm0x" path="res://Scripts/UI/loading_screen.gd" id="1_qj53y"]
+
+[node name="LoadingScreen" type="CanvasLayer"]
+script = ExtResource("1_qj53y")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(0.741176, 0.282353, 1, 0.160784)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 421.0
+offset_top = 615.0
+offset_right = 1530.0
+offset_bottom = 652.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 725.0
+offset_top = 490.0
+offset_right = 1233.0
+offset_bottom = 559.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Loading...."
+horizontal_alignment = 1
+vertical_alignment = 2

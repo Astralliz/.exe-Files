@@ -24,6 +24,7 @@ buses/default_bus_layout="uid://cyonkjcplu2qm"
 Player_Data="*res://Scripts/Player Data/PlayerData.gd"
 GameState="*res://Scripts/game_state.gd"
 GlobalMusic="*res://Scenes/Menu Scenes/GlobalMusic.tscn"
+SceneLoader="*res://Scenes/UI/loading_screen.tscn"
 
 [display]
 

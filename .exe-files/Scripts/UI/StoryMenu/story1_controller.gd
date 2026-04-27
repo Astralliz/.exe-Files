@@ -9,26 +9,26 @@ extends Node
 @onready var day_3_label: Label = $Day_3_label
 
 func _on_back_1_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Menu Scenes/story_menu.tscn")
+	SceneLoader.load_scene("res://Scenes/Menu Scenes/story_menu.tscn")
 
 func _on_day_1_start_pressed():
 
 	if Player_Data.data["new_to_game"] == 2:
 		GameState.day = 1
 		Player_Data.data["new_to_game"] = 3
-		get_tree().change_scene_to_file("res://Scenes/UI/intro.tscn")
+		SceneLoader.load_scene("res://Scenes/UI/intro.tscn")
 	else:
 		GameState.day = 1
-		get_tree().change_scene_to_file("res://Scenes/Menu Scenes/Story Scene/day.tscn")
+		SceneLoader.load_scene("res://Scenes/Menu Scenes/Story Scene/day.tscn")
 
 
 func _on_day_2_start_pressed():
 	GameState.day = 2
-	get_tree().change_scene_to_file("res://Scenes/Menu Scenes/Story Scene/day.tscn")
+	SceneLoader.load_scene("res://Scenes/Menu Scenes/Story Scene/day.tscn")
 
 func _on_day_3_start_pressed():
 	GameState.day = 3
-	get_tree().change_scene_to_file("res://Scenes/Menu Scenes/Story Scene/day.tscn")
+	SceneLoader.load_scene("res://Scenes/Menu Scenes/Story Scene/day.tscn")
 
 func _ready() -> void:
 	if Player_Data.data["level"] >= 1:

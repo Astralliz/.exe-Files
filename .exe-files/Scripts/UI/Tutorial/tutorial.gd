@@ -20,6 +20,7 @@ extends Node2D
 @onready var resource_display = $ResourceDisplay
 @onready var sliding_panel: Control = $SlidingPanel
 @onready var tutorial_dialogue: TutorialDialogueBox = $"TutorialDialogue"
+@onready var skip_button: Button = $SkipButton
 
 # Audio
 @onready var pickup_sound = $Audio_Pickup
@@ -88,6 +89,10 @@ func _ready() -> void:
 	tutorial_manager.show_panel_requested.connect(_on_show_panel_requested)
 
 	tutorial_dialogue.z_index = 999
+	skip_button.z_index = 1000 
+
+	# ✅ Wire skip button
+	skip_button.pressed.connect(_on_skip_button_pressed)
 
 	# Wire buttons
 	approve_btn.pressed.connect(_on_approve_btn_pressed)
@@ -281,6 +286,14 @@ func _on_pause_btn_pressed() -> void:
 	get_tree().paused = true
 
 # ========================
+# SKIP BUTTON
+# ========================
+func _on_skip_button_pressed() -> void:
+	print("✓ Tutorial skipped by user")
+	button_sound.play()
+	_finish_tutorial()
+
+# ========================
 # DECISION SYSTEM
 # ========================
 func handle_player_decision(player_approved: bool) -> void:
@@ -325,7 +338,10 @@ func next_turn_or_end() -> void:
 # ========================
 # TUTORIAL FINISHED
 # ========================
-func _on_tutorial_finished() -> void:
+func _finish_tutorial() -> void:
 	print("Tutorial complete — transitioning to day.tscn")
 	GameState.day = 1
-	get_tree().change_scene_to_file("res://Scenes/Menu Scenes/Story Scene/day.tscn")
+	SceneLoader.load_scene("res://Scenes/Menu Scenes/Story Scene/day.tscn")
+
+func _on_tutorial_finished() -> void:
+	_finish_tutorial()

@@ -227,6 +227,15 @@ z_index = 1140
 [node name="TutorialManager" type="Node" parent="."]
 script = ExtResource("25_wjv7i")
 
+[node name="SkipButton" type="Button" parent="."]
+offset_left = 2139.0
+offset_top = 57.0
+offset_right = 2417.0
+offset_bottom = 171.0
+theme_override_fonts/font = ExtResource("6_i5tsn")
+theme_override_font_sizes/font_size = 55
+text = "Skip"
+
 [connection signal="pressed" from="FilterPanel/FilterBtn" to="." method="_on_filter_btn_pressed"]
 [connection signal="pressed" from="ApproveBtn" to="." method="_on_approve_btn_pressed"]
 [connection signal="pressed" from="DeclineBtn" to="." method="_on_decline_btn_pressed"]
