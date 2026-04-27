@@ -25,9 +25,9 @@ const ATTACK_POOLS = {
 		"extensions": [".exe", ".bat", ".ps1"],
 		"sources": ["Downloads", "Browser Cache"],
 		"hints": [
-			"Unsigned executable",
-			"Requests admin privileges",
-			"High disk activity"
+			"This file tries to run automatically",
+			"It asks for full access to your system",
+			"It slows down your device after opening"
 		]
 	},
 	"phishing": {
@@ -35,9 +35,9 @@ const ATTACK_POOLS = {
 		"extensions": [".html", ".pdf", ".docx"],
 		"sources": ["Email Attachment"],
 		"hints": [
-			"Contains urgent language",
-			"Unknown sender",
-			"Requests sensitive info"
+			"The message is trying to rush you",
+			"The sender looks unfamiliar",
+			"It asks for personal or account information"
 		]
 	},
 	"injection": {
@@ -45,9 +45,9 @@ const ATTACK_POOLS = {
 		"extensions": [".sql", ".js", ".txt"],
 		"sources": ["Web Form Input", "Downloads"],
 		"hints": [
-			"Contains SQL syntax",
-			"Suspicious symbols detected",
-			"User input anomaly"
+			"The input contains unusual or messy text”",
+			"This doesn’t look like a normal answer",
+			"It includes strange symbols or repeated characters"
 		]
 	},
 	"trojan": {
@@ -55,9 +55,9 @@ const ATTACK_POOLS = {
 		"extensions": [".exe", ".bat"],
 		"sources": ["Community Forum", "Downloads"],
 		"hints": [
-			"Disguised as legit software",
-			"Fake publisher",
-			"Hidden process detected"
+			"It pretends to be something useful or fun",
+			"The name and behavior don’t match",
+			"It claims to be safe, but something feels off"
 		]
 	}
 }

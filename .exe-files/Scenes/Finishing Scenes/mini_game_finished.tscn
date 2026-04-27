@@ -16,30 +16,30 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 502.0
+offset_right = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_26bdy")
 
 [node name="BlurBackground" type="ColorRect" parent="."]
 layout_mode = 1
-offset_right = 1929.0
+offset_right = 2475.0
 offset_bottom = 1080.0
 color = Color(0, 0, 0, 0.509804)
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 318.0
+offset_left = 595.0
 offset_top = 180.0
-offset_right = 1596.0
+offset_right = 1873.0
 offset_bottom = 872.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_p7rpo")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
-offset_left = 924.0
+offset_left = 1201.0
 offset_top = 280.0
-offset_right = 1521.0
+offset_right = 1798.0
 offset_bottom = 637.0
 
 [node name="Label" type="Label" parent="ScrollContainer"]
@@ -50,9 +50,9 @@ horizontal_alignment = 1
 
 [node name="Continue" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1251.0
+offset_left = 1528.0
 offset_top = 696.0
-offset_right = 1515.0
+offset_right = 1792.0
 offset_bottom = 795.0
 theme_override_fonts/font = ExtResource("2_26bdy")
 theme_override_font_sizes/font_size = 50
@@ -60,8 +60,8 @@ text = "Continue"
 
 [node name="Panel2" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 397.0
+offset_left = 674.0
 offset_top = 289.0
-offset_right = 898.0
+offset_right = 1175.0
 offset_bottom = 738.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_epwng")

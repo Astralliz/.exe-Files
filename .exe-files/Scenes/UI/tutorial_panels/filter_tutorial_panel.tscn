@@ -128,6 +128,7 @@ rotation = 0.750492
 theme_override_styles/panel = SubResource("StyleBoxTexture_l35uv")
 
 [node name="frame" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 508.0
 offset_top = 826.0
 offset_right = 2291.0

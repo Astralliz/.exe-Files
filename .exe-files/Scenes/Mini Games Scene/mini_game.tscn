@@ -39,7 +39,7 @@ script = ExtResource("1_vt4pt")
 layout_mode = 0
 offset_left = -46.0
 offset_top = 223.0
-offset_right = 3779.0
+offset_right = 4782.0
 offset_bottom = 569.0
 theme_override_constants/separation = -1
 

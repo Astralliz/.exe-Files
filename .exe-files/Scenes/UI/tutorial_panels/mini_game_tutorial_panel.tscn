@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7ko8qu32grew"]
+
+[ext_resource type="Texture2D" uid="uid://cy8xynrmywbvn" path="res://Assets/Sprites/mentor.png" id="1_n3q6q"]
+[ext_resource type="Texture2D" uid="uid://dud14egjhs4im" path="res://Assets/images/finished window.png" id="2_nan2e"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_cpdun"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tplhr"]
+texture = ExtResource("2_nan2e")
+
+[sub_resource type="LabelSettings" id="LabelSettings_o8db3"]
+font = ExtResource("3_cpdun")
+font_size = 85
+font_color = Color(0.855889, 0.429064, 0.864663, 1)
+
+[node name="MiniGameTutorialPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 2485.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.831373)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(281, 665)
+scale = Vector2(0.774436, 0.792969)
+texture = ExtResource("1_n3q6q")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 565.0
+offset_top = 524.0
+offset_right = 2297.0
+offset_bottom = 1006.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_tplhr")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 603.0
+offset_top = 557.0
+offset_right = 978.0
+offset_bottom = 682.0
+theme_override_font_sizes/font_size = 40
+text = "Mentor"
+label_settings = SubResource("LabelSettings_o8db3")
+vertical_alignment = 1
+
+[node name="TextBox" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 628.0
+offset_top = 694.0
+offset_right = 2270.0
+offset_bottom = 874.0
+theme_override_fonts/normal_font = ExtResource("3_cpdun")
+theme_override_font_sizes/normal_font_size = 50
+text = "asdadasd"
+
+[node name="NextButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 2013.0
+offset_top = 898.0
+offset_right = 2247.0
+offset_bottom = 981.0
+theme_override_fonts/font = ExtResource("3_cpdun")
+theme_override_font_sizes/font_size = 55
+text = "Next"
+
+[node name="SkipButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 2151.0
+offset_top = 78.0
+offset_right = 2429.0
+offset_bottom = 192.0
+theme_override_fonts/font = ExtResource("3_cpdun")
+theme_override_font_sizes/font_size = 55
+text = "Skip"
