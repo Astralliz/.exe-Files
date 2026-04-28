@@ -9,6 +9,8 @@ extends Control
 @onready var choices_container: VBoxContainer = $"Inner Panel/Question Panel/QuestionContainer/ChoicesContainer"
 @onready var result_panel: Panel = $"Inner Panel/Result Panel"
 @onready var result_text: Label = $"Inner Panel/Result Panel/ResultContainer/ResultText"
+@onready var retake_btn: Button = $"Inner Panel/Result Panel/ResultContainer/RetakeBtn"
+@onready var control_2: Control = $"Inner Panel/Result Panel/ResultContainer/Control2"
 @onready var question_progress: ProgressBar = $"Inner Panel/Question Panel/QuestionContainer/QuestionProgress"
 @onready var verdict_text: Label = $"Inner Panel/Result Panel/ResultContainer/VerdictText"
 
@@ -68,22 +70,60 @@ var quiz_questions = [
 
 # Declare Likert Questions
 var likert_questions = [
-	"I am aware of common file-based cyber threats.",
-	"I can identify suspicious file behaviors.",
-	"I feel confident in detecting malicious files.",
-	"I can distinguish safe and unsafe files.",
-	"I know the correct actions to take when encountering a suspicious file."
+	"I am aware of common file-based cyber threats like malware in .exe files.",
+	"I understand the risks of executing files from unknown or untrusted sources.",
+	"I know basic indicators of malicious files, such as hidden extensions or unusual names.",
+	"I intend to scan files before opening them from suspicious sources.",
+	"I plan to reject or quarantine files requesting admin permissions without verification.",
+	"I am cautious about downloading files from untrusted emails or websites",
+	"I can identify suspicious file characteristics like mismatched extensions or large sizes.",
+	"I feel confident distinguishing safe files from potentially malicious ones based on metadata. ",
+	"I am confident in spotting file behaviors indicating malware, like obfuscation.",
+	"I feel confident making safe decisions when inspecting unknown files.",
 ]
+
+# Declare Pre-Test Dialogue
+var intro_pre_1 = "Hello! Welcome to the assessment.\n\nThis assessment is designed to evaluate your knowledge and awareness of file-based cyber threats."
+var intro_pre_2 = "You will be presented with a series of questions related to identifying suspicious file behaviors and appropriate security practices.\n\nPlease carefully answer each question to the best of your ability, as you may only take the pre-test once.\n\nClick ‘Start Test’ when you are ready to begin."
+
+# Declare Post-Test Dialogue
+var intro_post_1 = "Welcome back.\n\nThis is a post-test assessment to evaluate your learning after playing the game."
+var intro_post_2 = "Once again, you will be presented with the same series of questions from the pre-test. Please carefully answer each question to the best of your ability, as you may only take the post-test once.\n\nClick ‘Start Test’ when you are ready to begin."
 
 # Initialize Variables
 var current_index = 0
 var mode
 var quiz_score = 0
 var likert_total = 0
+var test_type
 
 func _ready():
 	question_panel.hide()
 	result_panel.hide()
+	intro_btn.text = "Next"
+	
+	var pre_done = Player_Data.data.get("pre_test_done", false)
+	var post_done = Player_Data.data.get("post_test_done", false)
+	
+	if post_done:
+		intro_panel.hide()
+		show_results()
+		return
+	
+	# PRE-TEST -> POST-TEST
+	if pre_done:
+		test_type = "post"
+		intro_text.text = intro_post_1
+	else:
+		# NEW PLAYER → PRE-TEST
+		test_type = "pre"
+		intro_text.text = intro_pre_1
+	
+	#if pre_done and not post_done:
+		#intro_text.text = "Please complete the game before taking the post-test."
+		#intro_btn.text = "Back to Menu"
+		#intro_btn.pressed.connect(_on_menu_pressed)
+		#return
 	
 	mode = "intro1"
 	
@@ -94,7 +134,10 @@ func _ready():
 
 func _on_intro_button_pressed():
 	if mode == "intro1":
-		intro_text.text = "You will be presented with a series of questions related to identifying suspicious file behaviors and appropriate security practices. \n\nPlease answer each question to the best of your ability. \n\nClick ‘Start Test’ when you are ready to begin."
+		if test_type == "pre":
+			intro_text.text = intro_pre_2
+		else:
+			intro_text.text = intro_post_2
 		intro_btn.text = "Start Test"
 		mode = "intro2"
 	elif mode == "intro2":
@@ -109,7 +152,9 @@ func start_quiz():
 
 # Shows each question
 func show_question():
-	var total_questions = quiz_questions.size() + likert_questions.size()
+	var total_questions = quiz_questions.size()
+	if test_type == "post":
+		total_questions += likert_questions.size()
 	var display_index = current_index
 	
 	if mode == "likert":
@@ -129,7 +174,7 @@ func show_question():
 	elif mode == "likert":
 		var q = likert_questions[current_index]
 		question_text.text = q
-		var labels = ["Strongly Disagree", "Disagree", "Neutral", "Agree", "Strongly Agree"]
+		var labels = ["Beginner", "Novice", "Intermediate", "Advanced", "Expert"]
 		for i in range(5):
 			var btn = choices_container.get_child(i)
 			btn.text = labels[i]
@@ -144,9 +189,12 @@ func _on_choice_pressed(index):
 		likert_total += (index + 1) # 1–5 scale
 	current_index += 1
 	if mode == "quiz" and current_index >= quiz_questions.size():
-		mode = "likert"
-		current_index = 0
-		show_question()
+		if test_type == "post":
+			mode = "likert"
+			current_index = 0
+			show_question()
+		else:
+			show_results()
 	elif mode == "likert" and current_index >= likert_questions.size():
 		show_results()
 	else:
@@ -157,13 +205,22 @@ func show_results():
 	result_panel.show()
 
 	var quiz_percent = (quiz_score / 10.0) * 100
-	var likert_mean = likert_total / 5.0
-
+	var likert_mean = 0.0
+	if test_type == "post":
+		likert_mean = likert_total / float(likert_questions.size())
+	
+	# SAVE RESULTS
+	if test_type == "pre":
+		Player_Data.save_pretest(quiz_percent)
+	else:
+		Player_Data.save_posttest(quiz_percent, likert_mean)
+	
+	# PERFORMANCE LABELS
 	var performance = ""
 	if quiz_percent >= 80:
 		performance = "High"
 	elif quiz_percent >= 50:
-		performance = "Moderateg"
+		performance = "Moderate"
 	else:
 		performance = "Low"
 		
@@ -174,28 +231,40 @@ func show_results():
 		awareness = "Moderate Confidence"
 	else:
 		awareness = "Low Confidence"
-		
-	result_text.text = \
-		"Results:\n\n" + \
-		"Quiz Score: " + str(round(quiz_percent)) + "%\n" + \
-		"Performance Level: " + performance + "\n\n" + \
-		"Awareness Score: " + str(round(likert_mean * 100) / 100.0) + "\n" + \
-		"Confidence Level: " + awareness
 	
+	# BUILD RESULT TEXT
+	var final_text = ""
+	
+	final_text += "Results:\n"
+	final_text += "Quiz Score: " + str(round(quiz_percent)) + "%\n"
+	final_text += "Performance Level: " + performance + "\n\n"
+	if test_type == "post":
+		final_text += "Awareness Score: " + str(round(likert_mean * 100) / 100.0) + "\n"
+		final_text += "Confidence Level: " + awareness
+	
+	# ADD FEEDBACK MESSAGE
 	if quiz_percent >= 80:
-		result_text.text += "\n\nExcellent performance!"
+		final_text += "\n\nExcellent performance!"
 	elif quiz_percent >= 50:
-		result_text.text += "\n\nYou're on the right track."
+		final_text += "\n\nYou're on the right track."
 	else:
-		result_text.text += "\n\nConsider reviewing the concepts more."
+		final_text += "\n\nConsider reviewing the concepts more."
+	
+	# ADD COMPARISON (ONLY FOR POST-TEST)
+	if test_type == "post":
+		var pre_quiz = Player_Data.data["pre_quiz_score"]
+		var improvement = quiz_percent - pre_quiz
+		
+		final_text += "\nPre-Test Score: " + str(round(pre_quiz)) + "%"
+		final_text += "\nImprovement: " + str(round(improvement)) + "%"
+		
+		if improvement > 0:
+			final_text += " ↑"
+		elif improvement < 0:
+			final_text += " ↓"
 
-func _on_retake_pressed():
-	quiz_score = 0
-	likert_total = 0
-	current_index = 0
-	mode = "quiz"
-	result_panel.hide()
-	start_quiz()
+	# APPLY TEXT ONCE
+	result_text.text = final_text
 
 func _on_menu_pressed():
 	get_tree().change_scene_to_file("res://Scenes/Menu Scenes/main_menu.tscn")

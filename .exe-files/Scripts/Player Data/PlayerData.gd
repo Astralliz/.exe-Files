@@ -14,7 +14,13 @@ var data: Dictionary = {
 	"filter_used": 0,   # { "level1": 3, "level2": 1 } - track skill/question usage
 	"evaluate_used": 0,
 	"bug_bounty": 40,
-	"minigame_usage": {}
+	"minigame_usage": {},
+	# Test Results
+	"pre_quiz_score": 0.0,
+	"post_quiz_score": 0.0,
+	"post_likert_score": 0.0,
+	"pre_test_done": false,
+	"post_test_done": false
 }
 
 var newly_unlocked: Array[String] = []
@@ -254,6 +260,19 @@ func add_bug_bounty(amount: int) -> void:
 # Get current coin count
 func get_bug_bounty() -> int:
 	return int(data.get("bug_bounty", 0))
+
+# Save Pre-test Results
+func save_pretest(quiz_score: float) -> void:
+	data["pre_quiz_score"] = quiz_score
+	data["pre_test_done"] = true
+	save_data()
+
+# Save Post-test Results
+func save_posttest(quiz_score: float, likert_score: float) -> void:
+	data["post_quiz_score"] = quiz_score
+	data["post_likert_score"] = likert_score
+	data["post_test_done"] = true
+	save_data()
 
 # ----------------------- Reset -----------------------
 func reset_data() -> void:
