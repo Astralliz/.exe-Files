@@ -43,10 +43,13 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_u8evo")
 metadata/_edit_use_anchors_ = true
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+anchors_preset = -1
+anchor_top = 0.0037037
+anchor_bottom = 0.0037037
 offset_left = 218.0
 offset_top = 919.0
-offset_right = 2362.0
-offset_bottom = 977.0
+offset_right = 2243.0
+offset_bottom = 973.0
 theme_override_styles/background = SubResource("StyleBoxTexture_kugwc")
 theme_override_styles/fill = SubResource("StyleBoxTexture_wvt1l")
 metadata/_edit_use_anchors_ = true
@@ -65,7 +68,6 @@ vertical_alignment = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
-anchors_preset = -1
 offset_left = 1207.0
 offset_top = 778.0
 offset_right = 1337.0

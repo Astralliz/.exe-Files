@@ -14,12 +14,10 @@ texture = ExtResource("3_n5s0c")
 [node name="GameOver" type="Control"]
 z_index = 100
 layout_mode = 3
-anchor_right = 1.239
-anchor_bottom = 0.994
 offset_left = 4.0
 offset_top = -2.0
-offset_right = -454.88
-offset_bottom = 4.47998
+offset_right = 1924.0
+offset_bottom = 1078.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kmkcb")
@@ -31,6 +29,8 @@ offset_left = -73.0
 offset_top = 3.0
 offset_right = 2537.0
 offset_bottom = 1081.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 0.509804)
 
 [node name="Panel" type="Panel" parent="."]

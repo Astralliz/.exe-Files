@@ -450,11 +450,6 @@ func setup_attack_panels() -> void:
 		if child is Panel and i < types.size():
 			attack_panels[types[i]] = child
 
-			var lbl = Label.new()
-			lbl.text = types[i].to_upper()
-			lbl.add_theme_font_override("font", GAME_FONT)
-			lbl.add_theme_color_override("font_color", Color.BLACK)
-			child.add_child(lbl)
 			i += 1
 
 
