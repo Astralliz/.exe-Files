@@ -1,0 +1,100 @@
+[gd_scene load_steps=7 format=3 uid="uid://d310gixxpnr4t"]
+
+[ext_resource type="Script" uid="uid://diq86ij8b5vv7" path="res://Scripts/UI/AchievementsMenu/achievement_details.gd" id="1_hl35l"]
+[ext_resource type="Texture2D" uid="uid://dud14egjhs4im" path="res://Assets/images/finished window.png" id="2_nvk7c"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_kfxb5"]
+[ext_resource type="Texture2D" uid="uid://b6fgga2m5gkeu" path="res://Assets/images/Gemini_Generated_Image_z0rj2uz0rj2uz0rj (1).png" id="4_rk87l"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yo2gg"]
+texture = ExtResource("2_nvk7c")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2dywr"]
+texture = ExtResource("4_rk87l")
+
+[node name="AchievementDetails" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_right = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hl35l")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.485
+anchor_top = 0.81
+anchor_right = 0.485
+anchor_bottom = 0.81
+offset_left = -931.2
+offset_top = -874.8
+offset_right = 988.8
+offset_bottom = 205.2
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.509804)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.769
+anchor_right = 0.5
+anchor_bottom = 0.769
+offset_left = -551.0
+offset_top = -616.52
+offset_right = 552.0
+offset_bottom = 0.479858
+theme_override_styles/panel = SubResource("StyleBoxTexture_yo2gg")
+
+[node name="CloseButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.356
+anchor_top = -0.332
+anchor_right = -0.356
+anchor_bottom = -0.332
+offset_left = 787.668
+offset_top = 664.844
+offset_right = 1101.67
+offset_bottom = 770.844
+theme_override_fonts/font = ExtResource("3_kfxb5")
+theme_override_font_sizes/font_size = 45
+text = "Close"
+
+[node name="Description" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.367
+anchor_top = -0.356
+anchor_right = -0.367
+anchor_bottom = -0.356
+offset_left = 905.801
+offset_top = 300.652
+offset_right = 1431.8
+offset_bottom = 657.652
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_kfxb5")
+theme_override_font_sizes/normal_font_size = 45
+text = "sample text"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.366
+anchor_top = -0.343
+anchor_right = -0.366
+anchor_bottom = -0.343
+offset_left = 480.698
+offset_top = 308.631
+offset_right = 877.698
+offset_bottom = 660.631
+theme_override_styles/panel = SubResource("StyleBoxTexture_2dywr")
+
+[connection signal="gui_input" from="ColorRect" to="." method="_on_color_rect_gui_input"]

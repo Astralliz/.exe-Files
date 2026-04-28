@@ -1,4 +1,4 @@
-extends Node
+extends Control
 
 # === Achievement Lock Panels ===
 @onready var achievement_1_panel: Panel = $HBoxContainer/Achievment1/Lock
@@ -7,18 +7,34 @@ extends Node
 @onready var achievement_4_panel: Panel = $HBoxContainer/Achievment4/Lock4
 @onready var achievement_5_panel: Panel = $HBoxContainer/Achievment5/Lock5
 
-# === Achievement Names (must match saved data exactly) ===
+# === Achievement Names ===
 const METADATA_DETECTIVE := "Metadata Detective"
 const THREAT_NEUTRALIZER := "Threat Neutralizer"
 const SYSTEM_GATEKEEPER := "System Gatekeeper"
 const AUDIT_MASTER := "Audit Master"
 const SYSTEM_ARCHITECT := "System Architect"
 
-# === Map achievement name -> lock panel ===
+# === Descriptions ===
+
+var achievement_descriptions := {
+	METADATA_DETECTIVE: "Complete Day 1 of the story to unlock this achievement.",
+	THREAT_NEUTRALIZER: "Complete the mini-game at least once to unlock this achievement.",
+	SYSTEM_GATEKEEPER: "Complete the Story 1 to unlock this achievement.",
+	AUDIT_MASTER: "Inspect a total of 100 files across all gameplay sessions." + "\n \n Total INspected:  
+		" + str(Player_Data.data["total_inspected"]),
+	SYSTEM_ARCHITECT: "Complete Story Day 6 (or Story Part 2) to unlock this achievement."
+}
+
+
+# === Scene preload ===
+const AchievementDetailsScene = preload("res://Scenes/UI/AchievementDialog/achievement_details.tscn")
+
+# === Map ===
 var achievement_panels := {}
 
+var details_popup: Control = null
+
 func _ready() -> void:
-	# Build the mapping
 	achievement_panels = {
 		METADATA_DETECTIVE: achievement_1_panel,
 		THREAT_NEUTRALIZER: achievement_2_panel,
@@ -27,9 +43,39 @@ func _ready() -> void:
 		SYSTEM_ARCHITECT: achievement_5_panel
 	}
 
+	# IMPORTANT: Enable input + connect
+	for achievement_name in achievement_panels.keys():
+		var panel = achievement_panels[achievement_name]
+
+		panel.mouse_filter = Control.MOUSE_FILTER_STOP
+		panel.gui_input.connect(_on_panel_clicked.bind(achievement_name))
+
 	update_achievements_ui()
 
-# === Update UI based on unlocked achievements ===
+# === Handle tap/click (MOBILE + PC) ===
+func _on_panel_clicked(event: InputEvent, achievement_name: String) -> void:
+	# Works for BOTH mouse and touch
+	if event is InputEventScreenTouch and event.pressed:
+		show_achievement_details(achievement_name)
+
+	elif event is InputEventMouseButton \
+	and event.pressed \
+	and event.button_index == MOUSE_BUTTON_LEFT:
+		show_achievement_details(achievement_name)
+
+# === Show popup ===
+func show_achievement_details(achievement_name: String):
+	var text = achievement_descriptions.get(achievement_name, achievement_name)
+
+	# Create ONLY ONCE
+	if details_popup == null:
+		details_popup = AchievementDetailsScene.instantiate()
+		add_child(details_popup)
+
+	# Reuse existing popup
+	details_popup.set_description(text)
+	details_popup.show()
+# === Update UI ===
 func update_achievements_ui() -> void:
 	var unlocked_achievements: Array = Player_Data.data.get("achievements", [])
 

@@ -30,10 +30,9 @@ corner_radius_bottom_left = 10
 
 [node name="Username" type="Control"]
 layout_mode = 3
-anchor_right = 1.238
-anchor_bottom = 0.962
-offset_right = -456.96
-offset_bottom = 41.0399
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -0.00012207
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kcgxc")
@@ -88,7 +87,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="Username" type="TextEdit" parent="Panel/VBoxContainer"]
+[node name="Username" type="LineEdit" parent="Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("1_ks624")

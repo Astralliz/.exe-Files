@@ -530,13 +530,6 @@ func _on_finished_screen_continue(success: bool) -> void:
 	emit_signal("minigame_finished", success)
 	queue_free()
 
-	# =========================
-	# CONTINUE GAME FLOW
-	# =========================
-
-	emit_signal("minigame_finished", success)
-
-	queue_free()
 
 # ══════════════════════════════════════════════════════════════
 # COMPUTE METRICS

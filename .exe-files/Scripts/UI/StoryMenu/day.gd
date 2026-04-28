@@ -410,7 +410,7 @@ func start_minigame():
 	paper_printing.stop()
 	
 	# Load and instantiate the minigame scene
-	var minigame_scene = SceneLoader.load_scene(MINIGAME_SCENE_PATH)
+	var minigame_scene = load(MINIGAME_SCENE_PATH)
 	
 	# Fallback if scene doesn't exist
 	if minigame_scene == null:
@@ -447,6 +447,7 @@ func on_minigame_result(success: bool):
 		wrong_decision_popup.text.text = build_gameover_message()
 		
 func _on_minigame_finished(success: bool):
+	minigame_active = false
 	on_minigame_result(success)
 
 # =========================
