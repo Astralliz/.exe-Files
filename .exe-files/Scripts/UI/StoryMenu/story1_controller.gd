@@ -19,16 +19,16 @@ func _on_day_1_start_pressed():
 		SceneLoader.load_scene("res://Scenes/UI/intro.tscn")
 	else:
 		GameState.day = 1
-		SceneLoader.load_scene("res://Scenes/Menu Scenes/Story Scene/day.tscn")
+		SceneLoader.load_scene("res://Scenes/Menu Scenes/Story Scene/day.tscn", "Starting...")
 
 
 func _on_day_2_start_pressed():
 	GameState.day = 2
-	SceneLoader.load_scene("res://Scenes/Menu Scenes/Story Scene/day.tscn")
+	SceneLoader.load_scene("res://Scenes/Menu Scenes/Story Scene/day.tscn", "Starting...")
 
 func _on_day_3_start_pressed():
 	GameState.day = 3
-	SceneLoader.load_scene("res://Scenes/Menu Scenes/Story Scene/day.tscn")
+	SceneLoader.load_scene("res://Scenes/Menu Scenes/Story Scene/day.tscn", "Starting...")
 
 func _ready() -> void:
 	if Player_Data.data["level"] >= 1:

@@ -1,13 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://vb5m1phlf2b4"]
+[gd_scene load_steps=14 format=3 uid="uid://vb5m1phlf2b4"]
 
 [ext_resource type="Script" uid="uid://c4ui54he3pil7" path="res://Scripts/UI/menu_controller.gd" id="1_2tgnr"]
 [ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="1_3bhik"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="2_1bry2"]
 [ext_resource type="PackedScene" uid="uid://dm2amcmrmsbjy" path="res://Scenes/Username.tscn" id="4_wj7ay"]
+[ext_resource type="Texture2D" uid="uid://c7umgb0cekexu" path="res://Assets/images/gamename.png" id="5_hontw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2tgnr"]
 texture = ExtResource("1_3bhik")
 modulate_color = Color(0.96875, 0.96875, 0.96875, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ulw58"]
+texture = ExtResource("5_hontw")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3bhik"]
 bg_color = Color(0.6, 0.0117647, 0.6, 1)
@@ -48,17 +52,30 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_2tgnr")
 
+[node name="GameName" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.258
+anchor_top = 0.174
+anchor_right = 0.738
+anchor_bottom = 0.608
+offset_left = 0.639954
+offset_top = 0.0799866
+offset_right = 0.039917
+offset_bottom = 0.359985
+theme_override_styles/panel = SubResource("StyleBoxTexture_ulw58")
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.12
-anchor_top = 0.605
-anchor_right = 0.88
-anchor_bottom = 0.748
-offset_left = 0.259995
-offset_top = -9.04001
-offset_right = -0.260071
-offset_bottom = 0.29599
+anchor_left = 0.128
+anchor_top = 0.664
+anchor_right = 0.888
+anchor_bottom = 0.816
+offset_left = 0.23999
+offset_top = -0.120056
+offset_right = -0.280273
+offset_bottom = -0.504028
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 50
@@ -89,25 +106,6 @@ theme_override_font_sizes/font_size = 50
 theme_override_styles/hover = SubResource("StyleBoxFlat_1bry2")
 theme_override_styles/normal = SubResource("StyleBoxTexture_1bry2")
 text = "Shop"
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.306
-anchor_top = 0.265
-anchor_right = 0.697
-anchor_bottom = 0.44
-offset_left = 0.487976
-offset_top = 0.279984
-offset_right = 0.0559692
-offset_bottom = -0.120026
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.988281, 0, 0.988281, 1)
-theme_override_fonts/font = ExtResource("2_1bry2")
-theme_override_font_sizes/font_size = 150
-text = ".EXE FILES"
-horizontal_alignment = 1
 
 [node name="AchievementBtn" type="Button" parent="."]
 layout_mode = 1
@@ -166,9 +164,6 @@ text = "Settings"
 visible = false
 layout_mode = 1
 anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
 offset_bottom = 0.0
 
 [connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_info_pressed"]

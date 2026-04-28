@@ -1,0 +1,83 @@
+[gd_scene load_steps=14 format=3 uid="uid://dxruefcnn4f51"]
+
+[ext_resource type="Script" uid="uid://c2aqvs6cwh5u6" path="res://Scripts/splash_sreen.gd" id="1_epqin"]
+[ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="1_ro0qk"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="2_epqin"]
+[ext_resource type="Texture2D" uid="uid://bop15iaaq0fdb" path="res://Assets/images/Icon.png" id="4_u8evo"]
+[ext_resource type="Texture2D" uid="uid://c7umgb0cekexu" path="res://Assets/images/gamename.png" id="5_q75ol"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u8evo"]
+texture = ExtResource("1_ro0qk")
+
+[sub_resource type="Gradient" id="Gradient_q75ol"]
+colors = PackedColorArray(0.564409, 0.143341, 0.601563, 1, 0.597235, 0.487976, 0.609375, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mlp0r"]
+gradient = SubResource("Gradient_q75ol")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kugwc"]
+texture = SubResource("GradientTexture2D_mlp0r")
+
+[sub_resource type="Gradient" id="Gradient_yrlec"]
+colors = PackedColorArray(0.945098, 0.247059, 1, 1, 0.682353, 0.564706, 0.694118, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u08of"]
+gradient = SubResource("Gradient_yrlec")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wvt1l"]
+texture = SubResource("GradientTexture2D_u08of")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yrlec"]
+texture = ExtResource("5_q75ol")
+
+[node name="SplashSreen" type="CanvasLayer"]
+script = ExtResource("1_epqin")
+
+[node name="ColorRect" type="Panel" parent="."]
+anchors_preset = -1
+anchor_right = 1.28
+anchor_bottom = 0.99
+offset_right = -0.600098
+offset_bottom = -0.200073
+theme_override_styles/panel = SubResource("StyleBoxTexture_u8evo")
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 218.0
+offset_top = 919.0
+offset_right = 2362.0
+offset_bottom = 977.0
+theme_override_styles/background = SubResource("StyleBoxTexture_kugwc")
+theme_override_styles/fill = SubResource("StyleBoxTexture_wvt1l")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 211.0
+offset_top = 793.0
+offset_right = 699.0
+offset_bottom = 918.0
+theme_override_colors/font_color = Color(0.258824, 0.901961, 0.964706, 1)
+theme_override_fonts/font = ExtResource("2_epqin")
+theme_override_font_sizes/font_size = 100
+text = "Initializing System..."
+horizontal_alignment = 1
+vertical_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = -1
+offset_left = 1207.0
+offset_top = 778.0
+offset_right = 1337.0
+offset_bottom = 908.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_u8evo")
+expand_mode = 1
+
+[node name="GameName" type="Panel" parent="."]
+offset_left = 803.0
+offset_top = 233.0
+offset_right = 1724.0
+offset_bottom = 702.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_yrlec")

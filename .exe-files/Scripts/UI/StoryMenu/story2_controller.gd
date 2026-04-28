@@ -13,15 +13,15 @@ func _on_back_1_pressed() -> void:
 
 func _on_day_4_start_pressed() -> void:
 	GameState.day = 4
-	SceneLoader.load_scene("res://Scenes/Menu Scenes/Story Scene/day.tscn")
+	SceneLoader.load_scene("res://Scenes/Menu Scenes/Story Scene/day.tscn", "Starting...")
 
 func _on_day_5_start_pressed() -> void:
 	GameState.day = 5
-	SceneLoader.load_scene("res://Scenes/Menu Scenes/Story Scene/day.tscn")
+	SceneLoader.load_scene("res://Scenes/Menu Scenes/Story Scene/day.tscn", "Starting...")
 
 func _on_day_3_start_pressed():
 	GameState.day = 6
-	SceneLoader.load_scene("res://Scenes/Menu Scenes/Story Scene/day.tscn")
+	SceneLoader.load_scene("res://Scenes/Menu Scenes/Story Scene/day.tscn", "Starting...")
 
 func _ready() -> void:
 	if Player_Data.data["level"] >= 4:

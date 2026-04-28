@@ -6,15 +6,15 @@ var TEMP_SAVE := true  # true = only memory, false = save to disk
 
 # Default data
 var data: Dictionary = {
-	"new_to_game": 4,
-	"username": "xebec",
-	"level": 2,
+	"new_to_game": 0,
+	"username": "",
+	"level": 0,
 	"total_inspected": 0,  
 	"achievements": [], # ["FirstScan", "ExpertAnalyzer"]
 	"filter_used": 0,   # { "level1": 3, "level2": 1 } - track skill/question usage
 	"evaluate_used": 0,
 	"bug_bounty": 40,
-	"minigame_usage": { "2026-04-28_day1": true }
+	"minigame_usage": {}
 }
 
 var newly_unlocked: Array[String] = []
