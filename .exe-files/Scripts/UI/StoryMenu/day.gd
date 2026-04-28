@@ -67,6 +67,8 @@ var day: int
 
 var current_answers : Dictionary = {}
 
+var prev_position := Vector2.ZERO
+
 # C---------- Mini Games state ----------------
 var pending_player_approved: bool = false
 var minigame_active: bool = false
@@ -116,7 +118,6 @@ func _ready():
 
 	spawn_new_filetizen()
 	filetizen_count += 1
-	move_filetizen_to_center()
 
 	await get_tree().create_timer(1.0, false).timeout
 	spawn_new_file_document()
@@ -313,31 +314,46 @@ func _process(delta):
 	var target = get_viewport().get_visible_rect().size / 2.0
 	
 	if filetizen and is_instance_valid(filetizen):
-		if not moved_out and filetizen.position.distance_to(target) < 5.0:
-			filetizen.move_component.stop()
-			moved_out = true
+		var current_pos = filetizen.position
+		
+		if not moved_out:
+			# ✅ Detect crossing the center (LEFT → RIGHT)
+			if prev_position.x < target.x and current_pos.x >= target.x:
+				filetizen.position = target  # snap to exact center
+				filetizen.move_component.stop()
+				moved_out = true
+				
+				_on_filetizen_reached_center()
+		
+		prev_position = current_pos
 
-			var evaluate = engine.evaluate(filetizen.metadata, rules_for_level, current_answers)
+func _on_filetizen_reached_center():
 
-			print("Score: ", evaluate.score)
-			print("Issues: ", evaluate.issues)
-			
-			# 1️⃣ Generate answers first (for risky files, it will create lies)
-			var answer_gen = AnswerGenerator.new()
-			current_answers = answer_gen.generate_answers(filetizen.metadata, evaluate.score, GameState.day) # temp 0 for now
+	var evaluate = engine.evaluate(filetizen.metadata, rules_for_level, current_answers)
 
-			# 2️⃣ Evaluate score including answer
-			filetizen.metadata.risk_score = evaluate.score
-			filetizen.metadata.issues = evaluate.issues
+	print("Score: ", evaluate.score)
+	print("Issues: ", evaluate.issues)
+	
+	# Generate answers
+	var answer_gen = AnswerGenerator.new()
+	current_answers = answer_gen.generate_answers(
+		filetizen.metadata,
+		evaluate.score,
+		GameState.day
+	)
 
-			# 3️⃣ Debug info
-			print("Evaluating Filetizen:")
-			print("Filename: ", filetizen.metadata.filename)
-			print("Updated Score: ", evaluate.score)
-			print("Answers: ", current_answers)
+	# Apply results
+	filetizen.metadata.risk_score = evaluate.score
+	filetizen.metadata.issues = evaluate.issues
 
-			# 4️⃣ Enable buttons
-			enable_buttons(true)
+	# Debug
+	print("Evaluating Filetizen:")
+	print("Filename: ", filetizen.metadata.filename)
+	print("Updated Score: ", evaluate.score)
+	print("Answers: ", current_answers)
+
+	# Enable buttons
+	enable_buttons(true)
 
 # =========================
 # BUTTONS
@@ -536,7 +552,8 @@ func show_decision_feedback(result: Dictionary):
 	elif result.show_gameover:
 		if filetizen and is_instance_valid(filetizen):
 			filetizen.move_component.stop()
-
+		
+		Player_Data.clear_pending_achievements()
 		wrong_decision_popup.show()
 		wrong_decision_popup.text.text = result.message
 
@@ -569,13 +586,16 @@ func next_turn_or_end(show_gameover: bool) -> void:
 		dialogue_box.hide_dialogue()
 		spawn_new_filetizen()
 		filetizen_count += 1
-		move_filetizen_to_center()
+
+		moved_out = false
+		prev_position = filetizen.position
 
 		await get_tree().create_timer(1.0, false).timeout
 		spawn_new_file_document()
 
 	else:
 		if show_gameover:
+			Player_Data.clear_pending_achievements()
 			wrong_decision_popup.show()
 		else:
 			commit_day_progress()
@@ -598,6 +618,8 @@ func commit_day_progress():
 	Player_Data.save_data()
 
 	check_achievements()
+	
+	Player_Data.commit_pending_achievements()
 	
 
 func check_achievements():

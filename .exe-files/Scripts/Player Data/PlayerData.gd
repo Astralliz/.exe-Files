@@ -6,18 +6,19 @@ var TEMP_SAVE := true  # true = only memory, false = save to disk
 
 # Default data
 var data: Dictionary = {
-	"new_to_game": 0,
-	"username": "",
-	"level": 0,
+	"new_to_game": 4,
+	"username": "xebec",
+	"level": 2,
 	"total_inspected": 0,  
 	"achievements": [], # ["FirstScan", "ExpertAnalyzer"]
 	"filter_used": 0,   # { "level1": 3, "level2": 1 } - track skill/question usage
 	"evaluate_used": 0,
 	"bug_bounty": 40,
-	"minigame_usage": {}
+	"minigame_usage": { "2026-04-28_day1": true }
 }
 
 var newly_unlocked: Array[String] = []
+var pending_achievements: Array[String] = []
 
 const SAVE_PATH := "user://player_data.cfg"
 const SAVE_SECTION := "player"
@@ -153,19 +154,29 @@ func set_username(name: String) -> void:
 	save_data()
 	emit_signal("username_changed", name)
 
-func queue_achievement(id: String) -> void:
+# TEMP (not saved yet)
+func queue_temp_achievement(id: String) -> void:
 	if id == "":
 		return
 
-	# permanent unlock
-	if not data["achievements"].has(id):
-		data["achievements"].append(id)
+	if not pending_achievements.has(id):
+		pending_achievements.append(id)
 
-	# queue for UI (only once per session/day)
-	if not newly_unlocked.has(id):
-		newly_unlocked.append(id)
+# COMMIT (only on success)
+func commit_pending_achievements() -> void:
+	for id in pending_achievements:
+		if not data["achievements"].has(id):
+			data["achievements"].append(id)
 
+		if not newly_unlocked.has(id):
+			newly_unlocked.append(id)
+
+	pending_achievements.clear()
 	save_data()
+
+# CLEAR (on game over / quit)
+func clear_pending_achievements() -> void:
+	pending_achievements.clear()
 
 func set_level(lvl: int) -> void:
 	data["level"] = int(lvl)

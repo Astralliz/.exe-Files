@@ -525,7 +525,7 @@ func _on_finished_screen_continue(success: bool) -> void:
 	print("MiniGame UI finished → forwarding to Day")
 
 	if success:
-		Player_Data.queue_achievement("Threat Neutralizer")
+		Player_Data.queue_temp_achievement("Threat Neutralizer")
 
 	emit_signal("minigame_finished", success)
 	queue_free()

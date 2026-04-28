@@ -222,9 +222,9 @@ offset_right = 291.0
 offset_bottom = 7.0
 
 [node name="GameOver" parent="." instance=ExtResource("19_vkem0")]
-offset_left = 269.0
+offset_left = 64.0
 offset_top = 7.0
-offset_right = 269.0
+offset_right = 64.0
 offset_bottom = 7.0
 
 [node name="Pause" parent="." instance=ExtResource("25_fkp12")]
