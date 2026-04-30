@@ -70,16 +70,16 @@ var quiz_questions = [
 
 # Declare Likert Questions
 var likert_questions = [
-	"I am aware of common file-based cyber threats like malware in .exe files.",
+	"I am aware on the common file-based cyber threats like malware in .exe files.",
 	"I understand the risks of executing files from unknown or untrusted sources.",
-	"I know basic indicators of malicious files, such as hidden extensions or unusual names.",
+	"I am aware of the basic indicators of malicious files, such as hidden extensions or unusual names. ",
 	"I intend to scan files before opening them from suspicious sources.",
-	"I plan to reject or quarantine files requesting admin permissions without verification.",
-	"I am cautious about downloading files from untrusted emails or websites",
+	"I am aware how to reject or quarantine files requesting admin permissions without verification.",
+	"I am cautious about downloading files from untrusted emails or websites.",
 	"I can identify suspicious file characteristics like mismatched extensions or large sizes.",
-	"I feel confident distinguishing safe files from potentially malicious ones based on metadata. ",
-	"I am confident in spotting file behaviors indicating malware, like obfuscation.",
-	"I feel confident making safe decisions when inspecting unknown files.",
+	"I fam aware of distinguishing safe files from potentially malicious ones based on metadata.",
+	"I am aware of spotting file behaviors indicating malware, like obfuscation.",
+	"I am aware of making safe decisions when inspecting unknown files.",
 ]
 
 # Declare Pre-Test Dialogue

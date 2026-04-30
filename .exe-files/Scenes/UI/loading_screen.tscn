@@ -36,7 +36,6 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_46ur2")
 metadata/_edit_use_anchors_ = true
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-anchors_preset = -1
 offset_left = 218.0
 offset_top = 919.0
 offset_right = 2268.0

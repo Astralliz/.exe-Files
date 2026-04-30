@@ -31,7 +31,6 @@ bg_color = Color(0.23583, 0.555078, 0.70883, 1)
 bg_color = Color(0.141176, 0.141176, 0.141176, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_h6xae"]
-font = ExtResource("4_7648f")
 font_size = 25
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1tmi"]
@@ -41,8 +40,7 @@ bg_color = Color(0.128344, 0.128344, 0.128344, 1)
 bg_color = Color(0.309994, 0.689185, 0.46443, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8gkav"]
-font = ExtResource("4_7648f")
-font_size = 30
+font_size = 40
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7qhao"]
 bg_color = Color(0.141176, 0.141176, 0.141176, 1)
@@ -181,6 +179,7 @@ layout_mode = 2
 
 [node name="QuestionText" type="Label" parent="Inner Panel/Question Panel/QuestionContainer"]
 layout_mode = 2
+text = "adadsasd"
 label_settings = SubResource("LabelSettings_8gkav")
 autowrap_mode = 3
 
@@ -193,28 +192,28 @@ layout_mode = 2
 
 [node name="Choice1" type="Button" parent="Inner Panel/Question Panel/QuestionContainer/ChoicesContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_7648f")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
+text = "kakaks"
 
 [node name="Choice2" type="Button" parent="Inner Panel/Question Panel/QuestionContainer/ChoicesContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_7648f")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
+text = "kakaks"
 
 [node name="Choice3" type="Button" parent="Inner Panel/Question Panel/QuestionContainer/ChoicesContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_7648f")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
+text = "kakaks"
 
 [node name="Choice4" type="Button" parent="Inner Panel/Question Panel/QuestionContainer/ChoicesContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_7648f")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
+text = "kakaks"
 
 [node name="Choice5" type="Button" parent="Inner Panel/Question Panel/QuestionContainer/ChoicesContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_7648f")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
+text = "kakaks"
 
 [node name="Result Panel" type="Panel" parent="Inner Panel"]
 visible = false

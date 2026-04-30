@@ -14,6 +14,7 @@ texture = ExtResource("3_n5s0c")
 [node name="GameOver" type="Control"]
 z_index = 100
 layout_mode = 3
+anchors_preset = 0
 offset_left = 4.0
 offset_top = -2.0
 offset_right = 1924.0
