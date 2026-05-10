@@ -10,6 +10,8 @@ signal minigame_finished(success: bool)
 @onready var bounty_label: Label = $BountyValue
 @onready var score_label: Label = $ScoreValue
 
+@onready var paused: Control = $Pause
+
 const PAPER_TEXTURE = preload("res://Assets/Sprites/large-paper.png")
 const GAME_FONT     = preload("res://Assets/Fonts/kenney_mini_square.ttf")
 const FILE_DOCUMENT_SCENE = preload("res://Scenes/Entities Scenes/mini_game_file_document.tscn")
@@ -38,7 +40,7 @@ var spawn_timer: float           = 0.0
 var attack_panels: Dictionary    = {}
 var is_tutorial_running: bool    = false
 
-
+var parent_day: Day
 
 # ══════════════════════════════════════════════════════════════
 # PAPER CLASS
@@ -272,6 +274,9 @@ class Paper extends Panel:
 func _ready() -> void:
 	paper_container.clip_contents   = true
 	paper_container.mouse_filter    = Control.MOUSE_FILTER_PASS
+	
+	paused.hide()
+	paused.setup_pause(true, parent_day, self)
 
 	decision_tree  = DecisionTree.new()
 	setup_attack_panels()
@@ -520,7 +525,7 @@ func _on_finished_screen_continue(success: bool) -> void:
 	print("MiniGame UI finished → forwarding to Day")
 
 	if success:
-		Player_Data.queue_temp_achievement("Threat Neutralizer")
+		Player_Data.queue_achievement("Threat Neutralizer")
 
 	emit_signal("minigame_finished", success)
 	queue_free()
@@ -575,3 +580,9 @@ func compute_metrics() -> Dictionary:
 	result["accuracy"] = accuracy
 
 	return result
+
+
+func _on_pause_btn_pressed() -> void:
+	paused.show()
+	paused.z_index = 2000
+	get_tree().paused = true

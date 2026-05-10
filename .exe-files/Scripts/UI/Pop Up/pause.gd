@@ -13,9 +13,25 @@ extends Control
 @onready var level2_panel = $InformationPanel/Level2Panel
 @onready var level3_panel = $InformationPanel/Level3Panel
 
+var is_minigame := false
+var parent_day: Day = null
+var parent_minigame: MiniGame = null
+
 func _ready() -> void:
 	audio_panel.hide()
 	information_menu.hide()
+
+func setup_pause(minigame_mode: bool, day_ref = null, minigame_ref = null):
+
+	is_minigame = minigame_mode
+	parent_day = day_ref
+	parent_minigame = minigame_ref
+
+	# Hide Information Menu in minigame
+	if is_minigame:
+		$VBoxContainer/Button3.hide()
+	else:
+		$VBoxContainer/Button3.show()
 
 #--------------------------------------
 # Resume
@@ -81,10 +97,44 @@ func _on_level_3_pressed() -> void:
 # Quit
 #----------------------------------------
 func _on_button_4_pressed() -> void:
+
 	get_tree().paused = false
 	hide()
-	
+
+	# =========================
+	# MINIGAME QUIT
+	# =========================
+	if is_minigame:
+
+		# Prevent achievement saving
+		Player_Data.clear_pending_achievements()
+
+		# Prevent minigame rewards
+		if parent_minigame:
+			parent_minigame.game_finished = true
+
+		# Prevent day save progress
+		if parent_day:
+			parent_day.correct_today = 0
+
+		# Remove minigame scene
+		if parent_minigame:
+			parent_minigame.queue_free()
+
+		# Trigger game over immediately
+		var game_over_scene = preload("res://Scenes/Finishing Scenes/game_over.tscn")
+		var game_over_instance = game_over_scene.instantiate()
+
+		get_tree().current_scene.add_child(game_over_instance)
+
+		return
+
+	# =========================
+	# MAIN GAME QUIT
+	# =========================
+	Player_Data.clear_pending_achievements()
+
 	var game_over_scene = preload("res://Scenes/Finishing Scenes/game_over.tscn")
 	var game_over_instance = game_over_scene.instantiate()
-	
+
 	get_tree().current_scene.add_child(game_over_instance)

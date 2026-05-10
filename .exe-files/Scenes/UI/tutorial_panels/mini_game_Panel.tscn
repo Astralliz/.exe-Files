@@ -304,10 +304,10 @@ text = "asdadasd"
 
 [node name="SkipButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 2151.0
-offset_top = 78.0
-offset_right = 2429.0
-offset_bottom = 192.0
+offset_left = 142.0
+offset_top = 116.0
+offset_right = 420.0
+offset_bottom = 230.0
 theme_override_fonts/font = ExtResource("3_1jx7l")
 theme_override_font_sizes/font_size = 55
 text = "Skip"
