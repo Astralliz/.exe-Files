@@ -1,24 +1,56 @@
-[gd_scene load_steps=12 format=3 uid="uid://c1jtcjre1suu6"]
+[gd_scene load_steps=24 format=3 uid="uid://c1jtcjre1suu6"]
 
-[ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="1_6htda"]
 [ext_resource type="Script" uid="uid://c4ui54he3pil7" path="res://Scripts/UI/menu_controller.gd" id="1_r2e5e"]
-[ext_resource type="Texture2D" uid="uid://bpdo8bf18gauj" path="res://Assets/images/rectangle.png" id="2_r2e5e"]
+[ext_resource type="Texture2D" uid="uid://3ly3g17fh3v" path="res://Assets/images/ExeMenuBG.png" id="2_tlxtj"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_wqxdw"]
+[ext_resource type="Texture2D" uid="uid://bfqrye0g81a5w" path="res://Assets/images/rectangle2.png" id="3_xmvc4"]
 [ext_resource type="Texture2D" uid="uid://b28uwmv3pk23t" path="res://Assets/Button/utton.png" id="4_tlxtj"]
 [ext_resource type="Script" uid="uid://jmjye8nsw1k4" path="res://Scripts/UI/settings/settings_audio.gd" id="6_wqxdw"]
 [ext_resource type="Script" uid="uid://cwrfhp0otyx3x" path="res://Scripts/UI/settings/settings_dialog_controller.gd" id="7_tlxtj"]
+[ext_resource type="Texture2D" uid="uid://dfsgc3m04bgps" path="res://Assets/images/buttonhover.png" id="8_jmvne"]
+[ext_resource type="Texture2D" uid="uid://cc7ct7np51anl" path="res://Assets/images/button2.png" id="9_cg6wl"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i5icr"]
-texture = ExtResource("1_6htda")
+texture = ExtResource("2_tlxtj")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xmvc4"]
-texture = ExtResource("2_r2e5e")
+texture = ExtResource("3_xmvc4")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jmvne"]
 bg_color = Color(0.952941, 0.384314, 1, 0.270588)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cg6wl"]
 texture = ExtResource("4_tlxtj")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_48mwd"]
+texture = ExtResource("8_jmvne")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_00jav"]
+texture = ExtResource("8_jmvne")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mpqfp"]
+texture = ExtResource("8_jmvne")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4kyxj"]
+texture = ExtResource("8_jmvne")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gluv2"]
+texture = ExtResource("9_cg6wl")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3emm4"]
+texture = ExtResource("8_jmvne")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oqwwr"]
+texture = ExtResource("8_jmvne")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y71tc"]
+texture = ExtResource("8_jmvne")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x0vlb"]
+texture = ExtResource("8_jmvne")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6u1p3"]
+texture = ExtResource("9_cg6wl")
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -43,6 +75,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 63.0
+offset_top = 54.0
+offset_right = -58.0
+offset_bottom = -61.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_xmvc4")
@@ -77,11 +113,11 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_cg6wl")
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.087
+anchor_left = 0.103
 anchor_top = 0.295
 anchor_right = 0.901
 anchor_bottom = 0.813
-offset_left = -0.0400085
+offset_left = 0.23999
 offset_top = 0.399994
 offset_right = -0.920044
 offset_bottom = -0.0400391
@@ -117,7 +153,6 @@ layout_mode = 2
 size_flags_vertical = 2
 max_value = 1.0
 step = 0.01
-value = 1.0
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -153,19 +188,27 @@ script = ExtResource("7_tlxtj")
 [node name="Username" type="Button" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 0
 size_flags_stretch_ratio = 3.8
 theme_override_fonts/font = ExtResource("3_wqxdw")
 theme_override_font_sizes/font_size = 45
+theme_override_styles/focus = SubResource("StyleBoxTexture_48mwd")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_00jav")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_mpqfp")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_4kyxj")
+theme_override_styles/normal = SubResource("StyleBoxTexture_gluv2")
 text = "Edit Username"
 
 [node name="UserDAta" type="Button" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 0
 size_flags_stretch_ratio = 3.8
 theme_override_fonts/font = ExtResource("3_wqxdw")
 theme_override_font_sizes/font_size = 45
+theme_override_styles/focus = SubResource("StyleBoxTexture_3emm4")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_oqwwr")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_y71tc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_x0vlb")
+theme_override_styles/normal = SubResource("StyleBoxTexture_6u1p3")
 text = "Delete Data"
 
 [connection signal="pressed" from="Button" to="." method="_on_settings_back_pressed"]

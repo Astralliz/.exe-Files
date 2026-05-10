@@ -1,25 +1,95 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6ierr5birdtj"]
+[gd_scene load_steps=38 format=3 uid="uid://b6ierr5birdtj"]
 
 [ext_resource type="Script" uid="uid://c4ui54he3pil7" path="res://Scripts/UI/menu_controller.gd" id="1_oya7i"]
-[ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="2_fciq2"]
-[ext_resource type="Texture2D" uid="uid://bpdo8bf18gauj" path="res://Assets/images/rectangle.png" id="3_gwmmo"]
+[ext_resource type="Texture2D" uid="uid://3ly3g17fh3v" path="res://Assets/images/ExeMenuBG.png" id="2_2j2bg"]
+[ext_resource type="Texture2D" uid="uid://bfqrye0g81a5w" path="res://Assets/images/rectangle2.png" id="3_hxx1h"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="4_2j2bg"]
 [ext_resource type="Texture2D" uid="uid://b28uwmv3pk23t" path="res://Assets/Button/utton.png" id="5_6xvm1"]
 [ext_resource type="Script" uid="uid://dupdpvit5ho1e" path="res://Scripts/Player Data/shop_resources.gd" id="6_2j2bg"]
 [ext_resource type="Script" uid="uid://ddwlpk2j8alue" path="res://Scripts/Player Data/bug_bounty.gd" id="6_fciq2"]
+[ext_resource type="Texture2D" uid="uid://355mxjpy3w7i" path="res://Assets/Sprites/bug bounty.png" id="7_c17u4"]
 [ext_resource type="Script" uid="uid://bfuge6pnaco5n" path="res://Scripts/Player Data/shop.gd" id="7_gwmmo"]
+[ext_resource type="Texture2D" uid="uid://b1brvgnqymfck" path="res://Assets/images/container11.png" id="10_jjquq"]
+[ext_resource type="Texture2D" uid="uid://cc7ct7np51anl" path="res://Assets/images/button2.png" id="11_07k12"]
+[ext_resource type="Texture2D" uid="uid://dfsgc3m04bgps" path="res://Assets/images/buttonhover.png" id="11_etf38"]
+[ext_resource type="Texture2D" uid="uid://bvmc6fb6ybatd" path="res://Assets/Sprites/filters.png" id="12_jjquq"]
+[ext_resource type="Texture2D" uid="uid://cih50252ij02d" path="res://Assets/images/info icon.png" id="13_07k12"]
+[ext_resource type="Texture2D" uid="uid://0li451j0rxm3" path="res://Assets/Sprites/evaluate.png" id="13_etf38"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d562m"]
-texture = ExtResource("2_fciq2")
+texture = ExtResource("2_2j2bg")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hxx1h"]
-texture = ExtResource("3_gwmmo")
+texture = ExtResource("3_hxx1h")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c17u4"]
 bg_color = Color(0.952941, 0.384314, 1, 0.270588)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jjquq"]
 texture = ExtResource("5_6xvm1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_etf38"]
+texture = ExtResource("7_c17u4")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ng4uk"]
+texture = ExtResource("10_jjquq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q5kp1"]
+texture = ExtResource("11_etf38")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eycsg"]
+texture = ExtResource("11_etf38")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f5jnk"]
+texture = ExtResource("11_etf38")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k0jrm"]
+texture = ExtResource("11_etf38")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xm8qy"]
+texture = ExtResource("11_07k12")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lifrl"]
+texture = ExtResource("12_jjquq")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qp20l"]
+bg_color = Color(0.235294, 0.0666667, 0.333333, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.878431, 0.333333, 0.870588, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_07k12"]
+texture = ExtResource("10_jjquq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l8nml"]
+texture = ExtResource("11_etf38")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uwn3p"]
+texture = ExtResource("11_etf38")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mlija"]
+texture = ExtResource("11_etf38")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_73yh7"]
+texture = ExtResource("11_etf38")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qp20l"]
+texture = ExtResource("11_07k12")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pbt1w"]
+texture = ExtResource("13_etf38")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xyvsa"]
+texture = ExtResource("3_hxx1h")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j8xkb"]
+texture = ExtResource("13_07k12")
 
 [node name="ShopMenu" type="Control"]
 layout_mode = 3
@@ -46,6 +116,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 180.0
+offset_top = 60.0
+offset_right = -131.0
+offset_bottom = -130.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_hxx1h")
@@ -56,7 +130,10 @@ anchors_preset = -1
 anchor_top = 0.15
 anchor_right = 1.0
 anchor_bottom = 0.295
-offset_bottom = 0.399994
+offset_left = 54.0
+offset_top = -17.0
+offset_right = 54.0
+offset_bottom = -16.6
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_2j2bg")
@@ -67,27 +144,28 @@ horizontal_alignment = 1
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.861
-anchor_top = 0.15
-anchor_right = 0.922
-anchor_bottom = 0.235
-offset_left = -0.120117
-offset_right = 0.759888
-offset_bottom = 0.199982
+anchor_left = 0.839
+anchor_top = 0.118
+anchor_right = 0.901
+anchor_bottom = 0.203
+offset_left = 0.119873
+offset_top = -0.44001
+offset_right = -0.920044
+offset_bottom = -0.240021
 theme_override_styles/hover = SubResource("StyleBoxFlat_c17u4")
 theme_override_styles/normal = SubResource("StyleBoxTexture_jjquq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.16
-anchor_top = 0.361
-anchor_right = 0.836
-anchor_bottom = 0.441
-offset_left = -0.200012
-offset_top = 0.119995
-offset_right = -612.12
-offset_bottom = -35.28
+anchor_left = 0.308
+anchor_top = 0.34
+anchor_right = 0.88
+anchor_bottom = 0.42
+offset_left = 0.639954
+offset_top = -0.200012
+offset_right = -517.6
+offset_bottom = -35.6
 scale = Vector2(1.8933, 1.70157)
 script = ExtResource("6_2j2bg")
 
@@ -123,17 +201,30 @@ theme_override_fonts/font = ExtResource("4_2j2bg")
 theme_override_font_sizes/font_size = 26
 text = "0"
 
+[node name="BugBounty" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.396
+anchor_top = 0.28
+anchor_right = 0.437
+anchor_bottom = 0.346
+offset_left = -0.320068
+offset_top = -0.399994
+offset_right = 0.959961
+offset_bottom = 0.319977
+theme_override_styles/panel = SubResource("StyleBoxTexture_etf38")
+
 [node name="Total Amount" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.498
+anchor_left = 0.559
 anchor_top = 0.282
-anchor_right = 0.498
+anchor_right = 0.559
 anchor_bottom = 0.282
-offset_left = -285.16
-offset_top = 0.440033
-offset_right = 16.84
-offset_bottom = 44.44
+offset_left = -285.28
+offset_top = -1.55997
+offset_right = 16.7198
+offset_bottom = 42.44
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.8933, 1.70157)
@@ -154,58 +245,282 @@ text = "0000"
 [node name="Offer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.49
-anchor_top = 0.447
-anchor_right = 0.49
-anchor_bottom = 0.447
-offset_left = -795.8
-offset_top = -3.76001
-offset_right = 53.2
-offset_bottom = 195.24
+anchor_left = 0.522
+anchor_top = 0.428
+anchor_right = 0.522
+anchor_bottom = 0.432
+offset_left = -805.24
+offset_top = 4.76004
+offset_right = 45.7599
+offset_bottom = 256.44
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.8933, 1.70157)
 theme_override_constants/separation = 20
 script = ExtResource("7_gwmmo")
 
-[node name="Filters" type="Button" parent="Offer"]
+[node name="FilterPanel" type="Panel" parent="Offer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("4_2j2bg")
-theme_override_font_sizes/font_size = 30
-text = "+5
-Filters
+theme_override_styles/panel = SubResource("StyleBoxTexture_ng4uk")
 
-Price: 20"
-
-[node name="Evaluates" type="Button" parent="Offer"]
+[node name="Filters" type="Button" parent="Offer/FilterPanel"]
 layout_mode = 2
+offset_left = 57.0
+offset_top = 172.0
+offset_right = 360.0
+offset_bottom = 231.0
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("4_2j2bg")
-theme_override_font_sizes/font_size = 30
-text = "+5
-Evaluates
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxTexture_q5kp1")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_eycsg")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_f5jnk")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_k0jrm")
+theme_override_styles/normal = SubResource("StyleBoxTexture_xm8qy")
+text = "    20"
 
-price: 20"
-
-[node name="Notification" type="Label" parent="."]
+[node name="BugBounty" type="Panel" parent="Offer/FilterPanel/Filters"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.785
-anchor_right = 0.5
-anchor_bottom = 0.785
-offset_left = -744.0
-offset_top = 0.200012
-offset_right = 35.0
-offset_bottom = 56.2
+anchor_left = 0.314
+anchor_top = 0.239
+anchor_right = 0.45
+anchor_bottom = 0.888
+offset_left = 0.0284271
+offset_top = -0.688708
+offset_right = 0.0364304
+offset_bottom = 0.0202866
+theme_override_styles/panel = SubResource("StyleBoxTexture_etf38")
+
+[node name="FilterIcon" type="Panel" parent="Offer/FilterPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.092
+anchor_top = 0.066
+anchor_right = 0.419
+anchor_bottom = 0.609
+offset_left = -0.18
+offset_top = 0.104
+offset_right = 0.11499
+offset_bottom = 0.095993
+theme_override_styles/panel = SubResource("StyleBoxTexture_lifrl")
+
+[node name="Label" type="Label" parent="Offer/FilterPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.452
+anchor_top = 0.087
+anchor_right = 0.825
+anchor_bottom = 0.244
+offset_left = -0.102066
+offset_top = -1.09381
+offset_right = 0.157928
+offset_bottom = -1.18681
+theme_override_fonts/font = ExtResource("4_2j2bg")
+theme_override_font_sizes/font_size = 30
+text = "Filters"
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Offer/FilterPanel"]
+layout_mode = 0
+offset_left = 188.56
+offset_top = 59.3569
+offset_right = 362.56
+offset_bottom = 130.357
+theme_override_font_sizes/normal_font_size = 13
+text = "use filters to scan filetizen and reveal if the are suspicious."
+
+[node name="Panel" type="Panel" parent="Offer/FilterPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.455
+anchor_top = 0.458
+anchor_right = 0.847
+anchor_bottom = 0.573
+offset_left = 0.0999908
+offset_top = 0.00399017
+offset_right = 0.139984
+offset_bottom = -0.126007
+theme_override_styles/panel = SubResource("StyleBoxFlat_qp20l")
+
+[node name="Label" type="Label" parent="Offer/FilterPanel/Panel"]
+layout_mode = 0
+offset_left = 16.616
+offset_top = -2.4615
+offset_right = 129.616
+offset_bottom = 29.5385
+theme_override_fonts/font = ExtResource("4_2j2bg")
+theme_override_font_sizes/font_size = 25
+text = "+2"
+horizontal_alignment = 1
+
+[node name="dashes" type="Label" parent="Offer/FilterPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.121
+anchor_top = 0.562
+anchor_right = 0.925
+anchor_bottom = 0.652
+offset_left = -0.335999
+offset_top = 0.127991
+offset_right = 0.199982
+offset_bottom = 0.0879974
+text = "--------------------------------------------------------------"
+
+[node name="EvaluatePanel" type="Panel" parent="Offer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_07k12")
+
+[node name="Evaluates" type="Button" parent="Offer/EvaluatePanel"]
+layout_mode = 2
+offset_left = 57.0
+offset_top = 172.0
+offset_right = 359.0
+offset_bottom = 231.0
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("4_2j2bg")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxTexture_l8nml")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_uwn3p")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_mlija")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_73yh7")
+theme_override_styles/normal = SubResource("StyleBoxTexture_qp20l")
+text = "    20"
+
+[node name="BugBounty" type="Panel" parent="Offer/EvaluatePanel/Evaluates"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.314
+anchor_top = 0.239
+anchor_right = 0.45
+anchor_bottom = 0.888
+offset_left = 0.0284271
+offset_top = -0.688708
+offset_right = 0.0364304
+offset_bottom = 0.0202866
+theme_override_styles/panel = SubResource("StyleBoxTexture_etf38")
+
+[node name="dashes" type="Label" parent="Offer/EvaluatePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.121
+anchor_top = 0.562
+anchor_right = 0.925
+anchor_bottom = 0.652
+offset_left = -0.335999
+offset_top = 0.127991
+offset_right = 0.199982
+offset_bottom = 0.0879974
+text = "--------------------------------------------------------------"
+
+[node name="Label" type="Label" parent="Offer/EvaluatePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.452
+anchor_top = 0.087
+anchor_right = 0.825
+anchor_bottom = 0.244
+offset_left = -0.102066
+offset_top = -1.09381
+offset_right = 9.72995
+offset_bottom = -1.18681
+theme_override_fonts/font = ExtResource("4_2j2bg")
+theme_override_font_sizes/font_size = 30
+text = "Evaluates"
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Offer/EvaluatePanel"]
+layout_mode = 0
+offset_left = 186.056
+offset_top = 60.0616
+offset_right = 383.056
+offset_bottom = 131.062
+theme_override_font_sizes/normal_font_size = 13
+text = "use evaluate to analyze file metadata and asses potential risk."
+
+[node name="Panel" type="Panel" parent="Offer/EvaluatePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.455
+anchor_top = 0.5
+anchor_right = 0.847
+anchor_bottom = 0.573
+offset_left = 0.0999908
+offset_top = -11.0
+offset_right = 0.139984
+offset_bottom = -0.126007
+theme_override_styles/panel = SubResource("StyleBoxFlat_qp20l")
+
+[node name="Label" type="Label" parent="Offer/EvaluatePanel/Panel"]
+layout_mode = 0
+offset_left = 16.616
+offset_top = -2.4615
+offset_right = 129.616
+offset_bottom = 29.5385
+theme_override_fonts/font = ExtResource("4_2j2bg")
+theme_override_font_sizes/font_size = 25
+text = "+5"
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="Offer/EvaluatePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.111
+anchor_top = 0.101
+anchor_right = 0.401
+anchor_bottom = 0.578
+offset_left = -0.176003
+offset_top = 0.143999
+offset_right = 0.18399
+offset_bottom = 0.0319977
+theme_override_styles/panel = SubResource("StyleBoxTexture_pbt1w")
+
+[node name="Panel3" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.059
+anchor_top = 0.881
+anchor_right = 0.958
+anchor_bottom = 0.977
+offset_left = 98.72
+offset_top = 0.519958
+offset_right = -70.3601
+offset_bottom = -0.160034
+theme_override_styles/panel = SubResource("StyleBoxTexture_xyvsa")
+
+[node name="Notification" type="Label" parent="Panel3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.006
+anchor_right = 0.905
+anchor_bottom = 0.925
+offset_left = 0.657954
+offset_right = -660.085
+offset_bottom = -39.275
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.8933, 1.70157)
 theme_override_fonts/font = ExtResource("4_2j2bg")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 18
+text = "Use your Bug bounty wisely to strnghten your tools and keep the system safe!"
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.134
+anchor_top = 0.252
+anchor_right = 0.168
+anchor_bottom = 0.709
+offset_left = 0.362
+offset_top = -2.956
+offset_right = 0.423981
+offset_bottom = -0.0270081
+theme_override_styles/panel = SubResource("StyleBoxTexture_j8xkb")
 
 [connection signal="pressed" from="Button" to="." method="_on_shop_back_button_pressed"]
-[connection signal="pressed" from="Offer/Filters" to="Offer" method="_on_buy_filters_pressed"]
-[connection signal="pressed" from="Offer/Evaluates" to="Offer" method="_on_buy_evaluates_pressed"]
+[connection signal="pressed" from="Offer/FilterPanel/Filters" to="Offer" method="_on_buy_filters_pressed"]
+[connection signal="pressed" from="Offer/EvaluatePanel/Evaluates" to="Offer" method="_on_buy_evaluates_pressed"]

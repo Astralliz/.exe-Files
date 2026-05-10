@@ -1,18 +1,18 @@
 [gd_scene load_steps=18 format=3 uid="uid://bpqlx7i7hvdtj"]
 
 [ext_resource type="Script" uid="uid://dmpa5futryf4n" path="res://Scripts/UI/StoryMenu/story_controller.gd" id="1_3f07l"]
-[ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="1_qkcn5"]
-[ext_resource type="Texture2D" uid="uid://bpdo8bf18gauj" path="res://Assets/images/rectangle.png" id="2_iojkw"]
+[ext_resource type="Texture2D" uid="uid://3ly3g17fh3v" path="res://Assets/images/ExeMenuBG.png" id="2_i64nf"]
+[ext_resource type="Texture2D" uid="uid://bfqrye0g81a5w" path="res://Assets/images/rectangle2.png" id="3_hgxv2"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_p2sox"]
 [ext_resource type="Texture2D" uid="uid://b28uwmv3pk23t" path="res://Assets/Button/utton.png" id="4_iojkw"]
 [ext_resource type="Texture2D" uid="uid://cddjt6414swve" path="res://Assets/Button/uim_padlock.png" id="6_3f07l"]
 [ext_resource type="PackedScene" uid="uid://dw6xdap2uo0gv" path="res://Scenes/welcome.tscn" id="7_i64nf"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3f07l"]
-texture = ExtResource("1_qkcn5")
+texture = ExtResource("2_i64nf")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i64nf"]
-texture = ExtResource("2_iojkw")
+texture = ExtResource("3_hgxv2")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7j04u"]
 bg_color = Color(0.694118, 0.654902, 0.654902, 0.380392)
@@ -81,6 +81,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 95.0
+offset_top = 73.0
+offset_right = -77.0
+offset_bottom = -55.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_i64nf")
@@ -205,6 +209,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Welcome" parent="." instance=ExtResource("7_i64nf")]
+visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_story_1_pressed"]

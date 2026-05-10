@@ -1,11 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://c64oc7fc0ahdf"]
+[gd_scene load_steps=14 format=3 uid="uid://c64oc7fc0ahdf"]
 
 [ext_resource type="Script" uid="uid://c4ui54he3pil7" path="res://Scripts/UI/menu_controller.gd" id="1_vapen"]
-[ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="2_ssqnt"]
-[ext_resource type="Texture2D" uid="uid://bpdo8bf18gauj" path="res://Assets/images/rectangle.png" id="3_kult1"]
+[ext_resource type="Texture2D" uid="uid://3ly3g17fh3v" path="res://Assets/images/ExeMenuBG.png" id="2_ssqnt"]
+[ext_resource type="Texture2D" uid="uid://bfqrye0g81a5w" path="res://Assets/images/rectangle2.png" id="3_kult1"]
 [ext_resource type="Script" uid="uid://bhnlqbvtuahfs" path="res://Scripts/UI/InformationMenu/information_menu.gd" id="4_ssqnt"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="4_uhe4a"]
 [ext_resource type="Texture2D" uid="uid://b28uwmv3pk23t" path="res://Assets/Button/utton.png" id="5_iqnu0"]
+[ext_resource type="Texture2D" uid="uid://cih50252ij02d" path="res://Assets/images/info icon.png" id="7_kult1"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uyqde"]
 texture = ExtResource("2_ssqnt")
@@ -19,6 +20,12 @@ content_margin_right = 20.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jsiqt"]
 texture = ExtResource("5_iqnu0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uhe4a"]
+texture = ExtResource("3_kult1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iqnu0"]
+texture = ExtResource("7_kult1")
 
 [node name="InformationMenu" type="Control"]
 layout_mode = 3
@@ -43,6 +50,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 90.0
+offset_top = 65.0
+offset_right = -76.0
+offset_bottom = -81.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_2esyf")
@@ -51,14 +62,14 @@ script = ExtResource("4_ssqnt")
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel2"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.101
-anchor_top = 0.278
-anchor_right = 0.898
-anchor_bottom = 0.359
-offset_left = -0.920013
-offset_top = -0.23999
-offset_right = -0.160156
-offset_bottom = 0.279968
+anchor_left = 0.068
+anchor_top = 0.224
+anchor_right = 0.928
+anchor_bottom = 0.333
+offset_left = -0.272003
+offset_top = -0.216003
+offset_right = -0.712036
+offset_bottom = -0.0220032
 
 [node name="Metdata" type="Button" parent="Panel2/HBoxContainer"]
 layout_mode = 2
@@ -89,17 +100,16 @@ theme_override_font_sizes/font_size = 45
 text = "Level3"
 
 [node name="MetdataPanel" type="Panel" parent="Panel2"]
-visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.102
-anchor_top = 0.358
-anchor_right = 0.897
-anchor_bottom = 0.877
-offset_left = -0.840012
-offset_top = 0.359985
-offset_right = 0.76001
-offset_bottom = -0.160034
+anchor_left = 0.068
+anchor_top = 0.334
+anchor_right = 0.928
+anchor_bottom = 0.912
+offset_left = -0.272003
+offset_top = 0.0439758
+offset_right = -0.712036
+offset_bottom = 0.191956
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel2/MetdataPanel"]
 layout_mode = 1
@@ -633,17 +643,16 @@ horizontal_alignment = 3
 justification_flags = 161
 
 [node name="Level1Panel" type="Panel" parent="Panel2"]
-visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.101
-anchor_top = 0.358
-anchor_right = 0.898
-anchor_bottom = 0.879
-offset_left = 0.0799866
-offset_top = 0.359985
-offset_right = 0.839966
-offset_bottom = -0.320007
+anchor_left = 0.069
+anchor_top = 0.333
+anchor_right = 0.926
+anchor_bottom = 0.891
+offset_left = -0.0260086
+offset_top = -0.0220032
+offset_right = -0.204102
+offset_bottom = 14.806
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel2/Level1Panel"]
 layout_mode = 1
@@ -1093,17 +1102,16 @@ autowrap_mode = 2
 justification_flags = 161
 
 [node name="Level2Panel" type="Panel" parent="Panel2"]
-visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.101
-anchor_top = 0.358
-anchor_right = 0.898
-anchor_bottom = 0.877
-offset_left = -0.920013
-offset_top = 0.359985
-offset_right = -0.160156
-offset_bottom = -0.159973
+anchor_left = 0.067
+anchor_top = 0.333
+anchor_right = 0.927
+anchor_bottom = 0.91
+offset_left = 0.481995
+offset_top = -0.0220032
+offset_right = 0.0418701
+offset_bottom = 0.0599976
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel2/Level2Panel"]
 layout_mode = 1
@@ -1700,14 +1708,14 @@ justification_flags = 161
 [node name="Level3Panel" type="Panel" parent="Panel2"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.101
-anchor_top = 0.358
-anchor_right = 0.898
-anchor_bottom = 0.879
-offset_left = -0.920013
-offset_top = 0.359985
-offset_right = -0.160034
-offset_bottom = -0.320007
+anchor_left = 0.068
+anchor_top = 0.336
+anchor_right = 0.928
+anchor_bottom = 0.91
+offset_left = 0.727997
+offset_top = -3.82404
+offset_right = 0.287964
+offset_bottom = 0.0599976
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel2/Level3Panel"]
 layout_mode = 1
@@ -2495,14 +2503,14 @@ justification_flags = 161
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.173
-anchor_right = 0.5
-anchor_bottom = 0.173
-offset_left = -960.0
-offset_top = 0.159988
-offset_right = 960.0
-offset_bottom = 94.16
+anchor_left = 0.505
+anchor_top = 0.144
+anchor_right = 0.505
+anchor_bottom = 0.144
+offset_left = -959.6
+offset_top = 0.479996
+offset_right = 960.4
+offset_bottom = 94.48
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("4_uhe4a")
 theme_override_font_sizes/font_size = 75
@@ -2512,14 +2520,60 @@ horizontal_alignment = 1
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.861
-anchor_top = 0.15
-anchor_right = 0.922
-anchor_bottom = 0.235
-offset_left = -0.120117
-offset_right = 0.759888
-offset_bottom = 0.199982
+anchor_left = 0.869
+anchor_top = 0.112
+anchor_right = 0.931
+anchor_bottom = 0.197
+offset_left = 0.52002
+offset_top = 0.0399933
+offset_right = -0.520142
+offset_bottom = 0.239975
 theme_override_styles/normal = SubResource("StyleBoxTexture_jsiqt")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.078
+anchor_top = 0.919
+anchor_right = 0.935
+anchor_bottom = 1.0
+offset_left = 0.23999
+offset_top = 0.47998
+offset_right = 0.799927
+offset_bottom = -13.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_uhe4a")
+
+[node name="Notification" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.043
+anchor_right = 0.858
+anchor_bottom = 0.847
+offset_left = 25.222
+offset_top = 5.0
+offset_right = -607.268
+offset_bottom = -19.678
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.8933, 1.70157)
+theme_override_fonts/font = ExtResource("4_uhe4a")
+theme_override_font_sizes/font_size = 18
+text = "Think before you click. Spot risky file behaviors through metadata."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.18
+anchor_top = 0.122
+anchor_right = 0.216
+anchor_bottom = 0.838
+offset_left = 0.720001
+offset_top = -0.0280161
+offset_right = 0.463989
+offset_bottom = -0.0120201
+theme_override_styles/panel = SubResource("StyleBoxTexture_iqnu0")
 
 [connection signal="pressed" from="Panel2/HBoxContainer/Metdata" to="Panel2" method="_on_metdata_pressed"]
 [connection signal="pressed" from="Panel2/HBoxContainer/Level1" to="Panel2" method="_on_level_1_pressed"]
