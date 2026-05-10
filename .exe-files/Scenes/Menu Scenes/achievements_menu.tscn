@@ -1,9 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://cm4bu8kgxg5gg"]
+[gd_scene load_steps=28 format=3 uid="uid://cm4bu8kgxg5gg"]
 
-[ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="1_pn3f3"]
 [ext_resource type="Script" uid="uid://c4ui54he3pil7" path="res://Scripts/UI/menu_controller.gd" id="1_wsird"]
-[ext_resource type="Texture2D" uid="uid://bpdo8bf18gauj" path="res://Assets/images/rectangle.png" id="2_wsird"]
+[ext_resource type="Texture2D" uid="uid://3ly3g17fh3v" path="res://Assets/images/ExeMenuBG.png" id="2_n573o"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_gjhoa"]
+[ext_resource type="Texture2D" uid="uid://bfqrye0g81a5w" path="res://Assets/images/rectangle2.png" id="3_lc3fj"]
 [ext_resource type="Texture2D" uid="uid://b28uwmv3pk23t" path="res://Assets/Button/utton.png" id="4_ifktr"]
 [ext_resource type="Texture2D" uid="uid://b7bsg171s52qy" path="res://Assets/Trophy/MetadataDetective.png" id="6_gjhoa"]
 [ext_resource type="Script" uid="uid://bwyre5tqoakob" path="res://Scripts/UI/AchievementsMenu/AchievementsUnlock.gd" id="6_y53px"]
@@ -12,12 +12,13 @@
 [ext_resource type="Texture2D" uid="uid://8t13rxrxn5kw" path="res://Assets/Trophy/SystemGatekeeper.png" id="9_n573o"]
 [ext_resource type="Texture2D" uid="uid://b7oi4hya0gyk1" path="res://Assets/Trophy/AuditMaster.png" id="10_lc3fj"]
 [ext_resource type="Texture2D" uid="uid://dd083g2vj4c5h" path="res://Assets/Trophy/SystemArchitect.png" id="11_32ot6"]
+[ext_resource type="PackedScene" uid="uid://d310gixxpnr4t" path="res://Scenes/UI/AchievementDialog/achievement_details.tscn" id="13_n573o"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_msj3w"]
-texture = ExtResource("1_pn3f3")
+texture = ExtResource("2_n573o")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_crw2t"]
-texture = ExtResource("2_wsird")
+texture = ExtResource("3_lc3fj")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fa3lm"]
 bg_color = Color(0.952941, 0.384314, 1, 0.270588)
@@ -28,7 +29,10 @@ texture = ExtResource("4_ifktr")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ifktr"]
 texture = ExtResource("6_gjhoa")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0i33"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n573o"]
+bg_color = Color(0.5985, 0.1575, 0.63, 0.717647)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lc3fj"]
 bg_color = Color(0.945098, 0.247059, 1, 0.717647)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8beo7"]
@@ -38,6 +42,12 @@ texture = ExtResource("7_5mc3w")
 texture = ExtResource("8_y53px")
 texture_margin_top = 30.0
 texture_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_32ot6"]
+bg_color = Color(0.6, 0.156863, 0.631373, 0.717647)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0i33"]
+bg_color = Color(0.945098, 0.247059, 1, 0.717647)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7kf1v"]
 texture = ExtResource("9_n573o")
@@ -76,6 +86,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 86.0
+offset_top = 70.0
+offset_right = -57.0
+offset_bottom = -58.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_crw2t")
@@ -160,14 +174,15 @@ text = "Metadata Detective"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Lock" type="Panel" parent="VBoxContainer/HBoxContainer/Achievment1"]
+[node name="Lock" type="Button" parent="VBoxContainer/HBoxContainer/Achievment1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_b0i33")
+theme_override_styles/hover = SubResource("StyleBoxFlat_n573o")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lc3fj")
 
 [node name="Achiev1Lock" type="Panel" parent="VBoxContainer/HBoxContainer/Achievment1/Lock"]
 layout_mode = 1
@@ -217,10 +232,13 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_ytjlg")
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Achievment2/Panel"]
-layout_mode = 0
-offset_left = 14.5
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.524
+anchor_right = 0.524
+offset_left = -140.08
 offset_top = 17.0
-offset_right = 294.5
+offset_right = 139.92
 offset_bottom = 56.0
 theme_override_fonts/font = ExtResource("3_gjhoa")
 theme_override_font_sizes/font_size = 28
@@ -228,14 +246,15 @@ text = "Threat Neutralizer"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Lock2" type="Panel" parent="VBoxContainer/HBoxContainer/Achievment2"]
+[node name="Lock2" type="Button" parent="VBoxContainer/HBoxContainer/Achievment2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_b0i33")
+theme_override_styles/hover = SubResource("StyleBoxFlat_32ot6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_b0i33")
 
 [node name="Achiev2Lock" type="Panel" parent="VBoxContainer/HBoxContainer/Achievment2/Lock2"]
 layout_mode = 1
@@ -302,14 +321,15 @@ text = "System Gatekeeper"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Lock3" type="Panel" parent="VBoxContainer/HBoxContainer/Achievment3"]
+[node name="Lock3" type="Button" parent="VBoxContainer/HBoxContainer/Achievment3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_b0i33")
+theme_override_styles/hover = SubResource("StyleBoxFlat_32ot6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_b0i33")
 
 [node name="Achiev3Lock" type="Panel" parent="VBoxContainer/HBoxContainer/Achievment3/Lock3"]
 layout_mode = 1
@@ -376,14 +396,15 @@ text = "Audit Master"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Lock4" type="Panel" parent="VBoxContainer/HBoxContainer/Achievment4"]
+[node name="Lock4" type="Button" parent="VBoxContainer/HBoxContainer/Achievment4"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_b0i33")
+theme_override_styles/hover = SubResource("StyleBoxFlat_32ot6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_b0i33")
 
 [node name="Achiev4Lock" type="Panel" parent="VBoxContainer/HBoxContainer/Achievment4/Lock4"]
 layout_mode = 1
@@ -450,14 +471,15 @@ text = "System Architect"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Lock5" type="Panel" parent="VBoxContainer/HBoxContainer/Achievment5"]
+[node name="Lock5" type="Button" parent="VBoxContainer/HBoxContainer/Achievment5"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_b0i33")
+theme_override_styles/hover = SubResource("StyleBoxFlat_32ot6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_b0i33")
 
 [node name="Achiev5Lock" type="Panel" parent="VBoxContainer/HBoxContainer/Achievment5/Lock5"]
 layout_mode = 1
@@ -492,5 +514,9 @@ theme_override_font_sizes/font_size = 45
 text = "Lock"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AchievementDetails" parent="." instance=ExtResource("13_n573o")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="BackBtn" to="." method="_on_back_btn_pressed"]

@@ -1,11 +1,11 @@
 extends Control
 
 # === Achievement Lock Panels ===
-@onready var achievement_1_panel: Panel = $HBoxContainer/Achievment1/Lock
-@onready var achievement_2_panel: Panel = $HBoxContainer/Achievment2/Lock2
-@onready var achievement_3_panel: Panel = $HBoxContainer/Achievment3/Lock3
-@onready var achievement_4_panel: Panel = $HBoxContainer/Achievment4/Lock4
-@onready var achievement_5_panel: Panel = $HBoxContainer/Achievment5/Lock5
+@onready var achievement_1_panel: Button = $HBoxContainer/Achievment1/Lock
+@onready var achievement_2_panel: Button = $HBoxContainer/Achievment2/Lock2
+@onready var achievement_3_panel: Button = $HBoxContainer/Achievment3/Lock3
+@onready var achievement_4_panel: Button = $HBoxContainer/Achievment4/Lock4
+@onready var achievement_5_panel: Button = $HBoxContainer/Achievment5/Lock5
 
 # === Achievement Names ===
 const METADATA_DETECTIVE := "Metadata Detective"
@@ -46,22 +46,20 @@ func _ready() -> void:
 	# IMPORTANT: Enable input + connect
 	for achievement_name in achievement_panels.keys():
 		var panel = achievement_panels[achievement_name]
-
-		panel.mouse_filter = Control.MOUSE_FILTER_STOP
-		panel.gui_input.connect(_on_panel_clicked.bind(achievement_name))
+		panel.pressed.connect(show_achievement_details.bind(achievement_name))
 
 	update_achievements_ui()
 
 # === Handle tap/click (MOBILE + PC) ===
-func _on_panel_clicked(event: InputEvent, achievement_name: String) -> void:
-	# Works for BOTH mouse and touch
-	if event is InputEventScreenTouch and event.pressed:
-		show_achievement_details(achievement_name)
-
-	elif event is InputEventMouseButton \
-	and event.pressed \
-	and event.button_index == MOUSE_BUTTON_LEFT:
-		show_achievement_details(achievement_name)
+#func _on_panel_clicked(event: InputEvent, achievement_name: String) -> void:
+	## Works for BOTH mouse and touch
+	#if event is InputEventScreenTouch and event.pressed:
+		#show_achievement_details(achievement_name)
+#
+	#elif event is InputEventMouseButton \
+	#and event.pressed \
+	#and event.button_index == MOUSE_BUTTON_LEFT:
+		#show_achievement_details(achievement_name)
 
 # === Show popup ===
 func show_achievement_details(achievement_name: String):
@@ -70,7 +68,7 @@ func show_achievement_details(achievement_name: String):
 	# Create ONLY ONCE
 	if details_popup == null:
 		details_popup = AchievementDetailsScene.instantiate()
-		add_child(details_popup)
+		get_tree().current_scene.add_child(details_popup)
 
 	# Reuse existing popup
 	details_popup.set_description(text)
@@ -81,5 +79,5 @@ func update_achievements_ui() -> void:
 
 	for achievement_name in achievement_panels.keys():
 		if achievement_name in unlocked_achievements:
-			var lock_panel: Panel = achievement_panels[achievement_name]
+			var lock_panel: Button = achievement_panels[achievement_name]
 			lock_panel.visible = false

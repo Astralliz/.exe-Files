@@ -17,22 +17,16 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -5.0
-offset_right = -5.0
+offset_right = 566.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hl35l")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.485
-anchor_top = 0.81
-anchor_right = 0.485
-anchor_bottom = 0.81
-offset_left = -931.2
-offset_top = -874.8
-offset_right = 988.8
-offset_bottom = 205.2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.509804)
@@ -40,14 +34,10 @@ color = Color(0, 0, 0, 0.509804)
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.769
-anchor_right = 0.5
-anchor_bottom = 0.769
-offset_left = -551.0
-offset_top = -616.52
-offset_right = 552.0
-offset_bottom = 0.479858
+offset_left = 694.5
+offset_top = 214.0
+offset_right = 1797.5
+offset_bottom = 831.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_yo2gg")
 
 [node name="CloseButton" type="Button" parent="Panel"]

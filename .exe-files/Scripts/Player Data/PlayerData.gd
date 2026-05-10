@@ -10,12 +10,11 @@ var data: Dictionary = {
 	"username": "",
 	"level": 0,
 	"total_inspected": 0,  
-	"achievements": [], # ["FirstScan", "ExpertAnalyzer"]
-	"filter_used": 0,   # { "level1": 3, "level2": 1 } - track skill/question usage
+	"achievements": [], 
+	"filter_used": 0,  
 	"evaluate_used": 0,
 	"bug_bounty": 40,
 	"minigame_usage": {},
-	# Test Results
 	"pre_quiz_score": 0.0,
 	"post_quiz_score": 0.0,
 	"post_likert_score": 0.0,
@@ -161,12 +160,19 @@ func set_username(name: String) -> void:
 	emit_signal("username_changed", name)
 
 # TEMP (not saved yet)
-func queue_temp_achievement(id: String) -> void:
+func queue_achievement(id: String) -> void:
 	if id == "":
 		return
 
-	if not pending_achievements.has(id):
-		pending_achievements.append(id)
+	# already unlocked permanently
+	if data["achievements"].has(id):
+		return
+
+	# already queued this session
+	if pending_achievements.has(id):
+		return
+
+	pending_achievements.append(id)
 
 # COMMIT (only on success)
 func commit_pending_achievements() -> void:
