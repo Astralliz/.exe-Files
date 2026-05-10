@@ -9,8 +9,11 @@ extends Control
 @onready var trophy_image: TextureRect = $TrophyPanel/TrophyImage
 @onready var achievement_label: Label = $TrophyPanel/AchievementLabel
 
-var added_eval = 5
-var added_fils = 1
+const REWARD_EVAL := 5
+const REWARD_FILTER := 2
+
+var total_added_eval := 0
+var total_added_filters := 0
 
 var achievement_images := {
 	"Metadata Detective": "res://Assets/Trophy/MetadataDetective.png",
@@ -53,6 +56,18 @@ func setup_dialogue(day: int) -> void:
 	if Player_Data.newly_unlocked.size() > 0:
 		achievement_queue = Player_Data.newly_unlocked.duplicate()
 		Player_Data.newly_unlocked.clear()
+	# =========================
+	# CALCULATE TOTAL REWARDS
+	# =========================
+	var achievement_count = achievement_queue.size()
+
+	total_added_eval = achievement_count * REWARD_EVAL
+	total_added_filters = achievement_count * REWARD_FILTER
+
+	# Give rewards immediately
+	if achievement_count > 0:
+		Player_Data.add_evaluates(total_added_eval)
+		Player_Data.add_filter(total_added_filters)
 
 	# =========================
 	# FLOW CONTROL
@@ -92,8 +107,8 @@ func _on_achievement_pressed() -> void:
 	else:
 		# FINAL REWARD SCREEN
 		message.text = "\nCONGRATS!\nYou received:\n" \
-			+ str(added_eval) + " Evaluates\n" \
-			+ str(added_fils) + " Filters!"
+			+ str(total_added_eval) + " Evaluates\n" \
+			+ str(total_added_filters) + " Filters!"
 
 		accept_btn.show()
 		trophy_panel.visible = false
