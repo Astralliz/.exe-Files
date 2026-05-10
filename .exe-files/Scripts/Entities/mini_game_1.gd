@@ -34,7 +34,6 @@ var current_rounds: Array        = []
 var active_papers: Dictionary    = {}
 var current_round_index: int     = 0
 var total_score: int             = 0
-var bounty_count: int            = 0
 var game_finished: bool          = false
 var spawn_timer: float           = 0.0
 var attack_panels: Dictionary    = {}
@@ -264,7 +263,18 @@ class Paper extends Panel:
 		var tw2 = create_tween()
 		tw2.tween_property(self, "modulate", Color.WHITE, 0.2)
 		await tw2.finished
+		
+		# PENALTY
+		Player_Data.modify_bug_bounty(-1)
+		
+		game_reference.total_score -= 10
 
+		# Prevent negative score
+		if game_reference.total_score < 0:
+			game_reference.total_score = 0
+
+		game_reference.score_label.text = str(game_reference.total_score)
+		
 		_close_file()
 		is_animating = false
 
@@ -274,6 +284,10 @@ class Paper extends Panel:
 func _ready() -> void:
 	paper_container.clip_contents   = true
 	paper_container.mouse_filter    = Control.MOUSE_FILTER_PASS
+	
+	Player_Data.bug_bounty_changed.connect(_on_bug_bounty_changed)
+	bounty_label.text = str(Player_Data.get_bug_bounty())
+	score_label.text = str(total_score)
 	
 	paused.hide()
 	paused.setup_pause(true, parent_day, self)
@@ -457,25 +471,30 @@ func setup_attack_panels() -> void:
 
 			i += 1
 
-
 # ══════════════════════════════════════════════════════════════
 # GAME LOGIC CALLBACKS
 # ══════════════════════════════════════════════════════════════
 func on_paper_correct(paper_no: int) -> void:
 	var paper = active_papers.get(paper_no)
+
 	if paper and is_instance_valid(paper):
 		stopped_papers.erase(paper)
 
-	total_score  += 10
-	bounty_count += 1
+	total_score += 10
+
+	# =========================
+	# BUG BOUNTY REWARD
+	# =========================
+	Player_Data.add_bug_bounty(1)
 
 	active_papers.erase(paper_no)
+
 	_rearrange_stopped_papers()
 
-	score_label.text  = str(total_score)
-	bounty_label.text = str(bounty_count)
+	score_label.text = str(total_score)
 
-
+func _on_bug_bounty_changed(new_amount):
+	bounty_label.text = str(new_amount)
 
 func _rearrange_stopped_papers() -> void:
 	var valid = stopped_papers.filter(func(p): return is_instance_valid(p))
@@ -486,7 +505,6 @@ func _rearrange_stopped_papers() -> void:
 		p.original_pos.x = target_x
 		var tw = create_tween()
 		tw.tween_property(p, "position:x", target_x, 0.2)
-
 
 # ══════════════════════════════════════════════════════════════
 # END GAME
@@ -529,7 +547,6 @@ func _on_finished_screen_continue(success: bool) -> void:
 
 	emit_signal("minigame_finished", success)
 	queue_free()
-
 
 # ══════════════════════════════════════════════════════════════
 # COMPUTE METRICS
@@ -580,7 +597,6 @@ func compute_metrics() -> Dictionary:
 	result["accuracy"] = accuracy
 
 	return result
-
 
 func _on_pause_btn_pressed() -> void:
 	paused.show()

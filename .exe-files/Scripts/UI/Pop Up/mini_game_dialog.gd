@@ -14,8 +14,7 @@ func _ready():
 	continue_btn.pressed.connect(_on_continue_pressed)
 	quit_btn.pressed.connect(_on_quit_pressed)
 
-func show_dialog(text: String):
-	dialog_label.text = text
+func show_dialog():
 	show()
 
 func _on_continue_pressed():
