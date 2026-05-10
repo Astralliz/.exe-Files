@@ -1,12 +1,21 @@
-[gd_scene load_steps=12 format=3 uid="uid://bsm6kkncq7duf"]
+[gd_scene load_steps=17 format=3 uid="uid://bsm6kkncq7duf"]
 
 [ext_resource type="Script" uid="uid://daga18doksm0x" path="res://Scripts/UI/loading_screen.gd" id="1_qj53y"]
-[ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="2_u08of"]
+[ext_resource type="Texture2D" uid="uid://dkkcg20f3su7g" path="res://Assets/images/ExeBG.png" id="2_v7pnk"]
+[ext_resource type="Script" uid="uid://c0rcftqgxqxng" path="res://Scripts/UI/main_menu_idle_animation.gd.gd" id="3_1ku0f"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_u08of"]
 [ext_resource type="Texture2D" uid="uid://bop15iaaq0fdb" path="res://Assets/images/Icon.png" id="4_mlp0r"]
+[ext_resource type="Texture2D" uid="uid://bknkei26vnjos" path="res://Assets/Sprites/WalkingFile.png" id="4_yiwac"]
+[ext_resource type="Texture2D" uid="uid://b0kvf6xewvfrf" path="res://Assets/Sprites/WalkingPunkFile.png" id="5_ffnnp"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_46ur2"]
-texture = ExtResource("2_u08of")
+texture = ExtResource("2_v7pnk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_12h0r"]
+texture = ExtResource("4_yiwac")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p1qlt"]
+texture = ExtResource("5_ffnnp")
 
 [sub_resource type="Gradient" id="Gradient_u08of"]
 colors = PackedColorArray(0.564409, 0.143341, 0.601563, 1, 0.597235, 0.487976, 0.609375, 1)
@@ -33,7 +42,28 @@ script = ExtResource("1_qj53y")
 offset_right = 2460.0
 offset_bottom = 1090.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_46ur2")
+script = ExtResource("3_1ku0f")
 metadata/_edit_use_anchors_ = true
+
+[node name="WalkingFile" type="Panel" parent="ColorRect"]
+offset_left = 12.0
+offset_top = 649.0
+offset_right = 363.0
+offset_bottom = 975.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_12h0r")
+
+[node name="WalkingFilePunk" type="Panel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.759
+anchor_top = 0.382
+anchor_right = 1.033
+anchor_bottom = 0.935
+offset_left = 0.137207
+offset_top = -0.357971
+offset_right = -0.0808105
+offset_bottom = 0.485107
+theme_override_styles/panel = SubResource("StyleBoxTexture_p1qlt")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 offset_left = 218.0

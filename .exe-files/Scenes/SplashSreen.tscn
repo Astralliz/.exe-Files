@@ -1,13 +1,22 @@
-[gd_scene load_steps=14 format=3 uid="uid://dxruefcnn4f51"]
+[gd_scene load_steps=19 format=3 uid="uid://dxruefcnn4f51"]
 
 [ext_resource type="Script" uid="uid://c2aqvs6cwh5u6" path="res://Scripts/splash_sreen.gd" id="1_epqin"]
-[ext_resource type="Texture2D" uid="uid://1hr3858nd2on" path="res://Assets/images/Gemini_Generated_Image_4fw4794fw4794fw4.png" id="1_ro0qk"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="2_epqin"]
+[ext_resource type="Texture2D" uid="uid://dkkcg20f3su7g" path="res://Assets/images/ExeBG.png" id="2_wvt1l"]
+[ext_resource type="Script" uid="uid://c0rcftqgxqxng" path="res://Scripts/UI/main_menu_idle_animation.gd.gd" id="3_rt5ew"]
+[ext_resource type="Texture2D" uid="uid://bknkei26vnjos" path="res://Assets/Sprites/WalkingFile.png" id="4_2c817"]
 [ext_resource type="Texture2D" uid="uid://bop15iaaq0fdb" path="res://Assets/images/Icon.png" id="4_u8evo"]
+[ext_resource type="Texture2D" uid="uid://b0kvf6xewvfrf" path="res://Assets/Sprites/WalkingPunkFile.png" id="5_7pobv"]
 [ext_resource type="Texture2D" uid="uid://c7umgb0cekexu" path="res://Assets/images/gamename.png" id="5_q75ol"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u8evo"]
-texture = ExtResource("1_ro0qk")
+texture = ExtResource("2_wvt1l")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0lhvi"]
+texture = ExtResource("4_2c817")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u8lk7"]
+texture = ExtResource("5_7pobv")
 
 [sub_resource type="Gradient" id="Gradient_q75ol"]
 colors = PackedColorArray(0.564409, 0.143341, 0.601563, 1, 0.597235, 0.487976, 0.609375, 1)
@@ -40,7 +49,25 @@ anchor_bottom = 0.99
 offset_right = -0.600098
 offset_bottom = -0.200073
 theme_override_styles/panel = SubResource("StyleBoxTexture_u8evo")
+script = ExtResource("3_rt5ew")
 metadata/_edit_use_anchors_ = true
+
+[node name="WalkingFile" type="Panel" parent="ColorRect"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 649.0
+offset_right = 363.0
+offset_bottom = 975.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_0lhvi")
+
+[node name="WalkingFilePunk" type="Panel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 1865.0
+offset_top = 408.0
+offset_right = 2538.0
+offset_bottom = 1000.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_u8lk7")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 anchors_preset = -1
