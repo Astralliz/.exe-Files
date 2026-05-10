@@ -2,265 +2,101 @@
   "feature": "source_Email Attachment",
   "threshold": 0.5,
   "left": {
-	"feature": "requires_admin",
-	"threshold": 0.5,
+	"feature": "size",
+	"threshold": 29.885910034179688,
 	"left": {
-	  "feature": "size",
-	  "threshold": 48.97794532775879,
+	  "feature": "publisher_OpenSoft Labs",
+	  "threshold": 0.5,
 	  "left": {
-		"feature": "publisher_Micros0ft",
-		"threshold": 0.5,
+		"feature": "size",
+		"threshold": 20.2012357711792,
 		"left": {
-		  "feature": "extension_.exe",
-		  "threshold": 0.5,
+		  "feature": "size",
+		  "threshold": 20.08790397644043,
 		  "left": {
-			"feature": "extension_.bat",
+			"feature": "publisher_ACME Software",
 			"threshold": 0.5,
 			"left": {
+			  "feature": "publisher_unknown",
+			  "threshold": 0.5,
+			  "left": {
+				"value": [
+				  [
+					1.0,
+					0.0,
+					0.0,
+					0.0
+				  ]
+				]
+			  },
+			  "right": {
+				"feature": "source_Web Form Input",
+				"threshold": 0.5,
+				"left": {
+				  "value": [
+					[
+					  0.8504746835443038,
+					  0.0,
+					  0.1495253164556962,
+					  0.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  1.0,
+					  0.0,
+					  0.0,
+					  0.0
+					]
+				  ]
+				}
+			  }
+			},
+			"right": {
 			  "feature": "extension_.js",
 			  "threshold": 0.5,
 			  "left": {
+				"value": [
+				  [
+					1.0,
+					0.0,
+					0.0,
+					0.0
+				  ]
+				]
+			  },
+			  "right": {
 				"feature": "size",
-				"threshold": 47.27728462219238,
+				"threshold": 8.571907997131348,
 				"left": {
 				  "value": [
 					[
-					  0.9952652197947461,
-					  0.0047347802052539354,
-					  0.0,
-					  0.0
-					]
-				  ]
-				},
-				"right": {
-				  "value": [
-					[
-					  0.8769134645423305,
-					  0.0,
-					  0.0,
-					  0.12308653545766947
-					]
-				  ]
-				}
-			  },
-			  "right": {
-				"feature": "modified_hours",
-				"threshold": 95.5,
-				"left": {
-				  "value": [
-					[
-					  0.9609816108035744,
-					  0.009520411230993439,
-					  0.0197638916694041,
-					  0.009734086296028205
-					]
-				  ]
-				},
-				"right": {
-				  "value": [
-					[
-					  0.8387888707037642,
-					  0.16121112929623566,
-					  0.0,
-					  0.0
-					]
-				  ]
-				}
-			  }
-			},
-			"right": {
-			  "feature": "size",
-			  "threshold": 35.129356384277344,
-			  "left": {
-				"feature": "hidden",
-				"threshold": 0.5,
-				"left": {
-				  "value": [
-					[
-					  0.0,
-					  0.0,
-					  0.0,
-					  1.0
-					]
-				  ]
-				},
-				"right": {
-				  "value": [
-					[
-					  0.0,
-					  0.0,
 					  1.0,
+					  0.0,
+					  0.0,
+					  0.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.7316771339294001,
+					  0.13968381647743094,
+					  0.12863904959316894,
 					  0.0
 					]
 				  ]
 				}
-			  },
-			  "right": {
-				"value": [
-				  [
-					0.0,
-					0.0,
-					0.0,
-					1.0
-				  ]
-				]
 			  }
 			}
 		  },
 		  "right": {
-			"feature": "size",
-			"threshold": 47.80116271972656,
+			"feature": "source_Downloads",
+			"threshold": 0.5,
 			"left": {
-			  "feature": "is_compressed",
-			  "threshold": 0.5,
-			  "left": {
-				"value": [
-				  [
-					0.0,
-					0.0,
-					0.0,
-					1.0
-				  ]
-				]
-			  },
-			  "right": {
-				"feature": "modified_hours",
-				"threshold": 58.0,
-				"left": {
-				  "value": [
-					[
-					  0.0,
-					  0.0,
-					  0.0,
-					  1.0
-					]
-				  ]
-				},
-				"right": {
-				  "value": [
-					[
-					  0.25470809501087555,
-					  0.24476826691289016,
-					  0.0,
-					  0.5005236380762343
-					]
-				  ]
-				}
-			  }
-			},
-			"right": {
-			  "feature": "size",
-			  "threshold": 47.981550216674805,
-			  "left": {
-				"value": [
-				  [
-					0.0,
-					0.0,
-					1.0,
-					0.0
-				  ]
-				]
-			  },
-			  "right": {
-				"value": [
-				  [
-					0.0,
-					0.0,
-					0.0,
-					1.0
-				  ]
-				]
-			  }
-			}
-		  }
-		},
-		"right": {
-		  "feature": "hidden",
-		  "threshold": 0.5,
-		  "left": {
-			"value": [
-			  [
-				0.0,
-				0.0,
-				0.0,
-				1.0
-			  ]
-			]
-		  },
-		  "right": {
-			"feature": "modified_hours",
-			"threshold": 64.0,
-			"left": {
-			  "value": [
-				[
-				  0.0,
-				  0.0,
-				  0.0,
-				  1.0
-				]
-			  ]
-			},
-			"right": {
-			  "feature": "size",
-			  "threshold": 42.05642127990723,
-			  "left": {
-				"feature": "has_crack",
-				"threshold": 0.5,
-				"left": {
-				  "value": [
-					[
-					  0.0,
-					  0.0,
-					  0.0,
-					  1.0
-					]
-				  ]
-				},
-				"right": {
-				  "value": [
-					[
-					  0.0,
-					  0.0,
-					  0.5037688442211056,
-					  0.4962311557788945
-					]
-				  ]
-				}
-			  },
-			  "right": {
-				"value": [
-				  [
-					1.0,
-					0.0,
-					0.0,
-					0.0
-				  ]
-				]
-			  }
-			}
-		  }
-		}
-	  },
-	  "right": {
-		"feature": "source_Web Form Input",
-		"threshold": 0.5,
-		"left": {
-		  "feature": "modified_hours",
-		  "threshold": 1.5,
-		  "left": {
-			"feature": "size",
-			"threshold": 63.78992462158203,
-			"left": {
-			  "value": [
-				[
-				  0.0,
-				  0.0,
-				  0.0,
-				  1.0
-				]
-			  ]
-			},
-			"right": {
 			  "value": [
 				[
 				  0.0,
@@ -269,72 +105,16 @@
 				  0.0
 				]
 			  ]
-			}
-		  },
-		  "right": {
-			"feature": "size",
-			"threshold": 51.147878646850586,
-			"left": {
-			  "feature": "size",
-			  "threshold": 51.09742736816406,
-			  "left": {
-				"value": [
-				  [
-					0.0,
-					0.0,
-					0.0,
-					1.0
-				  ]
-				]
-			  },
-			  "right": {
-				"value": [
-				  [
-					0.0,
-					1.0,
-					0.0,
-					0.0
-				  ]
-				]
-			  }
 			},
 			"right": {
-			  "feature": "modified_hours",
-			  "threshold": 29.5,
-			  "left": {
-				"feature": "modified_hours",
-				"threshold": 25.5,
-				"left": {
-				  "value": [
-					[
-					  0.0,
-					  0.0,
-					  0.0,
-					  1.0
-					]
-				  ]
-				},
-				"right": {
-				  "value": [
-					[
-					  0.0,
-					  0.13985634251758192,
-					  0.14516734286635086,
-					  0.7149763146160673
-					]
-				  ]
-				}
-			  },
-			  "right": {
-				"value": [
-				  [
-					0.0,
-					0.0,
-					0.0,
-					1.0
-				  ]
+			  "value": [
+				[
+				  1.0,
+				  0.0,
+				  0.0,
+				  0.0
 				]
-			  }
+			  ]
 			}
 		  }
 		},
@@ -347,6 +127,128 @@
 			  0.0
 			]
 		  ]
+		}
+	  },
+	  "right": {
+		"feature": "source_Web Form Input",
+		"threshold": 0.5,
+		"left": {
+		  "feature": "extension_.txt",
+		  "threshold": 0.5,
+		  "left": {
+			"value": [
+			  [
+				1.0,
+				0.0,
+				0.0,
+				0.0
+			  ]
+			]
+		  },
+		  "right": {
+			"feature": "size",
+			"threshold": 17.205822467803955,
+			"left": {
+			  "value": [
+				[
+				  1.0,
+				  0.0,
+				  0.0,
+				  0.0
+				]
+			  ]
+			},
+			"right": {
+			  "feature": "size",
+			  "threshold": 21.49694538116455,
+			  "left": {
+				"value": [
+				  [
+					0.0,
+					0.0,
+					1.0,
+					0.0
+				  ]
+				]
+			  },
+			  "right": {
+				"value": [
+				  [
+					1.0,
+					0.0,
+					0.0,
+					0.0
+				  ]
+				]
+			  }
+			}
+		  }
+		},
+		"right": {
+		  "feature": "size",
+		  "threshold": 15.340468406677246,
+		  "left": {
+			"value": [
+			  [
+				1.0,
+				0.0,
+				0.0,
+				0.0
+			  ]
+			]
+		  },
+		  "right": {
+			"feature": "size",
+			"threshold": 19.102088928222656,
+			"left": {
+			  "value": [
+				[
+				  0.0,
+				  0.0,
+				  0.0,
+				  1.0
+				]
+			  ]
+			},
+			"right": {
+			  "feature": "size",
+			  "threshold": 25.81235122680664,
+			  "left": {
+				"value": [
+				  [
+					1.0,
+					0.0,
+					0.0,
+					0.0
+				  ]
+				]
+			  },
+			  "right": {
+				"feature": "size",
+				"threshold": 28.79912567138672,
+				"left": {
+				  "value": [
+					[
+					  0.0,
+					  0.0,
+					  0.0,
+					  1.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  1.0,
+					  0.0,
+					  0.0,
+					  0.0
+					]
+				  ]
+				}
+			  }
+			}
+		  }
 		}
 	  }
 	},
@@ -354,82 +256,208 @@
 	  "feature": "publisher_Micros0ft",
 	  "threshold": 0.5,
 	  "left": {
-		"feature": "size",
-		"threshold": 29.779294967651367,
+		"feature": "publisher_unknown",
+		"threshold": 0.5,
 		"left": {
-		  "feature": "modified_hours",
-		  "threshold": 4.0,
+		  "feature": "source_Web Form Input",
+		  "threshold": 0.5,
 		  "left": {
-			"feature": "publisher_OpenSoft Labs",
+			"feature": "extension_.sql",
 			"threshold": 0.5,
 			"left": {
-			  "value": [
-				[
-				  1.0,
-				  0.0,
-				  0.0,
-				  0.0
-				]
-			  ]
-			},
-			"right": {
-			  "value": [
-				[
-				  0.0,
-				  0.0,
-				  1.0,
-				  0.0
-				]
-			  ]
-			}
-		  },
-		  "right": {
-			"feature": "size",
-			"threshold": 7.619959115982056,
-			"left": {
-			  "feature": "publisher_Blue Horizon",
+			  "feature": "extension_.txt",
 			  "threshold": 0.5,
 			  "left": {
-				"value": [
-				  [
-					1.0,
-					0.0,
-					0.0,
-					0.0
+				"feature": "extension_.js",
+				"threshold": 0.5,
+				"left": {
+				  "value": [
+					[
+					  0.007945540292540354,
+					  0.970800559379476,
+					  0.017461710642908454,
+					  0.003792189685076079
+					]
 				  ]
-				]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.25359092583182175,
+					  0.7261921967002172,
+					  0.009692352878101987,
+					  0.01052452458985822
+					]
+				  ]
+				}
+			  },
+			  "right": {
+				"feature": "publisher_ACME Software",
+				"threshold": 0.5,
+				"left": {
+				  "value": [
+					[
+					  1.0,
+					  0.0,
+					  0.0,
+					  0.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.8073394495412843,
+					  0.0,
+					  0.0,
+					  0.1926605504587156
+					]
+				  ]
+				}
+			  }
+			},
+			"right": {
+			  "feature": "size",
+			  "threshold": 31.466585159301758,
+			  "left": {
+				"feature": "size",
+				"threshold": 31.096254348754883,
+				"left": {
+				  "value": [
+					[
+					  1.0,
+					  0.0,
+					  0.0,
+					  0.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.0,
+					  0.0,
+					  1.0,
+					  0.0
+					]
+				  ]
+				}
 			  },
 			  "right": {
 				"value": [
 				  [
-					0.0,
 					1.0,
+					0.0,
 					0.0,
 					0.0
 				  ]
 				]
 			  }
+			}
+		  },
+		  "right": {
+			"feature": "size",
+			"threshold": 48.61346626281738,
+			"left": {
+			  "feature": "publisher_ACME Software",
+			  "threshold": 0.5,
+			  "left": {
+				"feature": "extension_.js",
+				"threshold": 0.5,
+				"left": {
+				  "value": [
+					[
+					  1.0,
+					  0.0,
+					  0.0,
+					  0.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  1.0,
+					  0.0,
+					  0.0,
+					  0.0
+					]
+				  ]
+				}
+			  },
+			  "right": {
+				"feature": "extension_.txt",
+				"threshold": 0.5,
+				"left": {
+				  "value": [
+					[
+					  0.9041095890410958,
+					  0.0,
+					  0.0,
+					  0.0958904109589041
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.0,
+					  0.0,
+					  1.0,
+					  0.0
+					]
+				  ]
+				}
+			  }
 			},
 			"right": {
-			  "value": [
-				[
-				  1.0,
-				  0.0,
-				  0.0,
-				  0.0
+			  "feature": "size",
+			  "threshold": 48.911895751953125,
+			  "left": {
+				"value": [
+				  [
+					0.0,
+					0.0,
+					1.0,
+					0.0
+				  ]
 				]
-			  ]
+			  },
+			  "right": {
+				"feature": "publisher_Blue Horizon",
+				"threshold": 0.5,
+				"left": {
+				  "value": [
+					[
+					  1.0,
+					  0.0,
+					  0.0,
+					  0.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  1.0,
+					  0.0,
+					  0.0,
+					  0.0
+					]
+				  ]
+				}
+			  }
 			}
 		  }
 		},
 		"right": {
-		  "feature": "has_free",
+		  "feature": "source_Browser Cache",
 		  "threshold": 0.5,
 		  "left": {
-			"feature": "source_Web Form Input",
+			"feature": "extension_.js",
 			"threshold": 0.5,
 			"left": {
-			  "feature": "has_crack",
+			  "feature": "extension_.ps1",
 			  "threshold": 0.5,
 			  "left": {
 				"feature": "extension_.txt",
@@ -437,10 +465,10 @@
 				"left": {
 				  "value": [
 					[
-					  0.035769248852025363,
-					  0.8959993272601525,
-					  0.019028636688874924,
-					  0.0492027871989456
+					  0.03727726244611347,
+					  0.0756135380299006,
+					  0.02867315012570239,
+					  0.8584360493982834
 					]
 				  ]
 				},
@@ -459,287 +487,25 @@
 				"value": [
 				  [
 					0.0,
-					0.0,
-					0.0,
-					1.0
-				  ]
-				]
-			  }
-			},
-			"right": {
-			  "feature": "modified_hours",
-			  "threshold": 93.5,
-			  "left": {
-				"value": [
-				  [
-					1.0,
-					0.0,
-					0.0,
-					0.0
-				  ]
-				]
-			  },
-			  "right": {
-				"value": [
-				  [
-					0.0,
 					1.0,
 					0.0,
 					0.0
 				  ]
 				]
 			  }
-			}
-		  },
-		  "right": {
-			"value": [
-			  [
-				0.0,
-				0.0,
-				0.0,
-				1.0
-			  ]
-			]
-		  }
-		}
-	  },
-	  "right": {
-		"feature": "size",
-		"threshold": 62.77962684631348,
-		"left": {
-		  "feature": "source_Community Forum",
-		  "threshold": 0.5,
-		  "left": {
-			"value": [
-			  [
-				0.0,
-				0.0,
-				0.0,
-				1.0
-			  ]
-			]
-		  },
-		  "right": {
-			"value": [
-			  [
-				0.0,
-				0.0,
-				0.0,
-				1.0
-			  ]
-			]
-		  }
-		},
-		"right": {
-		  "feature": "size",
-		  "threshold": 64.12137603759766,
-		  "left": {
-			"value": [
-			  [
-				0.0,
-				0.0,
-				1.0,
-				0.0
-			  ]
-			]
-		  },
-		  "right": {
-			"value": [
-			  [
-				0.0,
-				0.0,
-				0.0,
-				1.0
-			  ]
-			]
-		  }
-		}
-	  }
-	}
-  },
-  "right": {
-	"feature": "modified_hours",
-	"threshold": 45.5,
-	"left": {
-	  "feature": "modified_hours",
-	  "threshold": 44.5,
-	  "left": {
-		"feature": "extension_.docx",
-		"threshold": 0.5,
-		"left": {
-		  "feature": "modified_hours",
-		  "threshold": 28.5,
-		  "left": {
-			"feature": "modified_hours",
-			"threshold": 3.5,
-			"left": {
-			  "feature": "size",
-			  "threshold": 29.43876361846924,
-			  "left": {
-				"value": [
-				  [
-					0.0,
-					0.0,
-					1.0,
-					0.0
-				  ]
-				]
-			  },
-			  "right": {
-				"feature": "size",
-				"threshold": 38.348541259765625,
-				"left": {
-				  "value": [
-					[
-					  0.5099502487562189,
-					  0.4900497512437811,
-					  0.0,
-					  0.0
-					]
-				  ]
-				},
-				"right": {
-				  "value": [
-					[
-					  0.0,
-					  0.0,
-					  1.0,
-					  0.0
-					]
-				  ]
-				}
-			  }
-			},
-			"right": {
-			  "value": [
-				[
-				  0.0,
-				  0.0,
-				  1.0,
-				  0.0
-				]
-			  ]
-			}
-		  },
-		  "right": {
-			"feature": "modified_hours",
-			"threshold": 33.5,
-			"left": {
-			  "feature": "size",
-			  "threshold": 46.93531036376953,
-			  "left": {
-				"feature": "modified_hours",
-				"threshold": 29.5,
-				"left": {
-				  "value": [
-					[
-					  0.0,
-					  0.0,
-					  1.0,
-					  0.0
-					]
-				  ]
-				},
-				"right": {
-				  "value": [
-					[
-					  0.37559429477020595,
-					  0.0,
-					  0.6244057052297939,
-					  0.0
-					]
-				  ]
-				}
-			  },
-			  "right": {
-				"value": [
-				  [
-					1.0,
-					0.0,
-					0.0,
-					0.0
-				  ]
-				]
-			  }
-			},
-			"right": {
-			  "feature": "has_verify",
-			  "threshold": 0.5,
-			  "left": {
-				"value": [
-				  [
-					0.0,
-					0.0,
-					1.0,
-					0.0
-				  ]
-				]
-			  },
-			  "right": {
-				"feature": "modified_hours",
-				"threshold": 41.5,
-				"left": {
-				  "value": [
-					[
-					  0.0,
-					  0.138353765323993,
-					  0.861646234676007,
-					  0.0
-					]
-				  ]
-				},
-				"right": {
-				  "value": [
-					[
-					  0.5044025157232704,
-					  0.0,
-					  0.0,
-					  0.49559748427672956
-					]
-				  ]
-				}
-			  }
-			}
-		  }
-		},
-		"right": {
-		  "feature": "modified_hours",
-		  "threshold": 33.0,
-		  "left": {
-			"feature": "size",
-			"threshold": 12.166505336761475,
-			"left": {
-			  "value": [
-				[
-				  0.0,
-				  0.0,
-				  1.0,
-				  0.0
-				]
-			  ]
 			},
 			"right": {
 			  "feature": "size",
-			  "threshold": 12.763068199157715,
+			  "threshold": 49.654991149902344,
 			  "left": {
-				"value": [
-				  [
-					0.0,
-					0.0,
-					0.0,
-					1.0
-				  ]
-				]
-			  },
-			  "right": {
 				"feature": "size",
-				"threshold": 18.849875450134277,
+				"threshold": 39.559303283691406,
 				"left": {
 				  "value": [
 					[
+					  1.0,
 					  0.0,
-					  0.4906832298136646,
-					  0.5093167701863355,
+					  0.0,
 					  0.0
 					]
 				  ]
@@ -747,96 +513,8 @@
 				"right": {
 				  "value": [
 					[
-					  0.04022854055782364,
-					  0.038658646292152474,
-					  0.8025339230269626,
-					  0.11857889012306122
-					]
-				  ]
-				}
-			  }
-			}
-		  },
-		  "right": {
-			"value": [
-			  [
-				0.0,
-				0.0,
-				1.0,
-				0.0
-			  ]
-			]
-		  }
-		}
-	  },
-	  "right": {
-		"feature": "size",
-		"threshold": 19.456778526306152,
-		"left": {
-		  "value": [
-			[
-			  0.0,
-			  0.0,
-			  1.0,
-			  0.0
-			]
-		  ]
-		},
-		"right": {
-		  "value": [
-			[
-			  0.0,
-			  1.0,
-			  0.0,
-			  0.0
-			]
-		  ]
-		}
-	  }
-	},
-	"right": {
-	  "feature": "extension_.docx",
-	  "threshold": 0.5,
-	  "left": {
-		"feature": "size",
-		"threshold": 27.574249267578125,
-		"left": {
-		  "feature": "size",
-		  "threshold": 27.388596534729004,
-		  "left": {
-			"feature": "modified_hours",
-			"threshold": 91.0,
-			"left": {
-			  "value": [
-				[
-				  0.0,
-				  0.0,
-				  1.0,
-				  0.0
-				]
-			  ]
-			},
-			"right": {
-			  "feature": "modified_hours",
-			  "threshold": 92.5,
-			  "left": {
-				"feature": "size",
-				"threshold": 20.677454948425293,
-				"left": {
-				  "value": [
-					[
-					  0.0,
-					  0.0,
-					  1.0,
-					  0.0
-					]
-				  ]
-				},
-				"right": {
-				  "value": [
-					[
-					  0.0,
-					  1.0,
+					  0.8073394495412843,
+					  0.1926605504587156,
 					  0.0,
 					  0.0
 					]
@@ -846,9 +524,9 @@
 			  "right": {
 				"value": [
 				  [
-					0.0,
 					0.0,
 					1.0,
+					0.0,
 					0.0
 				  ]
 				]
@@ -856,76 +534,52 @@
 			}
 		  },
 		  "right": {
-			"value": [
-			  [
-				0.0,
-				1.0,
-				0.0,
-				0.0
-			  ]
-			]
-		  }
-		},
-		"right": {
-		  "value": [
-			[
-			  0.0,
-			  0.0,
-			  1.0,
-			  0.0
-			]
-		  ]
-		}
-	  },
-	  "right": {
-		"feature": "size",
-		"threshold": 44.89906120300293,
-		"left": {
-		  "feature": "modified_hours",
-		  "threshold": 53.5,
-		  "left": {
-			"feature": "hidden",
+			"feature": "extension_.js",
 			"threshold": 0.5,
 			"left": {
-			  "value": [
-				[
-				  1.0,
-				  0.0,
-				  0.0,
-				  0.0
-				]
-			  ]
-			},
-			"right": {
-			  "value": [
-				[
-				  0.0,
-				  0.0,
-				  1.0,
-				  0.0
-				]
-			  ]
-			}
-		  },
-		  "right": {
-			"feature": "modified_hours",
-			"threshold": 60.5,
-			"left": {
-			  "feature": "modified_hours",
-			  "threshold": 59.5,
+			  "feature": "size",
+			  "threshold": 43.623952865600586,
 			  "left": {
+				"feature": "size",
+				"threshold": 43.38135528564453,
+				"left": {
+				  "value": [
+					[
+					  0.0,
+					  1.0,
+					  0.0,
+					  0.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.0,
+					  0.0,
+					  0.0,
+					  1.0
+					]
+				  ]
+				}
+			  },
+			  "right": {
 				"value": [
 				  [
 					0.0,
-					0.0,
 					1.0,
+					0.0,
 					0.0
 				  ]
 				]
-			  },
-			  "right": {
+			  }
+			},
+			"right": {
+			  "feature": "has_update",
+			  "threshold": 0.5,
+			  "left": {
 				"feature": "size",
-				"threshold": 18.72266674041748,
+				"threshold": 54.51066780090332,
 				"left": {
 				  "value": [
 					[
@@ -946,36 +600,254 @@
 					]
 				  ]
 				}
+			  },
+			  "right": {
+				"value": [
+				  [
+					0.0,
+					1.0,
+					0.0,
+					0.0
+				  ]
+				]
+			  }
+			}
+		  }
+		}
+	  },
+	  "right": {
+		"feature": "size",
+		"threshold": 73.02831268310547,
+		"left": {
+		  "feature": "has_free",
+		  "threshold": 0.5,
+		  "left": {
+			"feature": "extension_.bat",
+			"threshold": 0.5,
+			"left": {
+			  "feature": "size",
+			  "threshold": 48.23773384094238,
+			  "left": {
+				"feature": "size",
+				"threshold": 47.385738372802734,
+				"left": {
+				  "value": [
+					[
+					  0.0,
+					  0.0,
+					  0.0,
+					  1.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  1.0,
+					  0.0,
+					  0.0,
+					  0.0
+					]
+				  ]
+				}
+			  },
+			  "right": {
+				"value": [
+				  [
+					0.0,
+					0.0,
+					0.0,
+					1.0
+				  ]
+				]
 			  }
 			},
 			"right": {
-			  "value": [
-				[
-				  0.0,
-				  0.0,
-				  1.0,
-				  0.0
+			  "feature": "size",
+			  "threshold": 44.71451759338379,
+			  "left": {
+				"value": [
+				  [
+					0.0,
+					0.0,
+					0.0,
+					1.0
+				  ]
 				]
-			  ]
+			  },
+			  "right": {
+				"feature": "size",
+				"threshold": 45.54630088806152,
+				"left": {
+				  "value": [
+					[
+					  0.0,
+					  1.0,
+					  0.0,
+					  0.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.0,
+					  0.034482758620689655,
+					  0.0,
+					  0.9655172413793104
+					]
+				  ]
+				}
+			  }
 			}
+		  },
+		  "right": {
+			"value": [
+			  [
+				0.0,
+				0.0,
+				0.0,
+				1.0
+			  ]
+			]
 		  }
 		},
 		"right": {
 		  "feature": "size",
-		  "threshold": 45.64299011230469,
+		  "threshold": 73.37342071533203,
 		  "left": {
 			"value": [
 			  [
-				1.0,
 				0.0,
+				1.0,
 				0.0,
 				0.0
 			  ]
 			]
 		  },
 		  "right": {
-			"feature": "modified_hours",
-			"threshold": 94.5,
+			"feature": "has_free",
+			"threshold": 0.5,
+			"left": {
+			  "feature": "size",
+			  "threshold": 77.04380798339844,
+			  "left": {
+				"feature": "size",
+				"threshold": 76.7151107788086,
+				"left": {
+				  "value": [
+					[
+					  0.0,
+					  0.0,
+					  0.0,
+					  1.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.0,
+					  1.0,
+					  0.0,
+					  0.0
+					]
+				  ]
+				}
+			  },
+			  "right": {
+				"value": [
+				  [
+					0.0,
+					0.0,
+					0.0,
+					1.0
+				  ]
+				]
+			  }
+			},
+			"right": {
+			  "feature": "extension_.bat",
+			  "threshold": 0.5,
+			  "left": {
+				"feature": "size",
+				"threshold": 79.11044311523438,
+				"left": {
+				  "value": [
+					[
+					  0.0,
+					  0.0,
+					  1.0,
+					  0.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.0,
+					  0.0,
+					  0.0,
+					  1.0
+					]
+				  ]
+				}
+			  },
+			  "right": {
+				"value": [
+				  [
+					0.0,
+					0.0,
+					0.0,
+					1.0
+				  ]
+				]
+			  }
+			}
+		  }
+		}
+	  }
+	}
+  },
+  "right": {
+	"feature": "size",
+	"threshold": 5.576445579528809,
+	"left": {
+	  "feature": "has_invoice",
+	  "threshold": 0.5,
+	  "left": {
+		"value": [
+		  [
+			0.0,
+			0.0,
+			1.0,
+			0.0
+		  ]
+		]
+	  },
+	  "right": {
+		"value": [
+		  [
+			0.0,
+			0.0,
+			0.0,
+			1.0
+		  ]
+		]
+	  }
+	},
+	"right": {
+	  "feature": "size",
+	  "threshold": 40.259883880615234,
+	  "left": {
+		"feature": "size",
+		"threshold": 40.05845832824707,
+		"left": {
+		  "feature": "size",
+		  "threshold": 14.709026336669922,
+		  "left": {
+			"feature": "extension_.pdf",
+			"threshold": 0.5,
 			"left": {
 			  "value": [
 				[
@@ -987,17 +859,31 @@
 			  ]
 			},
 			"right": {
-			  "feature": "modified_hours",
-			  "threshold": 97.5,
+			  "feature": "size",
+			  "threshold": 8.599130153656006,
 			  "left": {
-				"value": [
-				  [
-					0.0,
-					1.0,
-					0.0,
-					0.0
+				"feature": "size",
+				"threshold": 8.105283260345459,
+				"left": {
+				  "value": [
+					[
+					  0.0,
+					  0.0,
+					  1.0,
+					  0.0
+					]
 				  ]
-				]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.0,
+					  0.0,
+					  0.0,
+					  1.0
+					]
+				  ]
+				}
 			  },
 			  "right": {
 				"value": [
@@ -1009,6 +895,148 @@
 				  ]
 				]
 			  }
+			}
+		  },
+		  "right": {
+			"feature": "size",
+			"threshold": 14.755183696746826,
+			"left": {
+			  "value": [
+				[
+				  1.0,
+				  0.0,
+				  0.0,
+				  0.0
+				]
+			  ]
+			},
+			"right": {
+			  "feature": "has_verify",
+			  "threshold": 0.5,
+			  "left": {
+				"feature": "size",
+				"threshold": 17.053696632385254,
+				"left": {
+				  "value": [
+					[
+					  0.12449334105385061,
+					  0.0,
+					  0.8755066589461494,
+					  0.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.016285327195635652,
+					  0.023317627575569228,
+					  0.944851960178416,
+					  0.015545085050379487
+					]
+				  ]
+				}
+			  },
+			  "right": {
+				"feature": "extension_.html",
+				"threshold": 0.5,
+				"left": {
+				  "value": [
+					[
+					  0.0,
+					  0.0,
+					  1.0,
+					  0.0
+					]
+				  ]
+				},
+				"right": {
+				  "value": [
+					[
+					  0.0,
+					  0.0,
+					  0.9549171734116167,
+					  0.04508282658838329
+					]
+				  ]
+				}
+			  }
+			}
+		  }
+		},
+		"right": {
+		  "value": [
+			[
+			  0.0,
+			  1.0,
+			  0.0,
+			  0.0
+			]
+		  ]
+		}
+	  },
+	  "right": {
+		"feature": "extension_.html",
+		"threshold": 0.5,
+		"left": {
+		  "value": [
+			[
+			  0.0,
+			  0.0,
+			  1.0,
+			  0.0
+			]
+		  ]
+		},
+		"right": {
+		  "feature": "has_verify",
+		  "threshold": 0.5,
+		  "left": {
+			"value": [
+			  [
+				0.0,
+				0.0,
+				1.0,
+				0.0
+			  ]
+			]
+		  },
+		  "right": {
+			"feature": "size",
+			"threshold": 46.685951232910156,
+			"left": {
+			  "feature": "size",
+			  "threshold": 46.25989532470703,
+			  "left": {
+				"value": [
+				  [
+					0.0,
+					0.0,
+					1.0,
+					0.0
+				  ]
+				]
+			  },
+			  "right": {
+				"value": [
+				  [
+					1.0,
+					0.0,
+					0.0,
+					0.0
+				  ]
+				]
+			  }
+			},
+			"right": {
+			  "value": [
+				[
+				  0.0,
+				  0.0,
+				  1.0,
+				  0.0
+				]
+			  ]
 			}
 		  }
 		}

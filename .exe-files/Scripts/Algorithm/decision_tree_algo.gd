@@ -2,13 +2,26 @@ extends Resource
 class_name RealDecisionTree
 
 var tree_data
-var classes = ["injection", "malware", "phishing", "trojan"]
+var classes = []
+var feature_list = []
 
-# Load JSON
+# ==============================
+# LOADERS
+# ==============================
 func load_tree(path: String):
 	var file = FileAccess.open(path, FileAccess.READ)
 	var json = JSON.parse_string(file.get_as_text())
 	tree_data = json
+
+func load_classes(path: String):
+	var file = FileAccess.open(path, FileAccess.READ)
+	var json = JSON.parse_string(file.get_as_text())
+	classes = json
+
+func load_features(path: String):
+	var file = FileAccess.open(path, FileAccess.READ)
+	var json = JSON.parse_string(file.get_as_text())
+	feature_list = json
 
 func extract_filename_features(name: String) -> Dictionary:
 	var lower = name.to_lower()
@@ -20,41 +33,59 @@ func extract_filename_features(name: String) -> Dictionary:
 		"has_invoice": 1 if lower.find("invoice") != -1 else 0
 	}
 
+# ==============================
+# SAFE VALUE PARSER
+# ==============================
+func to_float(val):
+	var s = str(val).strip_edges().to_lower()
+
+	if s == "true":
+		return 1.0
+	elif s == "false":
+		return 0.0
+	elif s == "":
+		return 0.0
+	else:
+		return float(s)
+
+# ==============================
+# PREDICT FROM ALREADY-ENCODED FEATURES
+# ==============================
+func predict_from_features(sample: Dictionary) -> String:
+	return _traverse(tree_data, sample)
 
 # Convert metadata → feature vector
 func metadata_to_features(metadata) -> Dictionary:
 	var features = {}
 
-	# One-hot encoding (same as pandas.get_dummies)
-	
-	# Extension
-	for ext in [".exe", ".bat", ".js", ".ps1", ".vbs", ".txt", ".pdf", ".png", ".jpg", ".mp3", ".mp4", ".docx"]:
-		features["extension_" + ext] = 1 if metadata.extension == ext else 0
+	# initialize EXACT python order
+	for f in feature_list:
+		features[f] = 0.0
 
-	# Source
-	for src in ["Downloads", "Email Attachment", "USB Device", "External Drive", "Browser Cache", "unknown", "Web Form Input", "Community Forum"]:
-		features["source_" + src] = 1 if metadata.source == src else 0
+	# numeric
+	features["size"] = float(metadata.size)
+	features["random_name"] = float(metadata.random_name)
 
-	# Publisher
-	for pub in ["unknown","ACME Software","OpenSoft Labs","Blue Horizon","ByteForge","NovaApps", "Micros0ft"]:
-		features["publisher_" + pub] = 1 if metadata.publisher == pub else 0
+	# filename features
+	var fname = extract_filename_features(metadata.filename)
+	for k in fname.keys():
+		if features.has(k):
+			features[k] = float(fname[k])
 
-	# Boolean features
-	features["signature_valid"] = int(metadata.signature_valid)
-	features["requires_admin"] = int(metadata.requires_admin)
-	features["is_compressed"] = int(metadata.is_compressed)
-	features["hidden"] = int(metadata.hidden)
+	# extension
+	var ext_key = "extension_" + metadata.extension
+	if features.has(ext_key):
+		features[ext_key] = 1.0
 
-	# Numeric
-	features["size"] = metadata.size
-	features["modified_hours"] = metadata.modified_hours
-	features["random_name"] = metadata.random_name
-	
-	# 🔥 CRITICAL: filename-derived features (MISSING BEFORE)
-	var fname_features = extract_filename_features(metadata.filename)
+	# source
+	var src_key = "source_" + metadata.source
+	if features.has(src_key):
+		features[src_key] = 1.0
 
-	for key in fname_features.keys():
-		features[key] = fname_features[key]
+	# publisher
+	var pub_key = "publisher_" + metadata.publisher
+	if features.has(pub_key):
+		features[pub_key] = 1.0
 
 	return features
 
@@ -63,11 +94,14 @@ func predict(metadata) -> String:
 	var sample = metadata_to_features(metadata)
 	return _traverse(tree_data, sample)
 
+# ==============================
+# TREE TRAVERSAL
+# ==============================
 func _traverse(node: Dictionary, sample: Dictionary) -> String:
 	if node.has("feature"):
 		var feature = node["feature"]
-		var threshold = node["threshold"]
-		var value = sample.get(feature, 0)
+		var threshold = float(node["threshold"])
+		var value = float(sample.get(feature, 0.0))
 
 		if value <= threshold:
 			return _traverse(node["left"], sample)

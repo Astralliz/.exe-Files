@@ -116,53 +116,59 @@ func is_random_filename(name: String) -> bool:
 func generate_metadata(paper_no: int) -> PaperMetadata:
 	var metadata = PaperMetadata.new()
 
-	# 1. Pick attack type
-	var attack_type = ATTACK_TYPES[randi() % ATTACK_TYPES.size()]
-	var pool = ATTACK_POOLS[attack_type]
+	# =========================
+	# 1. GENERATE NEUTRAL DATA
+	# =========================
+	var all_extensions = [".exe", ".bat", ".ps1", ".html", ".pdf", ".docx", ".sql", ".js", ".txt"]
+	var all_sources = ["Downloads", "Browser Cache", "Email Attachment", "Community Forum", "Web Form Input"]
+	
+	metadata.filename = "file_" + str(randi() % 9999)
+	metadata.extension = all_extensions.pick_random()
+	metadata.source = all_sources.pick_random()
+	metadata.publisher = PUBLISHER_POOL.pick_random()
 
-	# 2. Basic fields
+	metadata.size = randf_range(5, 80)
+
+	metadata.signature_valid = randf() > 0.5
+	metadata.requires_admin = randf() > 0.5
+	metadata.is_compressed = randf() < 0.5
+	metadata.hidden = randf() < 0.5
+	metadata.modified_hours = randi_range(1, 100)
+
+	metadata.random_name = 1 if is_random_filename(metadata.filename) else 0
+
+	# =========================
+	# 2. AI DECIDES THE TRUTH
+	# =========================
+	var predicted_label = real_tree.predict(metadata)
+	metadata.actual_label = predicted_label
+
+	# =========================
+	# 3. NOW ALIGN CONTENT TO AI
+	# =========================
+	var pool = ATTACK_POOLS[predicted_label]
+
+	# Adjust flavor ONLY (not core features!)
 	metadata.filename = pool["filenames"].pick_random()
 	metadata.extension = pool["extensions"].pick_random()
 	metadata.source = pool["sources"].pick_random()
 
-	# 3. Publisher logic
-	if attack_type == "trojan":
+	# Adjust publisher slightly
+	if predicted_label == "trojan":
 		metadata.publisher = ["Micros0ft", "unknown"].pick_random()
-	elif attack_type == "phishing":
+	elif predicted_label == "phishing":
 		metadata.publisher = "unknown"
-	else:
-		metadata.publisher = PUBLISHER_POOL.pick_random()
 
-	# 4. Size (aligned with tree behavior)
-	if attack_type == "malware" or attack_type == "trojan":
-		metadata.size = randf_range(45, 80)
-	else:
-		metadata.size = randf_range(5, 40)
-
-	# 5. Boolean features
-	metadata.signature_valid = false if attack_type == "phishing" else randf() > 0.3
-	metadata.requires_admin = attack_type == "malware"
-	metadata.is_compressed = randf() < 0.4
-	metadata.hidden = randf() < 0.3
-	metadata.modified_hours = randi_range(1, 100)
-
-	# 6. Random filename feature
-	metadata.random_name = 1 if is_random_filename(metadata.filename) else 0
-
-	# 7. FLAGS (UI hints)
+	# Flags (UI hints now MATCH AI)
 	metadata.flags = []
 	for i in range(2):
 		metadata.flags.append(pool["hints"].pick_random())
 
-	# 8. Model prediction (GROUND TRUTH)
-	metadata.actual_label = real_tree.predict(metadata)
-
 	metadata.paper_no = paper_no
 
-	print("AI:", metadata.actual_label, " | Generated:", attack_type)
+	print("AI:", predicted_label, " | FINAL:", predicted_label)
 
 	return metadata
-
 
 # ==============================
 # TREE VISUALIZATION (OPTIONAL)
@@ -202,3 +208,5 @@ func generate_all_rounds(count: int = 10) -> Array:
 func _init():
 	real_tree = RealDecisionTree.new()
 	real_tree.load_tree("res://Scripts/Algorithm/Data/tree.json")
+	real_tree.load_features("res://Scripts/Algorithm/Data/features.json")
+	real_tree.load_classes("res://Scripts/Algorithm/Data/classes.json")

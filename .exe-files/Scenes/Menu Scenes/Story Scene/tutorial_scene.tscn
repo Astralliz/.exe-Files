@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://2e0a6u4ksvcf" path="res://Scripts/UI/Tutorial/tutorial.gd" id="1_opaq8"]
 [ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="1_tbkjj"]
-[ext_resource type="Texture2D" uid="uid://bjtqkmwq8fiib" path="res://Assets/images/controll_room_bg.png" id="2_8i8o4"]
 [ext_resource type="PackedScene" uid="uid://dwh7thrn4kypr" path="res://Scenes/Entities Scenes/filter_activated.tscn" id="2_tt6lo"]
 [ext_resource type="Texture2D" uid="uid://c30hxuwk71wne" path="res://Assets/images/printer.png" id="3_oap5k"]
+[ext_resource type="Texture2D" uid="uid://vs3rwblomqh4" path="res://Assets/images/Control_Room_BG.png" id="4_quwpc"]
 [ext_resource type="Texture2D" uid="uid://dyaht84w33t60" path="res://Assets/Sprites/alarm.png" id="4_qvjoc"]
 [ext_resource type="Texture2D" uid="uid://v8h3o2h6y7e" path="res://Assets/images/Red_Button.png" id="5_g06xb"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="6_i5tsn"]
@@ -30,7 +30,7 @@
 texture = ExtResource("1_tbkjj")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_voudc"]
-texture = ExtResource("2_8i8o4")
+texture = ExtResource("4_quwpc")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bnvgc"]
 texture = ExtResource("4_qvjoc")

@@ -63,15 +63,10 @@ func evaluate(file: FileMetadata, rules: Array, answer: Dictionary = {}) -> Dict
 					score += rule.score
 					triggered = true
 					
-			 #Only apply if answer is passed in
-			"type_mismatch":
-				if answer.has("extension") and answer["extension"] != file.extension:
-					score += rule.score
-					triggered = true
 		if triggered:
 			issues.append(rule.condition)
 	return {
-		"score": score,
+		"score": score + 1,
 		"issues": issues
 	}
 

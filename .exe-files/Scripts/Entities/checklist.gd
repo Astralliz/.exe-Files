@@ -14,6 +14,7 @@ signal insufficient_resource(resource_type: String)
 #level 1
 #-------------
 @onready var file_name: CheckBox = $ScrollContainer/VBoxContainer/FileName
+@onready var type_mismatch: CheckBox = $ScrollContainer/VBoxContainer/TypeMisMatch
 @onready var exe_type: CheckBox = $ScrollContainer/VBoxContainer/Exe
 @onready var script_type: CheckBox = $ScrollContainer/VBoxContainer/TypeScript
 @onready var dropper_type: CheckBox = $ScrollContainer/VBoxContainer/Dropper
@@ -106,6 +107,7 @@ const LEVEL_RULES := {
 #   Level 3: + random_name, signature, admin, compressed
 const CHECKBOX_CONDITIONS := {
 	"size":        "size_large",
+	"type_mismatch": "type_mismatch",
 	"exe_type":    "ext_exe",
 	"script_type": "ext_script",
 	"dropper_type":"ext_dropper",
@@ -122,7 +124,7 @@ const CHECKBOX_CONDITIONS := {
 
 # Which checkboxes unlock at each level (cumulative)
 const LEVEL_VISIBLE_CHECKBOXES := {
-	1: ["size", "exe_type", "script_type", "dropper_type", "publisher", "source"],
+	1: ["size","type_mismatch", "exe_type", "script_type", "dropper_type", "publisher", "source"],
 	2: ["source_email", "modified", "is_hidden"],
 	3: ["random_name", "signature", "admin", "compressed"],
 }
@@ -155,6 +157,7 @@ func _apply_level_visibility() -> void:
 	# All checkbox node references by key name
 	var checkbox_nodes := {
 		"size":        size,
+		"type_mismatch": type_mismatch,
 		"exe_type":    exe_type,
 		"script_type": script_type,
 		"dropper_type":dropper_type,
@@ -243,6 +246,7 @@ func _compute_score() -> float:
 	# Map each checkbox node to its condition key, then look up score from level rules
 	var checkbox_nodes := {
 		"size":        size,
+		"type_mismatch": type_mismatch,
 		"exe_type":    exe_type,
 		"script_type": script_type,
 		"dropper_type":dropper_type,

@@ -47,11 +47,19 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="FileName" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_higcg")
 theme_override_font_sizes/font_size = 30
 text = " Filename correct?"
+
+[node name="TypeMisMatch" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_higcg")
+theme_override_font_sizes/font_size = 30
+text = "mismatch file type?"
 
 [node name="RandomName" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2

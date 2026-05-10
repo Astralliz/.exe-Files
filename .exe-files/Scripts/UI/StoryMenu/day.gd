@@ -31,6 +31,8 @@ extends Node2D
 # Sliding Panel (Questions Scene)
 @onready var sliding_panel : Control = $SlidingPanel
 
+@onready var minigame_dialog: MiniGameDialog = $MiniGameDialog
+
 # =========================
 # SIGNALS
 # =========================
@@ -98,10 +100,12 @@ func _ready():
 	var rule_level = get_rule_level_from_day(day)
 	rules_for_level = rule_base.get_rules(rule_level)
 	max_filetizens = get_filetizen_count_from_day(day)
-
+	
+	minigame_dialog.hide()
 	level_finished.hide()
 	wrong_decision_popup.hide()
 	paused.hide()
+	paused.setup_pause(false, self, null)
 	resource_display.set_level(day)
 	filter_activated.hide()
 
@@ -329,10 +333,9 @@ func _process(delta):
 
 func _on_filetizen_reached_center():
 
-	var evaluate = engine.evaluate(filetizen.metadata, rules_for_level, current_answers)
+	var evaluate = engine.evaluate(filetizen.metadata, rules_for_level)
 
 	print("Score: ", evaluate.score)
-	print("Issues: ", evaluate.issues)
 	
 	# Generate answers
 	var answer_gen = AnswerGenerator.new()
@@ -341,10 +344,23 @@ func _on_filetizen_reached_center():
 		evaluate.score,
 		GameState.day
 	)
+	
+	var mismatch_score = engine.evaluate_type_mismatch(
+		filetizen.metadata,
+		current_answers,
+		rules_for_level
+	)
+	
+	
+	if mismatch_score > 0:
+		evaluate.score += mismatch_score
+		evaluate["issues"].append("type_mismatch")
 
 	# Apply results
 	filetizen.metadata.risk_score = evaluate.score
 	filetizen.metadata.issues = evaluate.issues
+	
+	print("Issues: ", evaluate.issues)
 
 	# Debug
 	print("Evaluating Filetizen:")
@@ -388,7 +404,11 @@ func _on_filter_btn_pressed() -> void:
 	var score = filetizen.metadata.risk_score
 	var suspicious = is_file_suspicious(score)
 
-	filter_activated.play(suspicious)
+	filter_activated.play(
+		suspicious,
+		filetizen.get_clean_texture(),
+		filetizen.get_corrupted_texture()
+	)
 
 	if filetizen:
 		filetizen.activate_filter()
@@ -435,6 +455,7 @@ func start_minigame():
 		return
 	
 	var minigame_instance = minigame_scene.instantiate()
+	minigame_instance.parent_day = self
  
 	# Add to current scene (NOT as child in editor, only runtime)
 	get_tree().current_scene.add_child(minigame_instance)
@@ -444,6 +465,24 @@ func start_minigame():
  
 	# Connect signal
 	minigame_instance.connect("minigame_finished", Callable(self, "_on_minigame_finished"))
+
+func show_minigame_dialog():
+	minigame_dialog.z_index = 2000
+	minigame_dialog.show_dialog(
+		"Classify 10 suspicious files correctly to recover from this mistake."
+	)
+
+	minigame_dialog.accepted.connect(_on_minigame_accepted, CONNECT_ONE_SHOT)
+	minigame_dialog.declined.connect(_on_minigame_declined, CONNECT_ONE_SHOT)
+
+func _on_minigame_accepted():
+	start_minigame()
+
+func _on_minigame_declined():
+	is_game_over = true
+
+	wrong_decision_popup.show()
+	wrong_decision_popup.text.text = build_gameover_message()
  
 func on_minigame_result(success: bool):
 
@@ -547,7 +586,7 @@ func build_gameover_message() -> String:
 func show_decision_feedback(result: Dictionary):
 	if result.trigger_minigame:
 		await get_tree().create_timer(0.5).timeout
-		start_minigame()
+		show_minigame_dialog()
 
 	elif result.show_gameover:
 		if filetizen and is_instance_valid(filetizen):
@@ -623,16 +662,16 @@ func commit_day_progress():
 	
 
 func check_achievements():
+	if day == 1:
+		Player_Data.queue_achievement("Metadata Detective")
 
 	if Player_Data.data["total_inspected"] >= 100:
 		Player_Data.queue_achievement("Audit Master")
 
-	var lvl = Player_Data.data["level"]
-
-	if lvl >= 3:
+	if day >= 3:
 		Player_Data.queue_achievement("System Gatekeeper")
 
-	if lvl >= 5:
+	if day == 6:
 		Player_Data.queue_achievement("System Architect")
 
 func level_up():
