@@ -21,12 +21,14 @@ grow_vertical = 2
 script = ExtResource("1_y8uqr")
 
 [node name="BlurBackground" type="ColorRect" parent="."]
+layout_mode = 0
 offset_left = -429.0
 offset_right = 2340.0
 offset_bottom = 1080.0
 color = Color(0, 0, 0, 0.509804)
 
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 0
 offset_left = 263.0
 offset_top = 175.0
 offset_right = 1652.0
@@ -34,6 +36,7 @@ offset_bottom = 883.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_qdgx0")
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 0
 offset_left = 932.0
 offset_top = 320.0
 offset_right = 1579.0
@@ -46,6 +49,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Panel2" type="Panel" parent="."]
+layout_mode = 0
 offset_left = 364.0
 offset_top = 321.0
 offset_right = 889.0
@@ -53,6 +57,7 @@ offset_bottom = 774.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_b1gsf")
 
 [node name="Continue" type="Button" parent="."]
+layout_mode = 0
 offset_left = 1299.0
 offset_top = 670.0
 offset_right = 1481.0
@@ -63,6 +68,7 @@ theme_override_font_sizes/font_size = 30
 text = "Continue"
 
 [node name="Quit" type="Button" parent="."]
+layout_mode = 0
 offset_left = 968.0
 offset_top = 670.0
 offset_right = 1150.0

@@ -6,6 +6,7 @@ signal finished
 @onready var suspicious_sprite: Sprite2D = $SuspiciousSprite
 @onready var video: VideoStreamPlayer = $VideoStreamPlayer
 @onready var talking: AudioStreamPlayer2D = $Talking
+@onready var filetizen_talking_girl: AudioStreamPlayer2D = $TalkingGirl
 @onready var label: Label = $Label
 
 var sprite: Sprite2D
@@ -22,6 +23,7 @@ var lines := [
 
 var cps: float = 25.0
 var playing := false
+var current_is_female := false
 
 # =========================
 # BOUNCE CONFIG
@@ -53,7 +55,8 @@ func _ready():
 func play(
 	is_suspicious: bool,
 	clean_texture: Texture2D,
-	corrupted_texture: Texture2D
+	corrupted_texture: Texture2D,
+	is_female_voice: bool
 ) -> void:
 
 	if playing:
@@ -66,6 +69,7 @@ func play(
 	# reset effects
 	video.stop()
 	talking.stop()
+	filetizen_talking_girl.stop()
 
 	safe_sprite.hide()
 	suspicious_sprite.hide()
@@ -73,7 +77,7 @@ func play(
 	# choose sprite
 	safe_sprite.texture = clean_texture
 	suspicious_sprite.texture = corrupted_texture
-
+	
 	# choose sprite
 	if is_suspicious:
 		sprite = suspicious_sprite
@@ -96,8 +100,12 @@ func play(
 
 	# delay only talking
 	await get_tree().create_timer(0.5).timeout
-
-	talking.play()
+	
+	current_is_female = is_female_voice
+	if current_is_female	:
+		filetizen_talking_girl.play()
+	else:
+		talking.play()
 
 	# bounce while talking
 	bounce_for(typing_duration)

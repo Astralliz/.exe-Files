@@ -72,6 +72,9 @@ func activate_filter():
 func deactivate_filter():
 	sprite.modulate.a = 1.0
 
+func is_female() -> bool:
+	return current_variant == 1 or current_variant == 2
+
 		# Level 2 adds more conditions and increases scores
 #{"id": "R1", "condition": "size_large", "score": 1},
 #{"id": "R2", "condition": "ext_exe", "score": 1.2},

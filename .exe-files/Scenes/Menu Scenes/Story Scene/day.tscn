@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://b52y0fj86sfe7"]
+[gd_scene load_steps=37 format=3 uid="uid://b52y0fj86sfe7"]
 
 [ext_resource type="Script" uid="uid://cl8kjlwaigwmr" path="res://Scripts/UI/StoryMenu/day.gd" id="1_c6jxy"]
 [ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="2_2x7vk"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://de5ho3ehe1qqw" path="res://Scenes/UI/dialogue_box.tscn" id="17_is13e"]
 [ext_resource type="AudioStream" uid="uid://dtxeeolnu6okp" path="res://Assets/Audio/SFX_Open_Door.wav" id="18_73b7g"]
 [ext_resource type="PackedScene" uid="uid://2fhuw27q7ay0" path="res://Scenes/UI/resource_display.tscn" id="18_c4oy2"]
+[ext_resource type="AudioStream" uid="uid://b0t4tmpnvqrp7" path="res://Assets/Audio/Talking/SFX_Fine_Voice_01.wav" id="18_h20vs"]
 [ext_resource type="AudioStream" uid="uid://b0qchflbw4kd6" path="res://Assets/Audio/SFX_Close_Door.wav" id="19_h4n5b"]
 [ext_resource type="PackedScene" uid="uid://be8jefwdga0gx" path="res://Scenes/Finishing Scenes/game_over.tscn" id="19_vkem0"]
 [ext_resource type="PackedScene" uid="uid://b5ibouyttb1cq" path="res://Scenes/UI/pause.tscn" id="25_fkp12"]
@@ -147,6 +148,17 @@ theme_override_fonts/font = ExtResource("6_2x7vk")
 theme_override_font_sizes/font_size = 50
 text = "DECLINE"
 
+[node name="Threshold" type="Label" parent="."]
+offset_left = -17.0
+offset_top = 582.0
+offset_right = 608.0
+offset_bottom = 709.0
+theme_override_fonts/font = ExtResource("6_2x7vk")
+theme_override_font_sizes/font_size = 40
+text = "Suspicious Threshold: 1+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="FiletizenSpawner" type="Node2D" parent="."]
 script = ExtResource("4_6brgw")
 scene = ExtResource("5_y1tcq")
@@ -188,6 +200,11 @@ offset_bottom = 4.0
 
 [node name="Talking" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_rt716")
+volume_db = 24.0
+bus = &"SFX"
+
+[node name="TalkingGirl" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_h20vs")
 volume_db = 24.0
 bus = &"SFX"
 
@@ -237,6 +254,10 @@ offset_right = 314.0
 offset_bottom = -2.0
 
 [node name="MiniGameDialog" parent="." instance=ExtResource("26_1c8bs")]
+offset_left = 297.0
+offset_top = 10.0
+offset_right = 297.0
+offset_bottom = 10.0
 
 [connection signal="pressed" from="PauseBtn" to="." method="_on_pause_btn_pressed"]
 [connection signal="pressed" from="FilterPanel/FilterBtn" to="." method="_on_filter_btn_pressed"]

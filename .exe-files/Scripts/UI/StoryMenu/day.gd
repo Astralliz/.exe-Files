@@ -15,6 +15,7 @@ extends Node2D
 @onready var wrong_decision_popup: Control = $GameOver
 @onready var dialogue_box: DialogueBox = $"Dialogue Box"
 
+@onready var threshold_score_per_day: Label = $Threshold
 @onready var paused_btn: Button = $PauseBtn
 @onready var paused: Control = $Pause
 
@@ -25,6 +26,7 @@ extends Node2D
 @onready var button_sound = $Button_Click
 @onready var paper_printing = $Printing_Paper
 @onready var filetizen_talking = $Talking
+@onready var filetizen_talking_girl: AudioStreamPlayer2D = $TalkingGirl
 @onready var opening_door = $Open_Door
 @onready var closing_door = $Closed_Door
 
@@ -97,6 +99,7 @@ func _ready():
 
 	day = GameState.day
 	print("day: ", day)
+	threshold_score_per_day.text = "Suspicious Threshold: " + str(get_suspicious_threshold()) + "+"
 	var rule_level = get_rule_level_from_day(day)
 	rules_for_level = rule_base.get_rules(rule_level)
 	max_filetizens = get_filetizen_count_from_day(day)
@@ -287,7 +290,10 @@ func _on_question_button_pressed(key: String) -> void:
 		# bounce runs alongside typing
 		filetizen.move_component.bounce_for(typing_duration)
 		
-		filetizen_talking.play()
+		if filetizen.is_female():
+			filetizen_talking_girl.play()
+		else:
+			filetizen_talking.play()
 
 		# type animation
 		await type_text(answer_label, text, cps)
@@ -407,7 +413,8 @@ func _on_filter_btn_pressed() -> void:
 	filter_activated.play(
 		suspicious,
 		filetizen.get_clean_texture(),
-		filetizen.get_corrupted_texture()
+		filetizen.get_corrupted_texture(),
+		filetizen.is_female()
 	)
 
 	if filetizen:
@@ -443,6 +450,7 @@ func start_minigame():
 	opening_door.stop()
 	closing_door.stop()
 	filetizen_talking.stop()
+	filetizen_talking_girl.stop()
 	paper_printing.stop()
 	
 	# Load and instantiate the minigame scene
@@ -468,9 +476,7 @@ func start_minigame():
 
 func show_minigame_dialog():
 	minigame_dialog.z_index = 2000
-	minigame_dialog.show_dialog(
-		"Classify 10 suspicious files correctly to recover from this mistake."
-	)
+	minigame_dialog.show_dialog()
 
 	minigame_dialog.accepted.connect(_on_minigame_accepted, CONNECT_ONE_SHOT)
 	minigame_dialog.declined.connect(_on_minigame_declined, CONNECT_ONE_SHOT)
