@@ -50,7 +50,11 @@ func _ready():
 # =========================
 # MAIN PLAY FUNCTION
 # =========================
-func play(is_suspicious: bool) -> void:
+func play(
+	is_suspicious: bool,
+	clean_texture: Texture2D,
+	corrupted_texture: Texture2D
+) -> void:
 
 	if playing:
 		return
@@ -65,6 +69,10 @@ func play(is_suspicious: bool) -> void:
 
 	safe_sprite.hide()
 	suspicious_sprite.hide()
+
+	# choose sprite
+	safe_sprite.texture = clean_texture
+	suspicious_sprite.texture = corrupted_texture
 
 	# choose sprite
 	if is_suspicious:

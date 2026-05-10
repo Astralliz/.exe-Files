@@ -6,10 +6,30 @@ extends Node2D
 @onready var move_component:  = $MoveComponent
 @onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 
+var clean_sprites := [
+	preload("res://Assets/Sprites/clean_file.png"),
+	preload("res://Assets/Sprites/clean_file_girl.png"),
+	preload("res://Assets/Sprites/clean_file_nerd_girl.png"),
+	preload("res://Assets/Sprites/clean_file_punk.png")
+]
+
+var corrupted_sprites := [
+	preload("res://Assets/Sprites/corrupted_file.png"),
+	preload("res://Assets/Sprites/corrupted_file_girl.png"),
+	preload("res://Assets/Sprites/corrupter_file_nerd_girl.png"),
+	preload("res://Assets/Sprites/corrupted_file_punk.png")
+]
+var current_variant := 0
+
 func _ready():
 	generator = MetadataGenerator.new()
 	metadata = generator.generate_metadata()
 	visible_on_screen_notifier_2d.screen_exited.connect(queue_free)
+	randomize()
+
+	current_variant = randi() % clean_sprites.size()
+
+	sprite.texture = clean_sprites[current_variant]
 	if GameState.day <= 2:
 		print("Spawned Filetizen: ")
 		print("Name: ", metadata.filename)
@@ -39,6 +59,12 @@ func _ready():
 		print("Admin: ", metadata.requires_admin)
 		print("Compressed: ", metadata.is_compressed)
 		
+
+func get_clean_texture() -> Texture2D:
+	return clean_sprites[current_variant]
+
+func get_corrupted_texture() -> Texture2D:
+	return corrupted_sprites[current_variant]
 
 func activate_filter():
 	sprite.modulate.a = 0.0
