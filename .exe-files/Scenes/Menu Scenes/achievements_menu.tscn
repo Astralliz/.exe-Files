@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://3ly3g17fh3v" path="res://Assets/images/ExeMenuBG.png" id="2_n573o"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_gjhoa"]
 [ext_resource type="Texture2D" uid="uid://bfqrye0g81a5w" path="res://Assets/images/rectangle2.png" id="3_lc3fj"]
-[ext_resource type="Texture2D" uid="uid://b28uwmv3pk23t" path="res://Assets/Button/utton.png" id="4_ifktr"]
+[ext_resource type="Texture2D" uid="uid://bxj5l1qfvw01b" path="res://Assets/images/back button.png" id="5_n573o"]
 [ext_resource type="Texture2D" uid="uid://b7bsg171s52qy" path="res://Assets/Trophy/MetadataDetective.png" id="6_gjhoa"]
 [ext_resource type="Script" uid="uid://bwyre5tqoakob" path="res://Scripts/UI/AchievementsMenu/AchievementsUnlock.gd" id="6_y53px"]
 [ext_resource type="Texture2D" uid="uid://cddjt6414swve" path="res://Assets/Button/uim_padlock.png" id="7_5mc3w"]
@@ -20,11 +20,12 @@ texture = ExtResource("2_n573o")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_crw2t"]
 texture = ExtResource("3_lc3fj")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fa3lm"]
-bg_color = Color(0.952941, 0.384314, 1, 0.270588)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lc3fj"]
+texture = ExtResource("5_n573o")
+modulate_color = Color(0.862745, 0.466667, 0.811765, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5mc3w"]
-texture = ExtResource("4_ifktr")
+texture = ExtResource("5_n573o")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ifktr"]
 texture = ExtResource("6_gjhoa")
@@ -119,7 +120,7 @@ anchor_bottom = 0.235
 offset_left = -0.120117
 offset_right = 0.759888
 offset_bottom = 0.199982
-theme_override_styles/hover = SubResource("StyleBoxFlat_fa3lm")
+theme_override_styles/hover = SubResource("StyleBoxTexture_lc3fj")
 theme_override_styles/normal = SubResource("StyleBoxTexture_5mc3w")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]

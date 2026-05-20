@@ -143,6 +143,29 @@ func mark_minigame_used(day: int) -> void:
 	data["minigame_usage"][key] = true
 	save_data()
 
+# ----------------------- MINIGAME RESET TIMER ----------------------
+
+func get_seconds_until_midnight() -> int:
+
+	var now = Time.get_datetime_dict_from_system()
+
+	var current_seconds = (
+		now.hour * 3600
+		+ now.minute * 60
+		+ now.second
+	)
+
+	return 86400 - current_seconds
+
+func get_minigame_remaining_time() -> String:
+
+	var seconds_left = get_seconds_until_midnight()
+
+	var hours = seconds_left / 3600
+	var minutes = (seconds_left % 3600) / 60
+
+	return "%02dh %02dm" % [hours, minutes]
+
 # ----------------------- New Game -----------------------
 # Check if this is a new game
 func get_new_game_status() -> int:

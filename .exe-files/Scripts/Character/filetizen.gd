@@ -19,6 +19,14 @@ var corrupted_sprites := [
 	preload("res://Assets/Sprites/corrupter_file_nerd_girl.png"),
 	preload("res://Assets/Sprites/corrupted_file_punk.png")
 ]
+
+var falling_sprites := [
+	preload("res://Assets/Sprites/falling_file.png"),
+	preload("res://Assets/Sprites/falling_file_girl.png"),
+	preload("res://Assets/Sprites/falling_file_girl_nerd.png"),
+	preload("res://Assets/Sprites/falling_file_punk.png")
+]
+
 var current_variant := 0
 
 func _ready():
@@ -65,6 +73,9 @@ func get_clean_texture() -> Texture2D:
 
 func get_corrupted_texture() -> Texture2D:
 	return corrupted_sprites[current_variant]
+
+func use_falling_sprite():
+	sprite.texture = falling_sprites[current_variant]
 
 func activate_filter():
 	sprite.modulate.a = 0.0

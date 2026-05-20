@@ -38,9 +38,10 @@ const TUTORIAL_STEPS: Array[Dictionary] = [
 	{
 		"text": "Tap the file document to examine it closely and gather information for your decision.",
 		"arrow": "up",
+		"requires_event": "document_opened"
 	},
 	{
-		"text": "Every risky metadata has its own score",
+		"text": "Every risky metadata has its own score, you can check it in info menu or in the pause menu",
 		"arrow": "none",
 		"action": "hide_panels",
 	},
@@ -48,6 +49,7 @@ const TUTORIAL_STEPS: Array[Dictionary] = [
 		"text": "Tap the lower part of the document to close the inspection panel and return to making your decision.",
 		"arrow": "none",
 		"action": "hide_panels",
+		"requires_event": "document_closed"	
 	},
 ]
 
@@ -65,16 +67,32 @@ var arrow_tween: Tween = null
 # LIFECYCLE
 # ========================
 func _ready() -> void:
+
 	next_button.pressed.connect(_on_next_button_pressed)
+
 	arrow_right.modulate.a = 0.0
 	arrow_up.modulate.a = 0.0
-	
-	# Set z_index for proper layering
+
 	z_index = 999
-	
-	# Start the first step
+
+	# CONNECT TO TUTORIAL EVENTS
+	var tutorial = get_parent()
+
+	if tutorial and tutorial.has_node("TutorialManager"):
+
+		var manager = tutorial.get_node("TutorialManager")
+
+		manager.tutorial_event.connect(_on_tutorial_event)
+
 	show_step(0)
 
+func _on_tutorial_event(event_name: String) -> void:
+
+	var step_data = TUTORIAL_STEPS[current_step]
+
+	if step_data.get("requires_event", "") == event_name:
+
+		show_step(current_step + 1)
 # ========================
 # STEP MANAGEMENT
 # ========================
@@ -99,6 +117,8 @@ func show_step(step: int) -> void:
 	# Show the appropriate arrow
 	_show_arrow(step_data["arrow"])
 	
+	# Hide next button if interaction required
+	next_button.visible = not step_data.has("requires_event")
 	# Display the text with typing animation
 	full_text = step_data["text"]
 	text_box.text = full_text

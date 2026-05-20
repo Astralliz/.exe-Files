@@ -21,12 +21,19 @@ extends Node2D
 
 @onready var resource_display = $ResourceDisplay
 
+@onready var minigame_indicator: Panel = $MinigameIndicator
+@onready var minigame_cooldown_label: Label = $MinigameIndicator/CooldownLabel
+@onready var false_indicator: HBoxContainer = $FalseIndicator
+@onready var panel_indicator1: Panel = $FalseIndicator/Panel
+@onready var panel_indicator2: Panel = $FalseIndicator/Panel2
+@onready var panel_indicator3: Panel = $FalseIndicator/Panel3
 # Audio
 @onready var pickup_sound = $Audio_Pickup
 @onready var button_sound = $Button_Click
 @onready var paper_printing = $Printing_Paper
 @onready var filetizen_talking = $Talking
 @onready var filetizen_talking_girl: AudioStreamPlayer2D = $TalkingGirl
+@onready var filetizen_falling: AudioStreamPlayer2D = $Falling
 @onready var opening_door = $Open_Door
 @onready var closing_door = $Closed_Door
 
@@ -64,6 +71,8 @@ var rules_for_level: Array
 var moved_out := false
 var current_document: FileDocument
 var correct_today: int = 0
+var wrong_safe_declines: int = 0
+var max_wrong_safe_declines: int = 2
 # Counter loop
 var filetizen_count := 0
 var max_filetizens: int
@@ -77,6 +86,9 @@ var prev_position := Vector2.ZERO
 var pending_player_approved: bool = false
 var minigame_active: bool = false
 var is_game_over: bool = false
+
+var minigame_timer_update: float = 0.0
+const MINIGAME_UI_REFRESH_TIME := 60.0
 
 # Question buttons inside SlidingPanel
 @onready var question_buttons : Dictionary = {
@@ -99,10 +111,12 @@ func _ready():
 
 	day = GameState.day
 	print("day: ", day)
-	threshold_score_per_day.text = "Suspicious Threshold: " + str(get_suspicious_threshold()) + "+"
+	start_threshold_typing_animation()
 	var rule_level = get_rule_level_from_day(day)
 	rules_for_level = rule_base.get_rules(rule_level)
 	max_filetizens = get_filetizen_count_from_day(day)
+	
+	max_wrong_safe_declines = get_max_wrong_safe_declines()
 	
 	minigame_dialog.hide()
 	level_finished.hide()
@@ -111,6 +125,8 @@ func _ready():
 	paused.setup_pause(false, self, null)
 	resource_display.set_level(day)
 	filter_activated.hide()
+	update_minigame_indicator()
+	update_false_indicator()
 
 	enable_buttons(false)
 	get_tree().paused = false
@@ -128,6 +144,113 @@ func _ready():
 
 	await get_tree().create_timer(1.0, false).timeout
 	spawn_new_file_document()
+
+# =========================
+# annimation SYSTEM
+# =========================
+func start_threshold_typing_animation() -> void:
+
+	var message = "Suspicious Threshold: " + str(get_suspicious_threshold()) + "+"
+
+	while true:
+
+		# =========================
+		# TYPE TEXT WITH GLITCH
+		# =========================
+		for i in range(message.length()):
+
+			var partial = message.substr(0, i + 1)
+
+			# random glitch chance
+			if randf() < 0.25:
+				partial = apply_glitch(partial)
+
+			threshold_score_per_day.text = partial + "|"
+
+			await get_tree().create_timer(
+				randf_range(0.03, 0.08),
+				false
+			).timeout
+
+		# =========================
+		# BLINKING CARET
+		# =========================
+		var blink_time := 3.0
+		var elapsed := 0.0
+		var caret_visible := true
+
+		while elapsed < blink_time:
+
+			var display_text = message
+
+			# occasional glitch while idle
+			if randf() < 0.2:
+				display_text = apply_glitch(display_text)
+
+			if caret_visible:
+				threshold_score_per_day.text = display_text + "|"
+			else:
+				threshold_score_per_day.text = display_text
+
+			caret_visible = !caret_visible
+
+			await get_tree().create_timer(0.4, false).timeout
+
+			elapsed += 0.4
+
+		# =========================
+		# RESET
+		# =========================
+		threshold_score_per_day.text = ""
+
+		await get_tree().create_timer(0.5, false).timeout	
+
+func apply_glitch(text: String) -> String:
+
+	var glitch_chars = [
+		"#", "%", "&", "@", "!", "?",
+		"$", "*", "=", "+", "~"
+	]
+
+	if text.length() <= 0:
+		return text
+
+	var chars = text.split("")
+
+	# number of glitched letters
+	var glitch_count = randi_range(1, min(3, chars.size()))
+
+	for i in range(glitch_count):
+
+		var index = randi_range(0, chars.size() - 1)
+
+		# avoid replacing spaces
+		if chars[index] != " ":
+			chars[index] = glitch_chars.pick_random()
+
+	return "".join(chars)
+
+func update_false_indicator():
+
+	# reset all indicators first
+	panel_indicator1.modulate.a = 1.0
+	panel_indicator2.modulate.a = 1.0
+	panel_indicator3.modulate.a = 1.0
+
+	# dim indicators based on wrong safe declines
+	match wrong_safe_declines:
+
+		1:
+			panel_indicator1.modulate.a = 0.15
+
+		2:
+			panel_indicator1.modulate.a = 0.15
+			panel_indicator2.modulate.a = 0.15
+
+		3:
+			panel_indicator1.modulate.a = 0.15
+			panel_indicator2.modulate.a = 0.15
+			panel_indicator3.modulate.a = 0.15
 
 # =========================
 # DIFFICULTY SYSTEM
@@ -164,6 +287,14 @@ func get_suspicious_threshold() -> float:
 
 func is_file_suspicious(score: float) -> bool:
 	return score > get_suspicious_threshold()
+
+func get_max_wrong_safe_declines() -> int:
+	if day <= 2:
+		return 3
+	elif day <= 6:
+		return 2
+	
+	return 2
 
 # =========================
 # SPAWN SYSTEM
@@ -218,12 +349,42 @@ func wait_until_filetizen_exits(screen_w: float) -> void:
 		await get_tree().process_frame
 
 func move_declined_filetizen():
-	var screen_w = get_viewport().get_visible_rect().size.x
+
 	if filetizen and is_instance_valid(filetizen):
-		var direction = Vector2(screen_w + 200, filetizen.position.y) - filetizen.position
-		filetizen.move_component.move(direction, -300)
-		await wait_until_filetizen_exits(screen_w)
-	filetizen = null 
+
+		# stop current movement first
+		filetizen.move_component.stop()
+
+		# switch to falling sprite
+		filetizen.use_falling_sprite()
+		
+		filetizen_falling.play()
+
+		# create fall animation
+		var tween := create_tween()
+
+		tween.set_parallel(true)
+
+		# rotate while falling
+		tween.tween_property(
+			filetizen,
+			"rotation_degrees",
+			90,
+			0.8
+		)
+
+		# move downward
+		tween.tween_property(
+			filetizen,
+			"position:y",
+			filetizen.position.y + 900,
+			1.0
+		).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_IN)
+
+		await tween.finished
+
+	# remove filetizen
+	filetizen = null
 
 # =========================
 # QUESTION SYSTEM
@@ -321,6 +482,11 @@ func type_text(label: Label, full_text: String, cps: float = 30.0) -> float:
 # PROCESS LOOP
 # =========================
 func _process(delta):
+	minigame_timer_update += delta
+
+	if minigame_timer_update >= MINIGAME_UI_REFRESH_TIME:
+		minigame_timer_update = 0.0
+		update_minigame_indicator()
 	var target = get_viewport().get_visible_rect().size / 2.0
 	
 	if filetizen and is_instance_valid(filetizen):
@@ -450,6 +616,7 @@ func start_minigame():
 	opening_door.stop()
 	closing_door.stop()
 	filetizen_talking.stop()
+	filetizen_falling.stop()
 	filetizen_talking_girl.stop()
 	paper_printing.stop()
 	
@@ -475,7 +642,7 @@ func start_minigame():
 	minigame_instance.connect("minigame_finished", Callable(self, "_on_minigame_finished"))
 
 func show_minigame_dialog():
-	minigame_dialog.z_index = 2000
+	minigame_dialog.z_index = 99
 	minigame_dialog.show_dialog()
 
 	minigame_dialog.accepted.connect(_on_minigame_accepted, CONNECT_ONE_SHOT)
@@ -495,6 +662,7 @@ func on_minigame_result(success: bool):
 	print("🎮 MINIGAME RESULT: ", success)
 
 	minigame_active = false
+	minigame_dialog.hide()
 	wrong_decision_popup.hide()
 
 	if success:
@@ -510,6 +678,22 @@ func on_minigame_result(success: bool):
 func _on_minigame_finished(success: bool):
 	minigame_active = false
 	on_minigame_result(success)
+	minigame_indicator.modulate.a = 0.15
+
+
+func update_minigame_indicator():
+
+	if Player_Data.can_use_minigame(day):
+
+		minigame_indicator.modulate.a = 1.0
+
+	else:
+
+		minigame_indicator.modulate.a = 0.15
+		minigame_cooldown_label.text = (
+			"REFRESH IN: "
+			+ Player_Data.get_minigame_remaining_time()
+		)
 
 # =========================
 # DECISION SYSTEM 
@@ -548,27 +732,64 @@ func evaluate_decision(player_approved: bool) -> Dictionary:
 		"trigger_minigame": false
 	}
 
+	# CORRECT DECISION
 	if player_approved == (not suspicious):
+
 		result.is_correct = true
 		result.message = dialogue_database.get_random_correct()
 		apply_rewards(player_approved, suspicious)
 
 		correct_today += 1
+
+	# WRONG DECISION
 	else:
+		# APPROVED SUSPICIOUS FILE
 		if player_approved and suspicious:
+
 			if Player_Data.can_use_minigame(day):
+
 				result.trigger_minigame = true
 				result.message = "You made a critical mistake!\nComplete the minigame to recover!"
-				
+
 				pending_player_approved = player_approved
 				minigame_active = true
-				
+
 				Player_Data.mark_minigame_used(day)
+
 			else:
 				result.show_gameover = true
 				result.message = build_gameover_message()
-		else:
-			result.message = build_wrong_message()
+		# DECLINED SAFE FILE
+		elif not player_approved and not suspicious:
+
+			# deduct bug bounty
+			Player_Data.add_bug_bounty(-1)
+			# increase counter
+			wrong_safe_declines += 1
+			update_false_indicator()
+			# reached limit?
+			if wrong_safe_declines >= max_wrong_safe_declines:
+
+				result.show_gameover = true
+
+				result.message = (
+					"Game Over: Too many safe Filetizens were declined!\n"
+					+ "You incorrectly declined "
+					+ str(wrong_safe_declines)
+					+ " safe files."
+				)
+			else:
+				var remaining = max_wrong_safe_declines - wrong_safe_declines
+				result.message = (
+					build_wrong_message()
+					+ "\nBug Bounty -1"
+					+ "\nWrong Safe Declines: "
+					+ str(wrong_safe_declines)
+					+ "/"
+					+ str(max_wrong_safe_declines)
+					+ "\nRemaining Chances: "
+					+ str(remaining)
+				)
 
 	return result
 

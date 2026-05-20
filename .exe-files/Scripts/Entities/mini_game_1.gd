@@ -10,6 +10,11 @@ signal minigame_finished(success: bool)
 @onready var bounty_label: Label = $BountyValue
 @onready var score_label: Label = $ScoreValue
 
+@onready var wrong_indicator: HBoxContainer = $FalseIndicator
+@onready var panel_indicator1: Panel = $FalseIndicator/Panel
+@onready var panel_indicator2: Panel = $FalseIndicator/Panel2
+@onready var panel_indicator3: Panel = $FalseIndicator/Panel3
+
 @onready var paused: Control = $Pause
 
 const PAPER_TEXTURE = preload("res://Assets/Sprites/large-paper.png")
@@ -38,6 +43,9 @@ var game_finished: bool          = false
 var spawn_timer: float           = 0.0
 var attack_panels: Dictionary    = {}
 var is_tutorial_running: bool    = false
+
+var wrong_drops: int = 0
+var max_wrong_drops: int = 3
 
 var parent_day: Day
 
@@ -266,7 +274,7 @@ class Paper extends Panel:
 		
 		# PENALTY
 		Player_Data.modify_bug_bounty(-1)
-		
+
 		game_reference.total_score -= 10
 
 		# Prevent negative score
@@ -274,7 +282,18 @@ class Paper extends Panel:
 			game_reference.total_score = 0
 
 		game_reference.score_label.text = str(game_reference.total_score)
-		
+
+		# =========================
+		# WRONG DROP SYSTEM
+		# =========================
+		game_reference.wrong_drops += 1
+		game_reference.update_wrong_indicator()
+
+		# GAME OVER
+		if game_reference.wrong_drops >= game_reference.max_wrong_drops:
+			game_reference._finish_game(false)
+			return
+
 		_close_file()
 		is_animating = false
 
@@ -288,6 +307,7 @@ func _ready() -> void:
 	Player_Data.bug_bounty_changed.connect(_on_bug_bounty_changed)
 	bounty_label.text = str(Player_Data.get_bug_bounty())
 	score_label.text = str(total_score)
+	update_wrong_indicator()
 	
 	paused.hide()
 	paused.setup_pause(true, parent_day, self)
@@ -505,6 +525,27 @@ func _rearrange_stopped_papers() -> void:
 		p.original_pos.x = target_x
 		var tw = create_tween()
 		tw.tween_property(p, "position:x", target_x, 0.2)
+
+func update_wrong_indicator() -> void:
+
+	# reset all
+	panel_indicator1.modulate.a = 1.0
+	panel_indicator2.modulate.a = 1.0
+	panel_indicator3.modulate.a = 1.0
+
+	match wrong_drops:
+
+		1:
+			panel_indicator1.modulate.a = 0.15
+
+		2:
+			panel_indicator1.modulate.a = 0.15
+			panel_indicator2.modulate.a = 0.15
+
+		3:
+			panel_indicator1.modulate.a = 0.15
+			panel_indicator2.modulate.a = 0.15
+			panel_indicator3.modulate.a = 0.15
 
 # ══════════════════════════════════════════════════════════════
 # END GAME

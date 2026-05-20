@@ -10,22 +10,45 @@ func _ready():
 	show_tab("metadata")
 
 func show_tab(tab_name: String):
-	# Hide all panels
-	metadata_panel.visible = false
-	level1_panel.visible = false
-	level2_panel.visible = false
-	level3_panel.visible = false
-	
-	# Show the selected panel
+
+	var panels = [
+		metadata_panel,
+		level1_panel,
+		level2_panel,
+		level3_panel
+	]
+
+	# Disable all panels completely
+	for panel in panels:
+
+		panel.visible = false
+
+		panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+		panel.process_mode = Node.PROCESS_MODE_DISABLED
+
+	# Enable selected panel
 	match tab_name.to_lower():
+
 		"metadata":
-			metadata_panel.visible = true
+			enable_panel(metadata_panel)
+
 		"level1":
-			level1_panel.visible = true
+			enable_panel(level1_panel)
+
 		"level2":
-			level2_panel.visible = true
+			enable_panel(level2_panel)
+
 		"level3":
-			level3_panel.visible = true
+			enable_panel(level3_panel)
+
+func enable_panel(panel: Control):
+
+	panel.visible = true
+
+	panel.mouse_filter = Control.MOUSE_FILTER_PASS
+
+	panel.process_mode = Node.PROCESS_MODE_INHERIT
 
 # Connect buttons to these functions
 func _on_metdata_pressed() -> void:

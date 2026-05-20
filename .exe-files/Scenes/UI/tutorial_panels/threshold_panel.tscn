@@ -1,0 +1,108 @@
+[gd_scene load_steps=9 format=3 uid="uid://bj5bq0whhd7nt"]
+
+[ext_resource type="Script" uid="uid://4ifgpkuaia5w" path="res://Scripts/UI/Tutorial/threshold_panel.gd" id="1_08f78"]
+[ext_resource type="Texture2D" uid="uid://bbnqfb4wl0nqj" path="res://Assets/images/left.png" id="1_kpuc4"]
+[ext_resource type="Texture2D" uid="uid://dud14egjhs4im" path="res://Assets/images/finished window.png" id="2_08f78"]
+[ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_w7cxh"]
+[ext_resource type="Texture2D" uid="uid://cy8xynrmywbvn" path="res://Assets/Sprites/mentor.png" id="4_h3335"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3b2bx"]
+bg_color = Color(0.129412, 0.12549, 0.129412, 0.901961)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o1avm"]
+texture = ExtResource("1_kpuc4")
+
+[sub_resource type="LabelSettings" id="LabelSettings_5226u"]
+font = ExtResource("3_w7cxh")
+font_size = 60
+font_color = Color(0.682353, 0.403922, 1, 1)
+outline_color = Color(0, 1, 1, 1)
+
+[node name="ThresholdPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_08f78")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 584.0
+offset_right = 2463.0
+offset_bottom = 1079.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3b2bx")
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -5.0
+offset_top = 1.0
+offset_right = 585.0
+offset_bottom = 565.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3b2bx")
+
+[node name="Panel3" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 3.0
+offset_top = 799.0
+offset_right = 584.0
+offset_bottom = 1081.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3b2bx")
+
+[node name="ArrowLeft" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 630.0
+offset_top = 588.0
+offset_right = 821.0
+offset_bottom = 771.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_o1avm")
+
+[node name="frame" type="TextureRect" parent="."]
+offset_left = 895.0
+offset_top = 207.0
+offset_right = 2367.0
+offset_bottom = 446.0
+texture = ExtResource("2_08f78")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="frame"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 20.0
+offset_right = 272.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 22
+text = "Mentor"
+label_settings = SubResource("LabelSettings_5226u")
+
+[node name="NextButton" type="Button" parent="frame"]
+layout_mode = 0
+offset_left = 1259.0
+offset_top = 141.0
+offset_right = 1440.0
+offset_bottom = 218.0
+theme_override_fonts/font = ExtResource("3_w7cxh")
+theme_override_font_sizes/font_size = 55
+text = "Next"
+
+[node name="TextBox" type="RichTextLabel" parent="frame"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 100.0
+offset_right = 1228.0
+offset_bottom = 209.0
+theme_override_fonts/normal_font = ExtResource("3_w7cxh")
+theme_override_font_sizes/normal_font_size = 50
+text = "asdadasd"
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(670, 304)
+scale = Vector2(0.57218, 0.582248)
+texture = ExtResource("4_h3335")

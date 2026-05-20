@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5ibouyttb1cq"]
+[gd_scene load_steps=9 format=3 uid="uid://b5ibouyttb1cq"]
 
 [ext_resource type="Script" uid="uid://btm1bpbh4qpr6" path="res://Scripts/UI/Pop Up/pause.gd" id="1_2ceew"]
 [ext_resource type="Texture2D" uid="uid://dud14egjhs4im" path="res://Assets/images/finished window.png" id="1_a111y"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="2_2ceew"]
 [ext_resource type="Script" uid="uid://jmjye8nsw1k4" path="res://Scripts/UI/settings/settings_audio.gd" id="4_3vu23"]
+[ext_resource type="Script" uid="uid://cov13es3kwosl" path="res://Scripts/Entities/scroll_container.gd" id="5_no3u0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3vu23"]
 texture = ExtResource("1_a111y")
@@ -215,6 +216,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("5_no3u0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InformationPanel/MetdataPanel/ScrollContainer"]
 layout_mode = 2
@@ -757,6 +759,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("5_no3u0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InformationPanel/Level1Panel/ScrollContainer"]
 layout_mode = 2
@@ -1214,6 +1217,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("5_no3u0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InformationPanel/Level2Panel/ScrollContainer"]
 layout_mode = 2
@@ -1817,6 +1821,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("5_no3u0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InformationPanel/Level3Panel/ScrollContainer"]
 layout_mode = 2

@@ -194,7 +194,6 @@ text = "Settings"
 [node name="Username" parent="." instance=ExtResource("4_wj7ay")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
 offset_bottom = 0.0
 
 [connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_info_pressed"]

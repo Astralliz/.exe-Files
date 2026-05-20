@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://va4o8c7j3u6w"]
+[gd_scene load_steps=43 format=3 uid="uid://va4o8c7j3u6w"]
 
 [ext_resource type="Script" uid="uid://2e0a6u4ksvcf" path="res://Scripts/UI/Tutorial/tutorial.gd" id="1_opaq8"]
 [ext_resource type="Texture2D" uid="uid://bw5lm8302kkqv" path="res://Assets/images/Gemini_Generated_Image_6tvw6r6tvw6r6tvw.png" id="1_tbkjj"]
@@ -7,10 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://vs3rwblomqh4" path="res://Assets/images/Control_Room_BG.png" id="4_quwpc"]
 [ext_resource type="Texture2D" uid="uid://dyaht84w33t60" path="res://Assets/Sprites/alarm.png" id="4_qvjoc"]
 [ext_resource type="Texture2D" uid="uid://v8h3o2h6y7e" path="res://Assets/images/Red_Button.png" id="5_g06xb"]
+[ext_resource type="Texture2D" uid="uid://bop15iaaq0fdb" path="res://Assets/images/Icon.png" id="6_bnvgc"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="6_i5tsn"]
+[ext_resource type="Texture2D" uid="uid://cphbg2ucms4ja" path="res://Assets/images/minigameicon.png" id="7_blpyw"]
 [ext_resource type="Script" uid="uid://5jr1nl78gvmg" path="res://Components/spawner_component.gd" id="7_ucwor"]
 [ext_resource type="Texture2D" uid="uid://c0lmhsyvrxgbm" path="res://Assets/Button/Settings.png" id="7_wjv7i"]
 [ext_resource type="PackedScene" uid="uid://mpbxai4ade75" path="res://Scenes/Character Scenes/filetizen.tscn" id="8_tt6lo"]
+[ext_resource type="Texture2D" uid="uid://d15bx66ucctkp" path="res://Assets/images/screen.png" id="8_vehju"]
+[ext_resource type="VideoStream" uid="uid://behf5xki7wxxu" path="res://Assets/video/glitch.ogv" id="9_mt1tw"]
 [ext_resource type="PackedScene" uid="uid://2fhuw27q7ay0" path="res://Scenes/UI/resource_display.tscn" id="9_opaq8"]
 [ext_resource type="PackedScene" uid="uid://7lh2ohceok4o" path="res://Scenes/Entities Scenes/file_document.tscn" id="10_6pkc1"]
 [ext_resource type="PackedScene" uid="uid://cew4m80j5s8fi" path="res://Scenes/Entities Scenes/checklist.tscn" id="11_6djp3"]
@@ -23,6 +27,7 @@
 [ext_resource type="AudioStream" uid="uid://dtxeeolnu6okp" path="res://Assets/Audio/SFX_Open_Door.wav" id="19_quwpc"]
 [ext_resource type="AudioStream" uid="uid://b0qchflbw4kd6" path="res://Assets/Audio/SFX_Close_Door.wav" id="20_wjv7i"]
 [ext_resource type="PackedScene" uid="uid://b5ibouyttb1cq" path="res://Scenes/UI/pause.tscn" id="22_6pkc1"]
+[ext_resource type="AudioStream" uid="uid://b0t4tmpnvqrp7" path="res://Assets/Audio/Talking/SFX_Fine_Voice_01.wav" id="22_blpyw"]
 [ext_resource type="PackedScene" uid="uid://1t4noejl0s7v" path="res://Scenes/UI/tutorial_dialogue.tscn" id="25_quwpc"]
 [ext_resource type="Script" uid="uid://v4hqak5g17n1" path="res://Scripts/UI/Tutorial/tutorial_manager.gd" id="25_wjv7i"]
 
@@ -31,6 +36,15 @@ texture = ExtResource("1_tbkjj")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_voudc"]
 texture = ExtResource("4_quwpc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2ikyd"]
+texture = ExtResource("6_bnvgc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jj35u"]
+texture = ExtResource("7_blpyw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u0sb8"]
+texture = ExtResource("8_vehju")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bnvgc"]
 texture = ExtResource("4_qvjoc")
@@ -92,6 +106,67 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_voudc")
 position = Vector2(2198, 426)
 scale = Vector2(1.07093, 0.986213)
 texture = ExtResource("3_oap5k")
+
+[node name="FalseIndicator" type="HBoxContainer" parent="."]
+offset_left = 1533.0
+offset_top = 14.0
+offset_right = 1910.0
+offset_bottom = 129.0
+
+[node name="Panel" type="Panel" parent="FalseIndicator"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_2ikyd")
+
+[node name="Panel2" type="Panel" parent="FalseIndicator"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_2ikyd")
+
+[node name="Panel3" type="Panel" parent="FalseIndicator"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_2ikyd")
+
+[node name="MinigameIndicator" type="Panel" parent="."]
+offset_left = 615.0
+offset_top = 18.0
+offset_right = 724.0
+offset_bottom = 134.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_jj35u")
+
+[node name="Panel2" type="Panel" parent="."]
+offset_left = 110.0
+offset_top = 586.0
+offset_right = 488.0
+offset_bottom = 782.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_u0sb8")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Panel2"]
+modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 0
+offset_left = 19.0
+offset_top = 19.0
+offset_right = 356.0
+offset_bottom = 178.0
+stream = ExtResource("9_mt1tw")
+autoplay = true
+expand = true
+loop = true
+
+[node name="Threshold" type="Label" parent="."]
+offset_left = 158.0
+offset_top = 642.0
+offset_right = 450.0
+offset_bottom = 733.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.662745)
+theme_override_fonts/font = ExtResource("6_i5tsn")
+theme_override_font_sizes/font_size = 35
+text = "Suspicious 
+Threshold: 1+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Panel" type="Panel" parent="."]
 offset_left = 2278.0
@@ -190,6 +265,11 @@ stream = ExtResource("15_opaq8")
 volume_db = 24.0
 bus = &"SFX"
 
+[node name="TalkingGirl" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("22_blpyw")
+volume_db = 24.0
+bus = &"SFX"
+
 [node name="Audio_Pickup" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_6pkc1")
 volume_db = 24.0
@@ -216,12 +296,14 @@ volume_db = 24.0
 bus = &"SFX"
 
 [node name="Pause" parent="." instance=ExtResource("22_6pkc1")]
+visible = false
 offset_left = 314.0
 offset_top = -2.0
 offset_right = 314.0
 offset_bottom = -2.0
 
 [node name="TutorialDialogue" parent="." instance=ExtResource("25_quwpc")]
+visible = false
 z_index = 1140
 
 [node name="TutorialManager" type="Node" parent="."]
@@ -235,17 +317,6 @@ offset_bottom = 171.0
 theme_override_fonts/font = ExtResource("6_i5tsn")
 theme_override_font_sizes/font_size = 55
 text = "Skip"
-
-[node name="Threshold" type="Label" parent="."]
-offset_left = -17.0
-offset_top = 582.0
-offset_right = 608.0
-offset_bottom = 709.0
-theme_override_fonts/font = ExtResource("6_i5tsn")
-theme_override_font_sizes/font_size = 40
-text = "Suspicious Threshold: 1+"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [connection signal="pressed" from="FilterPanel/FilterBtn" to="." method="_on_filter_btn_pressed"]
 [connection signal="pressed" from="ApproveBtn" to="." method="_on_approve_btn_pressed"]

@@ -45,6 +45,7 @@ offset_right = 1343.0
 offset_bottom = 135.0
 theme_override_fonts/normal_font = ExtResource("4_obhul")
 theme_override_font_sizes/normal_font_size = 25
+vertical_alignment = 1
 
 [node name="CloseButton" type="Button" parent="."]
 layout_mode = 0

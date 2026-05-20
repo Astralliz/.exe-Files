@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://6rp27flxsj8n"
+path="res://.godot/imported/falling (2).wav-b4fe2c48d1dfdce1d8facf246a48e7a8.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Talking/falling (2).wav"
+dest_files=["res://.godot/imported/falling (2).wav-b4fe2c48d1dfdce1d8facf246a48e7a8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

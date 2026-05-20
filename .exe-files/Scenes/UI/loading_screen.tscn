@@ -46,6 +46,7 @@ script = ExtResource("3_1ku0f")
 metadata/_edit_use_anchors_ = true
 
 [node name="WalkingFile" type="Panel" parent="ColorRect"]
+layout_mode = 0
 offset_left = 12.0
 offset_top = 649.0
 offset_right = 363.0

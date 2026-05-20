@@ -18,7 +18,14 @@ func show_dialog():
 	show()
 
 func _on_continue_pressed():
-	hide()
+
+	continue_btn.disabled = true
+	quit_btn.disabled = true
+
+	for i in range(3):
+		continue_btn.text = "Loading" + ".".repeat(i + 1)
+		await get_tree().create_timer(0.30).timeout
+
 	emit_signal("accepted")
 
 func _on_quit_pressed():

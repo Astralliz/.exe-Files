@@ -1,10 +1,10 @@
-[gd_scene load_steps=38 format=3 uid="uid://b6ierr5birdtj"]
+[gd_scene load_steps=40 format=3 uid="uid://b6ierr5birdtj"]
 
 [ext_resource type="Script" uid="uid://c4ui54he3pil7" path="res://Scripts/UI/menu_controller.gd" id="1_oya7i"]
 [ext_resource type="Texture2D" uid="uid://3ly3g17fh3v" path="res://Assets/images/ExeMenuBG.png" id="2_2j2bg"]
 [ext_resource type="Texture2D" uid="uid://bfqrye0g81a5w" path="res://Assets/images/rectangle2.png" id="3_hxx1h"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="4_2j2bg"]
-[ext_resource type="Texture2D" uid="uid://b28uwmv3pk23t" path="res://Assets/Button/utton.png" id="5_6xvm1"]
+[ext_resource type="Texture2D" uid="uid://bxj5l1qfvw01b" path="res://Assets/images/back button.png" id="5_etf38"]
 [ext_resource type="Script" uid="uid://dupdpvit5ho1e" path="res://Scripts/Player Data/shop_resources.gd" id="6_2j2bg"]
 [ext_resource type="Script" uid="uid://ddwlpk2j8alue" path="res://Scripts/Player Data/bug_bounty.gd" id="6_fciq2"]
 [ext_resource type="Texture2D" uid="uid://355mxjpy3w7i" path="res://Assets/Sprites/bug bounty.png" id="7_c17u4"]
@@ -22,11 +22,12 @@ texture = ExtResource("2_2j2bg")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hxx1h"]
 texture = ExtResource("3_hxx1h")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c17u4"]
-bg_color = Color(0.952941, 0.384314, 1, 0.270588)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hqrr4"]
+texture = ExtResource("5_etf38")
+modulate_color = Color(0.862745, 0.466667, 0.811765, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jjquq"]
-texture = ExtResource("5_6xvm1")
+texture = ExtResource("5_etf38")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_etf38"]
 texture = ExtResource("7_c17u4")
@@ -42,6 +43,10 @@ texture = ExtResource("11_etf38")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f5jnk"]
 texture = ExtResource("11_etf38")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v4sd6"]
+texture = ExtResource("11_etf38")
+modulate_color = Color(0.964706, 0.866667, 0.945098, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k0jrm"]
 texture = ExtResource("11_etf38")
@@ -75,6 +80,10 @@ texture = ExtResource("11_etf38")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mlija"]
 texture = ExtResource("11_etf38")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s14ta"]
+texture = ExtResource("11_etf38")
+modulate_color = Color(0.964706, 0.866667, 0.945098, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_73yh7"]
 texture = ExtResource("11_etf38")
@@ -152,7 +161,7 @@ offset_left = 0.119873
 offset_top = -0.44001
 offset_right = -0.920044
 offset_bottom = -0.240021
-theme_override_styles/hover = SubResource("StyleBoxFlat_c17u4")
+theme_override_styles/hover = SubResource("StyleBoxTexture_hqrr4")
 theme_override_styles/normal = SubResource("StyleBoxTexture_jjquq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -276,6 +285,7 @@ theme_override_font_sizes/font_size = 40
 theme_override_styles/focus = SubResource("StyleBoxTexture_q5kp1")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_eycsg")
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_f5jnk")
+theme_override_styles/hover = SubResource("StyleBoxTexture_v4sd6")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_k0jrm")
 theme_override_styles/normal = SubResource("StyleBoxTexture_xm8qy")
 text = "    20"
@@ -385,6 +395,7 @@ theme_override_font_sizes/font_size = 40
 theme_override_styles/focus = SubResource("StyleBoxTexture_l8nml")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxTexture_uwn3p")
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_mlija")
+theme_override_styles/hover = SubResource("StyleBoxTexture_s14ta")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_73yh7")
 theme_override_styles/normal = SubResource("StyleBoxTexture_qp20l")
 text = "    20"

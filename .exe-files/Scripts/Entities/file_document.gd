@@ -1,6 +1,9 @@
 class_name FileDocument
 extends Node2D
 
+signal document_opened
+signal document_closed
+
 @onready var paper: Sprite2D = $Sprite2D
 @onready var vbox: VBoxContainer = $ScrollContainer/VBoxContainer
 @onready var file_name: Label = $ScrollContainer/VBoxContainer/FileName
@@ -166,12 +169,16 @@ func _handle_state_switch():
 			paper.texture = tex_original
 			vbox.visible = true
 			z_index = 10
+			print("DOCUMENT OPEN")
+			emit_signal("document_opened")
 		1: # showing → down
 			_state = 2
 			scale = PAPER_DOWN_SCALE
 			position = DOWN_POS
 			paper.texture = tex_open
 			vbox.visible = false
+			print("DOCUMENT CLOSED")
+			emit_signal("document_closed")
 		2: # down → showing
 			_state = 1
 			scale = ZOOM_SCALE

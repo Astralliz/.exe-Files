@@ -9,6 +9,7 @@ signal spawn_filetizen_requested
 signal spawn_document_requested
 signal show_panel_requested(scene_path: String)
 signal tutorial_finished
+signal tutorial_event(event_name: String)
 
 # ========================
 # STATE
@@ -60,6 +61,18 @@ const PARTS: Array[Dictionary] = [
 	{
 		"text": "Now i will introduce you a resources that will help you analyse the metadata.",
 		"panel": "res://Scenes/UI/tutorial_panels/evaluate_tutorial_panel.tscn",
+		"wait_for_next": true,
+		"after_next": "show_panel"
+	},
+	{
+		"text": "Here is the Thressohold score of filetizen, if their total score exceed this, theyre suspicious.",
+		"panel": "res://Scenes/UI/tutorial_panels/threshold_panel.tscn",
+		"wait_for_next": true,
+		"after_next": "show_panel"
+	},
+	{
+		"text": "Next is the indicator.",
+		"panel": "res://Scenes/UI/tutorial_panels/indicator_panel.tscn",
 		"wait_for_next": true,
 		"after_next": "show_panel"
 	},
@@ -122,10 +135,11 @@ func advance_to(part: int) -> void:
 		emit_signal("show_panel_requested", data["panel"])
 
 func notify_event(event: String) -> void:
+	emit_signal("tutorial_event", event)
 	if current_part < 0 or current_part >= PARTS.size():
 		return
 	var data = PARTS[current_part]
-	if not data.get("wait_for_next", true) and data.get("completes_on", "") == event:
+	if data.get("completes_on", "") == event:
 		_complete_current_part()
 
 # ========================

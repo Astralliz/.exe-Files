@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dht2vbv15l0dn"]
+[gd_scene load_steps=9 format=3 uid="uid://dht2vbv15l0dn"]
 
 [ext_resource type="Script" uid="uid://cwv3wce5tbcrh" path="res://Scripts/UI/settings/manage_user_data.gd" id="1_vah7n"]
-[ext_resource type="Texture2D" uid="uid://bpdo8bf18gauj" path="res://Assets/images/rectangle.png" id="2_8vuio"]
+[ext_resource type="Texture2D" uid="uid://bfqrye0g81a5w" path="res://Assets/images/rectangle2.png" id="2_5o57i"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="3_5o57i"]
+[ext_resource type="Texture2D" uid="uid://dfsgc3m04bgps" path="res://Assets/images/buttonhover.png" id="4_f2dk8"]
+[ext_resource type="Texture2D" uid="uid://cc7ct7np51anl" path="res://Assets/images/button2.png" id="5_pte7v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f70cw"]
 corner_radius_top_left = 20
@@ -10,19 +12,12 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vah7n"]
-bg_color = Color(0.6, 0.0117647, 0.6, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i2i7w"]
+texture = ExtResource("4_f2dk8")
+modulate_color = Color(0.964706, 0.866667, 0.945098, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5o57i"]
-bg_color = Color(0.945098, 0.247059, 1, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fsgir"]
+texture = ExtResource("5_pte7v")
 
 [node name="ManageUserData" type="Control"]
 layout_mode = 3
@@ -41,7 +36,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.995977, 1)
-color = Color(0.313726, 0.278431, 0.32549, 0.823529)
+color = Color(0.482353, 0.270588, 0.592157, 0.768627)
 
 [node name="Panel" type="Panel" parent="."]
 clip_children = 1
@@ -68,7 +63,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_8vuio")
+texture = ExtResource("2_5o57i")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
@@ -106,8 +101,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("3_5o57i")
 theme_override_font_sizes/font_size = 35
-theme_override_styles/hover = SubResource("StyleBoxFlat_vah7n")
-theme_override_styles/normal = SubResource("StyleBoxFlat_5o57i")
+theme_override_styles/hover = SubResource("StyleBoxTexture_i2i7w")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fsgir")
 text = "YEs"
 
 [node name="Cancel" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
@@ -118,8 +113,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("3_5o57i")
 theme_override_font_sizes/font_size = 35
-theme_override_styles/hover = SubResource("StyleBoxFlat_vah7n")
-theme_override_styles/normal = SubResource("StyleBoxFlat_5o57i")
+theme_override_styles/hover = SubResource("StyleBoxTexture_i2i7w")
+theme_override_styles/normal = SubResource("StyleBoxTexture_fsgir")
 text = "Cancel"
 
 [connection signal="gui_input" from="ColorRect" to="." method="_on_color_rect_gui_input"]

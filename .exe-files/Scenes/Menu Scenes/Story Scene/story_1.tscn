@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://3ly3g17fh3v" path="res://Assets/images/ExeMenuBG.png" id="2_pq51y"]
 [ext_resource type="Texture2D" uid="uid://bfqrye0g81a5w" path="res://Assets/images/rectangle2.png" id="3_yismj"]
 [ext_resource type="FontFile" uid="uid://dsb6vo4eywvr6" path="res://Assets/Fonts/kenney_mini_square.ttf" id="4_okpo2"]
-[ext_resource type="Texture2D" uid="uid://b28uwmv3pk23t" path="res://Assets/Button/utton.png" id="5_jfk2s"]
+[ext_resource type="Texture2D" uid="uid://bxj5l1qfvw01b" path="res://Assets/images/back button.png" id="5_pq51y"]
 [ext_resource type="Texture2D" uid="uid://cddjt6414swve" path="res://Assets/Button/uim_padlock.png" id="6_pq51y"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m6yj2"]
@@ -13,11 +13,12 @@ texture = ExtResource("2_pq51y")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cfbdy"]
 texture = ExtResource("3_yismj")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4gvu1"]
-bg_color = Color(0.952941, 0.384314, 1, 0.270588)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yismj"]
+texture = ExtResource("5_pq51y")
+modulate_color = Color(0.862745, 0.466667, 0.811765, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u71fn"]
-texture = ExtResource("5_jfk2s")
+texture = ExtResource("5_pq51y")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pq51y"]
 bg_color = Color(0.694118, 0.654902, 0.654902, 0.380392)
@@ -148,7 +149,7 @@ anchor_bottom = 0.235
 offset_left = -0.120117
 offset_right = 0.759888
 offset_bottom = 0.199966
-theme_override_styles/hover = SubResource("StyleBoxFlat_4gvu1")
+theme_override_styles/hover = SubResource("StyleBoxTexture_yismj")
 theme_override_styles/normal = SubResource("StyleBoxTexture_u71fn")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]

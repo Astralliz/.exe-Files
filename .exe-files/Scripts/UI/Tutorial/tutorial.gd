@@ -27,8 +27,11 @@ extends Node2D
 @onready var button_sound = $Button_Click
 @onready var paper_printing = $Printing_Paper
 @onready var filetizen_talking = $Talking
+@onready var filetizen_talking_girl = $TalkingGirl
 @onready var opening_door = $Open_Door
 @onready var closing_door = $Closed_Door
+
+@onready var threshold_score_day: Label = $Threshold
 
 # ========================
 # TUTORIAL MANAGER
@@ -60,6 +63,8 @@ var current_step: int = 0
 var total_steps: int = 5
 var max_filetizens: int = 5
 var current_answers: Dictionary = {}
+
+var prev_position := Vector2.ZERO
 
 @onready var question_buttons: Dictionary = {
 	"filename":  sliding_panel.get_node("Panel/ScrollContainer/VBoxContainer/Question1"),
@@ -110,12 +115,94 @@ func _ready() -> void:
 	tutorial_manager.start()
 	
 
+func start_threshold_typing_animation() -> void:
+
+	var message = "Suspicious Threshold: 1.0+"
+
+	while true:
+
+		# =========================
+		# TYPE TEXT WITH GLITCH
+		# =========================
+		for i in range(message.length()):
+
+			var partial = message.substr(0, i + 1)
+
+			# random glitch chance
+			if randf() < 0.25:
+				partial = apply_glitch(partial)
+
+			threshold_score_day.text = partial + "|"
+
+			await get_tree().create_timer(
+				randf_range(0.03, 0.08),
+				false
+			).timeout
+
+		# =========================
+		# BLINKING CARET
+		# =========================
+		var blink_time := 3.0
+		var elapsed := 0.0
+		var caret_visible := true
+
+		while elapsed < blink_time:
+
+			var display_text = message
+
+			# occasional glitch while idle
+			if randf() < 0.2:
+				display_text = apply_glitch(display_text)
+
+			if caret_visible:
+				threshold_score_day.text = display_text + "|"
+			else:
+				threshold_score_day.text = display_text
+
+			caret_visible = !caret_visible
+
+			await get_tree().create_timer(0.4, false).timeout
+
+			elapsed += 0.4
+
+		# =========================
+		# RESET
+		# =========================
+		threshold_score_day.text = ""
+
+		await get_tree().create_timer(0.5, false).timeout	
+
+func apply_glitch(text: String) -> String:
+
+	var glitch_chars = [
+		"#", "%", "&", "@", "!", "?",
+		"$", "*", "=", "+", "~"
+	]
+
+	if text.length() <= 0:
+		return text
+
+	var chars = text.split("")
+
+	# number of glitched letters
+	var glitch_count = randi_range(1, min(3, chars.size()))
+
+	for i in range(glitch_count):
+
+		var index = randi_range(0, chars.size() - 1)
+
+		# avoid replacing spaces
+		if chars[index] != " ":
+			chars[index] = glitch_chars.pick_random()
+
+	return "".join(chars)
 # ========================
 # SPAWNING — only called by TutorialManager signals
 # ========================
 func _do_spawn_filetizen() -> void:
 	var screen_size = get_viewport().get_visible_rect().size
 	var spawn_pos = Vector2(-100, screen_size.y / 2)
+
 	var new_filetizen: Node2D = spawn_filetizen.spawn(spawn_pos, actors)
 	filetizen = new_filetizen
 
@@ -127,6 +214,7 @@ func _do_spawn_filetizen() -> void:
 	tutorial_metadata.issues = evaluation.issues
 
 	move_filetizen_to_center()
+	prev_position = filetizen.position
 	filetizen_count += 1
 
 	print("Tutorial Step %d: Spawned Filetizen" % current_step)
@@ -140,6 +228,21 @@ func _do_spawn_document() -> void:
 	new_doc.initialize_paper()
 	paper_printing.play()
 	current_document = new_doc
+	current_document.document_opened.connect(_on_tutorial_document_opened)
+	current_document.document_closed.connect(_on_tutorial_document_closed)
+
+func _on_tutorial_document_opened() -> void:
+
+	print("TUTORIAL RECEIVED: document_opened")
+
+	tutorial_manager.notify_event("document_opened")
+
+
+func _on_tutorial_document_closed() -> void:
+
+	print("TUTORIAL RECEIVED: document_closed")
+
+	tutorial_manager.notify_event("document_closed")
 
 # ========================
 # FILETIZEN MOVEMENT
@@ -189,7 +292,10 @@ func _on_question_button_pressed(key: String) -> void:
 		var text: String = str(current_answers[key])
 		var cps: float = 25.0
 		filetizen.move_component.bounce_for(float(text.length()) / cps)
-		filetizen_talking.play()
+		if filetizen.is_female():
+			filetizen_talking_girl.play()
+		else:
+			filetizen_talking.play()
 		await type_text(answer_label, text, cps)
 		await get_tree().create_timer(1.0, false).timeout
 		answer_label.text = ""
@@ -236,16 +342,45 @@ func _on_tutorial_panel_closed() -> void:
 # PROCESS LOOP
 # ========================
 func _process(_delta: float) -> void:
+
+	var target = get_viewport().get_visible_rect().size / 2.0
+
 	if filetizen and is_instance_valid(filetizen):
-		var target = get_viewport().get_visible_rect().size / 2.0
-		if not moved_out and filetizen.position.distance_to(target) < 5.0:
-			filetizen.move_component.stop()
-			moved_out = true
-			var answer_gen = AnswerGenerator.new()
-			var evaluate = engine.evaluate(filetizen.metadata, rules_for_level)
-			current_answers = answer_gen.generate_answers(filetizen.metadata, evaluate.score, 1)
-			print("Score: ", evaluate.score, " | Answers: ", current_answers)
-			enable_buttons(true)
+
+		var current_pos = filetizen.position
+
+		if not moved_out:
+
+			# ✅ Detect crossing center
+			if prev_position.x < target.x and current_pos.x >= target.x:
+
+				# snap perfectly to center
+				filetizen.position = target
+
+				# stop movement
+				filetizen.move_component.stop()
+
+				moved_out = true
+
+				var answer_gen = AnswerGenerator.new()
+
+				var evaluate = engine.evaluate(
+					filetizen.metadata,
+					rules_for_level
+				)
+
+				current_answers = answer_gen.generate_answers(
+					filetizen.metadata,
+					evaluate.score,
+					1
+				)
+
+				print("Score: ", evaluate.score)
+				print("Answers: ", current_answers)
+
+				enable_buttons(true)
+
+		prev_position = current_pos
 
 # ========================
 # BUTTON HANDLERS
@@ -272,7 +407,10 @@ func _on_decline_btn_pressed() -> void:
 func _on_filter_btn_pressed() -> void:
 	var score = filetizen.metadata.risk_score
 	var suspicious = score > 1.0
-	filter_activated.play(suspicious)
+	filter_activated.play(suspicious, 
+		filetizen.get_clean_texture(),
+		filetizen.get_corrupted_texture(),
+		filetizen.is_female())
 	if filetizen:
 		filetizen.activate_filter()
 	await filter_activated.finished
