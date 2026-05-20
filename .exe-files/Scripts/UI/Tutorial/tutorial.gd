@@ -104,6 +104,7 @@ func _ready() -> void:
 	decline_btn.pressed.connect(_on_decline_btn_pressed)
 	filter_btn.pressed.connect(_on_filter_btn_pressed)
 	paused_btn.pressed.connect(_on_pause_btn_pressed)
+	sliding_panel.panel_opened.connect(_on_sliding_panel_opened)
 
 	# Wire TutorialManager
 	tutorial_manager.setup(tutorial_dialogue, dialogue_box)
@@ -301,6 +302,8 @@ func _on_question_button_pressed(key: String) -> void:
 		answer_label.text = ""
 		# Notify manager that a question was asked
 		tutorial_manager.notify_event("question_asked")
+		if _active_tutorial_panel and _active_tutorial_panel is QuestionTutorialPanel:
+			_active_tutorial_panel.notify_question_asked()
 
 func type_text(label: Label, full_text: String, cps: float = 30.0) -> void:
 	label.text = ""
@@ -337,6 +340,15 @@ func _on_tutorial_panel_closed() -> void:
 	# 1. Part 1 (DocumentTutorialPanel) → advances to Part 2 (shows dialogue)
 	# 2. Part 2 (ButtonPanel) → advances to Part 3 (shows questions dialogue)
 	tutorial_manager.advance_to(tutorial_manager.current_part + 1)
+
+func _on_sliding_panel_opened() -> void:
+
+	print("TUTORIAL RECEIVED: sliding panel opened")
+
+	tutorial_manager.notify_event("question_panel_opened")
+
+	if _active_tutorial_panel and _active_tutorial_panel is QuestionTutorialPanel:
+			_active_tutorial_panel.notify_panel_opened()
 
 # ========================
 # PROCESS LOOP
@@ -390,6 +402,9 @@ func enable_buttons(state: bool) -> void:
 	decline_btn.disabled = not state
 
 func _on_approve_btn_pressed() -> void:
+	# Notify tutorial panel first
+	if _active_tutorial_panel and _active_tutorial_panel is ButtonPanel:
+		_active_tutorial_panel.notify_verdict_pressed()
 	if current_document:
 		current_document.spawn_approve_stamp()
 	button_sound.play()
@@ -398,6 +413,9 @@ func _on_approve_btn_pressed() -> void:
 	handle_player_decision(true)
 
 func _on_decline_btn_pressed() -> void:
+	# Notify tutorial panel first
+	if _active_tutorial_panel and _active_tutorial_panel is ButtonPanel:
+		_active_tutorial_panel.notify_verdict_pressed()
 	if current_document:
 		current_document.spawn_decline_stamp()
 	button_sound.play()
@@ -417,6 +435,9 @@ func _on_filter_btn_pressed() -> void:
 	if filetizen:
 		filetizen.deactivate_filter()
 	tutorial_manager.notify_event("filter_used")
+	
+	if _active_tutorial_panel and _active_tutorial_panel is FilterTutorialPanel:
+		_active_tutorial_panel.notify_filter_used()
 
 func _on_pause_btn_pressed() -> void:
 	paused.show()

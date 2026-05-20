@@ -13,6 +13,7 @@ extends Control
 @onready var panel3: Panel = $Panel3
 @onready var panel4: Panel = $Panel4
 @onready var panel5: Panel = $Panel5
+@onready var panel6: Panel = $Panel6
 
 # ========================
 # SIGNALS
@@ -108,9 +109,28 @@ func show_step(step: int) -> void:
 	# Stop any active animations
 	_stop_all_animations()
 	
-	# Handle special actions
+	# ========================
+	# DOCUMENT CLICK BLOCKER
+	# ========================
+
+	# By default block document clicking
+	panel6.visible = true
+
+	# Allow clicking ONLY on steps that require document interaction
+	if step_data.get("requires_event", "") == "document_opened":
+		panel6.visible = false
+
+	if step_data.get("requires_event", "") == "document_closed":
+		panel6.visible = false
+
+	# ========================
+	# HANDLE ACTIONS
+	# ========================
+
 	if step_data.has("action"):
+
 		match step_data["action"]:
+
 			"hide_panels":
 				_hide_panels()
 	
@@ -189,12 +209,13 @@ func _animate_arrow_vertical(arrow: Panel) -> void:
 	arrow_tween.tween_property(arrow, "position:y", start_pos - move_distance, duration)
 
 func _hide_panels() -> void:
-	"""Hide all the informational panels (Panel, Panel2, Panel3, Panel4, Panel5)"""
+
 	panel.visible = false
 	panel2.visible = false
 	panel3.visible = false
 	panel4.visible = false
 	panel5.visible = false
+
 
 # ========================
 # BUTTON HANDLER

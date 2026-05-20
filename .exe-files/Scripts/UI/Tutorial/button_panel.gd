@@ -2,6 +2,12 @@ class_name ButtonPanel
 extends Control
 
 # ========================
+# SIGNALS
+# ========================
+signal panel_closed
+signal verdict_required
+
+# ========================
 # ONREADY REFERENCES
 # ========================
 @onready var frame: TextureRect = $frame
@@ -23,11 +29,6 @@ extends Control
 @onready var panel5: Panel = $Panel5
 
 # ========================
-# SIGNALS
-# ========================
-signal panel_closed
-
-# ========================
 # TUTORIAL STEPS
 # ========================
 const TUTORIAL_STEPS: Array[Dictionary] = [
@@ -42,9 +43,10 @@ const TUTORIAL_STEPS: Array[Dictionary] = [
 		"frame": "frame",
 	},
 	{
-		"text": "Tap Approve to let the Filetizen into the system.",
+		"text": "Tap Approve or Decline to make your first verdict.",
 		"arrow": "none",
 		"frame": "frame2",
+		"action": "wait_for_verdict",
 	},
 ]
 
@@ -58,6 +60,7 @@ var full_text: String = ""
 var current_tween: Tween = null
 var arrow_tween: Tween = null
 var current_frame: String = "frame"
+var waiting_for_verdict := false
 
 # ========================
 # LIFECYCLE
@@ -106,6 +109,21 @@ func show_step(step: int) -> void:
 	
 	# Show the appropriate arrow
 	_show_arrow(step_data["arrow"])
+	
+	# Reset
+	waiting_for_verdict = false
+
+	# Handle special actions
+	if step_data.has("action"):
+		match step_data["action"]:
+			"hide_panels":
+				_hide_panels()
+
+			"wait_for_verdict":
+				waiting_for_verdict = true
+				# Hide next buttons
+				next_button.visible = false
+				next_button2.visible = false
 	
 	# Display the text with typing animation
 	full_text = step_data["text"]
@@ -227,15 +245,33 @@ func _hide_panels() -> void:
 # BUTTON HANDLER
 # ========================
 func _on_next_button_pressed() -> void:
-	"""Handle next button click"""
 	print("Button Clicked! Current step: %d, Is typing: %s" % [current_step, is_typing])
-	if is_typing:
-		# Skip typing and show full text
-		skip_typing()
-	else:
-		# Move to next step
-		show_step(current_step + 1)
 
+	if is_typing:
+		skip_typing()
+		return
+
+	# Prevent advancing manually if waiting for verdict
+	if waiting_for_verdict:
+		print("Waiting for player to press Approve or Decline")
+		return
+
+	show_step(current_step + 1)
+
+func notify_verdict_pressed() -> void:
+
+	if not waiting_for_verdict:
+		return
+
+	print("Tutorial detected verdict press")
+
+	waiting_for_verdict = false
+
+	# Restore buttons
+	next_button.visible = true
+	next_button2.visible = true
+
+	_finish_panel()
 # ========================
 # CLEANUP
 # ========================

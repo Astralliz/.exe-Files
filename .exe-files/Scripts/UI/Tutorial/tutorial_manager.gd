@@ -57,13 +57,6 @@ const PARTS: Array[Dictionary] = [
 		"wait_for_next": true,
 		"completes_on": "question_asked"
 	},
-	# Part 4 — Evaluate
-	{
-		"text": "Now i will introduce you a resources that will help you analyse the metadata.",
-		"panel": "res://Scenes/UI/tutorial_panels/evaluate_tutorial_panel.tscn",
-		"wait_for_next": true,
-		"after_next": "show_panel"
-	},
 	{
 		"text": "Here is the Thressohold score of filetizen, if their total score exceed this, theyre suspicious.",
 		"panel": "res://Scenes/UI/tutorial_panels/threshold_panel.tscn",
@@ -73,6 +66,13 @@ const PARTS: Array[Dictionary] = [
 	{
 		"text": "Next is the indicator.",
 		"panel": "res://Scenes/UI/tutorial_panels/indicator_panel.tscn",
+		"wait_for_next": true,
+		"after_next": "show_panel"
+	},
+	# Part 4 — Evaluate
+	{
+		"text": "Now i will introduce you a resources that will help you analyse the metadata.",
+		"panel": "res://Scenes/UI/tutorial_panels/evaluate_tutorial_panel.tscn",
 		"wait_for_next": true,
 		"after_next": "show_panel"
 	},
@@ -89,7 +89,6 @@ const PARTS: Array[Dictionary] = [
 		"wait_for_next": true,
 		"after_next": "none"
 	},
-	
 	{
 		"text": "That's everything — you're ready, Inspector %s .",
 		"wait_for_next": true,

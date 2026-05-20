@@ -3,6 +3,9 @@ extends Control
 @onready var panel = $QuestionPanel
 @onready var content = $Panel/ScrollContainer/VBoxContainer
 
+signal panel_opened
+signal panel_closed
+
 var is_open := false
 
 var closed_pos := Vector2(0, 320)
@@ -28,6 +31,9 @@ func toggle_panel():
 
 		content.visible = true
 		is_open = true
+		
+		print("SLIDING PANEL OPENED")
+		panel_opened.emit()
 
 	else:
 		tween.tween_property(self, "position", closed_pos, 0.3)\
@@ -37,3 +43,6 @@ func toggle_panel():
 		await tween.finished
 		content.visible = false
 		is_open = false
+		
+		print("SLIDING PANEL CLOSED")
+		panel_closed.emit()

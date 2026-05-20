@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dlbfkhrjnwrei"]
+[gd_scene load_steps=10 format=3 uid="uid://dlbfkhrjnwrei"]
 
 [ext_resource type="Script" uid="uid://cxderauyq7rb8" path="res://Scripts/UI/Tutorial/document_tutorial_panel.gd" id="1_vcydx"]
 [ext_resource type="Texture2D" uid="uid://dud14egjhs4im" path="res://Assets/images/finished window.png" id="2_g4ucp"]
@@ -8,6 +8,9 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btf34"]
 bg_color = Color(0.129412, 0.12549, 0.129412, 0.901961)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcydx"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_bnur2"]
 font = ExtResource("3_qwe7u")
@@ -79,6 +82,17 @@ offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_btf34")
+
+[node name="Panel6" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 1902.0
+offset_top = 631.0
+offset_right = 2456.0
+offset_bottom = 884.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vcydx")
 
 [node name="frame" type="TextureRect" parent="."]
 layout_mode = 0

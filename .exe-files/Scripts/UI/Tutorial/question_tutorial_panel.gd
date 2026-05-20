@@ -22,8 +22,9 @@ signal panel_closed
 # ========================
 const TUTORIAL_STEPS: Array[Dictionary] = [
 	{
-		"text": "Tap here to open the question panel. Once open, you can click each question and the Filetizen will answer. Use their responses to help make your decision.",
+		"text": "Tap here to open the question panel. Then tap any question to ask the Filetizen for more information.",
 		"arrow": "left",
+		"action": "wait_for_question",
 	},
 ]
 
@@ -35,6 +36,8 @@ var typing_speed: float = 0.02
 var is_typing: bool = false
 var full_text: String = ""
 var arrow_tween: Tween = null
+var waiting_for_panel_open := false
+var waiting_for_question := false
 
 # ========================
 # LIFECYCLE
@@ -75,6 +78,21 @@ func show_step(step: int) -> void:
 	# Show the arrow
 	_show_arrow(step_data["arrow"])
 	
+	# Reset
+	waiting_for_question = false
+
+	# Handle actions
+	if step_data.has("action"):
+
+		match step_data["action"]:
+
+			"wait_for_question":
+
+				waiting_for_question = true
+
+				# Hide next button
+				next_button.visible = false
+	
 	# Display the text with typing animation
 	full_text = step_data["text"]
 	text_box.text = full_text
@@ -82,6 +100,32 @@ func show_step(step: int) -> void:
 	
 	is_typing = true
 	start_typing()
+
+func notify_question_asked() -> void:
+
+	if not waiting_for_question:
+		return
+
+	print("Tutorial detected question asked")
+
+	waiting_for_question = false
+
+	next_button.visible = true
+
+	_finish_panel()
+
+func notify_panel_opened() -> void:
+
+	if not waiting_for_panel_open:
+		return
+
+	print("Tutorial detected sliding panel opened")
+
+	waiting_for_panel_open = false
+
+	next_button.visible = true
+
+	_finish_panel()
 
 func _show_arrow(arrow_type: String) -> void:
 	"""Show and animate the specified arrow"""
