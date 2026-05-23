@@ -112,7 +112,7 @@ theme_override_fonts/font = ExtResource("3_p2sox")
 theme_override_font_sizes/font_size = 80
 theme_override_styles/hover = SubResource("StyleBoxFlat_7j04u")
 theme_override_styles/normal = SubResource("StyleBoxFlat_i64nf")
-text = "Story 1"
+text = "shift 1"
 
 [node name="Button2" type="Button" parent="HBoxContainer"]
 layout_mode = 2
@@ -121,7 +121,7 @@ theme_override_fonts/font = ExtResource("3_p2sox")
 theme_override_font_sizes/font_size = 80
 theme_override_styles/hover = SubResource("StyleBoxFlat_s3gio")
 theme_override_styles/normal = SubResource("StyleBoxFlat_hgxv2")
-text = "story 2"
+text = "shift 2"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -150,7 +150,7 @@ offset_right = 0.199951
 offset_bottom = -0.240021
 theme_override_fonts/font = ExtResource("3_p2sox")
 theme_override_font_sizes/font_size = 50
-text = "Choose a Story"
+text = "Choose a shift"
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
@@ -204,7 +204,7 @@ offset_right = -0.480103
 offset_bottom = -0.47998
 theme_override_fonts/font = ExtResource("3_p2sox")
 theme_override_font_sizes/font_size = 45
-text = "Finished Story 
+text = "Finished shift 
 1 to unlock"
 horizontal_alignment = 1
 vertical_alignment = 1

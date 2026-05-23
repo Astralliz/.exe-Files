@@ -17,12 +17,12 @@ const SYSTEM_ARCHITECT := "System Architect"
 # === Descriptions ===
 
 var achievement_descriptions := {
-	METADATA_DETECTIVE: "Complete Day 1 of the story to unlock this achievement.",
+	METADATA_DETECTIVE: "Complete Day 1 of the shift to unlock this achievement.",
 	THREAT_NEUTRALIZER: "Complete the mini-game at least once to unlock this achievement.",
-	SYSTEM_GATEKEEPER: "Complete the Story 1 to unlock this achievement.",
+	SYSTEM_GATEKEEPER: "Complete the shift 1 to unlock this achievement.",
 	AUDIT_MASTER: "Inspect a total of 100 files across all gameplay sessions." + "\n \n Total INspected:  
 		" + str(Player_Data.data["total_inspected"]),
-	SYSTEM_ARCHITECT: "Complete Story Day 6 (or Story Part 2) to unlock this achievement."
+	SYSTEM_ARCHITECT: "Complete Day 6 (or shift 2) to unlock this achievement."
 }
 
 

@@ -122,7 +122,7 @@ offset_right = 0.287964
 offset_bottom = 0.399994
 theme_override_fonts/font = ExtResource("4_okpo2")
 theme_override_font_sizes/font_size = 125
-text = "Story 1"
+text = "shift 1"
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 1

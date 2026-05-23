@@ -26,7 +26,7 @@ var level_rules = {
 		{"id": "R2", "condition": "ext_exe", "score": 0.7},
 		{"id": "R3", "condition": "ext_script", "score": 0.4},
 		{"id": "R4", "condition": "ext_dropper", "score": 0.5},
-		{"id": "R5", "condition": "unknown_publisher", "score": 0.4},	
+		{"id": "R5", "condition": "unknown_publisher", "score": 0.4},
 		{"id": "R8", "condition": "src_unknown", "score": 0.6},
 		{"id": "R13", "condition": "type_mismatch", "score": 0.2},
 	],

@@ -28,7 +28,7 @@ const TUTORIAL_STEPS: Array[Dictionary] = [
 		"arrow": "up_1"
 	},
 	{
-		"text": "The mini-game can be used once per Duty Day. This limit resets every day at midnight (real-time).",
+		"text": "Mini-games refresh 5 hours after use.",
 		"arrow": "up_1"
 	},
 	{

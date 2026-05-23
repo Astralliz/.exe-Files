@@ -86,6 +86,7 @@ var prev_position := Vector2.ZERO
 var pending_player_approved: bool = false
 var minigame_active: bool = false
 var is_game_over: bool = false
+const MINIGAME_COOLDOWN := 18000 # 5 hours in seconds
 
 var minigame_timer_update: float = 0.0
 const MINIGAME_UI_REFRESH_TIME := 60.0
@@ -686,13 +687,14 @@ func update_minigame_indicator():
 	if Player_Data.can_use_minigame(day):
 
 		minigame_indicator.modulate.a = 1.0
+		minigame_cooldown_label.text = "READY"
 
 	else:
 
 		minigame_indicator.modulate.a = 0.15
 		minigame_cooldown_label.text = (
 			"REFRESH IN: "
-			+ Player_Data.get_minigame_remaining_time()
+			+ Player_Data.get_minigame_remaining_time(day)
 		)
 
 # =========================

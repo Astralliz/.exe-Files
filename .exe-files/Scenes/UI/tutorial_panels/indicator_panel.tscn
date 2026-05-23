@@ -80,6 +80,7 @@ rotation = -1.5708
 theme_override_styles/panel = SubResource("StyleBoxTexture_tl81r")
 
 [node name="frame" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 606.0
 offset_top = 570.0
 offset_right = 2383.0

@@ -23,11 +23,11 @@ func evaluate(file: FileMetadata, rules: Array, answer: Dictionary = {}) -> Dict
 					score += rule.score
 					triggered = true
 			"ext_script":
-				if file.extension in [".bat", ".ps1"]:
+				if file.extension in [".js", ".ps1"]:
 					score += rule.score
 					triggered = true
 			"ext_dropper":
-				if file.extension in [".js", ".vbs"]:
+				if file.extension in [".bat", ".vbs"]:
 					score += rule.score
 					triggered = true
 			"unknown_publisher":

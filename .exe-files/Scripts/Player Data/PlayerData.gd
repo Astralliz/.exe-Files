@@ -28,6 +28,8 @@ var pending_achievements: Array[String] = []
 const SAVE_PATH := "user://player_data.cfg"
 const SAVE_SECTION := "player"
 
+const MINIGAME_COOLDOWN := 18000 # 5 hours
+
 signal bug_bounty_changed(new_amount)
 signal filter_amount_change(new_amount)
 signal evaluation_amount_change(new_amount)
@@ -89,22 +91,25 @@ func load_data() -> void:
 	else:
 		data["achievements"] = []
 
-	# ---- Questions Used ----
-	var filt: Dictionary = cfg.get_value(SAVE_SECTION, "filter_used", {})
-	if typeof(filt) == TYPE_DICTIONARY:
-		data["filter_used"] = filt.duplicate(true)
+	# ---- Filter Used ----
+	var filt = cfg.get_value(SAVE_SECTION, "filter_used", 0)
+
+	if typeof(filt) == TYPE_INT:
+		data["filter_used"] = filt
 	else:
-		data["filter_used"] = {}
+		data["filter_used"] = 0
 
 	# ---- Evaluate Used ----
-	var eval: Dictionary = cfg.get_value(SAVE_SECTION, "evaluate_used", {})
-	if typeof(eval) == TYPE_DICTIONARY:
-		data["evaluate_used"] = eval.duplicate(true)
+	var eval = cfg.get_value(SAVE_SECTION, "evaluate_used", 0)
+
+	if typeof(eval) == TYPE_INT:
+		data["evaluate_used"] = eval
 	else:
-		data["evaluate_used"] = {}
+		data["evaluate_used"] = 0
 
 	# ---- Bug Bounty Coins ----
-	var bb: Dictionary = cfg.get_value(SAVE_SECTION, "bug_bounty", 0)
+	var bb = cfg.get_value(SAVE_SECTION, "bug_bounty", 0)
+
 	if typeof(bb) == TYPE_INT:
 		data["bug_bounty"] = bb
 	else:
@@ -124,45 +129,39 @@ func load_data() -> void:
 # -----------------------
 
 # ----------------------- Mini Games System ----------------------
-# Get today's real-world date
-func get_today_date() -> String:
-	return Time.get_date_string_from_system()  # "YYYY-MM-DD"
-
-# Build unique key: "2026-04-08_day1"
-func build_minigame_key(day: int) -> String:
-	return get_today_date() + "_day" + str(day)
-
 # Check if minigame can be used
 func can_use_minigame(day: int) -> bool:
-	var key = build_minigame_key(day)
-	return not data["minigame_usage"].has(key)
+	var key = "day" + str(day)
+	# never used before
+	if not data["minigame_usage"].has(key):
+		return true
+
+	var last_used = int(data["minigame_usage"][key])
+	var current_time = Time.get_unix_time_from_system()
+
+	var elapsed = current_time - last_used
+	return elapsed >= MINIGAME_COOLDOWN
 
 # Mark minigame as used
 func mark_minigame_used(day: int) -> void:
-	var key = build_minigame_key(day)
-	data["minigame_usage"][key] = true
+	var key = "day" + str(day)
+	data["minigame_usage"][key] = Time.get_unix_time_from_system()
 	save_data()
 
-# ----------------------- MINIGAME RESET TIMER ----------------------
+func get_minigame_remaining_time(day: int) -> String:
+	var key = "day" + str(day)
+	if not data["minigame_usage"].has(key):
+		return "READY"
 
-func get_seconds_until_midnight() -> int:
+	var last_used = int(data["minigame_usage"][key])
+	var current_time = Time.get_unix_time_from_system()
+	var remaining := int(MINIGAME_COOLDOWN - (current_time - last_used))
 
-	var now = Time.get_datetime_dict_from_system()
+	if remaining <= 0:
+		return "READY"
 
-	var current_seconds = (
-		now.hour * 3600
-		+ now.minute * 60
-		+ now.second
-	)
-
-	return 86400 - current_seconds
-
-func get_minigame_remaining_time() -> String:
-
-	var seconds_left = get_seconds_until_midnight()
-
-	var hours = seconds_left / 3600
-	var minutes = (seconds_left % 3600) / 60
+	var hours = int(remaining / 3600)
+	var minutes = int((remaining % 3600) / 60)
 
 	return "%02dh %02dm" % [hours, minutes]
 
