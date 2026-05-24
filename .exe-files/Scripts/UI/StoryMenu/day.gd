@@ -687,7 +687,7 @@ func update_minigame_indicator():
 	if Player_Data.can_use_minigame(day):
 
 		minigame_indicator.modulate.a = 1.0
-		minigame_cooldown_label.text = "READY"
+		minigame_cooldown_label.text = ""
 
 	else:
 
@@ -866,10 +866,16 @@ func next_turn_or_end(show_gameover: bool) -> void:
 			Player_Data.clear_pending_achievements()
 			wrong_decision_popup.show()
 		else:
+			# Save today's correct count BEFORE reset
+			level_finished.today_correct = correct_today
+			level_finished.total_filetizens = max_filetizens
+
 			commit_day_progress()
+
 			level_finished.z_index = 20
 			level_finished.setup_dialogue(GameState.day)
 			level_finished.show()
+
 			level_up()
 
 func commit_day_progress():

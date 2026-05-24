@@ -23,6 +23,8 @@ var achievement_images := {
 	"System Architect": "res://Assets/Trophy/SystemArchitect.png"
 }
 
+var today_correct: int = 0
+var total_filetizens: int = 0
 var day: int
 
 # =========================
@@ -119,12 +121,27 @@ func _on_achievement_pressed() -> void:
 # NORMAL FLOW
 # =========================
 func show_normal_completion(day: int) -> void:
-	message.text = "\nGreat job!\nYou finished Day " + str(day) + "\nGet ready for the next challenge!"
+
+	message.text = (
+		"\nGreat job!\n"
+		+ "You finished Day " + str(day)
+		+ "\n\nDaily Work Report"
+		+ "\nCorrect Inspections: " + str(today_correct) + "/" + str(total_filetizens)
+		+ "\n\nGet ready for the next challenge!"
+	)
+
 	continue_btn.show()
 
 
 func _on_accept_pressed() -> void:
-	message.text = "\n\nDay " + str(day) + " Complete!\nMore challenging days await!"
+
+	message.text = (
+		"\nDay " + str(day) + " Complete!"
+		+ "\n\nDaily Work Report"
+		+ "\nCorrect Inspections: " + str(today_correct) + "/" + str(total_filetizens)
+		+ "\n\nMore challenging days await!"
+	)
+
 	accept_btn.hide()
 	trophy_panel.visible = false
 	continue_btn.show()
