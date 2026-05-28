@@ -5,6 +5,7 @@ extends Node
 @onready var level1_panel = $Level1Panel
 @onready var level2_panel = $Level2Panel
 @onready var level3_panel = $Level3Panel
+@onready var attack_class = $AttackClassPanel
 
 func _ready():
 	show_tab("metadata")
@@ -15,7 +16,8 @@ func show_tab(tab_name: String):
 		metadata_panel,
 		level1_panel,
 		level2_panel,
-		level3_panel
+		level3_panel,
+		attack_class
 	]
 
 	# Disable all panels completely
@@ -42,6 +44,9 @@ func show_tab(tab_name: String):
 		"level3":
 			enable_panel(level3_panel)
 
+		"attack_class":
+			enable_panel(attack_class)
+
 func enable_panel(panel: Control):
 
 	panel.visible = true
@@ -62,3 +67,6 @@ func _on_level_2_pressed() -> void:
 
 func _on_level_3_pressed() -> void:
 	show_tab("level3")
+
+func _on_attack_class_pressed() -> void:
+	show_tab("attack_class")
